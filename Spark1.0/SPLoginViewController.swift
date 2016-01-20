@@ -36,9 +36,6 @@ class SPLoginViewController: UIViewController {
         // For logout: http://stackoverflow.com/questions/19962276/best-practices-for-storyboard-login-screen-handling-clearing-of-data-upon-logou
     }
     
-    @IBAction func createAccountPressed(sender: AnyObject) {
-        
-    }
     
 
 

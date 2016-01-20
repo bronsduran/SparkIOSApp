@@ -38,8 +38,7 @@
                                 <rect key="frame" x="102" y="367" width="116" height="30"/>
                                 <state key="normal" title="Create Account"/>
                                 <connections>
-                                    <action selector="createAccountPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YO0-is-j7O"/>
-                                    <segue destination="1fw-dz-JJL" kind="modal" id="voD-UT-Teo"/>
+                                    <segue destination="1fw-dz-JJL" kind="modal" id="EqF-xZ-Yji"/>
                                 </connections>
                             </button>
                         </subviews>

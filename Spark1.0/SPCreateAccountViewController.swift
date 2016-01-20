@@ -29,7 +29,7 @@ class SPCreateAccountViewController: UIViewController {
     }
     
     @IBAction func createAccountPressed(sender: AnyObject) {
-        
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
 }
