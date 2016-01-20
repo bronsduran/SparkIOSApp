@@ -20,12 +20,14 @@
 		0A2F59CC1C4F3C7F0053300C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2F59CB1C4F3C7F0053300C /* libz.tbd */; };
 		0A2F59CE1C4F3C8C0053300C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2F59CD1C4F3C8C0053300C /* libsqlite3.tbd */; };
 		4B2285FC1C4AE4E800CE4146 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2285FB1C4AE4E800CE4146 /* AppDelegate.swift */; };
-		4B2285FE1C4AE4E800CE4146 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2285FD1C4AE4E800CE4146 /* ViewController.swift */; };
+		4B2285FE1C4AE4E800CE4146 /* SPLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2285FD1C4AE4E800CE4146 /* SPLoginViewController.swift */; };
 		4B2286011C4AE4E800CE4146 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2285FF1C4AE4E800CE4146 /* Main.storyboard */; };
 		4B2286041C4AE4E800CE4146 /* Spark1_0.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B2286021C4AE4E800CE4146 /* Spark1_0.xcdatamodeld */; };
 		4B2286061C4AE4E800CE4146 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2286051C4AE4E800CE4146 /* Assets.xcassets */; };
 		4B2286091C4AE4E800CE4146 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2286071C4AE4E800CE4146 /* LaunchScreen.storyboard */; };
 		4B2286141C4AE4E800CE4146 /* Spark1_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2286131C4AE4E800CE4146 /* Spark1_0Tests.swift */; };
+		C57DB7651C4F49C600022D3A /* SPCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57DB7641C4F49C600022D3A /* SPCreateAccountViewController.swift */; };
+		C57DB7671C4F4A2800022D3A /* SPCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57DB7661C4F4A2800022D3A /* SPCaptureViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +56,7 @@
 		0A2F59CF1C4F3E370053300C /* Spark1.0-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Spark1.0-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		4B2285F81C4AE4E800CE4146 /* Spark1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spark1.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2285FB1C4AE4E800CE4146 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4B2285FD1C4AE4E800CE4146 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4B2285FD1C4AE4E800CE4146 /* SPLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPLoginViewController.swift; sourceTree = "<group>"; };
 		4B2286001C4AE4E800CE4146 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B2286031C4AE4E800CE4146 /* Spark1_0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Spark1_0.xcdatamodel; sourceTree = "<group>"; };
 		4B2286051C4AE4E800CE4146 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -63,6 +65,8 @@
 		4B22860F1C4AE4E800CE4146 /* Spark1.0Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Spark1.0Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2286131C4AE4E800CE4146 /* Spark1_0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spark1_0Tests.swift; sourceTree = "<group>"; };
 		4B2286151C4AE4E800CE4146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C57DB7641C4F49C600022D3A /* SPCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPCreateAccountViewController.swift; sourceTree = "<group>"; };
+		C57DB7661C4F4A2800022D3A /* SPCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPCaptureViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +121,9 @@
 		0A2F59D21C4F3ED80053300C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4B2285FD1C4AE4E800CE4146 /* ViewController.swift */,
+				4B2285FD1C4AE4E800CE4146 /* SPLoginViewController.swift */,
+				C57DB7641C4F49C600022D3A /* SPCreateAccountViewController.swift */,
+				C57DB7661C4F4A2800022D3A /* SPCaptureViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -283,7 +289,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B2285FE1C4AE4E800CE4146 /* ViewController.swift in Sources */,
+				C57DB7671C4F4A2800022D3A /* SPCaptureViewController.swift in Sources */,
+				4B2285FE1C4AE4E800CE4146 /* SPLoginViewController.swift in Sources */,
+				C57DB7651C4F49C600022D3A /* SPCreateAccountViewController.swift in Sources */,
 				4B2286041C4AE4E800CE4146 /* Spark1_0.xcdatamodeld in Sources */,
 				4B2285FC1C4AE4E800CE4146 /* AppDelegate.swift in Sources */,
 			);

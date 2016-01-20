@@ -27,6 +27,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // [Optional] Track statistics around application opens.
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+        
+        
+        let isLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("is_logged_in")
+        
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+
+        if isLoggedIn {
+            mainStoryboard.instantiateInitialViewController()
+        } else {
+            let vc = mainStoryboard.instantiateViewControllerWithIdentifier("SPLoginViewController") as! SPLoginViewController
+            self.window!.rootViewController = vc
+        }
+
+        
         return true
     }
 
