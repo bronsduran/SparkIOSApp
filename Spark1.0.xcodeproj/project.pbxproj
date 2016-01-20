@@ -28,6 +28,7 @@
 		4B2286141C4AE4E800CE4146 /* Spark1_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2286131C4AE4E800CE4146 /* Spark1_0Tests.swift */; };
 		C57DB7651C4F49C600022D3A /* SPCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57DB7641C4F49C600022D3A /* SPCreateAccountViewController.swift */; };
 		C57DB7671C4F4A2800022D3A /* SPCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57DB7661C4F4A2800022D3A /* SPCaptureViewController.swift */; };
+		C5A1BA6B1C4F6D76005172F9 /* LLSimpleCamera in Resources */ = {isa = PBXBuildFile; fileRef = C5A1BA6A1C4F6D76005172F9 /* LLSimpleCamera */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		4B2286151C4AE4E800CE4146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C57DB7641C4F49C600022D3A /* SPCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPCreateAccountViewController.swift; sourceTree = "<group>"; };
 		C57DB7661C4F4A2800022D3A /* SPCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPCaptureViewController.swift; sourceTree = "<group>"; };
+		C5A1BA6A1C4F6D76005172F9 /* LLSimpleCamera */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LLSimpleCamera; path = Spark1.0/Frameworks/LLSimpleCamera; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 		0A2F59B61C4F3AEF0053300C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C5A1BA6A1C4F6D76005172F9 /* LLSimpleCamera */,
 				0A2F59CD1C4F3C8C0053300C /* libsqlite3.tbd */,
 				0A2F59CB1C4F3C7F0053300C /* libz.tbd */,
 				0A2F59C91C4F3C720053300C /* SystemConfiguration.framework */,
@@ -270,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B2286091C4AE4E800CE4146 /* LaunchScreen.storyboard in Resources */,
+				C5A1BA6B1C4F6D76005172F9 /* LLSimpleCamera in Resources */,
 				4B2286061C4AE4E800CE4146 /* Assets.xcassets in Resources */,
 				4B2286011C4AE4E800CE4146 /* Main.storyboard in Resources */,
 			);
