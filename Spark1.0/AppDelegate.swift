@@ -22,8 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.enableLocalDatastore()
         
         // Initialize Parse.
-        Parse.setApplicationId("4rGVNu0fYHu6DhBESJooVeMD3iYKelTNqtfMmJIW",
-            clientKey: "pb5VCMKxdFET5Kjn4xFEhvAj3WkLUpxjbT9ZfaFF")
+        Parse.setApplicationId("inkL3uIc4NC2L4LgJi0ccNZUcHETUk7ebpbDQ9DJ",
+            clientKey: "5XttMKEEaXT4fCyWH6Y2PmK3LixZuwH7VphKWf5g")
         
         // [Optional] Track statistics around application opens.
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
