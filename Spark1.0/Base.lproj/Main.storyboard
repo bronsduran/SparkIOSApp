@@ -106,50 +106,65 @@
             </objects>
             <point key="canvasLocation" x="702" y="1772"/>
         </scene>
-        <!--Root View Controller-->
-        <scene sceneID="eAs-n4-Yl7">
+        <!--Capture View Controller-->
+        <scene sceneID="iQl-Vo-2Ac">
             <objects>
-                <tableViewController id="tkP-ll-ffA" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5hF-57-QHl">
+                <viewController id="Oj9-cQ-Faf" customClass="SPCaptureViewController" customModule="Spark1_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B1v-fF-jzI"/>
+                        <viewControllerLayoutGuide type="bottom" id="33v-1T-piy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="POr-pK-aQu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CaL-N5-0uL">
+                                <rect key="frame" x="0.0" y="498" width="320" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="Twb-eF-k5r"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="     " id="Xan-22-5pR"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="L8P-a4-ZrD"/>
+                                    <barButtonItem title="Capture" id="8J6-Vo-9WW"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="p4c-1l-vI6"/>
+                                    <barButtonItem title="Skip" id="vwM-Xu-a1F"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1Ff-3X-Bhd">
-                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Ff-3X-Bhd" id="GoS-8a-9sD">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="tkP-ll-ffA" id="d3R-KA-2IC"/>
-                            <outlet property="delegate" destination="tkP-ll-ffA" id="S0g-1g-Tgx"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="daz-Gu-wkj"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hSJ-nd-IZZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="CaL-N5-0uL" secondAttribute="bottom" id="FSI-2J-Z2M"/>
+                            <constraint firstItem="CaL-N5-0uL" firstAttribute="leading" secondItem="POr-pK-aQu" secondAttribute="leading" id="cjC-5z-jsP"/>
+                            <constraint firstAttribute="trailing" secondItem="CaL-N5-0uL" secondAttribute="trailing" id="yhK-uz-NkL"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Kf1-6y-JHu"/>
+                    <connections>
+                        <outlet property="captureButton" destination="8J6-Vo-9WW" id="nGv-vC-k2J"/>
+                        <outlet property="skipButton" destination="vwM-Xu-a1F" id="lvY-li-ucs"/>
+                        <outlet property="toolbar" destination="CaL-N5-0uL" id="fH8-uC-5Fq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3ww-hU-MYw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1146" y="391"/>
+            <point key="canvasLocation" x="1122" y="393"/>
         </scene>
-        <!--Capture View Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="HIF-85-JWW">
             <objects>
-                <navigationController id="pR4-Z0-oNV" customClass="SPCaptureViewController" customModule="Spark1_0" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="pR4-Z0-oNV" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="r5W-T4-YVS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="tkP-ll-ffA" kind="relationship" relationship="rootViewController" id="M2u-Je-0CI"/>
+                        <segue destination="Oj9-cQ-Faf" kind="relationship" relationship="rootViewController" id="l3T-0t-Yfy"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vGU-c0-Eqz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="708" y="391"/>
+            <point key="canvasLocation" x="710" y="393"/>
         </scene>
     </scenes>
 </document>
