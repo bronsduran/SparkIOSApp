@@ -30,6 +30,9 @@
 		C57DB7671C4F4A2800022D3A /* SPCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57DB7661C4F4A2800022D3A /* SPCaptureViewController.swift */; };
 		C5C1D7791C50B44400C20DF9 /* LLSimpleCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C1D7761C50B44400C20DF9 /* LLSimpleCamera.m */; };
 		C5C1D77A1C50B44400C20DF9 /* UIImage+FixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C1D7781C50B44400C20DF9 /* UIImage+FixOrientation.m */; };
+		C5C1D77D1C52E06000C20DF9 /* SPMediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C1D77C1C52E06000C20DF9 /* SPMediaViewController.swift */; };
+		C5C1D77F1C52E50900C20DF9 /* SPTagStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C1D77E1C52E50900C20DF9 /* SPTagStudentViewController.swift */; };
+		C5C1D7811C52EA9700C20DF9 /* SPTagCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C1D7801C52EA9700C20DF9 /* SPTagCategoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,9 @@
 		C5C1D7761C50B44400C20DF9 /* LLSimpleCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LLSimpleCamera.m; path = LLSimpleCamera/LLSimpleCamera.m; sourceTree = "<group>"; };
 		C5C1D7771C50B44400C20DF9 /* UIImage+FixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+FixOrientation.h"; path = "LLSimpleCamera/UIImage+FixOrientation.h"; sourceTree = "<group>"; };
 		C5C1D7781C50B44400C20DF9 /* UIImage+FixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+FixOrientation.m"; path = "LLSimpleCamera/UIImage+FixOrientation.m"; sourceTree = "<group>"; };
+		C5C1D77C1C52E06000C20DF9 /* SPMediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPMediaViewController.swift; sourceTree = "<group>"; };
+		C5C1D77E1C52E50900C20DF9 /* SPTagStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPTagStudentViewController.swift; sourceTree = "<group>"; };
+		C5C1D7801C52EA9700C20DF9 /* SPTagCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPTagCategoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +137,9 @@
 				4B2285FD1C4AE4E800CE4146 /* SPLoginViewController.swift */,
 				C57DB7641C4F49C600022D3A /* SPCreateAccountViewController.swift */,
 				C57DB7661C4F4A2800022D3A /* SPCaptureViewController.swift */,
+				C5C1D77C1C52E06000C20DF9 /* SPMediaViewController.swift */,
+				C5C1D77E1C52E50900C20DF9 /* SPTagStudentViewController.swift */,
+				C5C1D7801C52EA9700C20DF9 /* SPTagCategoryViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -307,9 +316,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5C1D77D1C52E06000C20DF9 /* SPMediaViewController.swift in Sources */,
 				C5C1D7791C50B44400C20DF9 /* LLSimpleCamera.m in Sources */,
+				C5C1D7811C52EA9700C20DF9 /* SPTagCategoryViewController.swift in Sources */,
 				C57DB7671C4F4A2800022D3A /* SPCaptureViewController.swift in Sources */,
 				4B2285FE1C4AE4E800CE4146 /* SPLoginViewController.swift in Sources */,
+				C5C1D77F1C52E50900C20DF9 /* SPTagStudentViewController.swift in Sources */,
 				C5C1D77A1C50B44400C20DF9 /* UIImage+FixOrientation.m in Sources */,
 				C57DB7651C4F49C600022D3A /* SPCreateAccountViewController.swift in Sources */,
 				4B2286041C4AE4E800CE4146 /* Spark1_0.xcdatamodeld in Sources */,

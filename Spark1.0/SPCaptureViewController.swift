@@ -23,22 +23,20 @@ class SPCaptureViewController: UIViewController {
         super.viewDidLoad()
         let screenRect = UIScreen.mainScreen().bounds
         
-        
         self.camera = LLSimpleCamera(quality: AVCaptureSessionPresetHigh, position: LLCameraPositionRear, videoEnabled: true)
         
         self.camera!.attachToViewController(self, withFrame: CGRectMake(0, 0, screenRect.size.width, screenRect.size.height))
-                
+        
 //        self.captureButton = UIButton(frame: CGRectMake(0, 0, 70.0, 70.0))
 //        self.captureButton?.setBackgroundImage(UIImage(named:"Camera_Button"), forState: UIControlState.Normal)
 //        self.captureButton?.addTarget(self, action: "captureButtonPressed", forControlEvents: UIControlEvents.TouchUpInside)
 //        self.view.addSubview(self.captureButton!)
 //        
         
+        self.view.bringSubviewToFront(self.toolbar)
         
         
     }
-    
-
     
     override func viewWillAppear(animated: Bool) {
         self.camera.start()
