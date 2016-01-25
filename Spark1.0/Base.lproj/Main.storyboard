@@ -280,12 +280,14 @@
                                             <segue destination="2JU-SN-RMR" kind="modal" id="5Eb-bU-C63"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="p4c-1l-vI6"/>
-                                    <barButtonItem title="Skip" id="vwM-Xu-a1F">
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="L8P-a4-ZrD"/>
+                                    <barButtonItem title="Capture" id="8J6-Vo-9WW">
                                         <connections>
-                                            <segue destination="ZaX-yA-hlv" kind="push" id="y0E-Cp-PxN"/>
+                                            <action selector="captureButtonPressed:" destination="Oj9-cQ-Faf" id="nAs-T7-3aE"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="p4c-1l-vI6"/>
+                                    <barButtonItem title="Skip" id="vwM-Xu-a1F"/>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -296,11 +298,14 @@
                             <constraint firstAttribute="trailing" secondItem="CaL-N5-0uL" secondAttribute="trailing" id="yhK-uz-NkL"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Kf1-6y-JHu"/>
+                    <navigationItem key="navigationItem" id="Kf1-6y-JHu">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="6V4-qS-AHb"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="captureButton" destination="8J6-Vo-9WW" id="nGv-vC-k2J"/>
                         <outlet property="skipButton" destination="vwM-Xu-a1F" id="lvY-li-ucs"/>
                         <outlet property="toolbar" destination="CaL-N5-0uL" id="fH8-uC-5Fq"/>
+                        <segue destination="ZaX-yA-hlv" kind="push" identifier="toMediaViewController" id="iTq-8L-MSd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ww-hU-MYw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -319,20 +324,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfV-3r-MJ1">
-                                <rect key="frame" x="79" y="439" width="30" height="30"/>
-                                <state key="normal" title="Text"/>
-                                <connections>
-                                    <action selector="textButtonPressed:" destination="ZaX-yA-hlv" eventType="touchUpInside" id="WSs-QS-dJc"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9P3-dq-PSb">
-                                <rect key="frame" x="193" y="439" width="49" height="30"/>
-                                <state key="normal" title="Record"/>
-                                <connections>
-                                    <action selector="recordButtonPressed:" destination="ZaX-yA-hlv" eventType="touchUpInside" id="m24-p8-Fi7"/>
-                                </connections>
-                            </button>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PGI-qN-pYs">
                                 <rect key="frame" x="0.0" y="498" width="320" height="70"/>
                                 <constraints>
@@ -345,6 +336,18 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="k7I-5M-pqt"/>
+                                    <barButtonItem title="Text" id="FpY-7T-dF0">
+                                        <connections>
+                                            <action selector="textButtonPressed:" destination="ZaX-yA-hlv" id="yKR-4r-bQM"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="e5h-Og-OHp"/>
+                                    <barButtonItem title="Mic" id="A9b-nV-WdW">
+                                        <connections>
+                                            <action selector="recordButtonPressed:" destination="ZaX-yA-hlv" id="iYd-Tk-hva"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="egg-hK-RLP"/>
                                     <barButtonItem title="Tag" id="Q9k-Fl-9LT">
                                         <connections>
                                             <action selector="tagButtonPressed:" destination="ZaX-yA-hlv" id="gZk-Rm-5wF"/>
@@ -353,21 +356,90 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tJ2-NX-ACT" userLabel="Audio View Container">
+                                <rect key="frame" x="0.0" y="72" width="320" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksf-0P-ZVb">
+                                        <rect key="frame" x="282" y="10" width="30" height="30"/>
+                                        <state key="normal" title="X">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="audioCloseButtonPressed:" destination="ZaX-yA-hlv" eventType="touchUpInside" id="WEh-19-EVw"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6P5-rD-15U"/>
+                                    <constraint firstAttribute="trailing" secondItem="ksf-0P-ZVb" secondAttribute="trailing" constant="8" id="fhw-Ff-CX9"/>
+                                    <constraint firstItem="ksf-0P-ZVb" firstAttribute="centerY" secondItem="tJ2-NX-ACT" secondAttribute="centerY" id="frV-x0-T7h"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LcR-wm-frR" userLabel="Text View Container">
+                                <rect key="frame" x="0.0" y="130" width="320" height="180"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Oi0-Lv-QTe">
+                                        <rect key="frame" x="20" y="20" width="280" height="140"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Py-TR-bmW">
+                                        <rect key="frame" x="282" y="8" width="30" height="30"/>
+                                        <state key="normal" title="X">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="textCloseButtonPressed:" destination="ZaX-yA-hlv" eventType="touchUpInside" id="pRs-k8-ccp"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="Ngg-gk-xgB"/>
+                                    <constraint firstAttribute="trailing" secondItem="Oi0-Lv-QTe" secondAttribute="trailing" constant="20" id="Rc9-gh-XmO"/>
+                                    <constraint firstAttribute="bottom" secondItem="Oi0-Lv-QTe" secondAttribute="bottom" constant="20" id="gEK-yw-Mwu"/>
+                                    <constraint firstItem="Oi0-Lv-QTe" firstAttribute="leading" secondItem="LcR-wm-frR" secondAttribute="leading" constant="20" id="q5E-oD-wpz"/>
+                                    <constraint firstItem="Oi0-Lv-QTe" firstAttribute="top" secondItem="LcR-wm-frR" secondAttribute="top" constant="20" id="rv9-sJ-Bh1"/>
+                                    <constraint firstItem="4Py-TR-bmW" firstAttribute="top" secondItem="LcR-wm-frR" secondAttribute="top" constant="8" id="srT-rw-h6y"/>
+                                    <constraint firstAttribute="trailing" secondItem="4Py-TR-bmW" secondAttribute="trailing" constant="8" id="tua-2T-f0w"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="PGI-qN-pYs" firstAttribute="leading" secondItem="zKW-j9-Bvc" secondAttribute="leading" id="3Sf-58-Ppx"/>
+                            <constraint firstItem="tJ2-NX-ACT" firstAttribute="top" secondItem="oFO-84-hmn" secondAttribute="bottom" constant="8" id="4Vy-rM-iwd"/>
+                            <constraint firstItem="LcR-wm-frR" firstAttribute="leading" secondItem="zKW-j9-Bvc" secondAttribute="leading" id="Dq4-xo-k1e"/>
                             <constraint firstAttribute="trailing" secondItem="PGI-qN-pYs" secondAttribute="trailing" id="FPR-QJ-1K4"/>
                             <constraint firstItem="PGI-qN-pYs" firstAttribute="bottom" secondItem="zKW-j9-Bvc" secondAttribute="bottomMargin" id="Rqm-i8-ASe"/>
+                            <constraint firstItem="tJ2-NX-ACT" firstAttribute="leading" secondItem="zKW-j9-Bvc" secondAttribute="leading" id="VTJ-AC-d0B"/>
+                            <constraint firstItem="LcR-wm-frR" firstAttribute="top" secondItem="tJ2-NX-ACT" secondAttribute="bottom" constant="8" identifier="audio_text_8" id="bV5-1C-yTU"/>
+                            <constraint firstAttribute="trailing" secondItem="tJ2-NX-ACT" secondAttribute="trailing" id="lg4-iI-CpR"/>
+                            <constraint firstAttribute="trailing" secondItem="LcR-wm-frR" secondAttribute="trailing" id="wFw-Ih-U2y"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Qbc-yg-5gQ" appends="YES" id="5lf-9h-tF0"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="PKI-nN-8YJ"/>
                     <connections>
-                        <outlet property="recordButton" destination="9P3-dq-PSb" id="m7C-pa-ly0"/>
-                        <outlet property="textButton" destination="OfV-3r-MJ1" id="IBh-uv-vZs"/>
+                        <outlet property="audioCloseButton" destination="ksf-0P-ZVb" id="hfb-nG-J29"/>
+                        <outlet property="audioViewContainer" destination="tJ2-NX-ACT" id="QKj-mZ-Hjs"/>
+                        <outlet property="textCloseButton" destination="4Py-TR-bmW" id="kys-JC-k9L"/>
+                        <outlet property="textView" destination="Oi0-Lv-QTe" id="fSr-6p-Vgg"/>
+                        <outlet property="textViewContainer" destination="LcR-wm-frR" id="WNx-rK-3HU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KJ8-MV-77E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Qbc-yg-5gQ">
+                    <connections>
+                        <action selector="viewWasTapped:" destination="ZaX-yA-hlv" id="am6-m0-Urr"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1597" y="393"/>
         </scene>
@@ -383,21 +455,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P8x-Zr-S0J">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P8x-Zr-S0J">
+                                <rect key="frame" x="0.0" y="498" width="320" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="0J9-wY-8iL"/>
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="UEh-8S-kjA"/>
-                                    <barButtonItem style="plain" id="jxT-SJ-0Pz">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6SE-BH-KtF">
-                                            <rect key="frame" x="117" y="7" width="86" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Add Student"/>
-                                        </button>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="giI-lc-GCf"/>
                                     <barButtonItem title="Category" id="gCV-Q4-XZP">
                                         <connections>
                                             <segue destination="J7N-vn-7W1" kind="push" id="XYr-z4-oUx"/>
@@ -405,23 +469,41 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nhf-Kl-NDB">
-                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RhZ-7e-iUN">
+                                <rect key="frame" x="0.0" y="64" width="320" height="434"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="z7W-32-OxE">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="9XE-zh-iyb">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="P8x-Zr-S0J" firstAttribute="top" secondItem="RhZ-7e-iUN" secondAttribute="bottom" id="4fk-Ec-1nb"/>
+                            <constraint firstAttribute="trailing" secondItem="RhZ-7e-iUN" secondAttribute="trailing" id="8G0-am-tzC"/>
                             <constraint firstItem="P8x-Zr-S0J" firstAttribute="bottom" secondItem="3Ll-uK-A5l" secondAttribute="bottomMargin" id="M6U-4c-hBD"/>
-                            <constraint firstItem="P8x-Zr-S0J" firstAttribute="top" secondItem="Nhf-Kl-NDB" secondAttribute="bottom" id="WdZ-fe-S2y"/>
+                            <constraint firstItem="RhZ-7e-iUN" firstAttribute="leading" secondItem="3Ll-uK-A5l" secondAttribute="leading" id="aTb-tG-VFH"/>
+                            <constraint firstItem="RhZ-7e-iUN" firstAttribute="top" secondItem="TTg-u0-0DI" secondAttribute="bottom" id="aqs-e4-YZG"/>
                             <constraint firstItem="P8x-Zr-S0J" firstAttribute="leading" secondItem="3Ll-uK-A5l" secondAttribute="leading" id="dg0-CU-Uib"/>
                             <constraint firstAttribute="trailing" secondItem="P8x-Zr-S0J" secondAttribute="trailing" id="eYd-I3-hja"/>
-                            <constraint firstItem="Nhf-Kl-NDB" firstAttribute="leading" secondItem="3Ll-uK-A5l" secondAttribute="leading" id="hF3-iF-xUn"/>
-                            <constraint firstItem="Nhf-Kl-NDB" firstAttribute="top" secondItem="TTg-u0-0DI" secondAttribute="bottom" id="qIY-4o-NFn"/>
-                            <constraint firstAttribute="trailing" secondItem="Nhf-Kl-NDB" secondAttribute="trailing" id="qyK-Sq-VvK"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="xGP-Md-vlz"/>
+                    <navigationItem key="navigationItem" id="xGP-Md-vlz">
+                        <barButtonItem key="rightBarButtonItem" title="Add Student" id="bg2-fZ-RgW"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hDZ-w5-Eng" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

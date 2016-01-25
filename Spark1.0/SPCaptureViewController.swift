@@ -13,6 +13,7 @@ import Parse
 class SPCaptureViewController: UIViewController {
     
     var camera : LLSimpleCamera! = nil
+    var image : UIImage! = nil
     
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var skipButton: UIBarButtonItem!
@@ -52,6 +53,38 @@ class SPCaptureViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func captureButtonPressed(sender: AnyObject) {
+
+        if NSUserDefaults.standardUserDefaults().boolForKey("isSimulator") {
+            self.performSegueWithIdentifier("toMediaViewController", sender: self)
+            return
+        }
+        
+        self.captureButton.enabled = false
+
+        self.camera.capture {
+            (camera: LLSimpleCamera!, image: UIImage!, metaData: [NSObject : AnyObject]!, error: NSError!) -> Void in
+            
+            if error == nil {
+                camera.stop()
+                self.image = image
+                self.performSegueWithIdentifier("toMediaViewController", sender: self)
+            }
+            
+            self.captureButton.enabled = true
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "toMediaViewController" {
+            let mediaViewController = segue.destinationViewController as! SPMediaViewController
+            mediaViewController.image = self.image
+        }
+        
+    }
+    
     
     
 }

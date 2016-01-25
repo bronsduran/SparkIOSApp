@@ -12,6 +12,8 @@ import Parse
 import Bolts
 
 @UIApplicationMain
+
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
@@ -39,6 +41,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let vc = mainStoryboard.instantiateViewControllerWithIdentifier("SPLoginViewController") as! SPLoginViewController
             self.window!.rootViewController = vc
         }
+
+        #if (arch(i386) || arch(x86_64)) && os(iOS)
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isSimulator")
+        #endif
+
         
         initSegmentedControlAppearance()
     
