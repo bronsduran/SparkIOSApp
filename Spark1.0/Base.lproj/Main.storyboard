@@ -72,9 +72,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Go0-NM-Hnr">
-                                <rect key="frame" x="4" y="104" width="312" height="464"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cTQ-qj-Ap2">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hHE-AN-t8c">
+                                <rect key="frame" x="-4" y="64" width="328" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="Hv1-DK-fry"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="NAME"/>
+                                    <segment title="NUMBER"/>
+                                </segments>
+                                <connections>
+                                    <action selector="sortByControl:" destination="XHc-6l-Ic5" eventType="valueChanged" id="lyF-df-6DJ"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Br3-IJ-NPq">
+                                <rect key="frame" x="-4" y="107" width="328" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="1xu-MY-SB0"/>
+                                </constraints>
+                                <state key="normal" title="x Untagged Moments"/>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Go0-NM-Hnr">
+                                <rect key="frame" x="4" y="148" width="312" height="420"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="cTQ-qj-Ap2">
                                     <size key="itemSize" width="115" height="148"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -82,7 +102,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SPArchiveViewCell" id="xd2-7t-8lC" customClass="SPArchiveViewCell" customModule="Spark1_0" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="64" width="115" height="148"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="115" height="148"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="115" height="148"/>
@@ -95,32 +115,40 @@
                                                         <constraint firstAttribute="height" constant="67" id="rlt-7Q-RuQ"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XbR-TV-RNJ">
-                                                    <rect key="frame" x="35" y="97" width="45" height="49"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BE7-Xk-PiS">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BE7-Xk-PiS">
                                                     <rect key="frame" x="16" y="84" width="83" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hjH-tw-riv">
+                                                    <rect key="frame" x="47" y="109" width="20" height="20"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XbR-TV-RNJ">
+                                                            <rect key="frame" x="-13" y="-14" width="45" height="49"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="XbR-TV-RNJ" firstAttribute="centerY" secondItem="hjH-tw-riv" secondAttribute="centerY" id="1Tf-WP-WmZ"/>
+                                                        <constraint firstItem="XbR-TV-RNJ" firstAttribute="centerX" secondItem="hjH-tw-riv" secondAttribute="centerX" id="jL9-Ai-KqJ"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="topMargin" secondItem="fsn-wR-QYg" secondAttribute="top" id="82B-Ax-221"/>
                                             <constraint firstItem="BE7-Xk-PiS" firstAttribute="top" secondItem="fsn-wR-QYg" secondAttribute="bottom" constant="9" id="BiE-xx-l34"/>
-                                            <constraint firstItem="XbR-TV-RNJ" firstAttribute="centerX" secondItem="xd2-7t-8lC" secondAttribute="centerX" id="CHF-85-Xx0"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="XbR-TV-RNJ" secondAttribute="bottom" constant="-6" id="Lgd-k9-Ybh"/>
                                             <constraint firstItem="fsn-wR-QYg" firstAttribute="centerX" secondItem="xd2-7t-8lC" secondAttribute="centerX" id="OI1-kZ-FZI"/>
                                             <constraint firstItem="BE7-Xk-PiS" firstAttribute="centerX" secondItem="xd2-7t-8lC" secondAttribute="centerX" id="gOU-l2-seS"/>
-                                            <constraint firstItem="XbR-TV-RNJ" firstAttribute="top" secondItem="BE7-Xk-PiS" secondAttribute="bottom" constant="-8" id="i8z-XO-F7Q"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="countLabel" destination="XbR-TV-RNJ" id="n8r-nz-4r9"/>
+                                            <outlet property="countView" destination="hjH-tw-riv" id="dP9-xn-nkh"/>
                                             <outlet property="nameLabel" destination="BE7-Xk-PiS" id="3E7-eu-ef5"/>
                                             <outlet property="pictureImageView" destination="fsn-wR-QYg" id="NRc-NM-571"/>
                                         </connections>
@@ -131,26 +159,6 @@
                                     <outlet property="delegate" destination="XHc-6l-Ic5" id="Hnu-hc-231"/>
                                 </connections>
                             </collectionView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="hHE-AN-t8c">
-                                <rect key="frame" x="-4" y="20" width="328" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="Hv1-DK-fry"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="Name"/>
-                                    <segment title="NUMBER"/>
-                                </segments>
-                                <connections>
-                                    <action selector="sortByControl:" destination="XHc-6l-Ic5" eventType="valueChanged" id="lyF-df-6DJ"/>
-                                </connections>
-                            </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Br3-IJ-NPq">
-                                <rect key="frame" x="-4" y="51" width="328" height="39"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="1xu-MY-SB0"/>
-                                </constraints>
-                                <state key="normal" title="x Untagged Moments"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -167,8 +175,8 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Students" id="ewj-Jz-jcH">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="ffI-nq-1eg"/>
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="FQD-6a-NFJ"/>
+                        <barButtonItem key="leftBarButtonItem" title="C" id="ffI-nq-1eg"/>
+                        <barButtonItem key="rightBarButtonItem" title="A" id="FQD-6a-NFJ"/>
                     </navigationItem>
                     <connections>
                         <outlet property="archiveCollectionView" destination="Go0-NM-Hnr" id="JWv-DG-R0J"/>
