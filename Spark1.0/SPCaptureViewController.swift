@@ -10,14 +10,42 @@ import Foundation
 import UIKit
 import Parse
 
-class SPCaptureViewController: UINavigationController {
+class SPCaptureViewController: UIViewController {
+    
+    var camera : LLSimpleCamera! = nil
+    
+    @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet weak var skipButton: UIBarButtonItem!
+    @IBOutlet weak var captureButton: UIBarButtonItem!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let screenRect = UIScreen.mainScreen().bounds
         
-
+        self.camera = LLSimpleCamera(quality: AVCaptureSessionPresetHigh, position: LLCameraPositionRear, videoEnabled: true)
         
-        // Do any additional setup after loading the view, typically from a nib.
+        self.camera!.attachToViewController(self, withFrame: CGRectMake(0, 0, screenRect.size.width, screenRect.size.height))
+        
+//        self.captureButton = UIButton(frame: CGRectMake(0, 0, 70.0, 70.0))
+//        self.captureButton?.setBackgroundImage(UIImage(named:"Camera_Button"), forState: UIControlState.Normal)
+//        self.captureButton?.addTarget(self, action: "captureButtonPressed", forControlEvents: UIControlEvents.TouchUpInside)
+//        self.view.addSubview(self.captureButton!)
+//        
+        
+        self.view.bringSubviewToFront(self.toolbar)
+        
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.camera.start()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,3 +56,15 @@ class SPCaptureViewController: UINavigationController {
     
 }
 
+// snap button to capture image
+//self.snapButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//self.snapButton.frame = CGRectMake(0, 0, 70.0f, 70.0f);
+//self.snapButton.clipsToBounds = YES;
+//self.snapButton.layer.cornerRadius = self.snapButton.width / 2.0f;
+//self.snapButton.layer.borderColor = [UIColor whiteColor].CGColor;
+//self.snapButton.layer.borderWidth = 2.0f;
+//self.snapButton.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
+//self.snapButton.layer.rasterizationScale = [UIScreen mainScreen].scale;
+//self.snapButton.layer.shouldRasterize = YES;
+//[self.snapButton addTarget:self action:@selector(snapButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+//[self.view addSubview:self.snapButton];

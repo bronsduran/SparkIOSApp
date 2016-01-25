@@ -5,4 +5,4 @@
 #import <Parse/Parse.h>
 #import <Bolts/Bolts.h>
 
-//#import <LLSimpleCamera.h>
+#import "LLSimpleCamera.h"

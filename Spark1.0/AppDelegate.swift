@@ -39,9 +39,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let vc = mainStoryboard.instantiateViewControllerWithIdentifier("SPLoginViewController") as! SPLoginViewController
             self.window!.rootViewController = vc
         }
-
         
+        initSegmentedControlAppearance()
+    
         return true
+    }
+    
+    func initSegmentedControlAppearance() {
+        // Control colors (selected):
+        UISegmentedControl.appearance().tintColor = UIColor(white: 1.0, alpha: 0.1)
+        
+        // Font colors:
+        UISegmentedControl.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
+        UISegmentedControl.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Selected)
     }
 
     func applicationWillResignActive(application: UIApplication) {
