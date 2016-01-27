@@ -482,10 +482,10 @@
             </objects>
             <point key="canvasLocation" x="2534" y="-261"/>
         </scene>
-        <!--Tag Student View Controller-->
+        <!--Tag Student-->
         <scene sceneID="GHx-6g-Txw">
             <objects>
-                <viewController id="YEJ-Fe-AzA" customClass="SPTagStudentViewController" customModule="Spark1_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Tag Student" id="YEJ-Fe-AzA" customClass="SPTagStudentViewController" customModule="Spark1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TTg-u0-0DI"/>
                         <viewControllerLayoutGuide type="bottom" id="Gda-3D-rNZ"/>
@@ -559,10 +559,10 @@
             </objects>
             <point key="canvasLocation" x="2034" y="440"/>
         </scene>
-        <!--Tag Category View Controller-->
+        <!--Tag Category-->
         <scene sceneID="EKA-Vh-nc9">
             <objects>
-                <viewController id="J7N-vn-7W1" customClass="SPTagCategoryViewController" customModule="Spark1_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Tag Category" id="J7N-vn-7W1" customClass="SPTagCategoryViewController" customModule="Spark1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="e82-2J-64h"/>
                         <viewControllerLayoutGuide type="bottom" id="HsJ-Xt-Qsf"/>
@@ -588,7 +588,7 @@
                             </toolbar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IkU-w3-265">
                                 <rect key="frame" x="0.0" y="64" width="320" height="460"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DwD-tB-BpI">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="10" id="DwD-tB-BpI">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -605,6 +605,10 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="J7N-vn-7W1" id="XeL-2Y-czr"/>
+                                    <outlet property="delegate" destination="J7N-vn-7W1" id="gMV-PN-TfT"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -619,10 +623,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qux-91-e8F"/>
+                    <connections>
+                        <outlet property="CategoryCollectionView" destination="IkU-w3-265" id="5ke-Zx-7zq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G21-uM-vSO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2534" y="393"/>
+            <point key="canvasLocation" x="2480" y="440"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HIF-85-JWW">
