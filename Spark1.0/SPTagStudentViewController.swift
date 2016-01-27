@@ -35,7 +35,7 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
         
         // Contents (Picture / name / count)
         cell.pictureImageView.image = UIImage(named: "Untagged_Icon")
-        cell.countLabel.hidden = true
+        cell.countView.hidden = true
         cell.nameLabel.text = "Lucas"
         
         return cell
@@ -71,13 +71,14 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
         navigationController!.navigationBar.shadowImage = UIImage()
         navigationController!.navigationBar.translucent = true
         
+        
         navigationController!.navigationBar.tintColor = UIColor.whiteColor()
         navigationController!.navigationBar.translucent = true
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         
         // make collection view transparent
         archiveCollectionView.backgroundColor = UIColor.clearColor()
-        
+        self.title = "Tag Student"
         
     }
     

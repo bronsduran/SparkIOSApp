@@ -457,13 +457,6 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LcR-wm-frR" userLabel="Text View Container">
                                 <rect key="frame" x="0.0" y="130" width="320" height="180"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Oi0-Lv-QTe">
-                                        <rect key="frame" x="20" y="20" width="280" height="140"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
-                                    </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Py-TR-bmW">
                                         <rect key="frame" x="282" y="8" width="30" height="30"/>
                                         <state key="normal" title="X">
@@ -473,6 +466,13 @@
                                             <action selector="textCloseButtonPressed:" destination="ZaX-yA-hlv" eventType="touchUpInside" id="pRs-k8-ccp"/>
                                         </connections>
                                     </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Oi0-Lv-QTe">
+                                        <rect key="frame" x="20" y="20" width="280" height="140"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -510,6 +510,7 @@
                         <outlet property="textCloseButton" destination="4Py-TR-bmW" id="kys-JC-k9L"/>
                         <outlet property="textView" destination="Oi0-Lv-QTe" id="fSr-6p-Vgg"/>
                         <outlet property="textViewContainer" destination="LcR-wm-frR" id="WNx-rK-3HU"/>
+                        <outlet property="textViewDistanceToBottomOfAudioView" destination="bV5-1C-yTU" id="bIF-0j-Skj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KJ8-MV-77E" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -564,13 +565,6 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Untagged_Icon" translatesAutoresizingMaskIntoConstraints="NO" id="VEZ-UM-Wqj">
-                                <rect key="frame" x="95" y="62" width="130" height="130"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="LCV-HA-Fob"/>
-                                    <constraint firstAttribute="height" constant="130" id="bUo-y9-EWV"/>
-                                </constraints>
-                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uxz-Z9-ob5">
                                 <rect key="frame" x="0.0" y="210" width="320" height="281"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -579,35 +573,58 @@
                                     <outlet property="delegate" destination="u6T-Nu-23k" id="SZO-rO-F4J"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2PW-cc-GRy">
+                                <rect key="frame" x="95" y="63" width="130" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="slk-aK-njz"/>
+                                    <constraint firstAttribute="height" constant="130" id="xIn-Cy-pgl"/>
+                                </constraints>
+                                <state key="normal" image="Camera_Button"/>
+                                <connections>
+                                    <action selector="photoButtonPressed:" destination="u6T-Nu-23k" eventType="touchUpInside" id="Ksx-vX-5Z4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="I1t-ya-3YL" firstAttribute="top" secondItem="uxz-Z9-ob5" secondAttribute="bottom" id="0eI-ZR-vCa"/>
                             <constraint firstItem="qmY-mj-G1E" firstAttribute="top" secondItem="Rya-N3-CkG" secondAttribute="top" id="4m6-Z1-cKq"/>
                             <constraint firstItem="ncq-ve-N11" firstAttribute="top" secondItem="I1t-ya-3YL" secondAttribute="bottom" id="4zU-Lf-mh5"/>
                             <constraint firstAttribute="trailing" secondItem="qmY-mj-G1E" secondAttribute="trailing" id="6Iq-5u-qN4"/>
+                            <constraint firstItem="uxz-Z9-ob5" firstAttribute="top" secondItem="2PW-cc-GRy" secondAttribute="bottom" constant="17" id="Cco-xF-oW4"/>
+                            <constraint firstItem="2PW-cc-GRy" firstAttribute="centerX" secondItem="Rya-N3-CkG" secondAttribute="centerX" id="N4S-pd-gMC"/>
                             <constraint firstItem="I1t-ya-3YL" firstAttribute="leading" secondItem="Rya-N3-CkG" secondAttribute="leading" id="ObY-I7-JNg"/>
                             <constraint firstAttribute="trailing" secondItem="I1t-ya-3YL" secondAttribute="trailing" id="Zih-vY-fps"/>
+                            <constraint firstItem="2PW-cc-GRy" firstAttribute="top" secondItem="qmY-mj-G1E" secondAttribute="bottom" constant="19" id="f5o-S7-AsT"/>
                             <constraint firstItem="qmY-mj-G1E" firstAttribute="leading" secondItem="Rya-N3-CkG" secondAttribute="leading" id="fh7-2I-fzg"/>
-                            <constraint firstItem="uxz-Z9-ob5" firstAttribute="top" secondItem="VEZ-UM-Wqj" secondAttribute="bottom" constant="18" id="gfI-Su-QdL"/>
                             <constraint firstItem="uxz-Z9-ob5" firstAttribute="leading" secondItem="Rya-N3-CkG" secondAttribute="leading" id="hod-7e-Xuw"/>
+                            <constraint firstItem="2PW-cc-GRy" firstAttribute="centerX" secondItem="Rya-N3-CkG" secondAttribute="centerX" id="jih-pd-RNC"/>
                             <constraint firstAttribute="trailing" secondItem="uxz-Z9-ob5" secondAttribute="trailing" id="nYU-oC-Sfz"/>
-                            <constraint firstItem="VEZ-UM-Wqj" firstAttribute="top" secondItem="qmY-mj-G1E" secondAttribute="bottom" constant="18" id="rmO-gs-681"/>
-                            <constraint firstItem="VEZ-UM-Wqj" firstAttribute="centerX" secondItem="Rya-N3-CkG" secondAttribute="centerX" id="rrj-Gz-M1H"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="nwz-Q2-Uc3" appends="YES" id="zp7-dM-dU7"/>
+                        </connections>
                     </view>
                     <connections>
+                        <outlet property="photoButton" destination="2PW-cc-GRy" id="Xuu-wL-ebO"/>
                         <outlet property="tableView" destination="uxz-Z9-ob5" id="u3V-qz-xX1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bsX-AS-IuC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="nwz-Q2-Uc3">
+                    <connections>
+                        <action selector="viewWasTapped:" destination="u6T-Nu-23k" id="5Ad-wu-o7e"/>
+                        <outlet property="delegate" destination="u6T-Nu-23k" id="Wxv-AJ-fTb"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2534" y="-261"/>
         </scene>
-        <!--Tag Student View Controller-->
+        <!--Tag Student-->
         <scene sceneID="GHx-6g-Txw">
             <objects>
-                <viewController id="YEJ-Fe-AzA" customClass="SPTagStudentViewController" customModule="Spark1_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Tag Student" id="YEJ-Fe-AzA" customClass="SPTagStudentViewController" customModule="Spark1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TTg-u0-0DI"/>
                         <viewControllerLayoutGuide type="bottom" id="Gda-3D-rNZ"/>
@@ -681,10 +698,10 @@
             </objects>
             <point key="canvasLocation" x="2034" y="440"/>
         </scene>
-        <!--Tag Category View Controller-->
+        <!--Tag Category-->
         <scene sceneID="EKA-Vh-nc9">
             <objects>
-                <viewController id="J7N-vn-7W1" customClass="SPTagCategoryViewController" customModule="Spark1_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Tag Category" id="J7N-vn-7W1" customClass="SPTagCategoryViewController" customModule="Spark1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="e82-2J-64h"/>
                         <viewControllerLayoutGuide type="bottom" id="HsJ-Xt-Qsf"/>
@@ -710,7 +727,7 @@
                             </toolbar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IkU-w3-265">
                                 <rect key="frame" x="0.0" y="64" width="320" height="460"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DwD-tB-BpI">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="10" id="DwD-tB-BpI">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -727,6 +744,10 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="J7N-vn-7W1" id="XeL-2Y-czr"/>
+                                    <outlet property="delegate" destination="J7N-vn-7W1" id="gMV-PN-TfT"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -741,10 +762,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qux-91-e8F"/>
+                    <connections>
+                        <outlet property="CategoryCollectionView" destination="IkU-w3-265" id="5ke-Zx-7zq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G21-uM-vSO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2534" y="393"/>
+            <point key="canvasLocation" x="2480" y="440"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HIF-85-JWW">
@@ -764,6 +788,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Untagged_Icon" width="140" height="141"/>
+        <image name="Camera_Button" width="240" height="240"/>
     </resources>
 </document>

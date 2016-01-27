@@ -10,9 +10,15 @@ import Foundation
 import UIKit
 import Parse
 
-class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
+                                    UIGestureRecognizerDelegate, UIImagePickerControllerDelegate,
+                                    UINavigationControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var imagePicker : UIImagePickerController!
+    
+    @IBOutlet weak var photoButton: UIButton!
     
     override func viewDidLoad() {
         let cellNib: UINib = UINib(nibName: "TextInputCell", bundle: nil)
@@ -24,15 +30,15 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
         
         switch indexPath.row {
         case 0:
-            cell.labelImage = UIImageView(image: UIImage(named: "Red_Button"))
+            cell.labelImage.image = UIImage(named: "Dark_Grey_Circle")
             cell.textField.placeholder = "First Last"
             cell.labelView.text = "Name"
         case 1:
-            cell.labelImage = UIImageView(image: UIImage(named: "Red_Button"))
+            cell.labelImage.image = UIImage(named: "Dark_Grey_Circle")
             cell.textField.placeholder = "123 456 7890"
             cell.labelView.text = "Parent Phone"
         case 2:
-            cell.labelImage = UIImageView(image: UIImage(named: "Red_Button"))
+            cell.labelImage.image = UIImage(named: "Dark_Grey_Circle")
             cell.textField.placeholder = "example@example.com"
             cell.labelView.text = "Parent Email"
         default:
@@ -52,10 +58,42 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @IBAction func doneButtonPressed(sender: AnyObject) {
-        
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func closeButtonPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    
+    @IBAction func photoButtonPressed(sender: AnyObject) {
+        if NSUserDefaults.standardUserDefaults().boolForKey("isSimulator") {
+            return
+        }
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .Camera
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        photoButton.setBackgroundImage(image, forState: UIControlState.Normal)
+    }
+    
+    
+    @IBAction func viewWasTapped(sender: AnyObject) {
+        for cell in self.tableView.visibleCells {
+            let cell = cell as! TextInputCell
+            cell.textField.resignFirstResponder()
+        }
+    }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        
+        if touch.view != nil && touch.view!.isKindOfClass(UITextField) {
+            return false
+        }
+        return true
+    }
+    
 }
