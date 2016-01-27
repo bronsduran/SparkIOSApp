@@ -24,7 +24,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SPStudentViewCell", forIndexPath: indexPath) as! SPStudentViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("MomentTableViewCell", forIndexPath: indexPath) as! SPStudentViewCell
         
         let image = UIImage(named: "Untagged_Icon")
         cell.momentImageView.image = image
@@ -40,6 +40,9 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         
+        let cellNib: UINib = UINib(nibName: "MomentTableViewCell", bundle: nil)
+        momentTableView.registerNib(cellNib, forCellReuseIdentifier: "MomentTableViewCell")
+        
         // set view's background color
         view.backgroundColor = UIColor(patternImage: UIImage(named: "General_Background")!)
         
@@ -52,7 +55,5 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         
         configureTableView()
         filterButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        
-        
     }
 }

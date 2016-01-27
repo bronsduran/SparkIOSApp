@@ -48,6 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         
         initSegmentedControlAppearance()
+        initNavBarAppearance()
     
         return true
     }
@@ -59,6 +60,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Font colors:
         UISegmentedControl.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
         UISegmentedControl.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Selected)
+    }
+    
+    func initNavBarAppearance() {
+        // Nav Bar
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().translucent = true
+        
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().translucent = true
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
     }
 
     func applicationWillResignActive(application: UIApplication) {
