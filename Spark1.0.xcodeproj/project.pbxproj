@@ -40,9 +40,6 @@
 		C5C1D77F1C52E50900C20DF9 /* SPTagStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C1D77E1C52E50900C20DF9 /* SPTagStudentViewController.swift */; };
 		C5C1D7811C52EA9700C20DF9 /* SPTagCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C1D7801C52EA9700C20DF9 /* SPTagCategoryViewController.swift */; };
 		D4BD3B991C5395DA003BBFC8 /* SPArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BD3B981C5395DA003BBFC8 /* SPArchiveViewController.swift */; };
-		D4BD3B9B1C549446003BBFC8 /* SPArchiveViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BD3B9A1C549446003BBFC8 /* SPArchiveViewCell.swift */; };
-		D4BD3B9D1C57536B003BBFC8 /* SPStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BD3B9C1C57536B003BBFC8 /* SPStudentViewController.swift */; };
-		D4BD3B9F1C576163003BBFC8 /* SPStudentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BD3B9E1C576163003BBFC8 /* SPStudentViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,9 +93,6 @@
 		C5C1D77E1C52E50900C20DF9 /* SPTagStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPTagStudentViewController.swift; sourceTree = "<group>"; };
 		C5C1D7801C52EA9700C20DF9 /* SPTagCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPTagCategoryViewController.swift; sourceTree = "<group>"; };
 		D4BD3B981C5395DA003BBFC8 /* SPArchiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPArchiveViewController.swift; sourceTree = "<group>"; };
-		D4BD3B9A1C549446003BBFC8 /* SPArchiveViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPArchiveViewCell.swift; sourceTree = "<group>"; };
-		D4BD3B9C1C57536B003BBFC8 /* SPStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPStudentViewController.swift; sourceTree = "<group>"; };
-		D4BD3B9E1C576163003BBFC8 /* SPStudentViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPStudentViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
