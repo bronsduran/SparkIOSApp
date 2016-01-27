@@ -42,16 +42,15 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         
         // collection view
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
         layout.itemSize = CGSize(width: (archiveCollectionView.frame.width - 4.0)/3.0, height: 148.0)
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 2
         
         archiveCollectionView.collectionViewLayout = layout
-//        archiveCollectionView.scrol
     }
     
     // view did load
@@ -78,14 +77,10 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         // make collection view transparent
         archiveCollectionView.backgroundColor = UIColor.clearColor()
         
-        
         // update "Untagged Moments" button
         untaggedMomentsButton.backgroundColor = UIColor(red: 233/255.0, green: 63/255.0, blue: 63/255.0, alpha: 0.45)
         untaggedMomentsButton.setTitle("xx Untagged Moments", forState: UIControlState.Normal)
         untaggedMomentsButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        
-
-        
     }
 
 }
