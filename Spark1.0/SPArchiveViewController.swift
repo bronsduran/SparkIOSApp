@@ -32,7 +32,7 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SPArchiveViewCell", forIndexPath: indexPath) as! SPArchiveViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StudentCollectionViewCell", forIndexPath: indexPath) as! StudentCollectionViewCell
         
         // Contents (Picture / name / count)
         cell.pictureImageView.image = UIImage(named: "Untagged_Icon")
@@ -57,6 +57,11 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     // view did load
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        let cellNib: UINib = UINib(nibName: "StudentCollectionViewCell", bundle: nil)
+        
+        self.archiveCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "StudentCollectionViewCell")
         
         // set view's background color
         view.backgroundColor = UIColor(patternImage: UIImage(named: "General_Background")!)

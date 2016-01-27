@@ -26,6 +26,9 @@
 		4B2286061C4AE4E800CE4146 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2286051C4AE4E800CE4146 /* Assets.xcassets */; };
 		4B2286091C4AE4E800CE4146 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2286071C4AE4E800CE4146 /* LaunchScreen.storyboard */; };
 		4B2286141C4AE4E800CE4146 /* Spark1_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2286131C4AE4E800CE4146 /* Spark1_0Tests.swift */; };
+		4B693A391C588693005478D9 /* StudentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B693A381C588693005478D9 /* StudentCollectionViewCell.xib */; };
+		4B693A3B1C58872B005478D9 /* StudentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B693A3A1C58872B005478D9 /* StudentCollectionViewCell.swift */; };
+		4B693A3D1C588FC7005478D9 /* CategoriesViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B693A3C1C588FC6005478D9 /* CategoriesViewCell.xib */; };
 		C57DB7651C4F49C600022D3A /* SPCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57DB7641C4F49C600022D3A /* SPCreateAccountViewController.swift */; };
 		C57DB7671C4F4A2800022D3A /* SPCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57DB7661C4F4A2800022D3A /* SPCaptureViewController.swift */; };
 		C5C1D7791C50B44400C20DF9 /* LLSimpleCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C1D7761C50B44400C20DF9 /* LLSimpleCamera.m */; };
@@ -34,7 +37,6 @@
 		C5C1D77F1C52E50900C20DF9 /* SPTagStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C1D77E1C52E50900C20DF9 /* SPTagStudentViewController.swift */; };
 		C5C1D7811C52EA9700C20DF9 /* SPTagCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C1D7801C52EA9700C20DF9 /* SPTagCategoryViewController.swift */; };
 		D4BD3B991C5395DA003BBFC8 /* SPArchiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BD3B981C5395DA003BBFC8 /* SPArchiveViewController.swift */; };
-		D4BD3B9B1C549446003BBFC8 /* SPArchiveViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BD3B9A1C549446003BBFC8 /* SPArchiveViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,9 @@
 		4B22860F1C4AE4E800CE4146 /* Spark1.0Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Spark1.0Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2286131C4AE4E800CE4146 /* Spark1_0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spark1_0Tests.swift; sourceTree = "<group>"; };
 		4B2286151C4AE4E800CE4146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B693A381C588693005478D9 /* StudentCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudentCollectionViewCell.xib; sourceTree = "<group>"; };
+		4B693A3A1C58872B005478D9 /* StudentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentCollectionViewCell.swift; sourceTree = "<group>"; };
+		4B693A3C1C588FC6005478D9 /* CategoriesViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoriesViewCell.xib; sourceTree = "<group>"; };
 		C57DB7641C4F49C600022D3A /* SPCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPCreateAccountViewController.swift; sourceTree = "<group>"; };
 		C57DB7661C4F4A2800022D3A /* SPCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPCaptureViewController.swift; sourceTree = "<group>"; };
 		C5C1D7741C50B44300C20DF9 /* Spark1.0-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Spark1.0-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
@@ -82,7 +87,6 @@
 		C5C1D77E1C52E50900C20DF9 /* SPTagStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPTagStudentViewController.swift; sourceTree = "<group>"; };
 		C5C1D7801C52EA9700C20DF9 /* SPTagCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPTagCategoryViewController.swift; sourceTree = "<group>"; };
 		D4BD3B981C5395DA003BBFC8 /* SPArchiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPArchiveViewController.swift; sourceTree = "<group>"; };
-		D4BD3B9A1C549446003BBFC8 /* SPArchiveViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPArchiveViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +149,6 @@
 				C5C1D77E1C52E50900C20DF9 /* SPTagStudentViewController.swift */,
 				C5C1D7801C52EA9700C20DF9 /* SPTagCategoryViewController.swift */,
 				D4BD3B981C5395DA003BBFC8 /* SPArchiveViewController.swift */,
-				D4BD3B9A1C549446003BBFC8 /* SPArchiveViewCell.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -173,6 +176,9 @@
 		4B2285EF1C4AE4E800CE4146 = {
 			isa = PBXGroup;
 			children = (
+				4B693A381C588693005478D9 /* StudentCollectionViewCell.xib */,
+				4B693A3C1C588FC6005478D9 /* CategoriesViewCell.xib */,
+				4B693A3A1C58872B005478D9 /* StudentCollectionViewCell.swift */,
 				0A2F59B61C4F3AEF0053300C /* Frameworks */,
 				4B2285FA1C4AE4E800CE4146 /* Spark1.0 */,
 				4B2286121C4AE4E800CE4146 /* Spark1.0Tests */,
@@ -302,6 +308,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B693A3D1C588FC7005478D9 /* CategoriesViewCell.xib in Resources */,
+				4B693A391C588693005478D9 /* StudentCollectionViewCell.xib in Resources */,
 				4B2286091C4AE4E800CE4146 /* LaunchScreen.storyboard in Resources */,
 				4B2286061C4AE4E800CE4146 /* Assets.xcassets in Resources */,
 				4B2286011C4AE4E800CE4146 /* Main.storyboard in Resources */,
@@ -326,13 +334,13 @@
 				C5C1D7791C50B44400C20DF9 /* LLSimpleCamera.m in Sources */,
 				C5C1D7811C52EA9700C20DF9 /* SPTagCategoryViewController.swift in Sources */,
 				C57DB7671C4F4A2800022D3A /* SPCaptureViewController.swift in Sources */,
+				4B693A3B1C58872B005478D9 /* StudentCollectionViewCell.swift in Sources */,
 				4B2285FE1C4AE4E800CE4146 /* SPLoginViewController.swift in Sources */,
 				C5C1D77F1C52E50900C20DF9 /* SPTagStudentViewController.swift in Sources */,
 				C5C1D77A1C50B44400C20DF9 /* UIImage+FixOrientation.m in Sources */,
 				C57DB7651C4F49C600022D3A /* SPCreateAccountViewController.swift in Sources */,
 				D4BD3B991C5395DA003BBFC8 /* SPArchiveViewController.swift in Sources */,
 				4B2286041C4AE4E800CE4146 /* Spark1_0.xcdatamodeld in Sources */,
-				D4BD3B9B1C549446003BBFC8 /* SPArchiveViewCell.swift in Sources */,
 				4B2285FC1C4AE4E800CE4146 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
