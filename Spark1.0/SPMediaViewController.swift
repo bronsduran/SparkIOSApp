@@ -32,10 +32,12 @@ class SPMediaViewController: UIViewController {
         
         let screenRect = UIScreen.mainScreen().bounds;
         
-        let imageView = UIImageView(image: self.image)
-        imageView.frame = screenRect
-        self.view.addSubview(imageView)
-        self.view.sendSubviewToBack(imageView)
+        if self.image != nil {
+            let imageView = UIImageView(image: self.image)
+            imageView.frame = screenRect
+            self.view.addSubview(imageView)
+            self.view.sendSubviewToBack(imageView)
+        }
     }
     
     func showAudioContainer() {

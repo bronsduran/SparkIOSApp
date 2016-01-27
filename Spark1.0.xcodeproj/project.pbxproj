@@ -26,6 +26,9 @@
 		4B2286061C4AE4E800CE4146 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2286051C4AE4E800CE4146 /* Assets.xcassets */; };
 		4B2286091C4AE4E800CE4146 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2286071C4AE4E800CE4146 /* LaunchScreen.storyboard */; };
 		4B2286141C4AE4E800CE4146 /* Spark1_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2286131C4AE4E800CE4146 /* Spark1_0Tests.swift */; };
+		C543990F1C5879C60049D903 /* SPAddStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C543990E1C5879C60049D903 /* SPAddStudentViewController.swift */; };
+		C54399131C58840A0049D903 /* TextInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54399121C58840A0049D903 /* TextInputCell.xib */; };
+		C54399151C5888A10049D903 /* TextInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54399141C5888A10049D903 /* TextInputCell.swift */; };
 		C57DB7651C4F49C600022D3A /* SPCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57DB7641C4F49C600022D3A /* SPCreateAccountViewController.swift */; };
 		C57DB7671C4F4A2800022D3A /* SPCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57DB7661C4F4A2800022D3A /* SPCaptureViewController.swift */; };
 		C5C1D7791C50B44400C20DF9 /* LLSimpleCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C1D7761C50B44400C20DF9 /* LLSimpleCamera.m */; };
@@ -71,6 +74,9 @@
 		4B22860F1C4AE4E800CE4146 /* Spark1.0Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Spark1.0Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2286131C4AE4E800CE4146 /* Spark1_0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spark1_0Tests.swift; sourceTree = "<group>"; };
 		4B2286151C4AE4E800CE4146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C543990E1C5879C60049D903 /* SPAddStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPAddStudentViewController.swift; sourceTree = "<group>"; };
+		C54399121C58840A0049D903 /* TextInputCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextInputCell.xib; sourceTree = "<group>"; };
+		C54399141C5888A10049D903 /* TextInputCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputCell.swift; sourceTree = "<group>"; };
 		C57DB7641C4F49C600022D3A /* SPCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPCreateAccountViewController.swift; sourceTree = "<group>"; };
 		C57DB7661C4F4A2800022D3A /* SPCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPCaptureViewController.swift; sourceTree = "<group>"; };
 		C5C1D7741C50B44300C20DF9 /* Spark1.0-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Spark1.0-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
@@ -146,6 +152,7 @@
 				C5C1D7801C52EA9700C20DF9 /* SPTagCategoryViewController.swift */,
 				D4BD3B981C5395DA003BBFC8 /* SPArchiveViewController.swift */,
 				D4BD3B9A1C549446003BBFC8 /* SPArchiveViewCell.swift */,
+				C543990E1C5879C60049D903 /* SPAddStudentViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -166,6 +173,8 @@
 			children = (
 				4B2285FB1C4AE4E800CE4146 /* AppDelegate.swift */,
 				4B2285FF1C4AE4E800CE4146 /* Main.storyboard */,
+				C54399121C58840A0049D903 /* TextInputCell.xib */,
+				C54399141C5888A10049D903 /* TextInputCell.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -305,6 +314,7 @@
 				4B2286091C4AE4E800CE4146 /* LaunchScreen.storyboard in Resources */,
 				4B2286061C4AE4E800CE4146 /* Assets.xcassets in Resources */,
 				4B2286011C4AE4E800CE4146 /* Main.storyboard in Resources */,
+				C54399131C58840A0049D903 /* TextInputCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,9 +335,11 @@
 				C5C1D77D1C52E06000C20DF9 /* SPMediaViewController.swift in Sources */,
 				C5C1D7791C50B44400C20DF9 /* LLSimpleCamera.m in Sources */,
 				C5C1D7811C52EA9700C20DF9 /* SPTagCategoryViewController.swift in Sources */,
+				C543990F1C5879C60049D903 /* SPAddStudentViewController.swift in Sources */,
 				C57DB7671C4F4A2800022D3A /* SPCaptureViewController.swift in Sources */,
 				4B2285FE1C4AE4E800CE4146 /* SPLoginViewController.swift in Sources */,
 				C5C1D77F1C52E50900C20DF9 /* SPTagStudentViewController.swift in Sources */,
+				C54399151C5888A10049D903 /* TextInputCell.swift in Sources */,
 				C5C1D77A1C50B44400C20DF9 /* UIImage+FixOrientation.m in Sources */,
 				C57DB7651C4F49C600022D3A /* SPCreateAccountViewController.swift in Sources */,
 				D4BD3B991C5395DA003BBFC8 /* SPArchiveViewController.swift in Sources */,
