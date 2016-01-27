@@ -157,6 +157,9 @@
 				C5C1D77E1C52E50900C20DF9 /* SPTagStudentViewController.swift */,
 				C5C1D7801C52EA9700C20DF9 /* SPTagCategoryViewController.swift */,
 				D4BD3B981C5395DA003BBFC8 /* SPArchiveViewController.swift */,
+				D4BD3B9A1C549446003BBFC8 /* SPArchiveViewCell.swift */,
+				D4BD3B9C1C57536B003BBFC8 /* SPStudentViewController.swift */,
+				D4BD3B9E1C576163003BBFC8 /* SPStudentViewCell.swift */,
 				C543990E1C5879C60049D903 /* SPAddStudentViewController.swift */,
 			);
 			name = "View Controllers";
@@ -347,6 +350,8 @@
 				4B8B72711C5895DF00E6E73B /* CategoryCollectionViewCell.swift in Sources */,
 				C5C1D7791C50B44400C20DF9 /* LLSimpleCamera.m in Sources */,
 				C5C1D7811C52EA9700C20DF9 /* SPTagCategoryViewController.swift in Sources */,
+				D4BD3B9F1C576163003BBFC8 /* SPStudentViewCell.swift in Sources */,
+				D4BD3B9D1C57536B003BBFC8 /* SPStudentViewController.swift in Sources */,
 				C543990F1C5879C60049D903 /* SPAddStudentViewController.swift in Sources */,
 				C57DB7671C4F4A2800022D3A /* SPCaptureViewController.swift in Sources */,
 				4B693A3B1C58872B005478D9 /* StudentCollectionViewCell.swift in Sources */,
