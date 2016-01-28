@@ -14,15 +14,20 @@ class SPLoginViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        // Do any additional setup after loading the view, typically from a nib.
+        loginButton.layer.borderWidth = 1
+        loginButton.layer.borderColor = UIColor.lightGrayColor().CGColor
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "Login_Background")!)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
 
     
@@ -37,6 +42,8 @@ class SPLoginViewController: UIViewController {
     }
     
     
+    @IBAction func signUpPressed(sender: UIButton) {
+    }
 
 
 }
