@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spark1.0/SPAddStudentViewController.swift"
-            timestampString = "475570929.471219"
+            timestampString = "475664399.51929"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
             landmarkName = "gestureRecognizer(_:shouldReceiveTouch:)"
             landmarkType = "5">
          </BreakpointContent>

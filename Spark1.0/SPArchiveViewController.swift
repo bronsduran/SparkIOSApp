@@ -22,6 +22,42 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBAction func sortByControl(sender: UISegmentedControl) {
     }
     
+    // view did load
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let cellNib: UINib = UINib(nibName: "StudentCollectionViewCell", bundle: nil)
+        
+        self.archiveCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "StudentCollectionViewCell")
+        
+        // set view's background color
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "General_Background")!)
+        
+        
+        
+        
+        // make collection view transparent
+        archiveCollectionView.backgroundColor = UIColor.clearColor()
+        
+        // update "Untagged Moments" button
+        untaggedMomentsButton.backgroundColor = UIColor(red: 233/255.0, green: 63/255.0, blue: 63/255.0, alpha: 0.45)
+        untaggedMomentsButton.setTitle("xx Untagged Moments", forState: UIControlState.Normal)
+        untaggedMomentsButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        // collection view
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: (archiveCollectionView.frame.width - 4.0)/3.0, height: 148.0)
+        layout.minimumInteritemSpacing = 2
+        layout.minimumLineSpacing = 2
+        
+        archiveCollectionView.collectionViewLayout = layout
+    }
+    
+    
     // override methods
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -51,39 +87,7 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
 //        }
 //    }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        // collection view
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: (archiveCollectionView.frame.width - 4.0)/3.0, height: 148.0)
-        layout.minimumInteritemSpacing = 2
-        layout.minimumLineSpacing = 2
-        
-        archiveCollectionView.collectionViewLayout = layout
+    @IBAction func cameraButtonPressed(sender: AnyObject) {
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    // view did load
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let cellNib: UINib = UINib(nibName: "StudentCollectionViewCell", bundle: nil)
-        
-        self.archiveCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "StudentCollectionViewCell")
-        
-        // set view's background color
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "General_Background")!)
-        
-
-        
-        
-        // make collection view transparent
-        archiveCollectionView.backgroundColor = UIColor.clearColor()
-        
-        // update "Untagged Moments" button
-        untaggedMomentsButton.backgroundColor = UIColor(red: 233/255.0, green: 63/255.0, blue: 63/255.0, alpha: 0.45)
-        untaggedMomentsButton.setTitle("xx Untagged Moments", forState: UIControlState.Normal)
-        untaggedMomentsButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-    }
-
 }

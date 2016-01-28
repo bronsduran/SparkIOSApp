@@ -21,31 +21,39 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var photoButton: UIButton!
     
     override func viewDidLoad() {
-        let cellNib: UINib = UINib(nibName: "TextInputCell", bundle: nil)
-        self.tableView.registerNib(cellNib, forCellReuseIdentifier: "TextInputCell")
+        let cellNib: UINib = UINib(nibName: "TextInputTableViewCell", bundle: nil)
+        self.tableView.registerNib(cellNib, forCellReuseIdentifier: "TextInputTableViewCell")
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "General_Background")!)
+        
+        self.tableView.backgroundColor = UIColor.clearColor() 
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell : TextInputCell = self.tableView.dequeueReusableCellWithIdentifier("TextInputCell") as! TextInputCell
+        let cell : TextInputTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("TextInputTableViewCell") as! TextInputTableViewCell
         
         switch indexPath.row {
         case 0:
             cell.labelImage.image = UIImage(named: "Dark_Grey_Circle")
-            cell.textField.placeholder = "First Last"
+            cell.textField.attributedPlaceholder = stringForPlaceholder("First Last")
             cell.labelView.text = "Name"
         case 1:
             cell.labelImage.image = UIImage(named: "Dark_Grey_Circle")
-            cell.textField.placeholder = "123 456 7890"
+            cell.textField.attributedPlaceholder = stringForPlaceholder("123 456 7890")
             cell.labelView.text = "Parent Phone"
         case 2:
             cell.labelImage.image = UIImage(named: "Dark_Grey_Circle")
-            cell.textField.placeholder = "example@example.com"
+            cell.textField.attributedPlaceholder = stringForPlaceholder("example@example.com")
             cell.labelView.text = "Parent Email"
         default:
             return cell
         }
         
         return cell
+    }
+    
+    func stringForPlaceholder(text: String) -> NSAttributedString {
+        let placeholderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        return NSAttributedString(string: text, attributes: [NSForegroundColorAttributeName:placeholderColor])
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -83,7 +91,7 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func viewWasTapped(sender: AnyObject) {
         for cell in self.tableView.visibleCells {
-            let cell = cell as! TextInputCell
+            let cell = cell as! TextInputTableViewCell
             cell.textField.resignFirstResponder()
         }
     }

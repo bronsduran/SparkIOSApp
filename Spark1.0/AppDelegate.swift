@@ -49,7 +49,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         initSegmentedControlAppearance()
         initNavBarAppearance()
-    
+        initToolBarAppearance()
+        
         return true
     }
     
@@ -75,10 +76,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func initToolBarAppearance() {
         UIToolbar.appearance().setBackgroundImage(UIImage(), forToolbarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
-        UIToolbar.appearance().translucent = true
         
         UIToolbar.appearance().tintColor = UIColor.whiteColor()
-        UIToolbar.appearance().translucent = true
+//        UIToolbar.appearance().translucent = true
+        UIToolbar.appearance().backgroundColor = UIColor(red:93/255.0, green:96/255.0, blue:110/255.0,  alpha:0.5);
 
     }
 

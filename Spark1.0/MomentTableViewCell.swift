@@ -6,7 +6,7 @@
 //  Copyright © 2016 Bronson Duran. All rights reserved.
 //
 
-class SPStudentViewCell: UITableViewCell {
+class MomentTableViewCell: UITableViewCell {
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
