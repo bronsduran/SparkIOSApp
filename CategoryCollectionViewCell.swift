@@ -1,15 +1,17 @@
 //
-//  SPArchiveViewCell.swift
+//  CategoryCollectionViewCell.swift
 //  Spark1.0
 //
-//  Created by Lucas Throckmorton on 1/23/16.
+//  Created by Bronson Duran on 1/26/16.
 //  Copyright © 2016 Bronson Duran. All rights reserved.
 //
 
+import Foundation
 
-class SPArchiveViewCell: UICollectionViewCell {
-    @IBOutlet weak var pictureImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
+
+class CategoryCollectionViewCell: UICollectionViewCell {
+
+    @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var countView: UIView!
     
@@ -32,7 +34,7 @@ class SPArchiveViewCell: UICollectionViewCell {
         backgroundColor = UIColor(white: 1.0, alpha: 0.1)
         
         // name label
-        nameLabel.textColor = UIColor.whiteColor()
+        categoryLabel.textColor = UIColor.whiteColor()
         
         // count view
         countLabel.textColor = UIColor.whiteColor()

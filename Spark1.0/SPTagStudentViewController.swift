@@ -10,13 +10,78 @@ import Foundation
 import UIKit
 import Parse
 
-class SPTagStudentViewController: UIViewController {
+class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    
+  
+    
+    @IBOutlet weak var archiveCollectionView: UICollectionView!
+    
 
-    override func viewDidLoad() {
+    
+   
+    
+    // override methods
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 13
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StudentCollectionViewCell", forIndexPath: indexPath) as! StudentCollectionViewCell
         
+        // Contents (Picture / name / count)
+        cell.pictureImageView.image = UIImage(named: "Untagged_Icon")
+        cell.countView.hidden = true
+        cell.nameLabel.text = "Lucas"
+        
+        return cell
+    }
+    
+    override func viewWillLayoutSubviews() {
+        
+        // collection view
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
+        layout.itemSize = CGSize(width: (archiveCollectionView.frame.width - 4.0)/3.0, height: 148.0)
+        layout.minimumInteritemSpacing = 2
+        layout.minimumLineSpacing = 2
+        
+        archiveCollectionView.collectionViewLayout = layout
+        //        archiveCollectionView.scrol
+    }
+    
+    // view did load
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+        let cellNib: UINib = UINib(nibName: "StudentCollectionViewCell", bundle: nil)
+        
+        self.archiveCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "StudentCollectionViewCell")
+        
+        // set view's background color
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "General_Background")!)
+        
+        // Nav Bar
+        navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        navigationController!.navigationBar.shadowImage = UIImage()
+        navigationController!.navigationBar.translucent = true
+        
+        
+        navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+        navigationController!.navigationBar.translucent = true
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        
+        // make collection view transparent
+        archiveCollectionView.backgroundColor = UIColor.clearColor()
+        self.title = "Tag Student"
         
     }
     
-
-    
+        
+        
 }

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoryCollectionViewCell" id="q3g-Rd-8Pu" customClass="CategoryCollectionViewCell" customModule="Spark1_0" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="148" height="151"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="148" height="151"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MDC-Ne-oxu">
+                        <rect key="frame" x="64" y="89" width="20" height="20"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MyS-wF-Coq">
+                                <rect key="frame" x="-13" y="-14" width="45" height="49"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="MyS-wF-Coq" firstAttribute="centerY" secondItem="MDC-Ne-oxu" secondAttribute="centerY" id="Ddj-cV-OMD"/>
+                            <constraint firstItem="MyS-wF-Coq" firstAttribute="centerX" secondItem="MDC-Ne-oxu" secondAttribute="centerX" id="xaa-0D-KUN"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAC-b5-BI7">
+                        <rect key="frame" x="39" y="16" width="71" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="MDC-Ne-oxu" firstAttribute="centerX" secondItem="q3g-Rd-8Pu" secondAttribute="centerX" id="Ehu-Ys-eoq"/>
+                <constraint firstItem="MDC-Ne-oxu" firstAttribute="centerY" secondItem="q3g-Rd-8Pu" secondAttribute="centerY" id="HMN-I8-gcc"/>
+                <constraint firstItem="RAC-b5-BI7" firstAttribute="centerX" secondItem="q3g-Rd-8Pu" secondAttribute="centerX" id="N3g-36-42m"/>
+                <constraint firstItem="RAC-b5-BI7" firstAttribute="top" secondItem="q3g-Rd-8Pu" secondAttribute="top" constant="16" id="wQg-jr-PEx"/>
+            </constraints>
+            <size key="customSize" width="148" height="151"/>
+            <connections>
+                <outlet property="categoryLabel" destination="RAC-b5-BI7" id="tm4-yO-pQT"/>
+                <outlet property="countLabel" destination="MyS-wF-Coq" id="VgD-pI-3KJ"/>
+                <outlet property="countView" destination="MDC-Ne-oxu" id="tKE-WI-4Af"/>
+            </connections>
+            <point key="canvasLocation" x="87" y="296.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

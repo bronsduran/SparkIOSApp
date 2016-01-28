@@ -14,9 +14,10 @@ import Parse
 
 // for videos: http://stackoverflow.com/questions/1266750/iphone-sdkhow-do-you-play-video-inside-a-view-rather-than-fullscreen
 
-class SPMediaViewController: UIViewController {
+class SPMediaViewController: UIViewController, UITextViewDelegate {
 
     var image: UIImage! = nil
+    var imageView: UIImageView! = nil
     
     @IBOutlet weak var audioViewContainer: UIView!
     @IBOutlet weak var audioCloseButton: UIButton!
@@ -25,33 +26,68 @@ class SPMediaViewController: UIViewController {
     @IBOutlet weak var textCloseButton: UIButton!
     @IBOutlet weak var textView: UITextView!
     
+    @IBOutlet weak var textViewDistanceToBottomOfAudioView: NSLayoutConstraint!
+    
     override func viewDidLoad() {
+        textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
+
     }
     
     override func viewWillAppear(animated: Bool) {
         
         let screenRect = UIScreen.mainScreen().bounds;
+//        self.audioViewContainer.hidden = true
+//        self.textViewContainer.hidden = true
+
+        if self.image != nil {
+            
+            if self.imageView != nil {
+                self.imageView.image = self.image
+            } else {
+                self.imageView = UIImageView(image: self.image)
+                self.imageView.frame = screenRect
+                self.view.addSubview( self.imageView)
+                self.view.sendSubviewToBack( self.imageView)
+            }
+            
+        }
         
-        let imageView = UIImageView(image: self.image)
-        imageView.frame = screenRect
-        self.view.addSubview(imageView)
-        self.view.sendSubviewToBack(imageView)
     }
     
     func showAudioContainer() {
+        textViewDistanceToBottomOfAudioView.constant = 8
+        UIView.animateWithDuration(0.3) {
+            self.view.layoutIfNeeded()
+        }
         self.audioViewContainer.hidden = false
-//        self.textViewContainer.addConstraint()
-    }
-    
-    @IBAction func textButtonPressed(sender: AnyObject) {
-        self.textViewContainer.hidden = false
-        self.textView.becomeFirstResponder()
         
     }
-    @IBAction func textCloseButtonPressed(sender: AnyObject) {
+    
+    func hideAudioContainer() {
+        self.audioViewContainer.hidden = true
+        textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
+        UIView.animateWithDuration(0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func showTextContainer() {
+        self.textViewContainer.hidden = false
+        self.textView.becomeFirstResponder()
+    }
+    
+    func hideTextContainer() {
         self.textView.text = ""
         self.textView.endEditing(true)
         self.textViewContainer.hidden = true
+    }
+    
+    @IBAction func textButtonPressed(sender: AnyObject) {
+        showTextContainer()
+    }
+    
+    @IBAction func textCloseButtonPressed(sender: AnyObject) {
+        hideTextContainer()
     }
     
     @IBAction func viewWasTapped(sender: AnyObject) {
@@ -59,11 +95,15 @@ class SPMediaViewController: UIViewController {
     }
     
     @IBAction func recordButtonPressed(sender: AnyObject) {
-        self.audioViewContainer.hidden = !self.audioViewContainer.hidden
+        if self.audioViewContainer.hidden {
+            showAudioContainer()
+        } else {
+            hideAudioContainer()
+        }
     }
     
     @IBAction func audioCloseButtonPressed(sender: AnyObject) {
-        self.audioViewContainer.hidden = true
+        hideAudioContainer()
     }
     
     @IBAction func saveButtonPressed(sender: AnyObject) {
@@ -74,5 +114,10 @@ class SPMediaViewController: UIViewController {
         
     }
     
+    func textViewDidEndEditing(textView: UITextView) {
+        if textView.text.isEmpty {
+            self.textViewContainer.hidden = true
+        }
+    }
 
 }

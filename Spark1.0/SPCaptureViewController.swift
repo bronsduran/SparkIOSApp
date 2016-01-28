@@ -76,6 +76,13 @@ class SPCaptureViewController: UIViewController {
         }
     }
     
+    @IBAction func skipButtonPressed(sender: AnyObject) {
+        self.captureButton.enabled = false
+        self.image = nil
+        self.performSegueWithIdentifier("toMediaViewController", sender: self)
+        self.captureButton.enabled = true
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "toMediaViewController" {
