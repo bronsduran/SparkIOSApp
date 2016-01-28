@@ -22,8 +22,11 @@ class SPCaptureViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let screenRect = UIScreen.mainScreen().bounds
         
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "General_Background")!)
+
         self.camera = LLSimpleCamera(quality: AVCaptureSessionPresetHigh, position: LLCameraPositionRear, videoEnabled: true)
         
         self.camera!.attachToViewController(self, withFrame: CGRectMake(0, 0, screenRect.size.width, screenRect.size.height))
@@ -35,8 +38,8 @@ class SPCaptureViewController: UIViewController {
 //        
         
         self.view.bringSubviewToFront(self.toolbar)
-        
-        
+
+        self.navigationController?.navigationBar.hidden = false
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -52,6 +55,10 @@ class SPCaptureViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func settingsButtonPressed(sender: AnyObject) {
+        NSLog("Settings pressed!")
     }
     
     @IBAction func captureButtonPressed(sender: AnyObject) {

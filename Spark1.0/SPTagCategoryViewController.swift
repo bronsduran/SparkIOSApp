@@ -56,24 +56,9 @@ class SPTagCategoryViewController: UIViewController, UICollectionViewDelegate, U
         // set view's background color
         view.backgroundColor = UIColor(patternImage: UIImage(named: "General_Background")!)
         
-        // Nav Bar
-        navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        navigationController!.navigationBar.shadowImage = UIImage()
-        navigationController!.navigationBar.translucent = true
-        self.title = "Tag Category"
-        
-       
-        
-        navigationController!.navigationBar.tintColor = UIColor.whiteColor()
-        navigationController!.navigationBar.translucent = true
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
-        
+
         // make collection view transparent
         CategoryCollectionView.backgroundColor = UIColor.clearColor()
-        
-        
-        
-        
         
     }
     

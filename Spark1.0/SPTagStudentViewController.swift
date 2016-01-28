@@ -11,15 +11,8 @@ import UIKit
 import Parse
 
 class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    
-  
-    
-    @IBOutlet weak var archiveCollectionView: UICollectionView!
-    
 
-    
-   
+    @IBOutlet weak var archiveCollectionView: UICollectionView!
     
     // override methods
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -67,15 +60,15 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
         view.backgroundColor = UIColor(patternImage: UIImage(named: "General_Background")!)
         
         // Nav Bar
-        navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        navigationController!.navigationBar.shadowImage = UIImage()
-        navigationController!.navigationBar.translucent = true
-        
-        
-        navigationController!.navigationBar.tintColor = UIColor.whiteColor()
-        navigationController!.navigationBar.translucent = true
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
-        
+//        navigationController!.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+//        navigationController!.navigationBar.shadowImage = UIImage()
+//        navigationController!.navigationBar.translucent = true
+//        
+//        
+//        navigationController!.navigationBar.tintColor = UIColor.whiteColor()
+//        navigationController!.navigationBar.translucent = true
+//        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+//        
         // make collection view transparent
         archiveCollectionView.backgroundColor = UIColor.clearColor()
         self.title = "Tag Student"

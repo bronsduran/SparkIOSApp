@@ -30,6 +30,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "General_Background")!)
 
     }
     
