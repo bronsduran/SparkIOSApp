@@ -34,7 +34,7 @@ class SPTagCategoryViewController: UIViewController, UICollectionViewDelegate, U
         // collection view
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
-        layout.itemSize = CGSize(width: (CategoryCollectionView.frame.width - 2.0)/2.0, height: 148.0)
+        layout.itemSize = CGSize(width: (CategoryCollectionView.frame.width - 4.0)/3.0, height: (CategoryCollectionView.frame.height - 4.0) / 4.0)
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 2
         
@@ -56,7 +56,9 @@ class SPTagCategoryViewController: UIViewController, UICollectionViewDelegate, U
         
         // Contents (Picture / name / count)
         
-        cell.categoryLabel.text = "Bronson"
+        cell.categoryLabel.text = "Category"
+        cell.countView.hidden = true
+        
         
         return cell
     }
