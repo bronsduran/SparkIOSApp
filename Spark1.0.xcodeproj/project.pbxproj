@@ -34,6 +34,7 @@
 		C54399131C58840A0049D903 /* TextInputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54399121C58840A0049D903 /* TextInputTableViewCell.xib */; };
 		C54399151C5888A10049D903 /* TextInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54399141C5888A10049D903 /* TextInputTableViewCell.swift */; };
 		C54399181C5A135B0049D903 /* SPSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54399171C5A135B0049D903 /* SPSettingsViewController.swift */; };
+		C543991A1C5AF5900049D903 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C54399191C5AF5900049D903 /* AVFoundation.framework */; };
 		C57DB7651C4F49C600022D3A /* SPCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57DB7641C4F49C600022D3A /* SPCreateAccountViewController.swift */; };
 		C57DB7671C4F4A2800022D3A /* SPCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57DB7661C4F4A2800022D3A /* SPCaptureViewController.swift */; };
 		C5C1D7791C50B44400C20DF9 /* LLSimpleCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C1D7761C50B44400C20DF9 /* LLSimpleCamera.m */; };
@@ -89,6 +90,7 @@
 		C54399121C58840A0049D903 /* TextInputTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextInputTableViewCell.xib; sourceTree = "<group>"; };
 		C54399141C5888A10049D903 /* TextInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputTableViewCell.swift; sourceTree = "<group>"; };
 		C54399171C5A135B0049D903 /* SPSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPSettingsViewController.swift; sourceTree = "<group>"; };
+		C54399191C5AF5900049D903 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C57DB7641C4F49C600022D3A /* SPCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPCreateAccountViewController.swift; sourceTree = "<group>"; };
 		C57DB7661C4F4A2800022D3A /* SPCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPCaptureViewController.swift; sourceTree = "<group>"; };
 		C5C1D7741C50B44300C20DF9 /* Spark1.0-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Spark1.0-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
@@ -110,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C543991A1C5AF5900049D903 /* AVFoundation.framework in Frameworks */,
 				0A2F59CE1C4F3C8C0053300C /* libsqlite3.tbd in Frameworks */,
 				0A2F59CC1C4F3C7F0053300C /* libz.tbd in Frameworks */,
 				0A2F59CA1C4F3C720053300C /* SystemConfiguration.framework in Frameworks */,
@@ -138,6 +141,7 @@
 		0A2F59B61C4F3AEF0053300C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C54399191C5AF5900049D903 /* AVFoundation.framework */,
 				C5C1D77B1C50B45C00C20DF9 /* LLSimpleCamera */,
 				0A2F59CD1C4F3C8C0053300C /* libsqlite3.tbd */,
 				0A2F59CB1C4F3C7F0053300C /* libz.tbd */,

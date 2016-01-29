@@ -14,14 +14,20 @@ import Parse
 
 // for videos: http://stackoverflow.com/questions/1266750/iphone-sdkhow-do-you-play-video-inside-a-view-rather-than-fullscreen
 
-class SPMediaViewController: UIViewController, UITextViewDelegate {
+class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
 
     var image: UIImage! = nil
     var imageView: UIImageView! = nil
+    var recorder: AVAudioRecorder!
+    var player: AVAudioPlayer!
+    var isRecorded: Bool! = false
     
     @IBOutlet weak var audioViewContainer: UIView!
     @IBOutlet weak var audioCloseButton: UIButton!
-
+    @IBOutlet weak var audioImageView: UIImageView!
+    @IBOutlet weak var audioPlayButton: UIButton!
+    @IBOutlet weak var audioRecordButton: UIBarButtonItem!
+    
     @IBOutlet weak var textViewContainer: UIView!
     @IBOutlet weak var textCloseButton: UIButton!
     @IBOutlet weak var textView: UITextView!
@@ -55,13 +61,40 @@ class SPMediaViewController: UIViewController, UITextViewDelegate {
         
     }
     
+    func setupAudioSession() {
+        
+        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        
+        let docsDir = dirPaths[0] as! String
+        let soundFilePath = docsDir.stringByAppendingString("sound.mp4")
+        let soundFileURL = NSURL(fileURLWithPath: soundFilePath)
+
+        var error: NSError?
+        var session : AVAudioSession = AVAudioSession.sharedInstance()
+        
+        do {
+            try session.setCategory(AVAudioSessionCategoryPlayAndRecord)
+            let recordSettings : [String : AnyObject] =
+            [AVEncoderAudioQualityKey: AVAudioQuality.Min.rawValue,
+                AVEncoderBitRateKey: 16,
+                AVNumberOfChannelsKey: 2,
+                AVSampleRateKey: 44100.0]
+            
+            
+            self.recorder = try AVAudioRecorder(URL:soundFileURL, settings: recordSettings)
+        } catch {
+            NSLog("ERROR with setting up audio")
+        }
+        
+    }
+    
+    
     func showAudioContainer() {
         textViewDistanceToBottomOfAudioView.constant = 8
         UIView.animateWithDuration(0.3) {
             self.view.layoutIfNeeded()
         }
         self.audioViewContainer.hidden = false
-        
     }
     
     func hideAudioContainer() {
@@ -96,6 +129,11 @@ class SPMediaViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func recordButtonPressed(sender: AnyObject) {
+//        self.isRecording = true
+//        [cancel setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor redColor],  UITextAttributeTextColor,nil] forState:UIControlStateNormal];
+
+//        self.audioRecordButton.setTitleTextAttributes(["": UIColor.redColor()], forState: <#T##UIControlState#>), forState: <#T##UIControlState#>
+//        
         if self.audioViewContainer.hidden {
             showAudioContainer()
         } else {
@@ -112,6 +150,10 @@ class SPMediaViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func tagButtonPressed(sender: AnyObject) {
+        
+    }
+    
+    @IBAction func audioPlayButtonPressed(sender: AnyObject) {
         
     }
     
