@@ -228,12 +228,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Students" id="ewj-Jz-jcH">
-                        <barButtonItem key="leftBarButtonItem" title="C" id="ffI-nq-1eg">
+                        <barButtonItem key="leftBarButtonItem" title="Camera" id="ffI-nq-1eg">
                             <connections>
                                 <action selector="cameraButtonPressed:" destination="XHc-6l-Ic5" id="F4a-vN-Ahb"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="A" id="FQD-6a-NFJ"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add Student" id="FQD-6a-NFJ">
+                            <connections>
+                                <action selector="addStudentButtonPressed:" destination="XHc-6l-Ic5" id="scv-Bq-C6n"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="archiveCollectionView" destination="Go0-NM-Hnr" id="JWv-DG-R0J"/>
@@ -625,12 +629,33 @@
                                             <action selector="audioCloseButtonPressed:" destination="ZaX-yA-hlv" eventType="touchUpInside" id="WEh-19-EVw"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90x-Rq-ocX">
+                                        <rect key="frame" x="8" y="10" width="30" height="30"/>
+                                        <state key="normal" title="Play">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="audioPlayButtonPressed:" destination="ZaX-yA-hlv" eventType="touchUpInside" id="W0o-bR-Lsn"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="459-Jg-Yvl">
+                                        <rect key="frame" x="46" y="8" width="228" height="34"/>
+                                        <color key="backgroundColor" red="0.91125801282051277" green="0.91125801282051277" blue="0.91125801282051277" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="ez7-CA-XWe"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="6P5-rD-15U"/>
+                                    <constraint firstItem="459-Jg-Yvl" firstAttribute="leading" secondItem="90x-Rq-ocX" secondAttribute="trailing" constant="8" id="Bq3-Ll-TZm"/>
+                                    <constraint firstItem="ksf-0P-ZVb" firstAttribute="centerY" secondItem="90x-Rq-ocX" secondAttribute="centerY" id="IKd-5L-che"/>
+                                    <constraint firstItem="ksf-0P-ZVb" firstAttribute="leading" secondItem="459-Jg-Yvl" secondAttribute="trailing" constant="8" id="LNy-fX-8rI"/>
+                                    <constraint firstItem="459-Jg-Yvl" firstAttribute="centerY" secondItem="90x-Rq-ocX" secondAttribute="centerY" id="PBU-XQ-vQf"/>
                                     <constraint firstAttribute="trailing" secondItem="ksf-0P-ZVb" secondAttribute="trailing" constant="8" id="fhw-Ff-CX9"/>
                                     <constraint firstItem="ksf-0P-ZVb" firstAttribute="centerY" secondItem="tJ2-NX-ACT" secondAttribute="centerY" id="frV-x0-T7h"/>
+                                    <constraint firstItem="90x-Rq-ocX" firstAttribute="leading" secondItem="tJ2-NX-ACT" secondAttribute="leading" constant="8" id="wNO-QX-njc"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LcR-wm-frR" userLabel="Text View Container">
@@ -692,6 +717,9 @@
                     <navigationItem key="navigationItem" id="PKI-nN-8YJ"/>
                     <connections>
                         <outlet property="audioCloseButton" destination="ksf-0P-ZVb" id="hfb-nG-J29"/>
+                        <outlet property="audioImageView" destination="459-Jg-Yvl" id="seL-yp-b6r"/>
+                        <outlet property="audioPlayButton" destination="90x-Rq-ocX" id="23U-82-7NF"/>
+                        <outlet property="audioRecordButton" destination="A9b-nV-WdW" id="NvI-31-4Fd"/>
                         <outlet property="audioViewContainer" destination="tJ2-NX-ACT" id="QKj-mZ-Hjs"/>
                         <outlet property="backGround" destination="plN-or-FoS" id="H7g-kw-G2I"/>
                         <outlet property="textCloseButton" destination="4Py-TR-bmW" id="kys-JC-k9L"/>
@@ -712,7 +740,7 @@
         <!--Add Student View Controller-->
         <scene sceneID="mx0-PW-XBd">
             <objects>
-                <viewController id="u6T-Nu-23k" customClass="SPAddStudentViewController" customModule="Spark1_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SPAddStudentViewController" id="u6T-Nu-23k" customClass="SPAddStudentViewController" customModule="Spark1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QPE-Tv-9PT"/>
                         <viewControllerLayoutGuide type="bottom" id="ncq-ve-N11"/>
@@ -827,7 +855,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2474" y="-257"/>
+            <point key="canvasLocation" x="2480" y="-261"/>
         </scene>
         <!--Tag Student-->
         <scene sceneID="GHx-6g-Txw">

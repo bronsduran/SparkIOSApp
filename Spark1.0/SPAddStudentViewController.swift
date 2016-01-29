@@ -27,7 +27,11 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
         backGround.image = UIImage(named: "Login_Background")
         view.sendSubviewToBack(backGround)
         
-        self.tableView.backgroundColor = UIColor.clearColor() 
+        self.tableView.backgroundColor = UIColor.clearColor()
+        
+        self.photoButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
+        self.photoButton.imageView?.layer.cornerRadius = self.photoButton.frame.width / 2.0
+        self.photoButton.imageView?.clipsToBounds = true
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -87,7 +91,9 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        photoButton.setBackgroundImage(image, forState: UIControlState.Normal)
+        
+        photoButton.setImage(image, forState: UIControlState.Normal)
+        self.imagePicker.dismissViewControllerAnimated(true, completion: nil)
     }
     
     

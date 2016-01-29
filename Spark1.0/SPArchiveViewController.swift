@@ -94,4 +94,11 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBAction func cameraButtonPressed(sender: AnyObject) {
         self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    @IBAction func addStudentButtonPressed(sender: AnyObject) {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = mainStoryboard.instantiateViewControllerWithIdentifier("SPAddStudentViewController") as! SPAddStudentViewController
+        self.presentViewController(vc, animated: true, completion: nil)
+    }
+    
 }
