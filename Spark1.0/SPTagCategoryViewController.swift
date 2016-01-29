@@ -14,15 +14,20 @@ class SPTagCategoryViewController: UIViewController, UICollectionViewDelegate, U
     
     @IBOutlet weak var CategoryCollectionView: UICollectionView!
     
+    @IBOutlet weak var backGround: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         let cellNib: UINib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         
         self.CategoryCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "CategoryCollectionViewCell")
         
-        // set view's background color
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "General_Background")!)
+        // set view's background image
+        backGround.image = UIImage(named: "Login_Background")
+        view.sendSubviewToBack(backGround)
+        
         
         // make collection view transparent
         CategoryCollectionView.backgroundColor = UIColor.clearColor()

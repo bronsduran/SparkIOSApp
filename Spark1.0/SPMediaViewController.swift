@@ -25,12 +25,14 @@ class SPMediaViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var textViewContainer: UIView!
     @IBOutlet weak var textCloseButton: UIButton!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var backGround: UIImageView!
     
     @IBOutlet weak var textViewDistanceToBottomOfAudioView: NSLayoutConstraint!
     
     override func viewDidLoad() {
         textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "General_Background")!)
+        backGround.image = UIImage(named: "Login_Background")
+        view.sendSubviewToBack(backGround)
 
     }
     

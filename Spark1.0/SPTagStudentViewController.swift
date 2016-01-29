@@ -14,10 +14,13 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
 
     @IBOutlet weak var archiveCollectionView: UICollectionView!
     
+    @IBOutlet weak var backGround: UIImageView!
     // view did load
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        backGround.image = UIImage(named: "Login_Background")
+        view.sendSubviewToBack(backGround)
         
         let cellNib: UINib = UINib(nibName: "StudentCollectionViewCell", bundle: nil)
         

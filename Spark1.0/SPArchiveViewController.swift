@@ -15,6 +15,7 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     // Untagged moments
     @IBOutlet weak var untaggedMomentsButton: UIButton!
     
+    @IBOutlet weak var backGround: UIImageView!
     @IBOutlet weak var archiveCollectionView: UICollectionView!
     
     @IBOutlet weak var sortByControl: UISegmentedControl!
@@ -30,8 +31,10 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         
         self.archiveCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "StudentCollectionViewCell")
         
-        // set view's background color
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "General_Background")!)
+        // set view's background imag and send to back
+        backGround.image = UIImage(named: "Login_Background")
+        view.sendSubviewToBack(backGround)
+        
         
         
         
@@ -40,10 +43,11 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         archiveCollectionView.backgroundColor = UIColor.clearColor()
         
         // update "Untagged Moments" button
-        untaggedMomentsButton.backgroundColor = UIColor(red: 233/255.0, green: 63/255.0, blue: 63/255.0, alpha: 0.45)
-        untaggedMomentsButton.setTitle("xx Untagged Moments", forState: UIControlState.Normal)
-        untaggedMomentsButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-    }
+//        untaggedMomentsButton.backgroundColor = UIColor(red: 233/255.0, green: 63/255.0, blue: 63/255.0, alpha: 0.45)
+//        untaggedMomentsButton.setTitle("xx Untagged Moments", forState: UIControlState.Normal)
+//        untaggedMomentsButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        
+   }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()

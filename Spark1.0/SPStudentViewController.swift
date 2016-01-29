@@ -14,6 +14,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var countView: UIView!
     @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var backGround: UIImageView!
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -40,11 +41,15 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         
+        
+        
         let cellNib: UINib = UINib(nibName: "MomentTableViewCell", bundle: nil)
         momentTableView.registerNib(cellNib, forCellReuseIdentifier: "MomentTableViewCell")
         
-        // set view's background color
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "General_Background")!)
+        // set view's background image
+        backGround.image = UIImage(named: "Login_Background")
+        view.sendSubviewToBack(backGround)
+     
         
         // Header
         countView.layer.cornerRadius = countView.frame.height / 2

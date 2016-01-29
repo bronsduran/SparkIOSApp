@@ -19,13 +19,17 @@ class SPCaptureViewController: UIViewController {
     @IBOutlet weak var skipButton: UIBarButtonItem!
     @IBOutlet weak var captureButton: UIBarButtonItem!
     
+    @IBOutlet weak var backGround: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let screenRect = UIScreen.mainScreen().bounds
         
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "General_Background")!)
+        backGround.image =
+            UIImage(named: "Login_Background")
+        view.sendSubviewToBack(backGround)
+        
 
         self.camera = LLSimpleCamera(quality: AVCaptureSessionPresetHigh, position: LLCameraPositionRear, videoEnabled: true)
         
