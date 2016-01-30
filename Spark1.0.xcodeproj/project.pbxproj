@@ -18,6 +18,7 @@
 		0A2F59CA1C4F3C720053300C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2F59C91C4F3C720053300C /* SystemConfiguration.framework */; };
 		0A2F59CC1C4F3C7F0053300C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2F59CB1C4F3C7F0053300C /* libz.tbd */; };
 		0A2F59CE1C4F3C8C0053300C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2F59CD1C4F3C8C0053300C /* libsqlite3.tbd */; };
+		0A40F5741C5D5EC6000485B5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40F5731C5D5EC6000485B5 /* User.swift */; };
 		4B2285FC1C4AE4E800CE4146 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2285FB1C4AE4E800CE4146 /* AppDelegate.swift */; };
 		4B2285FE1C4AE4E800CE4146 /* SPLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2285FD1C4AE4E800CE4146 /* SPLoginViewController.swift */; };
 		4B2286011C4AE4E800CE4146 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2285FF1C4AE4E800CE4146 /* Main.storyboard */; };
@@ -69,6 +70,7 @@
 		0A2F59C91C4F3C720053300C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0A2F59CB1C4F3C7F0053300C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		0A2F59CD1C4F3C8C0053300C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		0A40F5731C5D5EC6000485B5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4B2285F81C4AE4E800CE4146 /* Spark1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spark1.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2285FB1C4AE4E800CE4146 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B2285FD1C4AE4E800CE4146 /* SPLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPLoginViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +194,14 @@
 			name = Core;
 			sourceTree = "<group>";
 		};
+		0A40F5751C5D5ECC000485B5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0A40F5731C5D5EC6000485B5 /* User.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		4B2285EF1C4AE4E800CE4146 = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +229,7 @@
 				C54399161C5A0D0E0049D903 /* Cells */,
 				0A2F59D21C4F3ED80053300C /* View Controllers */,
 				0A2F59D31C4F3EEF0053300C /* Supporting Files */,
+				0A40F5751C5D5ECC000485B5 /* Models */,
 			);
 			path = Spark1.0;
 			sourceTree = "<group>";
@@ -390,6 +401,7 @@
 				4B2286041C4AE4E800CE4146 /* Spark1_0.xcdatamodeld in Sources */,
 				4B2285FC1C4AE4E800CE4146 /* AppDelegate.swift in Sources */,
 				D4BD3BA21C589E13003BBFC8 /* MomentTableViewCell.swift in Sources */,
+				0A40F5741C5D5EC6000485B5 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
