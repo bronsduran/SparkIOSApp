@@ -46,9 +46,8 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         let cellNib: UINib = UINib(nibName: "MomentTableViewCell", bundle: nil)
         momentTableView.registerNib(cellNib, forCellReuseIdentifier: "MomentTableViewCell")
         
-        // set view's background image
-        backGround.image = UIImage(named: "Login_Background")
-        view.sendSubviewToBack(backGround)
+        self.addBackgroundView()
+
      
         
         // Header

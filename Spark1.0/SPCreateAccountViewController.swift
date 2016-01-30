@@ -19,7 +19,7 @@ class SPCreateAccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "Login_Background")!)
+        self.addBackgroundView()
     }
     
     override func didReceiveMemoryWarning() {

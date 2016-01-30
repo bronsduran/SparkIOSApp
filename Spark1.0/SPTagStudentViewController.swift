@@ -14,20 +14,18 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
 
     @IBOutlet weak var archiveCollectionView: UICollectionView!
     
-    @IBOutlet weak var backGround: UIImageView!
+    @IBOutlet weak var categoryButton: UIBarButtonItem!
+    
     // view did load
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        backGround.image = UIImage(named: "Login_Background")
-        view.sendSubviewToBack(backGround)
+        self.addBackgroundView()
         
         let cellNib: UINib = UINib(nibName: "StudentCollectionViewCell", bundle: nil)
-        
         self.archiveCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "StudentCollectionViewCell")
         
-        // set view's background color
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "General_Background")!)
+        self.archiveCollectionView.allowsMultipleSelection = true
         
         // make collection view transparent
         archiveCollectionView.backgroundColor = UIColor.clearColor()
@@ -64,9 +62,26 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
         cell.pictureImageView.image = UIImage(named: "Untagged_Icon")
         cell.countView.hidden = true
         cell.nameLabel.text = "Lucas"
-        
+
         return cell
     }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+         self.categoryButton.enabled = true
+        
+    }
+    
+    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        if collectionView.indexPathsForSelectedItems()?.count == 0 {
+            self.categoryButton.enabled = false
+
+        }
+
+    }
+    
+
 
 
 }

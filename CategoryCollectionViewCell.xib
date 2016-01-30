@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15E27e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -14,11 +14,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="148" height="151"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MDC-Ne-oxu">
-                        <rect key="frame" x="64" y="89" width="20" height="20"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MDC-Ne-oxu">
+                        <rect key="frame" x="64" y="125.5" width="20" height="20"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MyS-wF-Coq">
-                                <rect key="frame" x="-13" y="-14" width="45" height="49"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MyS-wF-Coq">
+                                <rect key="frame" x="6" y="3.5" width="7.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -27,11 +27,16 @@
                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="MyS-wF-Coq" firstAttribute="centerY" secondItem="MDC-Ne-oxu" secondAttribute="centerY" id="Ddj-cV-OMD"/>
+                            <constraint firstAttribute="height" constant="20" id="Nl9-yr-Ol1"/>
+                            <constraint firstAttribute="width" constant="20" id="gzM-AG-DuH"/>
                             <constraint firstItem="MyS-wF-Coq" firstAttribute="centerX" secondItem="MDC-Ne-oxu" secondAttribute="centerX" id="xaa-0D-KUN"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAC-b5-BI7">
-                        <rect key="frame" x="39" y="16" width="71" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAC-b5-BI7">
+                        <rect key="frame" x="8" y="35.5" width="132" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="80" id="gY7-Yr-t9t"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -40,10 +45,12 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
-                <constraint firstItem="MDC-Ne-oxu" firstAttribute="centerX" secondItem="q3g-Rd-8Pu" secondAttribute="centerX" id="Ehu-Ys-eoq"/>
-                <constraint firstItem="MDC-Ne-oxu" firstAttribute="centerY" secondItem="q3g-Rd-8Pu" secondAttribute="centerY" id="HMN-I8-gcc"/>
+                <constraint firstItem="RAC-b5-BI7" firstAttribute="centerY" secondItem="q3g-Rd-8Pu" secondAttribute="centerY" id="0gp-Di-LCu"/>
+                <constraint firstItem="MDC-Ne-oxu" firstAttribute="top" secondItem="RAC-b5-BI7" secondAttribute="bottom" constant="10" id="2Cy-80-zkh"/>
                 <constraint firstItem="RAC-b5-BI7" firstAttribute="centerX" secondItem="q3g-Rd-8Pu" secondAttribute="centerX" id="Rjb-A6-KFS"/>
-                <constraint firstItem="RAC-b5-BI7" firstAttribute="centerY" secondItem="q3g-Rd-8Pu" secondAttribute="centerY" id="uJp-so-mSl"/>
+                <constraint firstItem="MDC-Ne-oxu" firstAttribute="centerX" secondItem="q3g-Rd-8Pu" secondAttribute="centerX" id="YSY-Ox-W0W"/>
+                <constraint firstItem="RAC-b5-BI7" firstAttribute="leading" secondItem="q3g-Rd-8Pu" secondAttribute="leading" constant="8" id="mBH-cH-f3V"/>
+                <constraint firstAttribute="trailing" secondItem="RAC-b5-BI7" secondAttribute="trailing" constant="8" id="y0h-8E-aJ1"/>
             </constraints>
             <size key="customSize" width="148" height="151"/>
             <connections>

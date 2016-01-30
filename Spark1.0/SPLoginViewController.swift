@@ -14,7 +14,6 @@ class SPLoginViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
-    @IBOutlet weak var backGround: UIImageView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     
@@ -23,8 +22,8 @@ class SPLoginViewController: UIViewController {
         super.viewDidLoad()
         loginButton.layer.borderWidth = 1
         loginButton.layer.borderColor = UIColor.lightGrayColor().CGColor
-        backGround.image = UIImage(named: "Login_Background")
-        view.sendSubviewToBack(backGround)
+        self.addBackgroundView()
+
     }
 
     override func didReceiveMemoryWarning() {

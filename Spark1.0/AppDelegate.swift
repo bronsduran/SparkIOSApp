@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         Parse.enableLocalDatastore()
@@ -170,5 +169,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+}
+
+extension UIViewController {
+    func addBackgroundView() {
+        let screenRect = UIScreen.mainScreen().bounds
+        let backgroundView = UIImageView(image: UIImage(named: "Login_Background"))
+        backgroundView.frame = screenRect
+        self.view.addSubview(backgroundView)
+        view.sendSubviewToBack(backgroundView)
+    }
 }
 

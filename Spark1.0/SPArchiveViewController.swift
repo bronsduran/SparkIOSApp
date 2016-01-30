@@ -15,7 +15,6 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     // Untagged moments
     @IBOutlet weak var untaggedMomentsButton: UIButton!
     
-    @IBOutlet weak var backGround: UIImageView!
     @IBOutlet weak var archiveCollectionView: UICollectionView!
     
     @IBOutlet weak var sortByControl: UISegmentedControl!
@@ -31,12 +30,7 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         
         self.archiveCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "StudentCollectionViewCell")
         
-        // set view's background imag and send to back
-        backGround.image = UIImage(named: "Login_Background")
-        view.sendSubviewToBack(backGround)
-        
-        
-        
+        self.addBackgroundView()
         
         
         // make collection view transparent

@@ -20,12 +20,11 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var photoButton: UIButton!
     
-    @IBOutlet weak var backGround: UIImageView!
     override func viewDidLoad() {
         let cellNib: UINib = UINib(nibName: "TextInputTableViewCell", bundle: nil)
         self.tableView.registerNib(cellNib, forCellReuseIdentifier: "TextInputTableViewCell")
-        backGround.image = UIImage(named: "Login_Background")
-        view.sendSubviewToBack(backGround)
+        
+        self.addBackgroundView()
         
         self.tableView.backgroundColor = UIColor.clearColor()
         
