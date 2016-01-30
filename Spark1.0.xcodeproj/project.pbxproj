@@ -29,11 +29,23 @@
 		4B693A3B1C58872B005478D9 /* StudentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B693A3A1C58872B005478D9 /* StudentCollectionViewCell.swift */; };
 		4B693A3D1C588FC7005478D9 /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B693A3C1C588FC6005478D9 /* CategoryCollectionViewCell.xib */; };
 		4B8B72711C5895DF00E6E73B /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8B72701C5895DF00E6E73B /* CategoryCollectionViewCell.swift */; };
+		4BCBAF011C5D4D4300D8BB07 /* ActionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCBAF001C5D4D4300D8BB07 /* ActionData.swift */; };
+		4BCBAF031C5D4D6C00D8BB07 /* Spotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCBAF021C5D4D6C00D8BB07 /* Spotify.swift */; };
+		4BCBAF051C5D4D9900D8BB07 /* SpotifyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BCBAF041C5D4D9900D8BB07 /* SpotifyCell.xib */; };
+		4BCBAF0E1C5D4E3E00D8BB07 /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCBAF081C5D4E3E00D8BB07 /* ActionCell.swift */; };
+		4BCBAF0F1C5D4E3E00D8BB07 /* ActionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BCBAF091C5D4E3E00D8BB07 /* ActionCell.xib */; };
+		4BCBAF101C5D4E3E00D8BB07 /* ActionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCBAF0A1C5D4E3E00D8BB07 /* ActionController.swift */; };
+		4BCBAF111C5D4E3E00D8BB07 /* ActionControllerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCBAF0B1C5D4E3E00D8BB07 /* ActionControllerSettings.swift */; };
+		4BCBAF121C5D4E3E00D8BB07 /* DynamicCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCBAF0C1C5D4E3E00D8BB07 /* DynamicCollectionViewFlowLayout.swift */; };
+		4BCBAF131C5D4E3E00D8BB07 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCBAF0D1C5D4E3E00D8BB07 /* Action.swift */; };
 		C543990F1C5879C60049D903 /* SPAddStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C543990E1C5879C60049D903 /* SPAddStudentViewController.swift */; };
 		C54399131C58840A0049D903 /* TextInputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54399121C58840A0049D903 /* TextInputTableViewCell.xib */; };
 		C54399151C5888A10049D903 /* TextInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54399141C5888A10049D903 /* TextInputTableViewCell.swift */; };
 		C54399181C5A135B0049D903 /* SPSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54399171C5A135B0049D903 /* SPSettingsViewController.swift */; };
 		C543991A1C5AF5900049D903 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C54399191C5AF5900049D903 /* AVFoundation.framework */; };
+		C543991E1C5D68D20049D903 /* XLActionController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCBAEFB1C5D4CDF00D8BB07 /* XLActionController.framework */; };
+		C543991F1C5D68EB0049D903 /* XLActionController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCBAEFB1C5D4CDF00D8BB07 /* XLActionController.framework */; };
+		C54399201C5D68EB0049D903 /* XLActionController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCBAEFB1C5D4CDF00D8BB07 /* XLActionController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C57DB7651C4F49C600022D3A /* SPCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57DB7641C4F49C600022D3A /* SPCreateAccountViewController.swift */; };
 		C57DB7671C4F4A2800022D3A /* SPCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57DB7661C4F4A2800022D3A /* SPCaptureViewController.swift */; };
 		C5C1D7791C50B44400C20DF9 /* LLSimpleCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C1D7761C50B44400C20DF9 /* LLSimpleCamera.m */; };
@@ -55,7 +67,42 @@
 			remoteGlobalIDString = 4B2285F71C4AE4E800CE4146;
 			remoteInfo = Spark1.0;
 		};
+		4BCBAEFA1C5D4CDF00D8BB07 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4BCBAEF51C5D4CDF00D8BB07 /* XLActionController.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 28E191671BFA618E00066B1C;
+			remoteInfo = XLActionController;
+		};
+		4BCBAEFC1C5D4CDF00D8BB07 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4BCBAEF51C5D4CDF00D8BB07 /* XLActionController.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 28E191711BFA618F00066B1C;
+			remoteInfo = XLActionControllerTests;
+		};
+		C54399211C5D68EB0049D903 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4BCBAEF51C5D4CDF00D8BB07 /* XLActionController.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 28E191661BFA618E00066B1C;
+			remoteInfo = XLActionController;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C54399231C5D68EC0049D903 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C54399201C5D68EB0049D903 /* XLActionController.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0A2F59B71C4F3BA10053300C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -84,6 +131,17 @@
 		4B693A3A1C58872B005478D9 /* StudentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudentCollectionViewCell.swift; path = ../StudentCollectionViewCell.swift; sourceTree = "<group>"; };
 		4B693A3C1C588FC6005478D9 /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CategoryCollectionViewCell.xib; path = ../CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		4B8B72701C5895DF00E6E73B /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCollectionViewCell.swift; path = ../CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		4BCBAEF51C5D4CDF00D8BB07 /* XLActionController.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = XLActionController.xcodeproj; path = XLActionController/XLActionController.xcodeproj; sourceTree = "<group>"; };
+		4BCBAF001C5D4D4300D8BB07 /* ActionData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionData.swift; sourceTree = "<group>"; };
+		4BCBAF021C5D4D6C00D8BB07 /* Spotify.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spotify.swift; sourceTree = "<group>"; };
+		4BCBAF041C5D4D9900D8BB07 /* SpotifyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpotifyCell.xib; sourceTree = "<group>"; };
+		4BCBAF071C5D4E3E00D8BB07 /* XLActionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XLActionController.h; path = ../XLActionController/Source/XLActionController.h; sourceTree = "<group>"; };
+		4BCBAF081C5D4E3E00D8BB07 /* ActionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionCell.swift; path = ../XLActionController/Source/ActionCell.swift; sourceTree = "<group>"; };
+		4BCBAF091C5D4E3E00D8BB07 /* ActionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ActionCell.xib; path = ../XLActionController/Source/ActionCell.xib; sourceTree = "<group>"; };
+		4BCBAF0A1C5D4E3E00D8BB07 /* ActionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionController.swift; path = ../XLActionController/Source/ActionController.swift; sourceTree = "<group>"; };
+		4BCBAF0B1C5D4E3E00D8BB07 /* ActionControllerSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionControllerSettings.swift; path = ../XLActionController/Source/ActionControllerSettings.swift; sourceTree = "<group>"; };
+		4BCBAF0C1C5D4E3E00D8BB07 /* DynamicCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamicCollectionViewFlowLayout.swift; path = ../XLActionController/Source/DynamicCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		4BCBAF0D1C5D4E3E00D8BB07 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Action.swift; path = ../XLActionController/Source/Action.swift; sourceTree = "<group>"; };
 		C543990E1C5879C60049D903 /* SPAddStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPAddStudentViewController.swift; sourceTree = "<group>"; };
 		C54399121C58840A0049D903 /* TextInputTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextInputTableViewCell.xib; sourceTree = "<group>"; };
 		C54399141C5888A10049D903 /* TextInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputTableViewCell.swift; sourceTree = "<group>"; };
@@ -110,7 +168,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C543991E1C5D68D20049D903 /* XLActionController.framework in Frameworks */,
 				C543991A1C5AF5900049D903 /* AVFoundation.framework in Frameworks */,
+				C543991F1C5D68EB0049D903 /* XLActionController.framework in Frameworks */,
 				0A2F59CE1C4F3C8C0053300C /* libsqlite3.tbd in Frameworks */,
 				0A2F59CC1C4F3C7F0053300C /* libz.tbd in Frameworks */,
 				0A2F59CA1C4F3C720053300C /* SystemConfiguration.framework in Frameworks */,
@@ -199,6 +259,7 @@
 				4B2285FA1C4AE4E800CE4146 /* Spark1.0 */,
 				4B2286121C4AE4E800CE4146 /* Spark1.0Tests */,
 				4B2285F91C4AE4E800CE4146 /* Products */,
+				4BCBAEF51C5D4CDF00D8BB07 /* XLActionController.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -214,6 +275,8 @@
 		4B2285FA1C4AE4E800CE4146 /* Spark1.0 */ = {
 			isa = PBXGroup;
 			children = (
+				4BCBAF061C5D4E2600D8BB07 /* XLActionSource */,
+				4BCBAEFE1C5D4D0800D8BB07 /* CustomActionControllers */,
 				C5C1D7741C50B44300C20DF9 /* Spark1.0-Bridging-Header.h */,
 				0A2F59D41C4F3F080053300C /* Core */,
 				C54399161C5A0D0E0049D903 /* Cells */,
@@ -230,6 +293,39 @@
 				4B2286151C4AE4E800CE4146 /* Info.plist */,
 			);
 			path = Spark1.0Tests;
+			sourceTree = "<group>";
+		};
+		4BCBAEF61C5D4CDF00D8BB07 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4BCBAEFB1C5D4CDF00D8BB07 /* XLActionController.framework */,
+				4BCBAEFD1C5D4CDF00D8BB07 /* XLActionControllerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4BCBAEFE1C5D4D0800D8BB07 /* CustomActionControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4BCBAF001C5D4D4300D8BB07 /* ActionData.swift */,
+				4BCBAF021C5D4D6C00D8BB07 /* Spotify.swift */,
+				4BCBAF041C5D4D9900D8BB07 /* SpotifyCell.xib */,
+			);
+			name = CustomActionControllers;
+			sourceTree = "<group>";
+		};
+		4BCBAF061C5D4E2600D8BB07 /* XLActionSource */ = {
+			isa = PBXGroup;
+			children = (
+				4BCBAF071C5D4E3E00D8BB07 /* XLActionController.h */,
+				4BCBAF081C5D4E3E00D8BB07 /* ActionCell.swift */,
+				4BCBAF091C5D4E3E00D8BB07 /* ActionCell.xib */,
+				4BCBAF0A1C5D4E3E00D8BB07 /* ActionController.swift */,
+				4BCBAF0B1C5D4E3E00D8BB07 /* ActionControllerSettings.swift */,
+				4BCBAF0C1C5D4E3E00D8BB07 /* DynamicCollectionViewFlowLayout.swift */,
+				4BCBAF0D1C5D4E3E00D8BB07 /* Action.swift */,
+			);
+			name = XLActionSource;
 			sourceTree = "<group>";
 		};
 		C54399161C5A0D0E0049D903 /* Cells */ = {
@@ -268,10 +364,12 @@
 				4B2285F41C4AE4E800CE4146 /* Sources */,
 				4B2285F51C4AE4E800CE4146 /* Frameworks */,
 				4B2285F61C4AE4E800CE4146 /* Resources */,
+				C54399231C5D68EC0049D903 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C54399221C5D68EB0049D903 /* PBXTargetDependency */,
 			);
 			name = Spark1.0;
 			productName = Spark1.0;
@@ -335,6 +433,12 @@
 			mainGroup = 4B2285EF1C4AE4E800CE4146;
 			productRefGroup = 4B2285F91C4AE4E800CE4146 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 4BCBAEF61C5D4CDF00D8BB07 /* Products */;
+					ProjectRef = 4BCBAEF51C5D4CDF00D8BB07 /* XLActionController.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				4B2285F71C4AE4E800CE4146 /* Spark1.0 */,
@@ -342,6 +446,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		4BCBAEFB1C5D4CDF00D8BB07 /* XLActionController.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = XLActionController.framework;
+			remoteRef = 4BCBAEFA1C5D4CDF00D8BB07 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4BCBAEFD1C5D4CDF00D8BB07 /* XLActionControllerTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = XLActionControllerTests.xctest;
+			remoteRef = 4BCBAEFC1C5D4CDF00D8BB07 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4B2285F61C4AE4E800CE4146 /* Resources */ = {
@@ -354,7 +475,9 @@
 				4B2286061C4AE4E800CE4146 /* Assets.xcassets in Resources */,
 				4B2286011C4AE4E800CE4146 /* Main.storyboard in Resources */,
 				C54399131C58840A0049D903 /* TextInputTableViewCell.xib in Resources */,
+				4BCBAF051C5D4D9900D8BB07 /* SpotifyCell.xib in Resources */,
 				D4BD3BA51C589F7F003BBFC8 /* MomentTableViewCell.xib in Resources */,
+				4BCBAF0F1C5D4E3E00D8BB07 /* ActionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,19 +497,26 @@
 			files = (
 				C5C1D77D1C52E06000C20DF9 /* SPMediaViewController.swift in Sources */,
 				D4BD3BA31C589E13003BBFC8 /* SPStudentViewController.swift in Sources */,
+				4BCBAF121C5D4E3E00D8BB07 /* DynamicCollectionViewFlowLayout.swift in Sources */,
 				4B8B72711C5895DF00E6E73B /* CategoryCollectionViewCell.swift in Sources */,
 				C5C1D7791C50B44400C20DF9 /* LLSimpleCamera.m in Sources */,
 				C5C1D7811C52EA9700C20DF9 /* SPTagCategoryViewController.swift in Sources */,
 				C543990F1C5879C60049D903 /* SPAddStudentViewController.swift in Sources */,
+				4BCBAF0E1C5D4E3E00D8BB07 /* ActionCell.swift in Sources */,
+				4BCBAF031C5D4D6C00D8BB07 /* Spotify.swift in Sources */,
 				C57DB7671C4F4A2800022D3A /* SPCaptureViewController.swift in Sources */,
+				4BCBAF011C5D4D4300D8BB07 /* ActionData.swift in Sources */,
 				4B693A3B1C58872B005478D9 /* StudentCollectionViewCell.swift in Sources */,
+				4BCBAF101C5D4E3E00D8BB07 /* ActionController.swift in Sources */,
 				4B2285FE1C4AE4E800CE4146 /* SPLoginViewController.swift in Sources */,
 				C5C1D77F1C52E50900C20DF9 /* SPTagStudentViewController.swift in Sources */,
 				C54399181C5A135B0049D903 /* SPSettingsViewController.swift in Sources */,
 				C54399151C5888A10049D903 /* TextInputTableViewCell.swift in Sources */,
 				C5C1D77A1C50B44400C20DF9 /* UIImage+FixOrientation.m in Sources */,
+				4BCBAF131C5D4E3E00D8BB07 /* Action.swift in Sources */,
 				C57DB7651C4F49C600022D3A /* SPCreateAccountViewController.swift in Sources */,
 				D4BD3B991C5395DA003BBFC8 /* SPArchiveViewController.swift in Sources */,
+				4BCBAF111C5D4E3E00D8BB07 /* ActionControllerSettings.swift in Sources */,
 				4B2286041C4AE4E800CE4146 /* Spark1_0.xcdatamodeld in Sources */,
 				4B2285FC1C4AE4E800CE4146 /* AppDelegate.swift in Sources */,
 				D4BD3BA21C589E13003BBFC8 /* MomentTableViewCell.swift in Sources */,
@@ -408,6 +538,11 @@
 			isa = PBXTargetDependency;
 			target = 4B2285F71C4AE4E800CE4146 /* Spark1.0 */;
 			targetProxy = 4B2286101C4AE4E800CE4146 /* PBXContainerItemProxy */;
+		};
+		C54399221C5D68EB0049D903 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = XLActionController;
+			targetProxy = C54399211C5D68EB0049D903 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -521,6 +656,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -542,6 +678,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
