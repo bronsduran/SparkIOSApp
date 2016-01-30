@@ -19,6 +19,9 @@
 		0A2F59CC1C4F3C7F0053300C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2F59CB1C4F3C7F0053300C /* libz.tbd */; };
 		0A2F59CE1C4F3C8C0053300C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2F59CD1C4F3C8C0053300C /* libsqlite3.tbd */; };
 		0A40F5741C5D5EC6000485B5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40F5731C5D5EC6000485B5 /* User.swift */; };
+		0A40F5781C5D7964000485B5 /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40F5771C5D7964000485B5 /* Class.swift */; };
+		0A40F57B1C5D7984000485B5 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40F57A1C5D7984000485B5 /* Student.swift */; };
+		0A40F57D1C5D799E000485B5 /* Moment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40F57C1C5D799E000485B5 /* Moment.swift */; };
 		4B2285FC1C4AE4E800CE4146 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2285FB1C4AE4E800CE4146 /* AppDelegate.swift */; };
 		4B2285FE1C4AE4E800CE4146 /* SPLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2285FD1C4AE4E800CE4146 /* SPLoginViewController.swift */; };
 		4B2286011C4AE4E800CE4146 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2285FF1C4AE4E800CE4146 /* Main.storyboard */; };
@@ -118,6 +121,9 @@
 		0A2F59CB1C4F3C7F0053300C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		0A2F59CD1C4F3C8C0053300C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		0A40F5731C5D5EC6000485B5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0A40F5771C5D7964000485B5 /* Class.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
+		0A40F57A1C5D7984000485B5 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		0A40F57C1C5D799E000485B5 /* Moment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Moment.swift; sourceTree = "<group>"; };
 		4B2285F81C4AE4E800CE4146 /* Spark1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spark1.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2285FB1C4AE4E800CE4146 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B2285FD1C4AE4E800CE4146 /* SPLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPLoginViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +264,9 @@
 			isa = PBXGroup;
 			children = (
 				0A40F5731C5D5EC6000485B5 /* User.swift */,
+				0A40F5771C5D7964000485B5 /* Class.swift */,
+				0A40F57A1C5D7984000485B5 /* Student.swift */,
+				0A40F57C1C5D799E000485B5 /* Moment.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -525,8 +534,11 @@
 				C54399151C5888A10049D903 /* TextInputTableViewCell.swift in Sources */,
 				C5C1D77A1C50B44400C20DF9 /* UIImage+FixOrientation.m in Sources */,
 				4BCBAF131C5D4E3E00D8BB07 /* Action.swift in Sources */,
+				0A40F57B1C5D7984000485B5 /* Student.swift in Sources */,
 				C57DB7651C4F49C600022D3A /* SPCreateAccountViewController.swift in Sources */,
 				D4BD3B991C5395DA003BBFC8 /* SPArchiveViewController.swift in Sources */,
+				0A40F57D1C5D799E000485B5 /* Moment.swift in Sources */,
+				0A40F5781C5D7964000485B5 /* Class.swift in Sources */,
 				4BCBAF111C5D4E3E00D8BB07 /* ActionControllerSettings.swift in Sources */,
 				4B2286041C4AE4E800CE4146 /* Spark1_0.xcdatamodeld in Sources */,
 				4B2285FC1C4AE4E800CE4146 /* AppDelegate.swift in Sources */,

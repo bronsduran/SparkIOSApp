@@ -22,6 +22,12 @@ class SPLoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tapper = UITapGestureRecognizer(target: self, action: Selector("handleSingleTap:"))
+        
+        tapper.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapper)
+        
         loginButton.layer.borderWidth = 1
         loginButton.layer.borderColor = UIColor.lightGrayColor().CGColor
         backGround.image = UIImage(named: "Login_Background")
@@ -29,12 +35,16 @@ class SPLoginViewController: UIViewController {
         activityIndicator.hidden = true
         
         // Do not include the below code until we have a way to log out
-        /*if let _ = User.current() {
+        if let _ = User.current() {
             let appDelegate: UIApplicationDelegate! = UIApplication.sharedApplication().delegate
             
             appDelegate!.window!!.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-        } */
+        }
         self.addBackgroundView()
+    }
+    
+    func handleSingleTap(gesture: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,7 +52,10 @@ class SPLoginViewController: UIViewController {
         
     }
 
-    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
 
     @IBAction func loginPressed(sender: AnyObject) {
         

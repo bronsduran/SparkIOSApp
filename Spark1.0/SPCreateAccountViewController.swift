@@ -55,13 +55,28 @@ class SPCreateAccountViewController: UIViewController {
         }
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tapper = UITapGestureRecognizer(target: self, action: Selector("handleSingleTap:"))
+        
+        tapper.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapper)
+        
         signUpButton.layer.borderWidth = 1
         signUpButton.layer.borderColor = UIColor.lightGrayColor().CGColor
         activityIndicator.hidden = true
         view.backgroundColor = UIColor(patternImage: UIImage(named: "Login_Background")!)
         self.addBackgroundView()
+    }
+    
+    func handleSingleTap(gesture: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
     
     override func didReceiveMemoryWarning() {
