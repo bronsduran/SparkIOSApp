@@ -17,8 +17,6 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        backgroundColor = UIColor.whiteColor()
     }
     
     // required
@@ -32,6 +30,8 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         
         // background
         backgroundColor = UIColor(white: 1.0, alpha: 0.1)
+        let selectedColor = UIImage(color: UIColor.blackColor().colorWithAlphaComponent(0.3))
+        self.selectedBackgroundView = UIImageView(image: selectedColor)
         
         // name label
         categoryLabel.textColor = UIColor.whiteColor()

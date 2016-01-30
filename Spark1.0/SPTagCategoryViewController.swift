@@ -23,10 +23,10 @@ class SPTagCategoryViewController: UIViewController, UICollectionViewDelegate, U
         let cellNib: UINib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         
         self.CategoryCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "CategoryCollectionViewCell")
+        self.CategoryCollectionView.allowsMultipleSelection = true
         
         // set view's background image
-        backGround.image = UIImage(named: "Login_Background")
-        view.sendSubviewToBack(backGround)
+        self.addBackgroundView()
         
         
         // make collection view transparent
@@ -53,7 +53,7 @@ class SPTagCategoryViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return 7
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -61,11 +61,32 @@ class SPTagCategoryViewController: UIViewController, UICollectionViewDelegate, U
         
         // Contents (Picture / name / count)
         
-        cell.categoryLabel.text = "Category"
+        cell.categoryLabel.text = categoryForIndexPath(indexPath)
         cell.countView.hidden = true
         
-        
         return cell
+    }
+    
+    func categoryForIndexPath(indexPath: NSIndexPath) -> String {
+        switch indexPath.row {
+            
+        case 0:
+            return "Self Regulation"
+        case 1:
+            return "Social & Emotional"
+        case 2:
+            return "Language & Literacy"
+        case 3:
+            return "Math & Science"
+        case 4:
+            return "Motor Skills"
+        case 5:
+            return "Social Science"
+        case 6:
+            return "Arts"
+        default:
+            return ""
+        }
     }
     
     @IBAction func doneButtonPressed(sender: AnyObject) {

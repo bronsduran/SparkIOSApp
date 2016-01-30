@@ -61,6 +61,7 @@ class SPCreateAccountViewController: UIViewController {
         signUpButton.layer.borderColor = UIColor.lightGrayColor().CGColor
         activityIndicator.hidden = true
         view.backgroundColor = UIColor(patternImage: UIImage(named: "Login_Background")!)
+        self.addBackgroundView()
     }
     
     override func didReceiveMemoryWarning() {

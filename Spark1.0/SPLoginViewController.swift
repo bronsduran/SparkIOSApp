@@ -14,7 +14,6 @@ class SPLoginViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
-    @IBOutlet weak var backGround: UIImageView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     
@@ -34,6 +33,7 @@ class SPLoginViewController: UIViewController {
             
             appDelegate!.window!!.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
         } */
+        self.addBackgroundView()
     }
 
     override func didReceiveMemoryWarning() {

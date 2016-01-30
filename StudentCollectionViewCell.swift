@@ -29,6 +29,8 @@ class StudentCollectionViewCell: UICollectionViewCell {
         
         // background
         backgroundColor = UIColor(white: 1.0, alpha: 0.1)
+        let selectedColor = UIImage(color: UIColor.blackColor().colorWithAlphaComponent(0.3))
+        self.selectedBackgroundView = UIImageView(image: selectedColor)
         
         // name label
         nameLabel.textColor = UIColor.whiteColor()
@@ -38,4 +40,6 @@ class StudentCollectionViewCell: UICollectionViewCell {
         countView.backgroundColor = UIColor(white: 1.0, alpha: 0.1)
         countView.layer.cornerRadius = countView.frame.height / 2.0
     }
+    
+    
 }

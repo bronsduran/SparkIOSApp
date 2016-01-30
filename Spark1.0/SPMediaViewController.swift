@@ -43,14 +43,13 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     @IBOutlet weak var textViewContainer: UIView!
     @IBOutlet weak var textCloseButton: UIButton!
     @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var backGround: UIImageView!
     
     @IBOutlet weak var textViewDistanceToBottomOfAudioView: NSLayoutConstraint!
     
     override func viewDidLoad() {
         textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
-        backGround.image = UIImage(named: "Login_Background")
-        view.sendSubviewToBack(backGround)
+        
+        self.addBackgroundView()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "General_Background")!)
         setupAudioSession()
     }
@@ -75,16 +74,6 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         }
         
     }
-    
-//    NSURL *url = [NSURL URLWithString:@"http://a825.phobos.apple.com/us/r2000/005/Music/d8/a8/d2/mzi.jelhjoev.aac.p.m4p"];
-//    NSData *soundData = [NSData dataWithContentsOfURL:url];
-//    NSString *filePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-//    NSUserDomainMask, YES) objectAtIndex:0]
-//    stringByAppendingPathComponent:@"sound.caf"];
-//    [soundData writeToFile:filePath atomically:YES];
-//    player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL
-//				fileURLWithPath:filePath] error:NULL];
-//    NSLog(@"error %@", error);
     
     func getSoundFile() -> NSURL {
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
@@ -134,13 +123,6 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
             
         }
     }
-    
-//    func getFileURL() -> NSURL {
-//        let path = getCacheDirectory().stringByAppendingPathComponent(fileName)
-//        let filePath = NSURL(fileURLWithPath: path)
-//        return filePath!
-//    }
-//    
     
     func showAudioContainer() {
         textViewDistanceToBottomOfAudioView.constant = 8
@@ -198,15 +180,6 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         
         self.isRecording = !self.isRecording
 
-        
-//        self.audioRecordButton.setBackgroundImage(UIImage(color: UIColor.redColor()), forState: UIControlState.Selected, barMetrics: UIBarMetrics.Default)
-//
-//        
-//        if self.audioViewContainer.hidden {
-//            showAudioContainer()
-//        } else {
-//            hideAudioContainer()
-//        }
     }
     
     @IBAction func audioCloseButtonPressed(sender: AnyObject) {
