@@ -39,13 +39,19 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
         switch indexPath.row {
         case 0:
             cell.labelImage.image = UIImage(named: "Dark_Grey_Circle")
-            cell.textField.attributedPlaceholder = stringForPlaceholder("First Last")
-            cell.labelView.text = "Name"
+            cell.textField.attributedPlaceholder = stringForPlaceholder("First Name")
+            cell.labelView.text = "First Name"
+            
         case 1:
+            cell.labelImage.image = UIImage(named: "Dark_Grey_Circle")
+            cell.textField.attributedPlaceholder = stringForPlaceholder("Last Name")
+            cell.labelView.text = "Last Name"
+
+        case 2:
             cell.labelImage.image = UIImage(named: "Dark_Grey_Circle")
             cell.textField.attributedPlaceholder = stringForPlaceholder("123 456 7890")
             cell.labelView.text = "Parent Phone"
-        case 2:
+        case 3:
             cell.labelImage.image = UIImage(named: "Dark_Grey_Circle")
             cell.textField.attributedPlaceholder = stringForPlaceholder("example@example.com")
             cell.labelView.text = "Parent Email"
@@ -62,7 +68,7 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
 
@@ -71,6 +77,8 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @IBAction func doneButtonPressed(sender: AnyObject) {
+        // let firstNameCell = tableView.cellForRowAtIndexPath(0) as TextInputTableViewCell
+        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
