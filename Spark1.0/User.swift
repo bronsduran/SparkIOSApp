@@ -19,7 +19,7 @@ class User {
     var firstName: String!
     var lastName: String!
     var parse: PFUser!
-    var students: NSArray!
+    var students: NSMutableArray!
     
     convenience init(_ user: PFUser) {
         self.init()
@@ -29,7 +29,7 @@ class User {
         self.firstName = user["firstName"] as? String
         self.lastName = user["lastName"] as? String
         self.parse = user
-        self.students = user["students"] as? NSArray
+        self.students = user["students"] as? NSMutableArray
         if let emailVerified = user["emailVerified"] as? Bool {
             self.emailVerified = emailVerified
         }

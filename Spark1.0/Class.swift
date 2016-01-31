@@ -12,4 +12,9 @@ import Parse
 
 class Class {
     
+    var objectId: String!
+    var teacher: User!
+    var parse: PFObject!
+    
+    
 }
