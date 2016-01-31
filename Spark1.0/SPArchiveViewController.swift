@@ -55,8 +55,7 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         archiveCollectionView.collectionViewLayout = layout
     }
     
-    
-    // override methods
+    // delegates / datasource
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
