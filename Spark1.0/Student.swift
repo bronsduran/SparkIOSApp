@@ -19,6 +19,7 @@ class Student {
     var parse: PFObject!
     var parentPhone: String!
     var parentEmail: String!
+    var studentImage: UIImage!
     
     convenience init(_ object: PFObject) {
         self.init()
@@ -30,10 +31,19 @@ class Student {
         self.objectId = object.objectId
         self.parentPhone = object["parentPhone"] as? String
         self.parentEmail = object["parentEmail"] as? String
+        if let userPicture = PFUser.currentUser()?["studentImage"] as? PFFile {
+            userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
+                if (error == nil) {
+                    self.studentImage = UIImage(data:imageData!)
+                } else {
+                    self.studentImage = nil
+                }
+            }
+        }
     }
     
     //class func addStudent(name: String,
-    class func addStudent(firstName: String, lastName: String, phoneNumber: String, parentEmail: String) {
+    class func addStudent(firstName: String, lastName: String, phoneNumber: String, parentEmail: String, photo: UIImage) {
         
         let student = PFObject(className: "Student")
         student["firstName"] = firstName
@@ -41,14 +51,54 @@ class Student {
         student["parentPhone"] = phoneNumber
         student["parentEmail"] = parentEmail
         student["numberOfMoments"] = 0
+        let imageData = UIImageJPEGRepresentation(photo, 0.1)
+        let parseImageFile = PFFile(data: imageData!)
+        student.setObject(parseImageFile!, forKey: "studentImage")
+        
         
         student.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if success {
                 print("Created Student")
+                User.current().addStudent(student)
             } else {
                 print(error)
             }
         }
     }
+    
+    func save(callback: (() -> Void)!) {
+        if self.firstName != nil {
+            self.parse["firstName"] = self.firstName
+        }
+        
+        if self.lastName != nil {
+            self.parse["lastName"] = self.lastName
+        }
+        
+        if(self.parentEmail != nil) {
+            self.parse["parentEmail"] = self.parentEmail
+        }
+        
+        if(self.parentPhone != nil) {
+            self.parse["parentPhone"] = self.parentPhone
+        }
+        
+        if(self.numberOfMoments != nil) {
+            self.parse["numberOfMoments"] = self.numberOfMoments
+        }
+        
+        self.parse.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if success {
+                callback?()
+            } else {
+                
+            }
+        }
+    }
+    
+    func fetchMoments() {
+        
+    }
+
 }
