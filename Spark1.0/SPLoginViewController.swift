@@ -36,11 +36,11 @@ class SPLoginViewController: UIViewController {
         activityIndicator.hidden = true
         
         // Do not include the below code until we have a way to log out
-        /*if let _ = User.current() {
+        if let _ = User.current() {
             let appDelegate: UIApplicationDelegate! = UIApplication.sharedApplication().delegate
             
             appDelegate!.window!!.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-        }*/
+        }
         self.addBackgroundView()
     }
     
