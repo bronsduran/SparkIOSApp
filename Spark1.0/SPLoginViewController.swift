@@ -14,6 +14,7 @@ class SPLoginViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var backGround: UIImageView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
@@ -59,20 +60,21 @@ class SPLoginViewController: UIViewController {
 
     @IBAction func loginPressed(sender: AnyObject) {
         
-        activityIndicator.hidden = false
-        activityIndicator.startAnimating()
+   
+        logo.rotate360Degrees()
         User.login(self.emailField.text!, password: self.passwordField.text!) { (user) -> Void in
             
-        //    if user != nil {
+        
+            if user != nil {
                 let appDelegate: UIApplicationDelegate! = UIApplication.sharedApplication().delegate
                 
                 appDelegate!.window!!.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-//            } else {
-//                UIAlertView(title: "Incorrect E-Mail or Password", message: "Please try again.",
-//                    delegate: nil, cancelButtonTitle: "Okay").show()
-//            }
-            self.activityIndicator.stopAnimating()
-            self.activityIndicator.hidden = true
+            } else {
+                UIAlertView(title: "Incorrect E-Mail or Password", message: "Please try again.",
+                    delegate: nil, cancelButtonTitle: "Okay").show()
+            }
+            
+       
         }
 
         // For logout: http://stackoverflow.com/questions/19962276/best-practices-for-storyboard-login-screen-handling-clearing-of-data-upon-logou

@@ -28,7 +28,7 @@
                                 <rect key="frame" x="76" y="373" width="223" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
@@ -163,13 +163,14 @@
                         <outlet property="backGround" destination="ckp-q9-LYg" id="wOq-s0-6Xf"/>
                         <outlet property="emailField" destination="aPp-gJ-Ieb" id="oLc-aA-qTj"/>
                         <outlet property="loginButton" destination="s1u-7E-82V" id="6bi-ag-D0J"/>
+                        <outlet property="logo" destination="MWl-0a-Toy" id="MYP-Lt-STE"/>
                         <outlet property="passwordField" destination="2tl-a8-XXZ" id="Cie-sK-vm9"/>
                         <outlet property="signUpButton" destination="qG0-Ig-IGj" id="2ei-0K-svc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="710" y="1120"/>
+            <point key="canvasLocation" x="710" y="1100"/>
         </scene>
         <!--My Students-->
         <scene sceneID="9QG-rW-ZIw">
@@ -517,7 +518,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gu6-ua-D4I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="648" y="2020"/>
+            <point key="canvasLocation" x="839" y="1936"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="yJS-Kf-FEZ">
