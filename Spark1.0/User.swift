@@ -20,6 +20,8 @@ class User {
     var lastName: String!
     var parse: PFUser!
     var students: NSMutableArray!
+    var untaggedMoments: NSMutableArray!
+    var classes: NSMutableArray!
     
     convenience init(_ user: PFUser) {
         self.init()
@@ -30,13 +32,12 @@ class User {
         self.lastName = user["lastName"] as? String
         self.parse = user
         self.students = user["students"] as? NSMutableArray
+        self.classes = user["classes"] as? NSMutableArray
+        self.untaggedMoments = user["untaggedMoments"] as? NSMutableArray
         if let emailVerified = user["emailVerified"] as? Bool {
             self.emailVerified = emailVerified
         }
         User.currentUser = self
-        
-        // self.updateTracking()
-        // self.startup()
     }
     
     class func register(email: String, password: String, firstName: String, lastName: String, callback: (user: User!) -> Void) {
@@ -107,8 +108,60 @@ class User {
             if success {
                 callback?()
             } else {
+                
             }
         }
+    }
+    
+    func addStudent(child: PFObject) {
+        // Add Student Parse Object to Array in Parse
+        let array = self.parse["students"] as? NSMutableArray
+        if (array == nil) {
+            let new_array:NSMutableArray = NSMutableArray()
+            print(self.objectId)
+            new_array.addObject(child.objectId!)
+            self.parse["students"] = new_array
+        } else {
+            array!.addObject(child.objectId!)
+            self.parse["students"] = array
+        }
+        
+        // Update number of shares on parse
+        self.parse.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if success {
+                print("Student Added")
+            } else {
+                print(error)
+            }
+        }
+        
+    }
+    
+    func addClass(newClass: PFObject) {
+        // Add Class to list of classes
+        let array = self.parse["classes"] as? NSMutableArray
+        if (array == nil) {
+            let new_array:NSMutableArray = NSMutableArray()
+            print(self.objectId)
+            new_array.addObject(newClass.objectId!)
+            self.parse["classes"] = new_array
+        } else {
+            array!.addObject(newClass.objectId!)
+            self.parse["classes"] = array
+        }
+        
+        // Update number of shares on parse
+        self.parse.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if success {
+                print("Class Added")
+            } else {
+                print(error)
+            }
+        }
+    }
+    
+    func fetchStudents(callback: (foundStudents: [Student]) -> Void) {
+
     }
     
     class func logout() {

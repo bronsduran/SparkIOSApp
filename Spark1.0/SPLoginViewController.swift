@@ -35,11 +35,11 @@ class SPLoginViewController: UIViewController {
         activityIndicator.hidden = true
         
         // Do not include the below code until we have a way to log out
-        if let _ = User.current() {
+        /*if let _ = User.current() {
             let appDelegate: UIApplicationDelegate! = UIApplication.sharedApplication().delegate
             
             appDelegate!.window!!.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-        }
+        }*/
         self.addBackgroundView()
     }
     
@@ -63,14 +63,14 @@ class SPLoginViewController: UIViewController {
         activityIndicator.startAnimating()
         User.login(self.emailField.text!, password: self.passwordField.text!) { (user) -> Void in
             
-            if user != nil {
+        //    if user != nil {
                 let appDelegate: UIApplicationDelegate! = UIApplication.sharedApplication().delegate
                 
                 appDelegate!.window!!.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-            } else {
-                UIAlertView(title: "Incorrect E-Mail or Password", message: "Please try again.",
-                    delegate: nil, cancelButtonTitle: "Okay").show()
-            }
+//            } else {
+//                UIAlertView(title: "Incorrect E-Mail or Password", message: "Please try again.",
+//                    delegate: nil, cancelButtonTitle: "Okay").show()
+//            }
             self.activityIndicator.stopAnimating()
             self.activityIndicator.hidden = true
         }

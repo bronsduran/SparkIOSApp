@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pR4-Z0-oNV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15E27e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pR4-Z0-oNV">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -24,10 +24,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder=" Password" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="2tl-a8-XXZ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Password" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="2tl-a8-XXZ">
                                 <rect key="frame" x="76" y="373" width="223" height="30"/>
-                                <color key="backgroundColor" red="0.90980392156862744" green="0.90980392156862744" blue="0.91764705882352937" alpha="0.25" colorSpace="calibratedRGB"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
                             </textField>
@@ -37,11 +38,11 @@
                                 <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Spark_Logo_Login" translatesAutoresizingMaskIntoConstraints="NO" id="MWl-0a-Toy">
-                                <rect key="frame" x="78" y="70" width="165" height="165"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginLogo" translatesAutoresizingMaskIntoConstraints="NO" id="MWl-0a-Toy">
+                                <rect key="frame" x="93" y="74" width="135" height="135"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="165" id="F9O-Id-KTb"/>
-                                    <constraint firstAttribute="width" constant="165" id="LnH-xj-wXb"/>
+                                    <constraint firstAttribute="height" constant="135" id="F9O-Id-KTb"/>
+                                    <constraint firstAttribute="width" constant="135" id="LnH-xj-wXb"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Menu_Separater_Line" translatesAutoresizingMaskIntoConstraints="NO" id="Kwo-VA-INF">
@@ -50,7 +51,7 @@
                                     <constraint firstAttribute="height" constant="2" id="p5c-1r-300"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile_Button" translatesAutoresizingMaskIntoConstraints="NO" id="rK7-iq-z6r">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nameIcon" translatesAutoresizingMaskIntoConstraints="NO" id="rK7-iq-z6r">
                                 <rect key="frame" x="22" y="318" width="32" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="DQU-SR-L6X"/>
@@ -63,7 +64,7 @@
                                     <constraint firstAttribute="height" constant="2" id="6ry-Ac-KLd"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Password_Button" translatesAutoresizingMaskIntoConstraints="NO" id="bCe-DH-kQd">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="passwordIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bCe-DH-kQd">
                                 <rect key="frame" x="22" y="372" width="32" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="9JT-80-kRw"/>
@@ -84,20 +85,10 @@
                                     <segue destination="1fw-dz-JJL" kind="modal" id="EqF-xZ-Yji"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s1u-7E-82V">
-                                <rect key="frame" x="20" y="438" width="280" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Y1t-Ke-wji"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
-                                <state key="normal" title="Sign In"/>
-                                <connections>
-                                    <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iul-0p-CyS"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder=" Email" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="aPp-gJ-Ieb">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Email" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="aPp-gJ-Ieb">
                                 <rect key="frame" x="76" y="319" width="223" height="30"/>
-                                <color key="backgroundColor" red="0.90980392156862744" green="0.90980392156862744" blue="0.91764705882352937" alpha="0.25" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="oZm-HO-rec"/>
                                 </constraints>
@@ -112,6 +103,20 @@
                                     <constraint firstAttribute="height" constant="150" id="Hqr-vl-JzM"/>
                                 </constraints>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s1u-7E-82V">
+                                <rect key="frame" x="0.0" y="453" width="320" height="66"/>
+                                <color key="backgroundColor" white="1" alpha="0.41047952586206898" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="Y1t-Ke-wji"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                <state key="normal" title="Sign In">
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iul-0p-CyS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -120,14 +125,16 @@
                             <constraint firstItem="OAi-nt-9tA" firstAttribute="width" secondItem="Kwo-VA-INF" secondAttribute="width" id="4DM-jR-NAW"/>
                             <constraint firstItem="qG0-Ig-IGj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="AAv-5K-qNk"/>
                             <constraint firstItem="2tl-a8-XXZ" firstAttribute="trailing" secondItem="aPp-gJ-Ieb" secondAttribute="trailing" id="Adh-zB-05v"/>
+                            <constraint firstItem="s1u-7E-82V" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="CBU-eJ-3XK"/>
+                            <constraint firstAttribute="trailing" secondItem="s1u-7E-82V" secondAttribute="trailing" id="CSp-Yv-7bZ"/>
                             <constraint firstItem="2tl-a8-XXZ" firstAttribute="leading" secondItem="bCe-DH-kQd" secondAttribute="trailing" constant="22" id="DHB-km-UNI"/>
                             <constraint firstItem="bCe-DH-kQd" firstAttribute="centerY" secondItem="2tl-a8-XXZ" secondAttribute="centerY" id="FeY-dj-rDl"/>
                             <constraint firstItem="Kwo-VA-INF" firstAttribute="top" secondItem="aPp-gJ-Ieb" secondAttribute="bottom" constant="11" id="Fno-Z1-uLy"/>
-                            <constraint firstItem="MWl-0a-Toy" firstAttribute="centerY" secondItem="KoX-ne-0xf" secondAttribute="centerY" constant="10" id="I2S-h9-rAN"/>
+                            <constraint firstItem="MWl-0a-Toy" firstAttribute="centerY" secondItem="KoX-ne-0xf" secondAttribute="centerY" id="I2S-h9-rAN"/>
                             <constraint firstItem="rK7-iq-z6r" firstAttribute="centerY" secondItem="aPp-gJ-Ieb" secondAttribute="centerY" id="M6q-uE-apj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qG0-Ig-IGj" secondAttribute="trailing" constant="-20" id="NdN-M0-usr"/>
                             <constraint firstItem="s1u-7E-82V" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Nyw-sr-bnE"/>
-                            <constraint firstItem="s1u-7E-82V" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" constant="-40" id="OHe-8R-huU"/>
+                            <constraint firstItem="s1u-7E-82V" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="OHe-8R-huU"/>
                             <constraint firstItem="KoX-ne-0xf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="QGK-bE-tdE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KoX-ne-0xf" secondAttribute="trailing" constant="-20" id="QfD-Ze-0y2"/>
                             <constraint firstItem="2tl-a8-XXZ" firstAttribute="leading" secondItem="aPp-gJ-Ieb" secondAttribute="leading" id="QpS-Gh-lUM"/>
@@ -139,7 +146,7 @@
                             <constraint firstItem="2tl-a8-XXZ" firstAttribute="height" secondItem="aPp-gJ-Ieb" secondAttribute="height" id="bIk-ui-xR0"/>
                             <constraint firstItem="aPp-gJ-Ieb" firstAttribute="top" secondItem="KoX-ne-0xf" secondAttribute="bottom" constant="35" id="bub-Ym-COT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aPp-gJ-Ieb" secondAttribute="trailing" constant="5" id="dwb-SP-lI9"/>
-                            <constraint firstItem="s1u-7E-82V" firstAttribute="top" secondItem="2tl-a8-XXZ" secondAttribute="bottom" constant="35" id="eqo-Dt-DHq"/>
+                            <constraint firstItem="s1u-7E-82V" firstAttribute="top" secondItem="2tl-a8-XXZ" secondAttribute="bottom" constant="50" id="eqo-Dt-DHq"/>
                             <constraint firstItem="KL7-6n-bkq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hZ5-14-nXa"/>
                             <constraint firstAttribute="height" secondItem="KoX-ne-0xf" secondAttribute="height" multiplier="2" id="jNR-3t-pUe"/>
                             <constraint firstItem="Kwo-VA-INF" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="n8K-5d-onY"/>
@@ -229,12 +236,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Students" id="ewj-Jz-jcH">
-                        <barButtonItem key="leftBarButtonItem" title="Camera" id="ffI-nq-1eg">
+                        <barButtonItem key="leftBarButtonItem" image="cameraIcon" id="ffI-nq-1eg">
                             <connections>
                                 <action selector="cameraButtonPressed:" destination="XHc-6l-Ic5" id="F4a-vN-Ahb"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add Student" id="FQD-6a-NFJ">
+                        <barButtonItem key="rightBarButtonItem" image="addStudent" id="FQD-6a-NFJ">
                             <connections>
                                 <action selector="addStudentButtonPressed:" destination="XHc-6l-Ic5" id="scv-Bq-C6n"/>
                             </connections>
@@ -548,24 +555,26 @@
                                     <constraint firstAttribute="height" constant="70" id="Twb-eF-k5r"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem style="plain" id="cpF-7P-STb">
+                                    <barButtonItem title="Item" style="plain" id="cpF-7P-STb">
                                         <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mqw-8Y-3JV">
                                             <rect key="frame" x="16" y="20" width="52" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Archive"/>
+                                            <state key="normal" backgroundImage="ArchiveIcon">
+                                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </state>
                                             <connections>
                                                 <segue destination="2JU-SN-RMR" kind="modal" id="uzh-eO-k4Z"/>
                                             </connections>
                                         </button>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="YFa-rU-lad"/>
-                                    <barButtonItem title="Capture" id="8J6-Vo-9WW">
+                                    <barButtonItem image="captureButton" style="plain" id="8J6-Vo-9WW">
                                         <connections>
                                             <action selector="captureButtonPressed:" destination="Oj9-cQ-Faf" id="pKz-mL-5MF"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="L8P-a4-ZrD"/>
-                                    <barButtonItem title="Skip" id="vwM-Xu-a1F">
+                                    <barButtonItem image="rightIcon" id="vwM-Xu-a1F">
                                         <connections>
                                             <action selector="skipButtonPressed:" destination="Oj9-cQ-Faf" id="AUa-69-XjI"/>
                                         </connections>
@@ -581,7 +590,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Kf1-6y-JHu">
-                        <barButtonItem key="rightBarButtonItem" title="Settings" id="6V4-qS-AHb">
+                        <barButtonItem key="rightBarButtonItem" image="settingsIcon" id="6V4-qS-AHb">
                             <connections>
                                 <action selector="settingsButtonPressed:" destination="Oj9-cQ-Faf" id="lhc-IW-Azv"/>
                                 <segue destination="9Za-57-SPC" kind="modal" id="LTE-8n-xqG"/>
@@ -611,38 +620,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PGI-qN-pYs">
-                                <rect key="frame" x="0.0" y="498" width="320" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="C7J-K3-Rh1"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem title="Save" id="n5O-Ep-DGd">
-                                        <connections>
-                                            <action selector="saveButtonPressed:" destination="ZaX-yA-hlv" id="FYQ-p7-Ig3"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="k7I-5M-pqt"/>
-                                    <barButtonItem title="Text" id="FpY-7T-dF0">
-                                        <connections>
-                                            <action selector="textButtonPressed:" destination="ZaX-yA-hlv" id="yKR-4r-bQM"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="e5h-Og-OHp"/>
-                                    <barButtonItem title="Mic" id="A9b-nV-WdW">
-                                        <connections>
-                                            <action selector="recordButtonPressed:" destination="ZaX-yA-hlv" id="iYd-Tk-hva"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="egg-hK-RLP"/>
-                                    <barButtonItem title="Tag" id="Q9k-Fl-9LT">
-                                        <connections>
-                                            <action selector="tagButtonPressed:" destination="ZaX-yA-hlv" id="gZk-Rm-5wF"/>
-                                            <segue destination="YEJ-Fe-AzA" kind="push" id="xwe-gq-VOM"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tJ2-NX-ACT" userLabel="Audio View Container">
                                 <rect key="frame" x="0.0" y="72" width="320" height="50"/>
                                 <subviews>
@@ -715,6 +692,38 @@
                                     <constraint firstAttribute="trailing" secondItem="4Py-TR-bmW" secondAttribute="trailing" constant="8" id="tua-2T-f0w"/>
                                 </constraints>
                             </view>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PGI-qN-pYs">
+                                <rect key="frame" x="0.0" y="498" width="320" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="C7J-K3-Rh1"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem image="saveIcon" id="n5O-Ep-DGd">
+                                        <connections>
+                                            <action selector="saveButtonPressed:" destination="ZaX-yA-hlv" id="FYQ-p7-Ig3"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="k7I-5M-pqt"/>
+                                    <barButtonItem image="textIcon" id="FpY-7T-dF0">
+                                        <connections>
+                                            <action selector="textButtonPressed:" destination="ZaX-yA-hlv" id="yKR-4r-bQM"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="e5h-Og-OHp"/>
+                                    <barButtonItem image="microphoneIcon" id="A9b-nV-WdW">
+                                        <connections>
+                                            <action selector="recordButtonPressed:" destination="ZaX-yA-hlv" id="iYd-Tk-hva"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="egg-hK-RLP"/>
+                                    <barButtonItem image="rightIcon" id="Q9k-Fl-9LT">
+                                        <connections>
+                                            <action selector="tagButtonPressed:" destination="ZaX-yA-hlv" id="gZk-Rm-5wF"/>
+                                            <segue destination="YEJ-Fe-AzA" kind="push" id="xwe-gq-VOM"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -910,7 +919,7 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="UEh-8S-kjA"/>
-                                    <barButtonItem enabled="NO" title="Next &gt;" id="gCV-Q4-XZP">
+                                    <barButtonItem enabled="NO" image="rightIcon" id="gCV-Q4-XZP">
                                         <connections>
                                             <segue destination="J7N-vn-7W1" kind="push" id="XYr-z4-oUx"/>
                                         </connections>
@@ -930,7 +939,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xGP-Md-vlz">
-                        <barButtonItem key="rightBarButtonItem" title="Add Student" id="bg2-fZ-RgW">
+                        <barButtonItem key="rightBarButtonItem" image="addStudent" id="bg2-fZ-RgW">
                             <connections>
                                 <segue destination="u6T-Nu-23k" kind="modal" id="a2m-d7-Ac1"/>
                             </connections>
@@ -1043,10 +1052,19 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ArchiveIcon" width="51" height="51"/>
         <image name="Camera_Button" width="240" height="240"/>
         <image name="Menu_Separater_Line" width="750" height="2"/>
-        <image name="Password_Button" width="40" height="46"/>
-        <image name="Profile_Button" width="44" height="44"/>
-        <image name="Spark_Logo_Login" width="300" height="300"/>
+        <image name="addStudent" width="33" height="34"/>
+        <image name="cameraIcon" width="29" height="27"/>
+        <image name="captureButton" width="46" height="46"/>
+        <image name="loginLogo" width="300" height="300"/>
+        <image name="microphoneIcon" width="26" height="50"/>
+        <image name="nameIcon" width="44" height="44"/>
+        <image name="passwordIcon" width="40" height="46"/>
+        <image name="rightIcon" width="15" height="30"/>
+        <image name="saveIcon" width="51" height="51"/>
+        <image name="settingsIcon" width="42" height="34"/>
+        <image name="textIcon" width="52" height="51"/>
     </resources>
 </document>
