@@ -41,5 +41,18 @@ class StudentCollectionViewCell: UICollectionViewCell {
         countView.layer.cornerRadius = countView.frame.height / 2.0
     }
     
+    func withStudentData(student: Student) {
+        nameLabel.text = student.firstName + " " + String(student.lastName[student.lastName.startIndex]) + "."
+        countLabel.text = String(student.numberOfMoments)
+//        pictureImageView.image = UIImage(named: "")
+        // Contents (Picture / name / count)
+        //        pictureImageView.image = UIImage(named: "Untagged_Icon")
+        //        nameLabel.text = "Lucas"
+    }
+    
+    func withUntaggedData(/* add untagged moments object as param here */) {
+        
+    }
+    
     
 }

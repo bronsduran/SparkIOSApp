@@ -49,6 +49,7 @@ class User {
         
         pfuser["firstName"] = firstName
         pfuser["lastName"] = lastName
+//        pfuser["students"] = 
         
         pfuser.signUpInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if success {

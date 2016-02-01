@@ -30,16 +30,6 @@ class MomentTableViewCell: UITableViewCell {
         captionLabel.textColor = UIColor.whiteColor()
     }
 
-    func withStudentData(/* add student object as param here */) {
-        
-        // Contents (Picture / name / count)
-//        pictureImageView.image = UIImage(named: "Untagged_Icon")
-//        nameLabel.text = "Lucas"
-    }
-    
-    func withUntaggedData(/* add untagged moments object as param here */) {
-        
-    }
     
     func setAudio() {
         let hasAudio = arc4random_uniform(2) == 0 ? true: false // just because we don't have real moments yet

@@ -57,6 +57,9 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     
     // delegates / datasource
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        print(User.current())
+        let blah = User.current()
+        
         return 1
     }
     
