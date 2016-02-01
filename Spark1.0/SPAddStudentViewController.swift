@@ -20,6 +20,9 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var photoButton: UIButton!
     
+    var input = [String?](count: 4, repeatedValue: nil)
+    
+    
     override func viewDidLoad() {
         let cellNib: UINib = UINib(nibName: "TextInputTableViewCell", bundle: nil)
         self.tableView.registerNib(cellNib, forCellReuseIdentifier: "TextInputTableViewCell")
@@ -59,7 +62,25 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
             return cell
         }
         
+        if (indexPath.row < input.count) {
+            if let input = input[indexPath.row] {
+                cell.textField.text = input
+            }
+        }
+        
         return cell
+    }
+    
+    func getCellText() {
+        
+    }
+    
+    func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if let cell = cell as? TextInputTableViewCell {
+            if (indexPath.row < input.count) {
+                input[indexPath.row] = cell.textField.text!
+            }
+        }
     }
     
     func stringForPlaceholder(text: String) -> NSAttributedString {
@@ -73,14 +94,37 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     
 
     @IBAction func addMoreButtonPressed(sender: AnyObject) {
-        
+        createStudent()
     }
     
     @IBAction func doneButtonPressed(sender: AnyObject) {
         // let firstNameCell = tableView.cellForRowAtIndexPath(0) as TextInputTableViewCell
-        
+        createStudent()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    func createStudent() -> Bool {
+        
+        // try to replace cached fields with more up to date info
+        for i in 0..<tableView.visibleCells.count {
+            let index = tableView.indexPathsForVisibleRows![i].row
+            let cell = tableView.visibleCells[i] as! TextInputTableViewCell
+            
+            input[index] = cell.textField.text
+        }
+        
+        for field in input {
+            if field == nil {
+                return false
+            }
+        }
+        
+        Student.addStudent(input[0]!, lastName: input[1]!, phoneNumber: input[2]!, parentEmail: input[3]!, photo: photoButton.imageView!.image)
+        
+        return true
+    }
+    
+    
     
     @IBAction func closeButtonPressed(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)

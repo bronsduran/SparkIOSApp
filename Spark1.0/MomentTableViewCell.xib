@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -15,6 +15,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="328" height="99.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Camera_Button" translatesAutoresizingMaskIntoConstraints="NO" id="lwQ-Zp-kCc" userLabel="@@@">
+                        <rect key="frame" x="300" y="42" width="18" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="18" id="3GV-Lo-61v"/>
+                            <constraint firstAttribute="height" constant="18" id="yvG-YF-mjI"/>
+                        </constraints>
+                    </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Sx-Aw-6Mp" userLabel="Dot">
                         <rect key="frame" x="306" y="47" width="6" height="6"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -57,6 +64,7 @@
                 <constraints>
                     <constraint firstItem="BHc-z1-Gcl" firstAttribute="trailing" secondItem="2Sx-Aw-6Mp" secondAttribute="trailing" id="3dV-gR-p8Y"/>
                     <constraint firstItem="2Sx-Aw-6Mp" firstAttribute="leading" secondItem="jLM-hE-Wwb" secondAttribute="trailing" constant="8" id="83p-br-ZNf"/>
+                    <constraint firstItem="lwQ-Zp-kCc" firstAttribute="centerY" secondItem="2Sx-Aw-6Mp" secondAttribute="centerY" id="Cfj-jB-iku"/>
                     <constraint firstItem="u8Z-ts-Al8" firstAttribute="top" secondItem="gPp-0l-OBI" secondAttribute="topMargin" id="FE1-Ra-Gnh"/>
                     <constraint firstAttribute="bottomMargin" secondItem="jLM-hE-Wwb" secondAttribute="bottom" constant="-0.5" id="Fea-8I-HR5"/>
                     <constraint firstItem="jLM-hE-Wwb" firstAttribute="leading" secondItem="y7p-g9-Yht" secondAttribute="trailing" constant="8" id="FkS-5Y-mCE"/>
@@ -69,15 +77,21 @@
                     <constraint firstItem="y7p-g9-Yht" firstAttribute="leading" secondItem="gPp-0l-OBI" secondAttribute="leadingMargin" constant="9" id="dkA-7R-7tE"/>
                     <constraint firstItem="2Sx-Aw-6Mp" firstAttribute="centerY" secondItem="gPp-0l-OBI" secondAttribute="centerY" id="na9-U4-jvf"/>
                     <constraint firstItem="BHc-z1-Gcl" firstAttribute="top" secondItem="gPp-0l-OBI" secondAttribute="topMargin" constant="-8" id="r1x-S4-Pgq"/>
+                    <constraint firstItem="lwQ-Zp-kCc" firstAttribute="centerX" secondItem="2Sx-Aw-6Mp" secondAttribute="centerX" id="zuL-eu-2b4"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="audioIndicator" destination="lwQ-Zp-kCc" id="OPW-DQ-Kb7"/>
                 <outlet property="captionLabel" destination="jLM-hE-Wwb" id="sGr-yx-GoV"/>
                 <outlet property="categoryLabel" destination="BHc-z1-Gcl" id="N7h-8K-PDL"/>
                 <outlet property="dateLabel" destination="u8Z-ts-Al8" id="1Zh-v0-KcG"/>
                 <outlet property="momentImageView" destination="y7p-g9-Yht" id="phJ-p6-MmR"/>
+                <outlet property="noAudioIndicator" destination="2Sx-Aw-6Mp" id="9N1-zH-UdW"/>
             </connections>
             <point key="canvasLocation" x="366" y="16"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="Camera_Button" width="240" height="240"/>
+    </resources>
 </document>

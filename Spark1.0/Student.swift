@@ -19,7 +19,7 @@ class Student {
     var parse: PFObject!
     var parentPhone: String!
     var parentEmail: String!
-    var studentImage: UIImage!
+    var studentImage: UIImage?
     
     convenience init(_ object: PFObject) {
         self.init()
@@ -43,7 +43,7 @@ class Student {
     }
     
     //class func addStudent(name: String,
-    class func addStudent(firstName: String, lastName: String, phoneNumber: String, parentEmail: String, photo: UIImage) {
+    class func addStudent(firstName: String, lastName: String, phoneNumber: String, parentEmail: String, photo: UIImage?) {
         
         let student = PFObject(className: "Student")
         student["firstName"] = firstName
@@ -51,9 +51,11 @@ class Student {
         student["parentPhone"] = phoneNumber
         student["parentEmail"] = parentEmail
         student["numberOfMoments"] = 0
-        let imageData = UIImageJPEGRepresentation(photo, 0.1)
-        let parseImageFile = PFFile(data: imageData!)
-        student.setObject(parseImageFile!, forKey: "studentImage")
+        
+        if let photo = photo {let imageData = UIImageJPEGRepresentation(photo, 0.1)
+            let parseImageFile = PFFile(data: imageData!)
+            student.setObject(parseImageFile!, forKey: "studentImage")
+        }
         
         
         student.saveInBackgroundWithBlock {

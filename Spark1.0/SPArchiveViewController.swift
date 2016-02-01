@@ -20,7 +20,10 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var sortByControl: UISegmentedControl!
     
     @IBAction func sortByControl(sender: UISegmentedControl) {
+        refresh()
     }
+    
+    var students: [Student]?
     
     // view did load
     override func viewDidLoad() {
@@ -55,35 +58,57 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         archiveCollectionView.collectionViewLayout = layout
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // load in all students
+        User.current().fetchStudents() { (retrievedStudents) -> Void in
+            self.students = retrievedStudents
+            self.refresh()
+        }
+    }
     
-    // override methods
+    func refresh() {
+        if let students = students {
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                
+                // sort by name first, so that ties will be broken correctly when you sort by moments
+                self.students = students.sort({ $0.firstName < $1.firstName })
+                
+                if (self.sortByControl.selectedSegmentIndex == 1) {
+                    self.students = students.sort({ $0.firstName > $1.firstName })
+                    // TODO: swap out for correct sort criteria
+                    //      self.students = students.sort({ $0.numberOfMoments > $1.numberOfMoments })
+                }
+                
+                self.archiveCollectionView.reloadData()
+            })
+        }
+    }
+    
+    // delegates / datasource
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 13
+        if let students = students {
+            return students.count
+        }
+        
+        return 0
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StudentCollectionViewCell", forIndexPath: indexPath) as! StudentCollectionViewCell
         
-        // Contents (Picture / name / count)
-        cell.pictureImageView.image = UIImage(named: "Untagged_Icon")
-        cell.nameLabel.text = "Lucas"
-      
+        cell.withStudentData(students![indexPath.row])
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("toStudentViewController", sender: self)
     }
-    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == "studentViewController" {
-//            let studentViewController: SPStudentViewController = segue.destinationViewController as
-//        }
-//    }
     
     @IBAction func cameraButtonPressed(sender: AnyObject) {
         self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
