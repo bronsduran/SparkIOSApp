@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pR4-Z0-oNV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pR4-Z0-oNV">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -170,7 +170,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="710" y="1100"/>
+            <point key="canvasLocation" x="710" y="1116"/>
         </scene>
         <!--My Students-->
         <scene sceneID="9QG-rW-ZIw">
@@ -255,7 +255,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ii1-u3-A3Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1597" y="1100"/>
+            <point key="canvasLocation" x="1597" y="1116"/>
         </scene>
         <!--Name-->
         <scene sceneID="KE2-rp-tMO">
@@ -361,7 +361,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6re-gZ-PKP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2058" y="1100"/>
+            <point key="canvasLocation" x="2046" y="1116"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CAT-pm-jj7">
@@ -377,7 +377,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KAQ-ym-0ae" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1122" y="1100"/>
+            <point key="canvasLocation" x="1154" y="1116"/>
         </scene>
         <!--Create Account View Controller-->
         <scene sceneID="P4h-EB-lEe">
@@ -518,7 +518,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gu6-ua-D4I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="839" y="1936"/>
+            <point key="canvasLocation" x="710" y="1838"/>
         </scene>
         <!--Capture View Controller-->
         <scene sceneID="iQl-Vo-2Ac">
@@ -589,7 +589,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ww-hU-MYw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1122" y="393"/>
+            <point key="canvasLocation" x="1154" y="393"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Jq3-p6-WbP">
@@ -605,7 +605,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AYR-JT-hA0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1488" y="-375"/>
+            <point key="canvasLocation" x="1597" y="-331"/>
         </scene>
         <!--Settings-->
         <scene sceneID="gUP-IA-bsc">
@@ -622,15 +622,21 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0Vp-pf-2QA">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.86686698717948718" green="0.86686698717948718" blue="0.86686698717948718" alpha="0.17411099137931035" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="30" minY="0.0" maxX="30" maxY="0.0"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="bte-gk-1MM" firstAttribute="top" secondItem="0Vp-pf-2QA" secondAttribute="bottom" id="FDt-Es-Bn0"/>
                             <constraint firstItem="0Vp-pf-2QA" firstAttribute="leading" secondItem="ceL-BA-dY3" secondAttribute="leading" id="Le5-NP-1lg"/>
                             <constraint firstItem="0Vp-pf-2QA" firstAttribute="top" secondItem="eyJ-t1-qU0" secondAttribute="bottom" id="Pq0-SI-TbL"/>
                             <constraint firstAttribute="trailing" secondItem="0Vp-pf-2QA" secondAttribute="trailing" id="RH1-A0-7db"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="3q4-MS-3WT" appends="YES" id="28M-54-l3l"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="axZ-Jg-Qpb">
                         <barButtonItem key="rightBarButtonItem" title="X" id="ryg-4S-edZ">
@@ -645,8 +651,13 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aGS-2V-m0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="3q4-MS-3WT">
+                    <connections>
+                        <action selector="viewWasTapped:" destination="UG9-Vc-GXI" id="Dcz-Dn-Rei"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1902" y="-375"/>
+            <point key="canvasLocation" x="2046" y="-331"/>
         </scene>
         <!--Media View Controller-->
         <scene sceneID="LWa-uQ-GzF">
@@ -804,6 +815,41 @@
             </objects>
             <point key="canvasLocation" x="1597" y="393"/>
         </scene>
+        <!--Manage Students-->
+        <scene sceneID="jnZ-0S-ODB">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Sk-W7-k3D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <collectionViewController title="Manage Students" id="Uoa-R6-yLP" customClass="SPManageStudentsViewController" customModule="Spark1_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="fkU-mD-Ic8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RfN-Tw-r8O">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="MmE-Mk-HZv">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="Uoa-R6-yLP" id="QGx-UB-gti"/>
+                            <outlet property="delegate" destination="Uoa-R6-yLP" id="gDe-hf-Zbs"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="4YT-9R-0hV"/>
+                </collectionViewController>
+            </objects>
+            <point key="canvasLocation" x="2496" y="-1040"/>
+        </scene>
         <!--Add Student View Controller-->
         <scene sceneID="mx0-PW-XBd">
             <objects>
@@ -914,7 +960,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2480" y="-261"/>
+            <point key="canvasLocation" x="2496" y="-331"/>
         </scene>
         <!--Tag Student-->
         <scene sceneID="GHx-6g-Txw">
@@ -992,7 +1038,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hDZ-w5-Eng" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2034" y="440"/>
+            <point key="canvasLocation" x="2046" y="393"/>
         </scene>
         <!--Tag Category-->
         <scene sceneID="EKA-Vh-nc9">
@@ -1072,7 +1118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G21-uM-vSO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2480" y="440"/>
+            <point key="canvasLocation" x="2496" y="393"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HIF-85-JWW">
