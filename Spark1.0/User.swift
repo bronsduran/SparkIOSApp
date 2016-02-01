@@ -19,7 +19,7 @@ class User {
     var firstName: String!
     var lastName: String!
     var parse: PFUser!
-    var students: NSMutableArray!
+    var students: [String]!
     var untaggedMoments: NSMutableArray!
     var classes: NSMutableArray!
     
@@ -31,7 +31,7 @@ class User {
         self.firstName = user["firstName"] as? String
         self.lastName = user["lastName"] as? String
         self.parse = user
-        self.students = user["students"] as? NSMutableArray
+        self.students = user["students"] as? [String]
         self.classes = user["classes"] as? NSMutableArray
         self.untaggedMoments = user["untaggedMoments"] as? NSMutableArray
         if let emailVerified = user["emailVerified"] as? Bool {
@@ -129,6 +129,7 @@ class User {
         self.parse.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if success {
                 print("Student Added")
+                
             } else {
                 print(error)
             }
@@ -159,8 +160,28 @@ class User {
         }
     }
     
+    // Check out SPCaptureView for example of how to use
     func fetchStudents(callback: (foundStudents: [Student]) -> Void) {
-
+        let array = self.students
+        var studentArray = [Student]()
+        if (array == nil) {
+            print(self.objectId)
+            callback(foundStudents: studentArray)
+        } else {
+            for object in array! as [String] {
+                print(array)
+                let query = PFQuery(className: "Student")
+                let contents:PFObject?
+                
+                do {
+                    contents = try query.getObjectWithId(object)
+                } catch _ {
+                    contents = nil
+                }
+                studentArray.append(Student(contents!))
+            }
+            callback(foundStudents: studentArray)
+        }
     }
     
     class func logout() {
