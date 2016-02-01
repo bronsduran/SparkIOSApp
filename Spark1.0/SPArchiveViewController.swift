@@ -43,8 +43,14 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         
    }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+//    override func viewWillLayoutSubviews() {
+//        super.viewWillLayoutSubviews()
+//    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // load in all students
         
         // collection view
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -57,8 +63,6 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     
     // delegates / datasource
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        print(User.current())
-        let blah = User.current()
         
         return 1
     }
