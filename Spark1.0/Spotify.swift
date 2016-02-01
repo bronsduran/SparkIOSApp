@@ -182,6 +182,7 @@ public class SpotifyActionController: ActionController<SpotifyCell, ActionData, 
             header.title.text = data.title
             header.artist.text = data.subtitle
             header.imageView.image = data.image
+            
         }
     }
     

@@ -22,6 +22,16 @@ class SPCaptureViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // FETCH STUDENTS EXAMPLE
+        // DO WHATEVER YOU NEED TO DO IN THE CALLBACK FUNCTION
+        User.current().fetchStudents() { (retrievedStudents) -> Void in
+            print(retrievedStudents)
+            for kid in retrievedStudents as [Student] {
+                print("hi")
+                print(kid.firstName)
+            }
+        }
+        
         let screenRect = UIScreen.mainScreen().bounds
         self.addBackgroundView()
         

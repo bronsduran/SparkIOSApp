@@ -44,10 +44,12 @@ class StudentCollectionViewCell: UICollectionViewCell {
     func withStudentData(student: Student) {
         nameLabel.text = student.firstName + " " + String(student.lastName[student.lastName.startIndex]) + "."
         countLabel.text = String(student.numberOfMoments)
-//        pictureImageView.image = UIImage(named: "")
-        // Contents (Picture / name / count)
-        //        pictureImageView.image = UIImage(named: "Untagged_Icon")
-        //        nameLabel.text = "Lucas"
+        
+        if let image = student.studentImage {
+            pictureImageView.image = image
+        } else {
+            pictureImageView.image = UIImage(named: "nameIcon")
+        }
     }
     
     func withUntaggedData(/* add untagged moments object as param here */) {

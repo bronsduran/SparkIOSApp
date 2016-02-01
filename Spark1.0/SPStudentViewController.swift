@@ -30,7 +30,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MomentTableViewCell", forIndexPath: indexPath) as! MomentTableViewCell
         cell.selectionStyle = UITableViewCellSelectionStyle.None
-        let image = UIImage(named: "Untagged_Icon")
+        let image = UIImage(named: "Tag_Circle")
         cell.momentImageView.image = image
         
         return cell

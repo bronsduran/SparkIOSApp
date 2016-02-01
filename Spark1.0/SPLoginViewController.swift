@@ -14,6 +14,7 @@ class SPLoginViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
+    @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var backGround: UIImageView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
@@ -35,11 +36,11 @@ class SPLoginViewController: UIViewController {
         activityIndicator.hidden = true
         
         // Do not include the below code until we have a way to log out
-        /*if let _ = User.current() {
+        if let _ = User.current() {
             let appDelegate: UIApplicationDelegate! = UIApplication.sharedApplication().delegate
             
             appDelegate!.window!!.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-        }*/
+        }
         self.addBackgroundView()
     }
     
@@ -68,8 +69,10 @@ class SPLoginViewController: UIViewController {
             emailField.text = "dev@stanford.edu"
             passwordField.text = "dev"
         }
-        
+   
+        logo.rotate360Degrees()
         User.login(self.emailField.text!, password: self.passwordField.text!) { (user) -> Void in
+            
             if user != nil {
                 let appDelegate: UIApplicationDelegate! = UIApplication.sharedApplication().delegate
                 
@@ -78,6 +81,7 @@ class SPLoginViewController: UIViewController {
                 UIAlertView(title: "Incorrect E-Mail or Password", message: "Please try again.",
                     delegate: nil, cancelButtonTitle: "Okay").show()
             }
+            
             self.activityIndicator.stopAnimating()
             self.activityIndicator.hidden = true
         }

@@ -46,6 +46,17 @@ class SPCreateAccountViewController: UIViewController {
             
             if user != nil {
                 user.save(nil)
+                /*Student.addStudent("Kevin", lastName: "Khieu", phoneNumber: "9526881582", parentEmail: "kkhieu@stanford.edu", photo: UIImage(named: "Red_Button")!)
+                Student.addStudent("Kevin2", lastName: "Khieu", phoneNumber: "9526881582", parentEmail: "kkhieu@stanford.edu", photo: UIImage(named: "Red_Button")!)
+                Student.addStudent("Kevin3", lastName: "Khieu", phoneNumber: "9526881582", parentEmail: "kkhieu@stanford.edu", photo: UIImage(named: "Red_Button")!)
+                Student.addStudent("Kevin4", lastName: "Khieu", phoneNumber: "9526881582", parentEmail: "kkhieu@stanford.edu", photo: UIImage(named: "Red_Button")!)
+                
+                User.current().fetchStudents() { (retrievedStudents) -> Void in
+                    for kid in retrievedStudents as [Student] {
+                        print(kid.firstName)
+                    }
+                }*/
+                
                 UIAlertView(title: "Account Successfully Created", message: "Please Login With Your New Username and Password.",
                     delegate: nil, cancelButtonTitle: "Okay").show()
                 self.dismissViewControllerAnimated(true, completion: nil)
