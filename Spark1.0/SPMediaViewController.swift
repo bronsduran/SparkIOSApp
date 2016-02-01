@@ -50,7 +50,6 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
         
         self.addBackgroundView()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "General_Background")!)
         setupAudioSession()
     }
     
