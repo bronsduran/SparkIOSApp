@@ -126,6 +126,8 @@ class User {
             self.parse["students"] = array
         }
         
+        self.students.append(child.objectId!)
+        
         // Update number of shares on parse
         self.parse.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if success {
