@@ -20,8 +20,8 @@ class User {
     var lastName: String!
     var parse: PFUser!
     var students: [String]!
-    var untaggedMoments: NSMutableArray!
-    var classes: NSMutableArray!
+    var untaggedMoments: [String]!
+    var classes: [String]!
     
     convenience init(_ user: PFUser) {
         self.init()
@@ -31,9 +31,11 @@ class User {
         self.firstName = user["firstName"] as? String
         self.lastName = user["lastName"] as? String
         self.parse = user
-        self.students = user["students"] as? [String]
-        self.classes = user["classes"] as? NSMutableArray
-        self.untaggedMoments = user["untaggedMoments"] as? NSMutableArray
+        self.students = user["students"] as? [String]  // Array of ObjectID's
+        print("INIT")
+        print(self.students)
+        self.classes = user["classes"] as? [String]     // Array of ObjectID's
+        self.untaggedMoments = user["untaggedMoments"] as? [String] // Array of ObjectID's
         if let emailVerified = user["emailVerified"] as? Bool {
             self.emailVerified = emailVerified
         }
@@ -50,7 +52,6 @@ class User {
         
         pfuser["firstName"] = firstName
         pfuser["lastName"] = lastName
-//        pfuser["students"] = 
         
         pfuser.signUpInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if success {
@@ -100,42 +101,53 @@ class User {
             self.parse["lastName"] = self.lastName
         }
 
+        if self.students != nil {
+            self.parse["students"] = self.students
+        }
+        
+        if self.classes != nil {
+            self.parse["classes"] = self.classes
+        }
+        
         if(self.email != nil) {
             self.parse.email = self.email
         }
         
-        self.parse.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-            if success {
-                callback?()
-            } else {
-                
-            }
+        if(self.untaggedMoments != nil) {
+            self.parse["untaggedMoments"] = self.untaggedMoments
+        }
+        
+        do {
+            try self.parse.save()
+        } catch _ {
+            print("ERROR SAVING")
         }
     }
     
     func addStudent(child: PFObject) {
         // Add Student Parse Object to Array in Parse
-        let array = self.parse["students"] as? NSMutableArray
+        var array = self.students
+        print("ADD STUDENTS")
+        print(array)
         if (array == nil) {
             let new_array:NSMutableArray = NSMutableArray()
             print(self.objectId)
             new_array.addObject(child.objectId!)
             self.parse["students"] = new_array
         } else {
-            array!.addObject(child.objectId!)
+            array.append(child.objectId!)
             self.parse["students"] = array
         }
         
-        // Update number of shares on parse
-        self.parse.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-            if success {
-                print("Student Added")
-                
-            } else {
-                print(error)
-            }
-        }
+        self.students.append(child.objectId!)
         
+        // Update number of shares on parse
+        
+        do {
+            try self.parse.save()
+        } catch _ {
+            print("ERROR SAVING")
+        }
     }
     
     func addClass(newClass: PFObject) {
@@ -151,13 +163,12 @@ class User {
             self.parse["classes"] = array
         }
         
-        // Update number of shares on parse
-        self.parse.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-            if success {
-                print("Class Added")
-            } else {
-                print(error)
-            }
+        self.classes.append(newClass.objectId!)
+        
+        do {
+            try self.parse.save()
+        } catch _ {
+            print("ERROR SAVING")
         }
     }
     
@@ -166,11 +177,11 @@ class User {
         let array = self.students
         var studentArray = [Student]()
         if (array == nil) {
-            print(self.objectId)
             callback(foundStudents: studentArray)
         } else {
+            // print("fetch students")
             for object in array! as [String] {
-                print(array)
+                // print(object)
                 let query = PFQuery(className: "Student")
                 let contents:PFObject?
                 
@@ -184,6 +195,35 @@ class User {
             callback(foundStudents: studentArray)
         }
     }
+    
+    func addUntaggedMoment(moment: PFObject) {
+        // Add Student Parse Object to Array in Parse
+        var array = self.untaggedMoments
+        if (array == nil) {
+            let new_array:NSMutableArray = NSMutableArray()
+            new_array.addObject(moment.objectId!)
+            self.parse["untaggedMoments"] = new_array
+        } else {
+            array.append(moment.objectId!)
+            self.parse["untaggedMoments"] = array
+        }
+        
+        self.untaggedMoments.append(moment.objectId!)
+        
+        do {
+            try self.parse.save()
+        } catch _ {
+            print("ERROR SAVING")
+        }
+    }
+    
+    func removeUntaggedMoment(object: String) {
+        if self.untaggedMoments.contains(object) {
+            let elementIndex = self.untaggedMoments.indexOf(object)
+            self.untaggedMoments.removeAtIndex(elementIndex!)
+        }
+    }
+    
     
     class func logout() {
         PFUser.logOut()
