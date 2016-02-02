@@ -15,11 +15,12 @@ class Student {
     var firstName: String!
     var lastName: String!
     var numberOfMoments: Int!
-    var moments: NSArray!
+    var moments: [String]!
     var parse: PFObject!
     var parentPhone: String!
     var parentEmail: String!
     var studentImage: UIImage?
+    
     
     convenience init(_ object: PFObject) {
         self.init()
@@ -27,7 +28,7 @@ class Student {
         self.lastName = object["lastName"] as? String
         self.numberOfMoments = object["numberOfMoments"] as? Int
         self.parse = object
-        self.moments = object["moments"] as? NSArray
+        self.moments = object["moments"] as? [String]
         self.objectId = object.objectId
         self.parentPhone = object["parentPhone"] as? String
         self.parentEmail = object["parentEmail"] as? String
@@ -57,16 +58,13 @@ class Student {
             student.setObject(parseImageFile!, forKey: "studentImage")
         }
         
-        
-        student.saveInBackgroundWithBlock {
-            (success: Bool, error: NSError?) -> Void in
-            if success {
-                print("Created Student")
-                User.current().addStudent(student)
-            } else {
-                print(error)
-            }
+        do {
+            try student.save()
+        } catch _ {
+            print("ERROR SAVING")
         }
+ 
+        User.current().addStudent(student)
     }
     
     func save(callback: (() -> Void)!) {
@@ -99,8 +97,44 @@ class Student {
         }
     }
     
-    func fetchMoments() {
+    func addMoment(newMoment: PFObject) {
+        var array = self.moments
+        if (array == nil) {
+            let new_array:NSMutableArray = NSMutableArray()
+            new_array.addObject(newMoment.objectId!)
+            self.parse["moments"] = new_array
+        } else {
+            array.append(newMoment.objectId!)
+            self.parse["moments"] = array
+        }
         
+        self.moments.append(newMoment.objectId!)
+        
+        do {
+            try self.parse.save()
+        } catch _ {
+            print("ERROR SAVING")
+        }
+    }
+    
+    func fetchMoments(callback: (foundStudents: [Moment]) -> Void) {
+        let array = self.moments
+        var momentsArray = [Moment]()
+        if (array == nil) {
+            callback(foundStudents: momentsArray)
+        } else {
+            for object in array! as [String] {
+                let query = PFQuery(className: "Moment")
+                let contents:PFObject?
+                do {
+                    contents = try query.getObjectWithId(object)
+                } catch _ {
+                    contents = nil
+                }
+                momentsArray.append(Moment(contents!))
+            }
+            callback(foundStudents: momentsArray)
+        }
     }
 
 }

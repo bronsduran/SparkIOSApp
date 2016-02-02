@@ -64,6 +64,7 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         // load in all students
         User.current().fetchStudents() { (retrievedStudents) -> Void in
             self.students = retrievedStudents
+            print(self.students)
             self.refresh()
         }
     }
