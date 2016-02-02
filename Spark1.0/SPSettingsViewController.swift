@@ -8,16 +8,21 @@
 
 import Foundation
 
-class SPSettingsViewController : UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SPSettingsViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var closeButton: UIBarButtonItem!
     
+    let NUM_INPUT_CELLS = 3
+    
     override func viewDidLoad() {
-        let cellNib: UINib = UINib(nibName: "TextInputTableViewCell", bundle: nil)
+        var cellNib: UINib = UINib(nibName: "TextInputTableViewCell", bundle: nil)
         self.tableView.registerNib(cellNib, forCellReuseIdentifier: "TextInputTableViewCell")
         
+        cellNib = UINib(nibName: "ButtonTableViewCell", bundle: nil)
+        self.tableView.registerNib(cellNib, forCellReuseIdentifier: "ButtonTableViewCell")
+
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
@@ -25,37 +30,59 @@ class SPSettingsViewController : UIViewController, UITableViewDelegate, UITableV
         
         self.tableView.backgroundColor = UIColor.clearColor()
         
+        self.tableView.tableFooterView = UIView()
+
+        
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell : TextInputTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("TextInputTableViewCell") as! TextInputTableViewCell
         
-        switch indexPath.row {
-        case 0:
-            cell.labelImage.image = UIImage(named: "Dark_Grey_Circle")
-            cell.textField.attributedPlaceholder = stringForPlaceholder("First Last")
-            cell.labelView.text = "Name"
-        case 1:
-            cell.labelImage.image = UIImage(named: "Dark_Grey_Circle")
-            cell.textField.attributedPlaceholder = stringForPlaceholder("123 456 7890")
-            cell.labelView.text = "Email"
-        case 2:
-            cell.labelImage.image = UIImage(named: "Dark_Grey_Circle")
-            cell.textField.attributedPlaceholder = stringForPlaceholder("example@example.com")
-            cell.labelView.text = "Password"
-        case 3:
-            cell.labelImage.image = UIImage(named: "Dark_Grey_Circle")
-            cell.labelView.text = "Manage Students"
-            cell.textField.hidden = true
-        case 4:
-            cell.labelImage.image = UIImage(named: "Dark_Grey_Circle")
-            cell.labelView.text = "Logout"
-            cell.textField.hidden = true
-        default:
+//        var cell: TextInputTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("TextInputTableViewCell") as! TextInputTableViewCell
+        
+        if indexPath.row < NUM_INPUT_CELLS {
+            
+            var cell = self.tableView.dequeueReusableCellWithIdentifier("TextInputTableViewCell") as! TextInputTableViewCell
+            switch indexPath.row {
+            case 0:
+                cell.labelImage.image = UIImage(named: "nameIcon")
+                cell.textField.attributedPlaceholder = stringForPlaceholder("First Last")
+                cell.labelView.text = "Name"
+            case 1:
+                cell.labelImage.image = UIImage(named: "Tag_Circle")
+                cell.textField.attributedPlaceholder = stringForPlaceholder("123 456 7890")
+                cell.labelView.text = "Email"
+            case 2:
+                cell.labelImage.image = UIImage(named: "passwordIcon")
+                cell.textField.attributedPlaceholder = stringForPlaceholder("example@example.com")
+                cell.labelView.text = "Password"
+            default:
+                return cell
+            }
+            
             return cell
+            
+        } else {
+            var cell = self.tableView.dequeueReusableCellWithIdentifier("ButtonTableViewCell") as! ButtonTableViewCell
+            switch indexPath.row {
+            case 3:
+                cell.labelImage.image = UIImage(named: "addStudent")
+                cell.labelView.text = "Manage Students"
+                
+                cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "manageStudentsButtonPressed"))
+                
+            case 4:
+                cell.labelImage.image = UIImage(named: "Tag_Circle")
+                cell.labelView.text = "Logout"
+                cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "logoutButtonPressed"))
+
+            default:
+                return cell
+            }
+            return cell
+
         }
-        return cell
+        
     }
     
     func stringForPlaceholder(text: String) -> NSAttributedString {
@@ -71,11 +98,51 @@ class SPSettingsViewController : UIViewController, UITableViewDelegate, UITableV
         return 5
     }
     
+    func manageStudentsButtonPressed() {
+    
+        let manageStudentsViewController = SPManageStudentsViewController(collectionViewLayout: UICollectionViewLayout())
+        
+        self.navigationController?.pushViewController(manageStudentsViewController, animated: true)
+    }
+    
+    func logoutButtonPressed() {
+        
+        NSUserDefaults.standardUserDefaults().setBool(false, forKey: "is_logged_in")
+        
+        let appDelegate = UIApplication.sharedApplication().delegate
+        
+        let rootController : UIViewController = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("SPLoginViewController")
+        
+        let navigationController : UINavigationController = UINavigationController(rootViewController: rootController)
+        
+        appDelegate?.window??.rootViewController = navigationController
+        
+    }
+
+    
     @IBAction func closeButtonPressed(sender: AnyObject) {
         // TODO: CALL TO PARSE
         
         self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
 
+    
+    @IBAction func viewWasTapped(sender: AnyObject) {
+        for cell in self.tableView.visibleCells {
+            if self.tableView.indexPathForCell(cell)!.row < NUM_INPUT_CELLS {
+                let cell = cell as! TextInputTableViewCell
+                cell.textField.resignFirstResponder()
+            }
+        }
+    }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+
+        if touch.view != nil && touch.view!.isKindOfClass(UITextField) {
+            return false
+        }
+        return true
+    }
+    
     
 }
