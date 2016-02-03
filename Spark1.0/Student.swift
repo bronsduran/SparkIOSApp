@@ -67,6 +67,43 @@ class Student {
         User.current().addStudent(student)
     }
     
+    func updateStudentInfo(firstName: String?, lastName: String?, phoneNumber: String?, parentEmail: String?, photo: UIImage?) {
+        
+        if (firstName != nil) {
+            self.parse["firstName"] = firstName
+            self.firstName = firstName
+        }
+        
+        if (lastName != nil) {
+            self.parse["lastName"] = lastName
+            self.lastName = lastName
+        }
+        
+        if (phoneNumber != nil) {
+            self.parse["parentPhone"] = phoneNumber
+            self.parentPhone = phoneNumber
+        }
+        
+        if (parentEmail != nil) {
+            self.parse["parentEmail"] = parentEmail
+            self.parentEmail = parentEmail
+        }
+        
+        if (photo != nil) {
+            if let photo = photo {let imageData = UIImageJPEGRepresentation(photo, 0.1)
+                let parseImageFile = PFFile(data: imageData!)
+                self.parse.setObject(parseImageFile!, forKey: "studentImage")
+            }
+            self.studentImage = photo
+        }
+        
+        do {
+            try self.parse.save()
+        } catch _ {
+            print("ERROR SAVING")
+        }
+    }
+    
     func save(callback: (() -> Void)!) {
         if self.firstName != nil {
             self.parse["firstName"] = self.firstName
