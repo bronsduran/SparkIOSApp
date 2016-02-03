@@ -21,6 +21,7 @@ class User {
     var parse: PFUser!
     var students: [String]!
     var untaggedMoments: [String]!
+    var numberUntaggedMoments: Int!
     var classes: [String]!
     
     convenience init(_ user: PFUser) {
@@ -36,6 +37,7 @@ class User {
         print(self.students)
         self.classes = user["classes"] as? [String]     // Array of ObjectID's
         self.untaggedMoments = user["untaggedMoments"] as? [String] // Array of ObjectID's
+        self.numberUntaggedMoments = self.untaggedMoments.count
         if let emailVerified = user["emailVerified"] as? Bool {
             self.emailVerified = emailVerified
         }
@@ -209,7 +211,7 @@ class User {
         }
         
         self.untaggedMoments.append(moment.objectId!)
-        
+        self.numberUntaggedMoments = self.numberUntaggedMoments + 1
         do {
             try self.parse.save()
         } catch _ {
@@ -217,10 +219,35 @@ class User {
         }
     }
     
+    func getNumberUntaggedMoments(callback: (numberUntagged: Int) -> Void) {
+        callback(numberUntagged: self.numberUntaggedMoments)
+    }
+    
+    func fetchUntaggedMoments(callback: (foundMoments: [Moment]) -> Void) {
+        let array = self.untaggedMoments
+        var momentsArray = [Moment]()
+        if (array == nil) {
+            callback(foundMoments: momentsArray)
+        } else {
+            for object in array! as [String] {
+                let query = PFQuery(className: "Moment")
+                let contents:PFObject?
+                do {
+                    contents = try query.getObjectWithId(object)
+                } catch _ {
+                    contents = nil
+                }
+                momentsArray.append(Moment(contents!))
+            }
+            callback(foundMoments: momentsArray)
+        }
+    }
+    
     func removeUntaggedMoment(object: String) {
         if self.untaggedMoments.contains(object) {
             let elementIndex = self.untaggedMoments.indexOf(object)
             self.untaggedMoments.removeAtIndex(elementIndex!)
+            self.numberUntaggedMoments = self.numberUntaggedMoments - 1
         }
     }
     
