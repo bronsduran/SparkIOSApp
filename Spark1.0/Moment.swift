@@ -12,14 +12,14 @@ import Parse
 
 class Moment {
     var objectId: String!
-    var mediaType: Int!     // 0 = video, 1 = image
-    var momentPicture: UIImage!
-    var notes: String!
-    var voiceData: NSData!
+    var mediaType: Int?     // 0 = video, 1 = image
+    var image: UIImage?
+    var notes: String?
+    var voiceData: NSData?
     var teacher: User!
     var parse: PFObject!
-    var studentsTagged: [String]!
-    var categoriesTagged: [String]!
+    var studentsTagged: [String]?
+    var categoriesTagged: [String]?
     var untagged: Bool!
     
     convenience init(_ object: PFObject) {
@@ -36,12 +36,12 @@ class Moment {
             momentData.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
                 if (error == nil) {
                     if (self.mediaType == 1) {
-                        self.momentPicture = UIImage(data:imageData!)
+                        self.image = UIImage(data:imageData!)
                     } else {
                         // Video Implementation Not Implemented Yet
                     }
                 } else {
-                    self.momentPicture = nil
+                    self.image = nil
                 }
             }
         }
@@ -59,7 +59,7 @@ class Moment {
     }
     
     // typeOfMoment: True if IMAGE, false if VIDEO. For now always put True
-    class func createMoment(typeOfMoment: Bool, untagged: Bool, students: [Student], categories: [String], notes: String, imageFile: UIImage, voiceFile: NSURL) {
+    class func createMoment(typeOfMoment: Bool, students: [Student]?, categories: [String]?, notes: String?, imageFile: UIImage?, voiceFile: NSURL?) {
         
         let moment = PFObject(className: "Moment")
         
@@ -71,34 +71,41 @@ class Moment {
         }
         
         // Notes
-        moment["notes"] = notes
-        if (untagged) {
-            moment["untagged"] = true
-        } else {
-            moment["untagged"] = false
-            // Students Tagged
+        if let momentNotes = notes {
+            moment["notes"] = momentNotes
+        }
+        
+        // Students Tagged
+        if let taggedStudents = students {
+            
             var studentsTagged = [String]()
-            for student in students as [Student] {
+            for student in taggedStudents {
                 studentsTagged.append(student.objectId as String)
             }
             moment["studentsTagged"] = studentsTagged
+        }
         
-            // Categories Tagged
+        // Categories Tagged
+        if let categories = categories {
             moment["categoriesTagged"] = categories
         }
         
         // Image Data
-        let imageData = UIImageJPEGRepresentation(imageFile, 0.1)
-        let parseImageFile = PFFile(data: imageData!)
-        moment.setObject(parseImageFile!, forKey: "momentData")
+        if let file = imageFile {
+            let imageData = UIImageJPEGRepresentation(file, 0.1)
+            let parseImageFile = PFFile(data: imageData!)
+            moment.setObject(parseImageFile!, forKey: "momentData")
+        }
+        
+        // Voice Data
+        if let file = voiceFile {
+            let voice = NSData(contentsOfURL: file)
+            let parseVoiceFile = PFFile(data: voice!)
+            moment.setObject(parseVoiceFile!, forKey: "voiceData")
+        }
         
         // Teacher
         moment["teacher"] = User.current().parse
-        
-        // Voice Data
-        let voice = NSData(contentsOfURL: voiceFile)
-        let parseVoiceFile = PFFile(data: voice!)
-        moment.setObject(parseVoiceFile!, forKey: "voiceData")
         
         do {
             try moment.save()
@@ -106,8 +113,8 @@ class Moment {
             print("ERROR SAVING")
         }
         
-        if (!untagged) {
-            for student in students as [Student] {
+        if (students != nil) {
+            for student in students! {
                 student.addMoment(moment)
             }
         } else {

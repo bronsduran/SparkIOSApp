@@ -33,6 +33,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     var recorder: AVAudioRecorder?
     var player: AVAudioPlayer?
     var isRecording: Bool! = false
+    var backgroundView: UIImageView?
     
     @IBOutlet weak var audioViewContainer: UIView!
     @IBOutlet weak var audioCloseButton: UIButton!
@@ -49,16 +50,17 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     override func viewDidLoad() {
         textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
         
-        self.addBackgroundView()
+        self.backgroundView = self.addBackgroundView()
         setupAudioSession()
     }
     
     override func viewWillAppear(animated: Bool) {
         
         let screenRect = UIScreen.mainScreen().bounds;
-//        self.audioViewContainer.hidden = true
-//        self.textViewContainer.hidden = true
 
+        MomentSingleton.sharedInstance.notes = nil
+        MomentSingleton.sharedInstance.voiceFile = nil
+        
         if self.image != nil {
             
             if self.imageView != nil {
@@ -66,8 +68,9 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
             } else {
                 self.imageView = UIImageView(image: self.image)
                 self.imageView.frame = screenRect
-                self.view.addSubview( self.imageView)
-                self.view.sendSubviewToBack( self.imageView)
+                self.view.addSubview(self.imageView)
+                self.view.sendSubviewToBack(self.imageView)
+                self.view.sendSubviewToBack(self.backgroundView!)
             }
             
         }
@@ -76,7 +79,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     
     func getSoundFile() -> NSURL {
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-        let docsDir = dirPaths[0] as! String
+        let docsDir = dirPaths[0]
         
         let soundFilePath = docsDir.stringByAppendingString("/sound.caf")
         
@@ -174,7 +177,6 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
             self.audioRecordButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
             self.audioPlayButton.hidden = false
             self.recorder?.stop()
-            
         }
         
         self.isRecording = !self.isRecording
@@ -186,6 +188,9 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     }
     
     @IBAction func saveButtonPressed(sender: AnyObject) {
+        Moment.createMoment(true, students: nil, categories: nil, notes: MomentSingleton.sharedInstance.notes,
+            imageFile: MomentSingleton.sharedInstance.image, voiceFile: MomentSingleton.sharedInstance.voiceFile)
+        
         self.navigationController?.popViewControllerAnimated(false)
     }
     
@@ -204,6 +209,17 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     func textViewDidEndEditing(textView: UITextView) {
         if textView.text.isEmpty {
             self.textViewContainer.hidden = true
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.destinationViewController.isKindOfClass(SPTagStudentViewController) {
+            if !self.audioViewContainer.hidden {
+                MomentSingleton.sharedInstance.voiceFile = getSoundFile()
+            }
+            if !self.textViewContainer.hidden && !self.textView.text.isEmpty {
+                MomentSingleton.sharedInstance.notes = self.textView.text
+            }
         }
     }
 

@@ -10,15 +10,15 @@ import Foundation
 import UIKit
 import Parse
 
-class Student {
+class Student: Equatable {
     var objectId: String!
     var firstName: String!
     var lastName: String!
     var numberOfMoments: Int!
     var moments: [String]!
     var parse: PFObject!
-    var parentPhone: String!
-    var parentEmail: String!
+    var parentPhone: String?
+    var parentEmail: String?
     var studentImage: UIImage?
     
     
@@ -44,7 +44,7 @@ class Student {
     }
     
     //class func addStudent(name: String,
-    class func addStudent(firstName: String, lastName: String, phoneNumber: String, parentEmail: String, photo: UIImage?) {
+    class func addStudent(firstName: String!, lastName: String!, phoneNumber: String?, parentEmail: String?, photo: UIImage?) {
         
         let student = PFObject(className: "Student")
         student["firstName"] = firstName
@@ -137,15 +137,16 @@ class Student {
     func addMoment(newMoment: PFObject) {
         var array = self.moments
         if (array == nil) {
-            let new_array:NSMutableArray = NSMutableArray()
-            new_array.addObject(newMoment.objectId!)
+            var new_array: [String] = []
+            new_array.append(newMoment.objectId!)
             self.parse["moments"] = new_array
+            self.moments = new_array
+
         } else {
             array.append(newMoment.objectId!)
             self.parse["moments"] = array
+            self.moments = array
         }
-        
-        self.moments.append(newMoment.objectId!)
         
         do {
             try self.parse.save()
@@ -173,5 +174,8 @@ class Student {
             callback(foundStudents: momentsArray)
         }
     }
+}
 
+func ==(lhs: Student, rhs: Student) -> Bool {
+    return lhs.objectId == rhs.objectId
 }

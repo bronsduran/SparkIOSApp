@@ -12,39 +12,38 @@ import Parse
 
 class SPTagCategoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
-    @IBOutlet weak var CategoryCollectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
+        
+    var selectedCategories: [String] = []
     
-    @IBOutlet weak var backGround: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         let cellNib: UINib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
         
-        self.CategoryCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "CategoryCollectionViewCell")
-        self.CategoryCollectionView.allowsMultipleSelection = true
+        self.collectionView.registerNib(cellNib, forCellWithReuseIdentifier: "CategoryCollectionViewCell")
+        self.collectionView.allowsMultipleSelection = true
         
         // set view's background image
         self.addBackgroundView()
         
         
         // make collection view transparent
-        CategoryCollectionView.backgroundColor = UIColor.clearColor()
+        collectionView.backgroundColor = UIColor.clearColor()
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        MomentSingleton.sharedInstance.categories = nil
+    }
+
     override func viewWillLayoutSubviews() {
-        
-        // collection view
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
-        layout.itemSize = CGSize(width: (CategoryCollectionView.frame.width - 4.0)/3.0, height: (CategoryCollectionView.frame.height - 4.0) / 4.0)
+        layout.itemSize = CGSize(width: (collectionView.frame.width - 4.0)/3.0, height: (collectionView.frame.height - 4.0) / 4.0)
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 2
-        
-        CategoryCollectionView.collectionViewLayout = layout
-        //        archiveCollectionView.scrol
+        collectionView.collectionViewLayout = layout
     }
     
     // override methods
@@ -90,9 +89,30 @@ class SPTagCategoryViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     @IBAction func doneButtonPressed(sender: AnyObject) {
+        if self.selectedCategories.count == 0 {
+            MomentSingleton.sharedInstance.categories = nil
+        } else {
+            MomentSingleton.sharedInstance.categories = self.selectedCategories
+        }
+        
+        Moment.createMoment(true, students: MomentSingleton.sharedInstance.students,
+            categories: MomentSingleton.sharedInstance.categories, notes: MomentSingleton.sharedInstance.notes,
+            imageFile: MomentSingleton.sharedInstance.image, voiceFile: MomentSingleton.sharedInstance.voiceFile)
+        
         self.navigationController?.popToRootViewControllerAnimated(false)
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCollectionViewCell
+        self.selectedCategories.append(cell.categoryLabel.text!)
+    }
+    
+    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCollectionViewCell
+        self.selectedCategories.removeObject(cell.categoryLabel.text!)
+    }
+    
+
     
 }
 

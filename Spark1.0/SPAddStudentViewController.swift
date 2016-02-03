@@ -107,10 +107,11 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
         
         // try to replace cached fields with more up to date info
         for i in 0..<tableView.visibleCells.count {
-            let index = tableView.indexPathsForVisibleRows![i].row
-            let cell = tableView.visibleCells[i] as! TextInputTableViewCell
             
-            input[index] = cell.textField.text
+            let indexPath = NSIndexPath(forRow: i, inSection: 0)
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! TextInputTableViewCell
+
+            input[i] = cell.textField.text
         }
         
         for field in input {
@@ -119,7 +120,7 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
             }
         }
         
-        Student.addStudent(input[0]!, lastName: input[1]!, phoneNumber: input[2]!, parentEmail: input[3]!, photo: photoButton.imageView!.image)
+        Student.addStudent(input[0]!, lastName: input[1]!, phoneNumber: input[2], parentEmail: input[3], photo: photoButton.imageView!.image)
         
         return true
     }

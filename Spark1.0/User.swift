@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Parse
 
-class User {
+class User: Equatable {
     static var currentUser: User!
     var objectId: String!
     var userName: String!
@@ -24,6 +24,7 @@ class User {
     var numberUntaggedMoments: Int!
     var classes: [String]!
     
+
     convenience init(_ user: PFUser) {
         self.init()
         self.objectId = user.objectId
@@ -33,8 +34,6 @@ class User {
         self.lastName = user["lastName"] as? String
         self.parse = user
         self.students = user["students"] as? [String]  // Array of ObjectID's
-        print("INIT")
-        print(self.students)
         self.classes = user["classes"] as? [String]     // Array of ObjectID's
         self.untaggedMoments = user["untaggedMoments"] as? [String] // Array of ObjectID's
         if self.untaggedMoments == nil {
@@ -57,6 +56,7 @@ class User {
         
         pfuser["firstName"] = firstName
         pfuser["lastName"] = lastName
+        pfuser["students"] = []
         
         pfuser.signUpInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if success {
@@ -259,3 +259,8 @@ class User {
         PFUser.logOut()
     }
 }
+
+func ==(lhs: User, rhs: User) -> Bool {
+    return lhs.objectId == rhs.objectId
+}
+
