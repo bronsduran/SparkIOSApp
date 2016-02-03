@@ -12,9 +12,10 @@ import Parse
 
 class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
-    @IBOutlet weak var archiveCollectionView: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
-    @IBOutlet weak var categoryButton: UIBarButtonItem!
+    var students : [Student]! = []
+    var selectedStudents : [Student]! = []
     
     // view did load
     override func viewDidLoad() {
@@ -23,28 +24,42 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
         self.addBackgroundView()
         
         let cellNib: UINib = UINib(nibName: "StudentCollectionViewCell", bundle: nil)
-        self.archiveCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "StudentCollectionViewCell")
+        self.collectionView.registerNib(cellNib, forCellWithReuseIdentifier: "StudentCollectionViewCell")
         
-        self.archiveCollectionView.allowsMultipleSelection = true
+        self.collectionView.allowsMultipleSelection = true
         
         // make collection view transparent
-        archiveCollectionView.backgroundColor = UIColor.clearColor()
+        collectionView.backgroundColor = UIColor.clearColor()
         self.title = "Tag Student"
         
     }
     
     override func viewWillLayoutSubviews() {
-        
-        // collection view
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
-        layout.itemSize = CGSize(width: (archiveCollectionView.frame.width - 4.0)/3.0, height: 148.0)
+        layout.itemSize = CGSize(width: (collectionView.frame.width - 4.0)/3.0, height: 148.0)
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 2
-        
-        archiveCollectionView.collectionViewLayout = layout
-        //        archiveCollectionView.scrol
+        collectionView.collectionViewLayout = layout
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        User.current().fetchStudents() { (retrievedStudents) -> Void in
+            self.students = retrievedStudents
+            self.refresh()
+        }
+        
+        MomentSingleton.sharedInstance.students = nil
+    }
+
+    func refresh() {
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            self.collectionView.reloadData()
+        })
+        
+    }
+    
     
     // override methods
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -52,35 +67,36 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 13
+        return self.students.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StudentCollectionViewCell", forIndexPath: indexPath) as! StudentCollectionViewCell
         
-        // Contents (Picture / name / count)
-        cell.pictureImageView.image = UIImage(named: "Untagged_Icon")
-        cell.countView.hidden = true
-        cell.nameLabel.text = "Lucas"
-
+        cell.withStudentData(self.students[indexPath.row])
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
-         self.categoryButton.enabled = true
-        
+        let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as! StudentCollectionViewCell
+        self.selectedStudents.append(cell.student)
     }
     
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        
-        if collectionView.indexPathsForSelectedItems()?.count == 0 {
-            self.categoryButton.enabled = false
-
-        }
-
+        let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as! StudentCollectionViewCell
+        self.selectedStudents.removeObject(cell.student)
     }
     
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.destinationViewController.isKindOfClass(SPTagCategoryViewController) {
+            if self.selectedStudents.count == 0 {
+                MomentSingleton.sharedInstance.students = nil
+            } else {
+                MomentSingleton.sharedInstance.students = self.selectedStudents
+            }
+        }
+    }
 
 
 

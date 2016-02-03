@@ -1005,7 +1005,7 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="UEh-8S-kjA"/>
-                                    <barButtonItem enabled="NO" image="rightIcon" id="gCV-Q4-XZP">
+                                    <barButtonItem image="rightIcon" id="gCV-Q4-XZP">
                                         <connections>
                                             <segue destination="J7N-vn-7W1" kind="push" id="XYr-z4-oUx"/>
                                         </connections>
@@ -1032,8 +1032,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="archiveCollectionView" destination="RhZ-7e-iUN" id="Gfh-tX-A91"/>
-                        <outlet property="categoryButton" destination="gCV-Q4-XZP" id="dpQ-qV-KhS"/>
+                        <outlet property="collectionView" destination="RhZ-7e-iUN" id="N7X-UZ-axU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hDZ-w5-Eng" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1112,8 +1111,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="qux-91-e8F"/>
                     <connections>
-                        <outlet property="CategoryCollectionView" destination="IkU-w3-265" id="5ke-Zx-7zq"/>
-                        <outlet property="backGround" destination="MQd-B3-6ky" id="Y1o-e3-ZQM"/>
+                        <outlet property="collectionView" destination="IkU-w3-265" id="b8p-Yc-fqQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G21-uM-vSO" userLabel="First Responder" sceneMemberID="firstResponder"/>

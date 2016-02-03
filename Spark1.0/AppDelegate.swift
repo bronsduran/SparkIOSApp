@@ -172,13 +172,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension UIViewController {
-    func addBackgroundView() {
+    func addBackgroundView() -> UIImageView {
         let screenRect = UIScreen.mainScreen().bounds
         let backgroundView = UIImageView(image: UIImage(named: "Login_Background"))
         backgroundView.frame = screenRect
         self.view.addSubview(backgroundView)
         view.sendSubviewToBack(backgroundView)
+        return backgroundView
     }
+    
+    func presentAlertWithTitle(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
 }
 
 extension UIView {
@@ -194,4 +202,31 @@ extension UIView {
         self.layer.addAnimation(rotateAnimation, forKey: nil)
     }
 }
+
+extension Array where Element: Equatable {
+    mutating func removeObject(object: Element) {
+        if let index = self.indexOf(object) {
+            self.removeAtIndex(index)
+        }
+    }
+    
+    mutating func removeObjectsInArray(array: [Element]) {
+        for object in array {
+            self.removeObject(object)
+        }
+    }
+}
+
+class MomentSingleton {
+    static let sharedInstance = MomentSingleton()
+    var image : UIImage?
+    var notes : String?
+    var voiceFile : NSURL?
+    var students : [Student]?
+    var categories : [String]?
+    
+    private init() {}
+
+}
+
 

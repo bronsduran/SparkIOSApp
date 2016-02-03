@@ -31,12 +31,6 @@ class SPCaptureViewController: UIViewController {
         
         self.camera!.attachToViewController(self, withFrame: CGRectMake(0, 0, screenRect.size.width, screenRect.size.height))
         
-//        self.captureButton = UIButton(frame: CGRectMake(0, 0, 70.0, 70.0))
-//        self.captureButton?.setBackgroundImage(UIImage(named:"Camera_Button"), forState: UIControlState.Normal)
-//        self.captureButton?.addTarget(self, action: "captureButtonPressed", forControlEvents: UIControlEvents.TouchUpInside)
-//        self.view.addSubview(self.captureButton!)
-//        
-        
         self.view.bringSubviewToFront(self.toolbar)
 
         self.navigationController?.navigationBar.hidden = false
@@ -44,12 +38,11 @@ class SPCaptureViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         self.camera.start()
+        MomentSingleton.sharedInstance.image = nil
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,6 +69,7 @@ class SPCaptureViewController: UIViewController {
             if error == nil {
                 camera.stop()
                 self.image = image
+                MomentSingleton.sharedInstance.image = image
                 self.performSegueWithIdentifier("toMediaViewController", sender: self)
             }
             
@@ -98,20 +92,6 @@ class SPCaptureViewController: UIViewController {
         }
         
     }
-    
-    
-    
+
 }
 
-// snap button to capture image
-//self.snapButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//self.snapButton.frame = CGRectMake(0, 0, 70.0f, 70.0f);
-//self.snapButton.clipsToBounds = YES;
-//self.snapButton.layer.cornerRadius = self.snapButton.width / 2.0f;
-//self.snapButton.layer.borderColor = [UIColor whiteColor].CGColor;
-//self.snapButton.layer.borderWidth = 2.0f;
-//self.snapButton.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
-//self.snapButton.layer.rasterizationScale = [UIScreen mainScreen].scale;
-//self.snapButton.layer.shouldRasterize = YES;
-//[self.snapButton addTarget:self action:@selector(snapButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-//[self.view addSubview:self.snapButton];

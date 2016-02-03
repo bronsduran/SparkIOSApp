@@ -22,6 +22,7 @@ class SPCreateAccountViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var signUpButton: UIButton!
     
+    
     @IBAction func createAccount(sender: UIButton) {
         let firstName = self.firstNameField.text
         let lastName = self.lastNameField.text
@@ -30,14 +31,12 @@ class SPCreateAccountViewController: UIViewController {
         let email = self.emailField.text
         
         if firstName == "" || lastName == "" || email == "" || password == "" {
-            UIAlertView(title: "Incomplete Sign-Up", message: "Make sure to fill in all fields.",
-                delegate: nil, cancelButtonTitle: "Okay").show()
+            self.presentAlertWithTitle("Incomplete Sign-Up", message: "Make sure to fill in all fields.")
             return
         }
         
         if (confirmPassword != password) {
-            UIAlertView(title: "Passwords Do Not Match", message: "Please re-confirm your password.",
-                delegate: nil, cancelButtonTitle: "Okay").show()
+            self.presentAlertWithTitle("Passwords Do Not Match", message: "Please re-confirm your password.")
             return
         }
         activityIndicator.hidden = false

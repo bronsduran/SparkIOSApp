@@ -10,13 +10,14 @@ import Foundation
 
 
 class StudentCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var pictureImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var countLabel: UILabel!
-    @IBOutlet weak var countView: UIView!
+    @IBOutlet weak var pictureImageView : UIImageView!
+    @IBOutlet weak var nameLabel : UILabel!
+    @IBOutlet weak var countLabel : UILabel!
+    @IBOutlet weak var countView : UIView!
+    
+    var student : Student!
     
     // only one of these will ever be populated
-    var student: Student?
     var numUntaggedMoments: Int!
     
     override init(frame: CGRect) {
@@ -47,7 +48,6 @@ class StudentCollectionViewCell: UICollectionViewCell {
     
     func withStudentData(student: Student) {
         self.student = student
-        
         nameLabel.text = student.firstName + " " + String(student.lastName[student.lastName.startIndex]) + "."
         countLabel.text = String(student.numberOfMoments)
         

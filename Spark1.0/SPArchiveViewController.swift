@@ -23,9 +23,11 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         refresh()
     }
     
-    var students: [Student]?
+//    var students: [Student]?
     var untaggedMoments: [Moment]?
     
+    var students: [Student]! = []
+
     // view did load
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,21 +72,20 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func refresh() {
-        if let students = students {
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                
-                // sort by name first, so that ties will be broken correctly when you sort by moments
-                self.students = students.sort({ $0.firstName < $1.firstName })
-                
-                if (self.sortByControl.selectedSegmentIndex == 1) {
-                    self.students = students.sort({ $0.firstName > $1.firstName })
-                    // TODO: swap out for correct sort criteria
-                    //      self.students = students.sort({ $0.numberOfMoments > $1.numberOfMoments })
-                }
-                
-                self.archiveCollectionView.reloadData()
-            })
-        }
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            
+            // sort by name first, so that ties will be broken correctly when you sort by moments
+            self.students = self.students.sort({ $0.firstName < $1.firstName })
+            
+            if (self.sortByControl.selectedSegmentIndex == 1) {
+                self.students = self.students.sort({ $0.firstName > $1.firstName })
+                // TODO: swap out for correct sort criteria
+                //      self.students = students.sort({ $0.numberOfMoments > $1.numberOfMoments })
+            }
+            
+            self.archiveCollectionView.reloadData()
+        })
+    
     }
     
     // delegates / datasource
