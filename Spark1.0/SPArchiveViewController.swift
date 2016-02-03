@@ -24,6 +24,7 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     var students: [Student]?
+    var untaggedMoments: [Moment]?
     
     // view did load
     override func viewDidLoad() {
@@ -61,10 +62,13 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        User.current().fetchUntaggedMoments() { (foundMoments) -> Void in
+            self.untaggedMoments
+        }
+            
         // load in all students
         User.current().fetchStudents() { (retrievedStudents) -> Void in
             self.students = retrievedStudents
-            print(self.students)
             self.refresh()
         }
     }
@@ -92,23 +96,44 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         return 1
     }
     
+    func numUntagged() -> Int {
+        if let untagged = untaggedMoments {
+            return untagged.count
+        }
+        return 0
+    }
+    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let students = students {
-            return students.count
+        var numItems = 0
+        
+        if numUntagged() > 0 {
+            numItems++
         }
         
-        return 0
+        if let students = students {
+            numItems += students.count
+        }
+        
+        return numItems
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StudentCollectionViewCell", forIndexPath: indexPath) as! StudentCollectionViewCell
         
-        cell.withStudentData(students![indexPath.row])
+        let offset = numUntagged() == 0 ? 0 : 1
+        if offset == 0 && indexPath.row == 0 {
+            if let untaggedMoments = untaggedMoments {
+                cell.withUntaggedData(untaggedMoments)
+            }
+        } else {
+            cell.withStudentData(students![indexPath.row + offset])
+        }
+        
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("toStudentViewController", sender: self)
+        performSegueWithIdentifier("toStudentViewController", sender: indexPath)
     }
     
     @IBAction func cameraButtonPressed(sender: AnyObject) {
@@ -119,6 +144,16 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = mainStoryboard.instantiateViewControllerWithIdentifier("SPAddStudentViewController") as! SPAddStudentViewController
         self.presentViewController(vc, animated: true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "toStudentViewController"){
+            if let destination = segue.destinationViewController as? SPStudentViewController {
+                if let cell = sender as? NSIndexPath {
+                    
+                }
+            }
+        }
     }
     
 }

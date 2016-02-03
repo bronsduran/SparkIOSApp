@@ -18,6 +18,10 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var backGround: UIImageView!
     
+    var student: Student?
+    var moments: [Moment]!
+    
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -60,11 +64,6 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
 
     }
     
-    
-    
-    
-    
-    
     override func viewDidLoad() {
         
         
@@ -90,6 +89,13 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     
+    func withStudent(student: Student) {
+        self.student = student
+        self.moments = student.fetchMoments(<#T##callback: (foundStudents: [Moment]) -> Void##(foundStudents: [Moment]) -> Void#>)
+    }
     
-    
+    func winthUntaggedMoments(untaggedMoments: [Moment]) {
+        self.moments = untaggedMoments
+    }
+
 }

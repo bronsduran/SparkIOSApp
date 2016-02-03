@@ -29,7 +29,6 @@ class MomentTableViewCell: UITableViewCell {
         categoryLabel.textColor = UIColor(white: 1.0, alpha: 0.4)
         captionLabel.textColor = UIColor.whiteColor()
     }
-
     
     func setAudio() {
         let hasAudio = arc4random_uniform(2) == 0 ? true: false // just because we don't have real moments yet

@@ -15,6 +15,10 @@ class StudentCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var countView: UIView!
     
+    // only one of these will ever be populated
+    var student: Student?
+    var untaggedMoments: [Moment]?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -42,6 +46,8 @@ class StudentCollectionViewCell: UICollectionViewCell {
     }
     
     func withStudentData(student: Student) {
+        self.student = student
+        
         nameLabel.text = student.firstName + " " + String(student.lastName[student.lastName.startIndex]) + "."
         countLabel.text = String(student.numberOfMoments)
         
@@ -52,8 +58,12 @@ class StudentCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func withUntaggedData(/* add untagged moments object as param here */) {
+    func withUntaggedData(untaggedMoments: [Moment]) {
+        self.untaggedMoments = untaggedMoments
         
+        nameLabel.text = "Untagged"
+        countLabel.text = String(untaggedMoments)
+        pictureImageView.image = UIImage(named: "nameIcon")
     }
     
     
