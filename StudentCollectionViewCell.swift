@@ -17,7 +17,7 @@ class StudentCollectionViewCell: UICollectionViewCell {
     
     // only one of these will ever be populated
     var student: Student?
-    var untaggedMoments: [Moment]?
+    var numUntaggedMoments: Int!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,11 +58,11 @@ class StudentCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func withUntaggedData(untaggedMoments: [Moment]) {
-        self.untaggedMoments = untaggedMoments
+    func withUntaggedData() {
+        numUntaggedMoments = User.current().getNumberUntaggedMoments()
         
         nameLabel.text = "Untagged"
-        countLabel.text = String(untaggedMoments)
+        countLabel.text = String(numUntaggedMoments)
         pictureImageView.image = UIImage(named: "nameIcon")
     }
     

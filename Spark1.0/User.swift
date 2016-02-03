@@ -37,6 +37,9 @@ class User {
         print(self.students)
         self.classes = user["classes"] as? [String]     // Array of ObjectID's
         self.untaggedMoments = user["untaggedMoments"] as? [String] // Array of ObjectID's
+        if self.untaggedMoments == nil {
+            self.untaggedMoments = [String]()
+        }
         self.numberUntaggedMoments = self.untaggedMoments.count
         if let emailVerified = user["emailVerified"] as? Bool {
             self.emailVerified = emailVerified
@@ -219,8 +222,8 @@ class User {
         }
     }
     
-    func getNumberUntaggedMoments(callback: (numberUntagged: Int) -> Void) {
-        callback(numberUntagged: self.numberUntaggedMoments)
+    func getNumberUntaggedMoments() -> Int {
+        return self.numberUntaggedMoments
     }
     
     func fetchUntaggedMoments(callback: (foundMoments: [Moment]) -> Void) {

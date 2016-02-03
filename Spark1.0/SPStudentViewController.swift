@@ -19,7 +19,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var backGround: UIImageView!
     
     var student: Student?
-    var moments: [Moment]!
+    var moments: [Moment]?
     
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -27,7 +27,10 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 13
+        if let moments = moments {
+            return moments.count
+        }
+        return 0
     }
     
     
@@ -64,38 +67,66 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
 
     }
     
+    func refresh() {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.momentTableView.reloadData()
+        })
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // if this is a student table
+        if let student = student {
+            student.fetchMoments() { (foundMoments) -> Void in
+                self.moments = foundMoments
+                self.refresh()
+            }
+            
+        // if this is an untagged moments table
+        } else {
+            User.current().fetchUntaggedMoments() { (foundMoments) -> Void in
+                self.moments = foundMoments
+                self.refresh()
+            }
+        }
+    }
+    
+    func populateStudentInfo() {
+        let numberOfMoments = moments == nil ? 0 : moments!.count
+        countLabel.text = String(numberOfMoments)
+        
+        if let student = student {
+            if let picture = student.studentImage {
+                pictureImageView.image = picture
+            } else {
+                // no picture taken image
+                pictureImageView.image = UIImage(named: "Untagged_Icon")
+            }
+        } else {
+            // untagged moment image
+            pictureImageView.image = UIImage(named: "Untagged_Icon")
+            
+        }
+    }
+    
     override func viewDidLoad() {
-        
-        
+        super.viewDidLoad()
         
         let cellNib: UINib = UINib(nibName: "MomentTableViewCell", bundle: nil)
         momentTableView.registerNib(cellNib, forCellReuseIdentifier: "MomentTableViewCell")
         
         self.addBackgroundView()
 
-     
         
         // Header
         countView.layer.cornerRadius = countView.frame.height / 2
         countView.backgroundColor = UIColor(white: 0.0, alpha: 0.1)
-        // use real data...
-        pictureImageView.image = UIImage(named: "Untagged_Icon")
         
-        countLabel.text = "\(6)"
+        populateStudentInfo()
         
         configureTableView()
         filterButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-    }
-    
-    
-    
-    func withStudent(student: Student) {
-        self.student = student
-        self.moments = student.fetchMoments(<#T##callback: (foundStudents: [Moment]) -> Void##(foundStudents: [Moment]) -> Void#>)
-    }
-    
-    func winthUntaggedMoments(untaggedMoments: [Moment]) {
-        self.moments = untaggedMoments
     }
 
 }
