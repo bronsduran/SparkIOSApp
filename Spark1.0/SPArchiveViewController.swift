@@ -23,7 +23,6 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         refresh()
     }
     
-//    var students: [Student]?
     var untaggedMoments: [Moment]?
     
     var students: [Student]! = []
@@ -38,15 +37,8 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         
         self.addBackgroundView()
         
-        
         // make collection view transparent
         archiveCollectionView.backgroundColor = UIColor.clearColor()
-        
-        // update "Untagged Moments" button
-//        untaggedMomentsButton.backgroundColor = UIColor(red: 233/255.0, green: 63/255.0, blue: 63/255.0, alpha: 0.45)
-//        untaggedMomentsButton.setTitle("xx Untagged Moments", forState: UIControlState.Normal)
-//        untaggedMomentsButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        
    }
     
     override func viewWillLayoutSubviews() {
@@ -109,6 +101,8 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        print("Here")
+        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StudentCollectionViewCell", forIndexPath: indexPath) as! StudentCollectionViewCell
         
         let offset = User.current().getNumberUntaggedMoments() == 0 ? 0 : 1
@@ -122,7 +116,7 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath)
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! StudentCollectionViewCell
         performSegueWithIdentifier("toStudentViewController", sender: cell)
     }
     

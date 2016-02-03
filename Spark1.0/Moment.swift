@@ -22,6 +22,8 @@ class Moment {
     var categoriesTagged: [String]?
     var untagged: Bool!
     
+    static let momentCategories = ["Self Regulation", "Social & Emotional", "Language & Literacy", "Math & Science", "Motor Skills", "Social Science", "Arts"]
+    
     convenience init(_ object: PFObject) {
         self.init()
         self.mediaType = object["mediaType"] as? Int

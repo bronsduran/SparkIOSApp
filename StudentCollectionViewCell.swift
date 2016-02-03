@@ -15,7 +15,7 @@ class StudentCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var countLabel : UILabel!
     @IBOutlet weak var countView : UIView!
     
-    var student : Student!
+    var student : Student?
     
     // only one of these will ever be populated
     var numUntaggedMoments: Int!
@@ -50,6 +50,7 @@ class StudentCollectionViewCell: UICollectionViewCell {
         self.student = student
         nameLabel.text = student.firstName + " " + String(student.lastName[student.lastName.startIndex]) + "."
         countLabel.text = String(student.numberOfMoments)
+        print("\(student.firstName): \(student.numberOfMoments) moments")
         
         if let image = student.studentImage {
             pictureImageView.image = image
@@ -60,6 +61,7 @@ class StudentCollectionViewCell: UICollectionViewCell {
     
     func withUntaggedData() {
         numUntaggedMoments = User.current().getNumberUntaggedMoments()
+        student = nil
         
         nameLabel.text = "Untagged"
         countLabel.text = String(numUntaggedMoments)

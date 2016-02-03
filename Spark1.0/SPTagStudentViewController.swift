@@ -79,12 +79,16 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as! StudentCollectionViewCell
-        self.selectedStudents.append(cell.student)
+        if let student = cell.student {
+            self.selectedStudents.append(student)
+        }
     }
     
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as! StudentCollectionViewCell
-        self.selectedStudents.removeObject(cell.student)
+        if let student = cell.student {
+            self.selectedStudents.removeObject(student)
+        }
     }
     
     

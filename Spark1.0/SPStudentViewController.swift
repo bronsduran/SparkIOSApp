@@ -21,6 +21,8 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     
     var student: Student?
     var moments: [Moment]?
+    var momentsToShow: [Moment]?
+    var categoriesToShow = Moment.momentCategories
     
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -28,8 +30,8 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let moments = moments {
-            return moments.count
+        if let momentsToShow = momentsToShow {
+            return momentsToShow.count
         }
         return 0
     }
@@ -37,6 +39,11 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MomentTableViewCell", forIndexPath: indexPath) as! MomentTableViewCell
+        
+        if let momentsToShow = momentsToShow {
+            cell.withMoment(momentsToShow[indexPath.row])
+        }
+        
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         let image = UIImage(named: "Tag_Circle")
         cell.momentImageView.image = image
@@ -68,8 +75,24 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
 
     }
     
+    func applyFilter() {
+        momentsToShow = [Moment]()
+        
+        if let moments = moments {
+            for moment in moments {
+                for category in categoriesToShow {
+                    if Moment.momentCategories.indexOf(category) != nil {
+                        momentsToShow?.append(moment)
+                        break
+                    }
+                }
+            }
+        }
+    }
+    
     func refresh() {
         dispatch_async(dispatch_get_main_queue(), {
+            self.applyFilter()
             self.momentTableView.reloadData()
         })
     }
