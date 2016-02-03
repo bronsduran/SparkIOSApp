@@ -114,7 +114,7 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         if offset == 1 && indexPath.row == 0 {
             cell.withUntaggedData()
         } else {
-            cell.withStudentData(students![indexPath.row + offset])
+            cell.withStudentData(students![indexPath.row - offset])
         }
         
         return cell

@@ -355,6 +355,7 @@
                         <outlet property="countView" destination="53O-mJ-lc5" id="Kat-iP-bBJ"/>
                         <outlet property="filterButton" destination="ooe-yY-86x" id="Sir-Nc-BF9"/>
                         <outlet property="momentTableView" destination="ebY-yG-1NZ" id="DEj-4s-yT1"/>
+                        <outlet property="nameLabel" destination="C7I-ko-VW8" id="nRq-uv-0OW"/>
                         <outlet property="pictureImageView" destination="TUZ-hc-d23" id="Kmo-i3-uO2"/>
                         <outlet property="studentInfoView" destination="LDd-46-6BB" id="ayI-9n-Fro"/>
                     </connections>

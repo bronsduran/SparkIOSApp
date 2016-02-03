@@ -17,6 +17,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var countView: UIView!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var backGround: UIImageView!
+    @IBOutlet weak var nameLabel: UINavigationItem!
     
     var student: Student?
     var moments: [Moment]?
@@ -97,6 +98,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         countLabel.text = String(numberOfMoments)
         
         if let student = student {
+            nameLabel.title = student.firstName
             if let picture = student.studentImage {
                 pictureImageView.image = picture
             } else {
@@ -106,6 +108,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         } else {
             // untagged moment image
             pictureImageView.image = UIImage(named: "Untagged_Icon")
+            nameLabel.title = "Untagged"
             
         }
     }
