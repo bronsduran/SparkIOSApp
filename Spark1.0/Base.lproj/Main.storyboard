@@ -311,16 +311,6 @@
                                     <constraint firstItem="TUZ-hc-d23" firstAttribute="top" secondItem="LDd-46-6BB" secondAttribute="top" constant="8" id="sxT-1F-1L7"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ooe-yY-86x">
-                                <rect key="frame" x="-4" y="209" width="328" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="0.13360430743243243" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="qkt-Pa-6xh"/>
-                                </constraints>
-                                <state key="normal" title="All">
-                                    <color key="titleColor" red="0.41568627450980394" green="0.45882352941176469" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ebY-yG-1NZ">
                                 <rect key="frame" x="-4" y="263" width="328" height="305"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -329,6 +319,23 @@
                                     <outlet property="delegate" destination="mjq-oN-foE" id="seP-pR-xzl"/>
                                 </connections>
                             </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TOC-KM-6cj">
+                                <rect key="frame" x="0.0" y="263" width="320" height="197"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ooe-yY-86x">
+                                <rect key="frame" x="-4" y="205" width="328" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="0.13360430743243243" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="qkt-Pa-6xh"/>
+                                </constraints>
+                                <state key="normal" title="All">
+                                    <color key="titleColor" red="0.41568627450980394" green="0.45882352941176469" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="filterButtonPressed:" destination="mjq-oN-foE" eventType="touchUpInside" id="FhS-A7-bNF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -341,11 +348,14 @@
                             <constraint firstItem="Bbh-kJ-rt7" firstAttribute="leading" secondItem="scA-RS-vyz" secondAttribute="leading" id="LYg-fS-4u1"/>
                             <constraint firstAttribute="trailing" secondItem="Bbh-kJ-rt7" secondAttribute="trailing" id="Yrs-kr-UiR"/>
                             <constraint firstItem="LDd-46-6BB" firstAttribute="leading" secondItem="scA-RS-vyz" secondAttribute="leadingMargin" constant="-20" id="aQV-GM-yAz"/>
+                            <constraint firstAttribute="trailing" secondItem="TOC-KM-6cj" secondAttribute="trailing" id="lvT-zM-yyt"/>
                             <constraint firstItem="LDd-46-6BB" firstAttribute="top" secondItem="IpL-Nt-clz" secondAttribute="bottom" id="nHc-u2-oQc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ooe-yY-86x" secondAttribute="trailing" constant="-20" id="onA-1P-zuu"/>
                             <constraint firstItem="Bbh-kJ-rt7" firstAttribute="top" secondItem="scA-RS-vyz" secondAttribute="top" id="pjf-ub-iJH"/>
+                            <constraint firstItem="TOC-KM-6cj" firstAttribute="top" secondItem="ooe-yY-86x" secondAttribute="bottom" constant="4" id="tWa-Sx-paW"/>
                             <constraint firstItem="ooe-yY-86x" firstAttribute="leading" secondItem="scA-RS-vyz" secondAttribute="leadingMargin" constant="-20" id="upa-yQ-Em9"/>
                             <constraint firstItem="xMq-P5-0cK" firstAttribute="top" secondItem="ebY-yG-1NZ" secondAttribute="bottom" id="yra-Mu-knw"/>
+                            <constraint firstItem="TOC-KM-6cj" firstAttribute="leading" secondItem="scA-RS-vyz" secondAttribute="leading" id="zYy-ts-mbd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Name" id="C7I-ko-VW8"/>
@@ -354,6 +364,7 @@
                         <outlet property="countLabel" destination="l7C-8H-umS" id="SjV-o5-PbP"/>
                         <outlet property="countView" destination="53O-mJ-lc5" id="Kat-iP-bBJ"/>
                         <outlet property="filterButton" destination="ooe-yY-86x" id="Sir-Nc-BF9"/>
+                        <outlet property="filterOptionsTableView" destination="TOC-KM-6cj" id="D6C-Z0-GR3"/>
                         <outlet property="momentTableView" destination="ebY-yG-1NZ" id="DEj-4s-yT1"/>
                         <outlet property="nameLabel" destination="C7I-ko-VW8" id="nRq-uv-0OW"/>
                         <outlet property="pictureImageView" destination="TUZ-hc-d23" id="Kmo-i3-uO2"/>
@@ -910,7 +921,7 @@
                                     <constraint firstAttribute="width" constant="130" id="slk-aK-njz"/>
                                     <constraint firstAttribute="height" constant="130" id="xIn-Cy-pgl"/>
                                 </constraints>
-                                <state key="normal" image="Camera_Button"/>
+                                <state key="normal" image="addStudentCameraIcon"/>
                                 <connections>
                                     <action selector="photoButtonPressed:" destination="u6T-Nu-23k" eventType="touchUpInside" id="Ksx-vX-5Z4"/>
                                 </connections>
@@ -1156,9 +1167,9 @@
     </scenes>
     <resources>
         <image name="ArchiveIcon" width="51" height="66"/>
-        <image name="Camera_Button" width="240" height="240"/>
         <image name="Menu_Separater_Line" width="750" height="2"/>
         <image name="addStudent" width="33" height="34"/>
+        <image name="addStudentCameraIcon" width="231" height="231"/>
         <image name="cameraIcon" width="29" height="27"/>
         <image name="captureButton" width="46" height="46"/>
         <image name="loginLogo" width="300" height="300"/>
