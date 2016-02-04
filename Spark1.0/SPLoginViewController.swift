@@ -31,8 +31,7 @@ class SPLoginViewController: UIViewController {
         
         loginButton.layer.borderWidth = 1
         loginButton.layer.borderColor = UIColor.lightGrayColor().CGColor
-        backGround.image = UIImage(named: "Login_Background")
-        view.sendSubviewToBack(backGround)
+        addBackgroundView()
         activityIndicator.hidden = true
         
         // Do not include the below code until we have a way to log out
