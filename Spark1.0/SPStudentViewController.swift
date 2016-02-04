@@ -18,6 +18,17 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var backGround: UIImageView!
     @IBOutlet weak var nameLabel: UINavigationItem!
+    @IBOutlet weak var filterOptionsTableView: UITableView!
+    
+    @IBAction func filterButtonPressed(sender: UIButton) {
+        
+        if filterOptionsTableView.hidden == false {
+            filterOptionsTableView.hidden = true
+        } else {
+            filterOptionsTableView.hidden = false
+        }
+    }
+  
     
     var student: Student?
     var moments: [Moment]?
@@ -30,25 +41,55 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let momentsToShow = momentsToShow {
-            return momentsToShow.count
+        
+        var count:Int?
+        
+        if tableView == self.filterOptionsTableView {
+            count = categoriesToShow.count
         }
-        return 0
+        
+        if tableView == self.momentTableView {
+            if momentsToShow == nil {
+                momentsToShow = moments
+            }
+            count = momentsToShow?.count
+        }
+        
+        return count!
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("MomentTableViewCell", forIndexPath: indexPath) as! MomentTableViewCell
         
-        if let momentsToShow = momentsToShow {
-            cell.withMoment(momentsToShow[indexPath.row])
+        
+        
+        if tableView == self.filterOptionsTableView {
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier("CategoryTableViewCell", forIndexPath: indexPath) as! CategoriesTableViewCell
+            
+            let categoryLabel = categoriesToShow[indexPath.row]
+            cell.categoryLabel.text = categoryLabel
+            
+            return cell
+            
         }
         
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
-        let image = UIImage(named: "Tag_Circle")
-        cell.momentImageView.image = image
+        if tableView == self.momentTableView {
+            let cell = tableView.dequeueReusableCellWithIdentifier("MomentTableViewCell", forIndexPath: indexPath) as! MomentTableViewCell
+            
+            if let momentsToShow = momentsToShow {
+                cell.withMoment(momentsToShow[indexPath.row])
+            }
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            
+            return cell
+        }
         
-        return cell
+        var cell:MomentTableViewCell?
+        
+        cell = tableView.dequeueReusableCellWithIdentifier("MomentTableViewCell", forIndexPath: indexPath) as! MomentTableViewCell
+        
+        return cell!
     }
     
     func configureTableView() {
@@ -143,7 +184,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         momentTableView.registerNib(cellNib, forCellReuseIdentifier: "MomentTableViewCell")
         
         self.addBackgroundView()
-
+        filterOptionsTableView.hidden = true
         
         // Header
         countView.layer.cornerRadius = countView.frame.height / 2

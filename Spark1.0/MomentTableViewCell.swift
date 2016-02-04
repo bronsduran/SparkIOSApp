@@ -66,7 +66,8 @@ class MomentTableViewCell: UITableViewCell {
         if let image = moment.image {
             momentImageView.image = image
         } else {
-            momentImageView.image = nil
+            momentImageView.image
+                = UIImage(named: "Tag_Circle")
         }
         
         // notes

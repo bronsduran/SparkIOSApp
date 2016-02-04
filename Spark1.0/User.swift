@@ -192,10 +192,11 @@ class User: Equatable {
                 
                 do {
                     contents = try query.getObjectWithId(object)
+                    studentArray.append(Student(contents!))
                 } catch _ {
                     contents = nil
                 }
-                studentArray.append(Student(contents!))
+                
             }
             callback(foundStudents: studentArray)
         }

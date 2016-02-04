@@ -29,6 +29,8 @@
 		4B2286061C4AE4E800CE4146 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B2286051C4AE4E800CE4146 /* Assets.xcassets */; };
 		4B2286091C4AE4E800CE4146 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B2286071C4AE4E800CE4146 /* LaunchScreen.storyboard */; };
 		4B2286141C4AE4E800CE4146 /* Spark1_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2286131C4AE4E800CE4146 /* Spark1_0Tests.swift */; };
+		4B2A21BD1C62D47E00F11D71 /* CategoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B2A21BC1C62D47E00F11D71 /* CategoriesTableViewCell.xib */; };
+		4B2A21C01C62D4DE00F11D71 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2A21BF1C62D4DE00F11D71 /* CategoriesTableViewCell.swift */; };
 		4B693A391C588693005478D9 /* StudentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B693A381C588693005478D9 /* StudentCollectionViewCell.xib */; };
 		4B693A3B1C58872B005478D9 /* StudentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B693A3A1C58872B005478D9 /* StudentCollectionViewCell.swift */; };
 		4B693A3D1C588FC7005478D9 /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B693A3C1C588FC6005478D9 /* CategoryCollectionViewCell.xib */; };
@@ -138,6 +140,8 @@
 		4B22860F1C4AE4E800CE4146 /* Spark1.0Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Spark1.0Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B2286131C4AE4E800CE4146 /* Spark1_0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spark1_0Tests.swift; sourceTree = "<group>"; };
 		4B2286151C4AE4E800CE4146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B2A21BC1C62D47E00F11D71 /* CategoriesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoriesTableViewCell.xib; sourceTree = "<group>"; };
+		4B2A21BF1C62D4DE00F11D71 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
 		4B693A381C588693005478D9 /* StudentCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StudentCollectionViewCell.xib; path = ../StudentCollectionViewCell.xib; sourceTree = "<group>"; };
 		4B693A3A1C58872B005478D9 /* StudentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudentCollectionViewCell.swift; path = ../StudentCollectionViewCell.swift; sourceTree = "<group>"; };
 		4B693A3C1C588FC6005478D9 /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CategoryCollectionViewCell.xib; path = ../CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -366,6 +370,8 @@
 				D4BD3BA41C589F7F003BBFC8 /* MomentTableViewCell.xib */,
 				C54399121C58840A0049D903 /* TextInputTableViewCell.xib */,
 				C54399141C5888A10049D903 /* TextInputTableViewCell.swift */,
+				4B2A21BC1C62D47E00F11D71 /* CategoriesTableViewCell.xib */,
+				4B2A21BF1C62D4DE00F11D71 /* CategoriesTableViewCell.swift */,
 				C50BFB161C5EE6FB00AB490C /* ButtonTableViewCell.xib */,
 				C50BFB191C5EE7A600AB490C /* ButtonTableViewCell.swift */,
 			);
@@ -502,6 +508,7 @@
 				4B2286091C4AE4E800CE4146 /* LaunchScreen.storyboard in Resources */,
 				4B2286061C4AE4E800CE4146 /* Assets.xcassets in Resources */,
 				4B2286011C4AE4E800CE4146 /* Main.storyboard in Resources */,
+				4B2A21BD1C62D47E00F11D71 /* CategoriesTableViewCell.xib in Resources */,
 				C54399131C58840A0049D903 /* TextInputTableViewCell.xib in Resources */,
 				4BCBAF051C5D4D9900D8BB07 /* SpotifyCell.xib in Resources */,
 				C50BFB171C5EE6FB00AB490C /* ButtonTableViewCell.xib in Resources */,
@@ -525,6 +532,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5C1D77D1C52E06000C20DF9 /* SPMediaViewController.swift in Sources */,
+				4B2A21C01C62D4DE00F11D71 /* CategoriesTableViewCell.swift in Sources */,
 				D4BD3BA31C589E13003BBFC8 /* SPStudentViewController.swift in Sources */,
 				4BCBAF121C5D4E3E00D8BB07 /* DynamicCollectionViewFlowLayout.swift in Sources */,
 				4B8B72711C5895DF00E6E73B /* CategoryCollectionViewCell.swift in Sources */,
