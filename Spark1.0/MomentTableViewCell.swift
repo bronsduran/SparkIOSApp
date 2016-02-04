@@ -43,7 +43,13 @@ class MomentTableViewCell: UITableViewCell {
         self.moment = moment
         
         // TODO: add date label text when that exists
-        //      dateLabel.text = moment.
+        if let date = moment.getDate() {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "MMM dd, yyyy"
+            dateLabel.text = dateFormatter.stringFromDate(date)
+        } else {
+            dateLabel.text = ""
+        }
         
         
         // categories
@@ -65,9 +71,12 @@ class MomentTableViewCell: UITableViewCell {
         // picture
         if let image = moment.image {
             momentImageView.image = image
+            momentImageView.contentMode = UIViewContentMode.ScaleAspectFill
+            momentImageView.layer.cornerRadius = momentImageView.frame.height / 2
+            momentImageView.layer.masksToBounds = true
+            momentImageView.layer.opaque = false
         } else {
-            momentImageView.image
-                = UIImage(named: "Tag_Circle")
+            momentImageView.image = UIImage(named: "Tag_Circle")
         }
         
         // notes

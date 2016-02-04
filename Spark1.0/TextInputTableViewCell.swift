@@ -25,7 +25,4 @@ class TextInputTableViewCell : UITableViewCell {
         textField.textColor = UIColor.whiteColor()
         textField.borderStyle = UITextBorderStyle.None
     }
-
-    
-    
 }

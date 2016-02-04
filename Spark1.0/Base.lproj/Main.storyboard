@@ -383,6 +383,7 @@
                         <outlet property="nameLabel" destination="C7I-ko-VW8" id="nRq-uv-0OW"/>
                         <outlet property="pictureImageView" destination="TUZ-hc-d23" id="Kmo-i3-uO2"/>
                         <outlet property="studentInfoView" destination="LDd-46-6BB" id="ayI-9n-Fro"/>
+                        <outlet property="studentInfoViewHeight" destination="0cv-n0-vdx" id="rpZ-XP-z0Y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6re-gZ-PKP" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -20,6 +20,8 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var nameLabel: UINavigationItem!
     @IBOutlet weak var filterOptionsTableView: UITableView!
     @IBOutlet weak var filterOptionsLabel: UILabel!
+    @IBOutlet weak var studentInfoViewHeight: NSLayoutConstraint!
+
     
     @IBAction func filterButtonPressed(sender: UIButton) {
         
@@ -98,10 +100,9 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
             return cell
         }
         
-        var cell:MomentTableViewCell?
+        var cell: MomentTableViewCell?
         
         cell = tableView.dequeueReusableCellWithIdentifier("MomentTableViewCell", forIndexPath: indexPath) as! MomentTableViewCell
-        
         return cell!
     }
     
@@ -158,6 +159,10 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
 
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 115
+    }
+    
     func applyFilter() {
         momentsToShow = [Moment]()
         
@@ -209,13 +214,18 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
             nameLabel.title = student.firstName
             if let picture = student.studentImage {
                 pictureImageView.image = picture
+                
+                pictureImageView.contentMode = UIViewContentMode.ScaleAspectFill
+                pictureImageView.layer.cornerRadius = pictureImageView.frame.height / 2
+                pictureImageView.layer.masksToBounds = true
+                pictureImageView.layer.opaque = false
             } else {
                 // no picture taken image
                 pictureImageView.image = UIImage(named: "Untagged_Icon")
             }
         } else {
-            // untagged moment image
-            pictureImageView.image = UIImage(named: "Untagged_Icon")
+            studentInfoViewHeight.constant = 0
+            studentInfoView.hidden = true
             nameLabel.title = "Untagged"
             
         }
