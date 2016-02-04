@@ -34,13 +34,15 @@ class Student: Equatable {
         self.parentEmail = object["parentEmail"] as? String
         
         if let userPicture = object["studentImage"] as? PFFile {
-            userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
-                if (error == nil) {
-                    self.studentImage = UIImage(data:imageData!)
-                } else {
-                    print(self.firstName)
-                    self.studentImage = nil
+            do {
+                let imageData = try userPicture.getData()
+                studentImage = UIImage(data: imageData)
+                
+                if studentImage!.size == CGSizeMake(1, 1) {
+                    studentImage = nil
                 }
+            } catch _ {
+                studentImage = nil
             }
         }
     }
@@ -55,7 +57,8 @@ class Student: Equatable {
         student["parentEmail"] = parentEmail
         student["numberOfMoments"] = 0
         
-        if let photo = photo {let imageData = UIImageJPEGRepresentation(photo, 0.1)
+        if let photo = photo {
+            let imageData = UIImageJPEGRepresentation(photo, 0.1)
             let parseImageFile = PFFile(data: imageData!)
             student.setObject(parseImageFile!, forKey: "studentImage")
         }

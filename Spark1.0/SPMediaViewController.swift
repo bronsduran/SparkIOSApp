@@ -40,6 +40,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     @IBOutlet weak var audioImageView: UIImageView!
     @IBOutlet weak var audioPlayButton: UIButton!
     @IBOutlet weak var audioRecordButton: UIBarButtonItem!
+    @IBOutlet weak var audioRecordingLabel: UILabel!
     
     @IBOutlet weak var textViewContainer: UIView!
     @IBOutlet weak var textCloseButton: UIButton!
@@ -171,11 +172,15 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
             self.audioRecordButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.redColor()], forState: UIControlState.Normal)
             showAudioContainer()
             self.audioPlayButton.hidden = true
+            self.audioRecordingLabel.hidden = false
+            self.audioImageView.hidden = true
             self.recorder?.record()
             
         } else {
             self.audioRecordButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
             self.audioPlayButton.hidden = false
+            self.audioRecordingLabel.hidden = true
+            self.audioImageView.hidden = false
             self.recorder?.stop()
         }
         
