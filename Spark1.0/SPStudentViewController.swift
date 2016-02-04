@@ -19,6 +19,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var backGround: UIImageView!
     @IBOutlet weak var nameLabel: UINavigationItem!
     @IBOutlet weak var filterOptionsTableView: UITableView!
+    @IBOutlet weak var studentInfoViewHeight: NSLayoutConstraint!
     
     @IBAction func filterButtonPressed(sender: UIButton) {
         
@@ -115,6 +116,10 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
 
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 115
+    }
+    
     func applyFilter() {
         momentsToShow = [Moment]()
         
@@ -176,8 +181,8 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
                 pictureImageView.image = UIImage(named: "Untagged_Icon")
             }
         } else {
-            // untagged moment image
-            pictureImageView.image = UIImage(named: "Untagged_Icon")
+            studentInfoViewHeight.constant = 0
+            studentInfoView.hidden = true
             nameLabel.title = "Untagged"
             
         }
