@@ -439,7 +439,7 @@
 				TargetAttributes = {
 					4B2285F71C4AE4E800CE4146 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 8YJ2342CPM;
+						DevelopmentTeam = CM9VN8C6NY;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
 								enabled = 0;
@@ -705,7 +705,7 @@
 				);
 				INFOPLIST_FILE = Spark1.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Spark1-0";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Spark1-0111";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Spark1.0-Bridging-Header.h";
@@ -727,7 +727,7 @@
 				);
 				INFOPLIST_FILE = Spark1.0/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Spark1-0";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.Spark1-0111";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Spark1.0-Bridging-Header.h";
