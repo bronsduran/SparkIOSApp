@@ -19,15 +19,29 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var backGround: UIImageView!
     @IBOutlet weak var nameLabel: UINavigationItem!
     @IBOutlet weak var filterOptionsTableView: UITableView!
+    @IBOutlet weak var filterOptionsLabel: UILabel!
     @IBOutlet weak var studentInfoViewHeight: NSLayoutConstraint!
+
     
     @IBAction func filterButtonPressed(sender: UIButton) {
         
+        
+        
+        
         if filterOptionsTableView.hidden == false {
-            filterOptionsTableView.hidden = true
+            
+                filterOptionsTableView.hidden = true
+                categoriesToShow = Moment.momentCategories
+                refresh()
+                momentTableView.hidden = false
+        
         } else {
-            filterOptionsTableView.hidden = false
+            
+                filterOptionsTableView.hidden = false
+                momentTableView.hidden = true
+                filterOptionsLabel.hidden = true
         }
+        
     }
   
     
@@ -45,11 +59,11 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         
         var count:Int?
         
-        if tableView == self.filterOptionsTableView {
-            count = categoriesToShow.count
+        if tableView == filterOptionsTableView {
+            count = Moment.momentCategories.count
         }
         
-        if tableView == self.momentTableView {
+        if tableView == momentTableView {
             if momentsToShow == nil {
                 momentsToShow = moments
             }
@@ -96,9 +110,15 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         momentTableView.backgroundColor = UIColor.clearColor()
         momentTableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
         momentTableView.separatorColor = UIColor(red: 106/255.0, green: 117/255.0, blue: 128/255.0, alpha: 1.0)
+        
+        filterOptionsTableView.backgroundColor = UIColor.clearColor()
+        filterOptionsTableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
+        filterOptionsTableView.separatorColor = UIColor(red: 106/255.0, green: 117/255.0, blue: 128/255.0, alpha: 1.0)
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if tableView == momentTableView {
         
         let momentCell = self.momentTableView.cellForRowAtIndexPath(indexPath) as! MomentTableViewCell
         
@@ -113,20 +133,41 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         
         
         presentViewController(actionController, animated: true, completion: nil)
+        }
+        
+        else if tableView == filterOptionsTableView {
+        
+        let categoryCell = self.filterOptionsTableView.cellForRowAtIndexPath(indexPath) as! CategoriesTableViewCell
+            
+        let selected = categoryCell.categoryLabel.text
+    
+            
+            categoriesToShow.removeAll()
+            categoriesToShow.append(selected!)
+            refresh()
+            filterOptionsLabel.hidden = false
+            filterOptionsLabel.text = selected
+            filterButton.titleLabel?.hidden = true
+          
+            
+            filterOptionsTableView.hidden = true
+            momentTableView.hidden = false
+            }
+            
+            
+        
 
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 115
-    }
+    
     
     func applyFilter() {
         momentsToShow = [Moment]()
         
         if let moments = moments {
             for moment in moments {
-                for category in categoriesToShow {
-                    if Moment.momentCategories.indexOf(category) != nil {
+                for category in moment.categoriesTagged! {
+                    if categoriesToShow.indexOf(category) != nil {
                         momentsToShow?.append(moment)
                         break
                     }
@@ -191,10 +232,16 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
+        let momentCellNib: UINib = UINib(nibName: "CategoriesTableViewCell", bundle: nil)
+        filterOptionsTableView.registerNib(momentCellNib, forCellReuseIdentifier: "CategoryTableViewCell")
+        
+        
         let cellNib: UINib = UINib(nibName: "MomentTableViewCell", bundle: nil)
         momentTableView.registerNib(cellNib, forCellReuseIdentifier: "MomentTableViewCell")
         
         self.addBackgroundView()
+        filterOptionsLabel.hidden = true
         filterOptionsTableView.hidden = true
         
         // Header

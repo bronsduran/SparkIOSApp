@@ -53,7 +53,6 @@
 		C54399181C5A135B0049D903 /* SPSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54399171C5A135B0049D903 /* SPSettingsViewController.swift */; };
 		C543991A1C5AF5900049D903 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C54399191C5AF5900049D903 /* AVFoundation.framework */; };
 		C543991E1C5D68D20049D903 /* XLActionController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCBAEFB1C5D4CDF00D8BB07 /* XLActionController.framework */; };
-		C543991F1C5D68EB0049D903 /* XLActionController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCBAEFB1C5D4CDF00D8BB07 /* XLActionController.framework */; };
 		C54399201C5D68EB0049D903 /* XLActionController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCBAEFB1C5D4CDF00D8BB07 /* XLActionController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C57DB7651C4F49C600022D3A /* SPCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57DB7641C4F49C600022D3A /* SPCreateAccountViewController.swift */; };
 		C57DB7671C4F4A2800022D3A /* SPCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57DB7661C4F4A2800022D3A /* SPCaptureViewController.swift */; };
@@ -188,7 +187,6 @@
 			files = (
 				C543991E1C5D68D20049D903 /* XLActionController.framework in Frameworks */,
 				C543991A1C5AF5900049D903 /* AVFoundation.framework in Frameworks */,
-				C543991F1C5D68EB0049D903 /* XLActionController.framework in Frameworks */,
 				0A2F59CE1C4F3C8C0053300C /* libsqlite3.tbd in Frameworks */,
 				0A2F59CC1C4F3C7F0053300C /* libz.tbd in Frameworks */,
 				0A2F59CA1C4F3C720053300C /* SystemConfiguration.framework in Frameworks */,
@@ -441,7 +439,7 @@
 				TargetAttributes = {
 					4B2285F71C4AE4E800CE4146 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = CM9VN8C6NY;
+						DevelopmentTeam = 8YJ2342CPM;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
 								enabled = 0;
