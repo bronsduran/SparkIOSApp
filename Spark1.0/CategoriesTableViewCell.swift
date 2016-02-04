@@ -6,8 +6,6 @@
 //  Copyright © 2016 Bronson Duran. All rights reserved.
 //
 
-import Foundation
-
 
 class CategoriesTableViewCell : UITableViewCell {
     

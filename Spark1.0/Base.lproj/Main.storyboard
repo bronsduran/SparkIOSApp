@@ -320,10 +320,14 @@
                                 </connections>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TOC-KM-6cj">
-                                <rect key="frame" x="0.0" y="263" width="320" height="197"/>
+                                <rect key="frame" x="0.0" y="263" width="320" height="268"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="mjq-oN-foE" id="zix-Cm-mvf"/>
+                                    <outlet property="delegate" destination="mjq-oN-foE" id="aEg-de-5rz"/>
+                                </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ooe-yY-86x">
+                            <button autoresizesSubviews="NO" opaque="NO" contentMode="redraw" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="ooe-yY-86x">
                                 <rect key="frame" x="-4" y="205" width="328" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="0.13360430743243243" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -336,9 +340,16 @@
                                     <action selector="filterButtonPressed:" destination="mjq-oN-foE" eventType="touchUpInside" id="FhS-A7-bNF"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XYF-OW-Xon">
+                                <rect key="frame" x="139" y="219" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="XYF-OW-Xon" firstAttribute="centerX" secondItem="scA-RS-vyz" secondAttribute="centerX" id="1WE-fh-8ci"/>
                             <constraint firstItem="ebY-yG-1NZ" firstAttribute="leading" secondItem="scA-RS-vyz" secondAttribute="leadingMargin" constant="-20" id="2EI-2d-VMR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LDd-46-6BB" secondAttribute="trailing" constant="-20" id="7R0-Ny-iWQ"/>
                             <constraint firstItem="ebY-yG-1NZ" firstAttribute="top" secondItem="ooe-yY-86x" secondAttribute="bottom" constant="4" id="BxU-cc-aiZ"/>
@@ -348,12 +359,14 @@
                             <constraint firstItem="Bbh-kJ-rt7" firstAttribute="leading" secondItem="scA-RS-vyz" secondAttribute="leading" id="LYg-fS-4u1"/>
                             <constraint firstAttribute="trailing" secondItem="Bbh-kJ-rt7" secondAttribute="trailing" id="Yrs-kr-UiR"/>
                             <constraint firstItem="LDd-46-6BB" firstAttribute="leading" secondItem="scA-RS-vyz" secondAttribute="leadingMargin" constant="-20" id="aQV-GM-yAz"/>
+                            <constraint firstItem="TOC-KM-6cj" firstAttribute="top" secondItem="XYF-OW-Xon" secondAttribute="bottom" constant="23" id="j19-lF-akW"/>
                             <constraint firstAttribute="trailing" secondItem="TOC-KM-6cj" secondAttribute="trailing" id="lvT-zM-yyt"/>
                             <constraint firstItem="LDd-46-6BB" firstAttribute="top" secondItem="IpL-Nt-clz" secondAttribute="bottom" id="nHc-u2-oQc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ooe-yY-86x" secondAttribute="trailing" constant="-20" id="onA-1P-zuu"/>
                             <constraint firstItem="Bbh-kJ-rt7" firstAttribute="top" secondItem="scA-RS-vyz" secondAttribute="top" id="pjf-ub-iJH"/>
                             <constraint firstItem="TOC-KM-6cj" firstAttribute="top" secondItem="ooe-yY-86x" secondAttribute="bottom" constant="4" id="tWa-Sx-paW"/>
                             <constraint firstItem="ooe-yY-86x" firstAttribute="leading" secondItem="scA-RS-vyz" secondAttribute="leadingMargin" constant="-20" id="upa-yQ-Em9"/>
+                            <constraint firstItem="XYF-OW-Xon" firstAttribute="top" secondItem="LDd-46-6BB" secondAttribute="bottom" constant="13" id="xug-f4-ERi"/>
                             <constraint firstItem="xMq-P5-0cK" firstAttribute="top" secondItem="ebY-yG-1NZ" secondAttribute="bottom" id="yra-Mu-knw"/>
                             <constraint firstItem="TOC-KM-6cj" firstAttribute="leading" secondItem="scA-RS-vyz" secondAttribute="leading" id="zYy-ts-mbd"/>
                         </constraints>
@@ -364,6 +377,7 @@
                         <outlet property="countLabel" destination="l7C-8H-umS" id="SjV-o5-PbP"/>
                         <outlet property="countView" destination="53O-mJ-lc5" id="Kat-iP-bBJ"/>
                         <outlet property="filterButton" destination="ooe-yY-86x" id="Sir-Nc-BF9"/>
+                        <outlet property="filterOptionsLabel" destination="XYF-OW-Xon" id="Itg-Gz-yjq"/>
                         <outlet property="filterOptionsTableView" destination="TOC-KM-6cj" id="D6C-Z0-GR3"/>
                         <outlet property="momentTableView" destination="ebY-yG-1NZ" id="DEj-4s-yT1"/>
                         <outlet property="nameLabel" destination="C7I-ko-VW8" id="nRq-uv-0OW"/>
