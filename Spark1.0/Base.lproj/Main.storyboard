@@ -696,33 +696,41 @@
                                             <action selector="audioCloseButtonPressed:" destination="ZaX-yA-hlv" eventType="touchUpInside" id="WEh-19-EVw"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90x-Rq-ocX">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90x-Rq-ocX">
                                         <rect key="frame" x="8" y="10" width="30" height="30"/>
-                                        <state key="normal" title="Play">
+                                        <state key="normal" backgroundImage="playButton">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="audioPlayButtonPressed:" destination="ZaX-yA-hlv" eventType="touchUpInside" id="W0o-bR-Lsn"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="459-Jg-Yvl">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" misplaced="YES" image="waveForm" translatesAutoresizingMaskIntoConstraints="NO" id="459-Jg-Yvl">
                                         <rect key="frame" x="46" y="8" width="228" height="34"/>
-                                        <color key="backgroundColor" red="0.91125801282051277" green="0.91125801282051277" blue="0.91125801282051277" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="ez7-CA-XWe"/>
                                         </constraints>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVh-co-Dvy">
+                                        <rect key="frame" x="8" y="16" width="83" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="6P5-rD-15U"/>
                                     <constraint firstItem="459-Jg-Yvl" firstAttribute="leading" secondItem="90x-Rq-ocX" secondAttribute="trailing" constant="8" id="Bq3-Ll-TZm"/>
+                                    <constraint firstItem="lVh-co-Dvy" firstAttribute="centerY" secondItem="90x-Rq-ocX" secondAttribute="centerY" id="HqY-Mb-Plo"/>
                                     <constraint firstItem="ksf-0P-ZVb" firstAttribute="centerY" secondItem="90x-Rq-ocX" secondAttribute="centerY" id="IKd-5L-che"/>
                                     <constraint firstItem="ksf-0P-ZVb" firstAttribute="leading" secondItem="459-Jg-Yvl" secondAttribute="trailing" constant="8" id="LNy-fX-8rI"/>
                                     <constraint firstItem="459-Jg-Yvl" firstAttribute="centerY" secondItem="90x-Rq-ocX" secondAttribute="centerY" id="PBU-XQ-vQf"/>
                                     <constraint firstAttribute="trailing" secondItem="ksf-0P-ZVb" secondAttribute="trailing" constant="8" id="fhw-Ff-CX9"/>
                                     <constraint firstItem="ksf-0P-ZVb" firstAttribute="centerY" secondItem="tJ2-NX-ACT" secondAttribute="centerY" id="frV-x0-T7h"/>
                                     <constraint firstItem="90x-Rq-ocX" firstAttribute="leading" secondItem="tJ2-NX-ACT" secondAttribute="leading" constant="8" id="wNO-QX-njc"/>
+                                    <constraint firstItem="lVh-co-Dvy" firstAttribute="leading" secondItem="90x-Rq-ocX" secondAttribute="leading" id="xEd-Sa-ea1"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LcR-wm-frR" userLabel="Text View Container">
@@ -812,6 +820,7 @@
                         <outlet property="audioImageView" destination="459-Jg-Yvl" id="seL-yp-b6r"/>
                         <outlet property="audioPlayButton" destination="90x-Rq-ocX" id="23U-82-7NF"/>
                         <outlet property="audioRecordButton" destination="A9b-nV-WdW" id="NvI-31-4Fd"/>
+                        <outlet property="audioRecordingLabel" destination="lVh-co-Dvy" id="6by-Dq-bf2"/>
                         <outlet property="audioViewContainer" destination="tJ2-NX-ACT" id="QKj-mZ-Hjs"/>
                         <outlet property="textCloseButton" destination="4Py-TR-bmW" id="kys-JC-k9L"/>
                         <outlet property="textView" destination="Oi0-Lv-QTe" id="fSr-6p-Vgg"/>
@@ -1177,10 +1186,12 @@
         <image name="microphoneIcon" width="61" height="54"/>
         <image name="nameIcon" width="44" height="44"/>
         <image name="passwordIcon" width="40" height="46"/>
+        <image name="playButton" width="59" height="59"/>
         <image name="rightIcon" width="15" height="30"/>
         <image name="saveIcon" width="50" height="54"/>
         <image name="settingsIcon" width="45" height="39"/>
         <image name="tagStudent" width="66" height="58"/>
         <image name="textIcon" width="54" height="55"/>
+        <image name="waveForm" width="530" height="53"/>
     </resources>
 </document>
