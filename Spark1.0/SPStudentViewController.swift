@@ -59,11 +59,11 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         
         var count:Int?
         
-        if tableView == self.filterOptionsTableView {
+        if tableView == filterOptionsTableView {
             count = Moment.momentCategories.count
         }
         
-        if tableView == self.momentTableView {
+        if tableView == momentTableView {
             if momentsToShow == nil {
                 momentsToShow = moments
             }
@@ -159,9 +159,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
 
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 115
-    }
+    
     
     func applyFilter() {
         momentsToShow = [Moment]()
