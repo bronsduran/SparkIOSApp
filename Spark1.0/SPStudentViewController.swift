@@ -132,8 +132,10 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func refresh() {
+        populateStudentInfo()
+        applyFilter()
+        
         dispatch_async(dispatch_get_main_queue(), {
-            self.applyFilter()
             self.momentTableView.reloadData()
         })
     }
@@ -189,8 +191,6 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         // Header
         countView.layer.cornerRadius = countView.frame.height / 2
         countView.backgroundColor = UIColor(white: 0.0, alpha: 0.1)
-        
-        populateStudentInfo()
         
         configureTableView()
         filterButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)

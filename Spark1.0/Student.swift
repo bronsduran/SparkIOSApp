@@ -32,11 +32,13 @@ class Student: Equatable {
         self.objectId = object.objectId
         self.parentPhone = object["parentPhone"] as? String
         self.parentEmail = object["parentEmail"] as? String
-        if let userPicture = PFUser.currentUser()?["studentImage"] as? PFFile {
+        
+        if let userPicture = object["studentImage"] as? PFFile {
             userPicture.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
                 if (error == nil) {
                     self.studentImage = UIImage(data:imageData!)
                 } else {
+                    print(self.firstName)
                     self.studentImage = nil
                 }
             }
@@ -148,6 +150,9 @@ class Student: Equatable {
             self.moments = array
         }
         
+        self.numberOfMoments =  self.numberOfMoments + 1
+        self.parse["numberOfMoments"] = self.numberOfMoments
+        
         do {
             try self.parse.save()
         } catch _ {
@@ -166,10 +171,10 @@ class Student: Equatable {
                 let contents:PFObject?
                 do {
                     contents = try query.getObjectWithId(object)
+                    momentsArray.append(Moment(contents!))
                 } catch _ {
                     contents = nil
                 }
-                momentsArray.append(Moment(contents!))
             }
             callback(foundStudents: momentsArray)
         }

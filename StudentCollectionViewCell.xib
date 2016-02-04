@@ -38,7 +38,7 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u3U-oV-R1L">
-                        <rect key="frame" x="24" y="8" width="67" height="67"/>
+                        <rect key="frame" x="24" y="12" width="67" height="67"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="67" id="NJD-Pf-Dta"/>
                             <constraint firstAttribute="width" constant="67" id="sSS-EG-aKK"/>
@@ -49,13 +49,13 @@
             </view>
             <constraints>
                 <constraint firstItem="u3U-oV-R1L" firstAttribute="centerX" secondItem="K7K-1t-1yL" secondAttribute="centerX" id="BaR-EL-9rj"/>
-                <constraint firstAttribute="topMargin" secondItem="u3U-oV-R1L" secondAttribute="top" id="LyR-xp-NOb"/>
+                <constraint firstAttribute="topMargin" secondItem="u3U-oV-R1L" secondAttribute="top" constant="-4" id="LyR-xp-NOb"/>
                 <constraint firstAttribute="bottom" secondItem="z63-tg-2dE" secondAttribute="bottom" constant="4" id="Nqe-OX-VUY"/>
                 <constraint firstItem="opd-2E-rgA" firstAttribute="centerX" secondItem="K7K-1t-1yL" secondAttribute="centerX" id="QDY-EF-XvN"/>
                 <constraint firstItem="z63-tg-2dE" firstAttribute="centerX" secondItem="K7K-1t-1yL" secondAttribute="centerX" id="cTT-54-Cvu"/>
                 <constraint firstItem="Rg8-5Z-f5s" firstAttribute="centerX" secondItem="K7K-1t-1yL" secondAttribute="centerX" id="li1-9Y-RBV"/>
                 <constraint firstAttribute="bottom" secondItem="opd-2E-rgA" secondAttribute="bottom" constant="19" id="s8m-3p-lF4"/>
-                <constraint firstItem="Rg8-5Z-f5s" firstAttribute="top" secondItem="u3U-oV-R1L" secondAttribute="bottom" constant="9" id="xSc-b0-MtB"/>
+                <constraint firstItem="Rg8-5Z-f5s" firstAttribute="top" secondItem="u3U-oV-R1L" secondAttribute="bottom" constant="2" id="xSc-b0-MtB"/>
                 <constraint firstItem="opd-2E-rgA" firstAttribute="top" secondItem="Rg8-5Z-f5s" secondAttribute="bottom" constant="4" id="yOS-VV-fLX"/>
             </constraints>
             <connections>
