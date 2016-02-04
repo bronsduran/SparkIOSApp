@@ -34,29 +34,26 @@ class Moment {
         self.studentsTagged = object["studentsTagged"] as? [String]
         self.objectId = object.objectId
         self.untagged = object["untagged"] as? Bool
-        if let momentData = self.parse?["momentData"] as? PFFile {
-            momentData.getDataInBackgroundWithBlock { (imageData: NSData?, error: NSError?) -> Void in
-                if (error == nil) {
-                    if (self.mediaType == 1) {
-                        self.image = UIImage(data:imageData!)
-                    } else {
-                        // Video Implementation Not Implemented Yet
-                    }
-                } else {
-                    self.image = nil
-                }
-            }
-        }
+//        var momentData: PFFile!
+//        var voice: PFFile!
+        var imageData: NSData!
+        var voiceData: NSData!
         
-        if let voice = self.parse?["voiceData"] as? PFFile {
-            voice.getDataInBackgroundWithBlock { (voiceData: NSData?, error: NSError?) -> Void in
-                if (error == nil) {
-                    self.voiceData = voiceData
-                } else {
-                    self.voiceData = nil
-                }
+        
+        do {
+            if let momentData = self.parse?["momentData"] as? PFFile {
+                try imageData  = momentData.getData()
+                self.image = UIImage(data: imageData!)
             }
-
+            
+            if let voice = self.parse?["voiceData"] as? PFFile {
+                try voiceData = voice.getData()
+                self.voiceData = voiceData
+            }
+            
+        } catch _ {
+            self.image = nil
+            self.voiceData = nil
         }
     }
     
@@ -183,6 +180,11 @@ class Moment {
         } catch _ {
             print("ERROR SAVING")
         }
+    }
+    
+    func getDate() -> NSDate? {
+        let date = self.parse.createdAt
+        return date
     }
     
     func save() {

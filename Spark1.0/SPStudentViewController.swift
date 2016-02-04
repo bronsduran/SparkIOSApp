@@ -45,8 +45,6 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         }
         
         cell.selectionStyle = UITableViewCellSelectionStyle.None
-        let image = UIImage(named: "Tag_Circle")
-        cell.momentImageView.image = image
         
         return cell
     }
@@ -126,6 +124,11 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
             nameLabel.title = student.firstName
             if let picture = student.studentImage {
                 pictureImageView.image = picture
+                
+                pictureImageView.contentMode = UIViewContentMode.ScaleAspectFill
+                pictureImageView.layer.cornerRadius = pictureImageView.frame.height / 2
+                pictureImageView.layer.masksToBounds = true
+                pictureImageView.layer.opaque = false
             } else {
                 // no picture taken image
                 pictureImageView.image = UIImage(named: "Untagged_Icon")
