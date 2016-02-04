@@ -195,7 +195,9 @@ class User: Equatable {
                 } catch _ {
                     contents = nil
                 }
-                studentArray.append(Student(contents!))
+                if let contents = contents {
+                    studentArray.append(Student(contents))
+                }
             }
             callback(foundStudents: studentArray)
         }

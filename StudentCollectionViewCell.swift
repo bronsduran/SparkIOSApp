@@ -50,10 +50,15 @@ class StudentCollectionViewCell: UICollectionViewCell {
         self.student = student
         nameLabel.text = student.firstName + " " + String(student.lastName[student.lastName.startIndex]) + "."
         countLabel.text = String(student.numberOfMoments)
-        print("\(student.firstName): \(student.numberOfMoments) moments")
+        // TODO: this needs to not always be 0!!
+        //      print("\(student.firstName): \(student.numberOfMoments) moments")
         
         if let image = student.studentImage {
             pictureImageView.image = image
+            pictureImageView.contentMode = UIViewContentMode.ScaleAspectFill
+            pictureImageView.layer.cornerRadius = pictureImageView.frame.height / 2
+            pictureImageView.layer.masksToBounds = true
+            pictureImageView.layer.opaque = false
         } else {
             pictureImageView.image = UIImage(named: "nameIcon")
         }

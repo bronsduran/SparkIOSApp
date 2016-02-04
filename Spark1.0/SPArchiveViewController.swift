@@ -70,9 +70,7 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
             self.students = self.students.sort({ $0.firstName < $1.firstName })
             
             if (self.sortByControl.selectedSegmentIndex == 1) {
-                self.students = self.students.sort({ $0.firstName > $1.firstName })
-                // TODO: swap out for correct sort criteria
-                //      self.students = students.sort({ $0.numberOfMoments > $1.numberOfMoments })
+                self.students = self.students.sort({ $0.numberOfMoments < $1.numberOfMoments })
             }
             
             self.archiveCollectionView.reloadData()
@@ -101,7 +99,6 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        print("Here")
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StudentCollectionViewCell", forIndexPath: indexPath) as! StudentCollectionViewCell
         
