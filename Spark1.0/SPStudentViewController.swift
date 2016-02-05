@@ -19,91 +19,86 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var backGround: UIImageView!
     @IBOutlet weak var nameLabel: UINavigationItem!
     @IBOutlet weak var filterOptionsTableView: UITableView!
-    @IBOutlet weak var filterOptionsLabel: UILabel!
     @IBOutlet weak var studentInfoViewHeight: NSLayoutConstraint!
 
     
     @IBAction func filterButtonPressed(sender: UIButton) {
         
-        
-        
-        
         if filterOptionsTableView.hidden == false {
+            hideFilterOptions()
+            categoriesToShow = Moment.momentCategories
             
-                filterOptionsTableView.hidden = true
-                categoriesToShow = Moment.momentCategories
-                refresh()
-                momentTableView.hidden = false
-        
+            applyFilter("All")
+            refresh()
+            
         } else {
-            
-                filterOptionsTableView.hidden = false
-                momentTableView.hidden = true
-                filterOptionsLabel.hidden = true
+            showFilterOptions()
         }
-        
+    
     }
   
-    
     var student: Student?
-    var moments: [Moment]?
-    var momentsToShow: [Moment]?
+    var moments: [Moment] = []
+    var momentsToShow: [Moment] = []
     var categoriesToShow = Moment.momentCategories
-    
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
+    
+    func showFilterOptions() {
+        self.filterButton.setTitle("All", forState: UIControlState.Normal)
+        filterOptionsTableView.hidden = false
+        momentTableView.hidden = true
+    }
+    
+    func hideFilterOptions() {
+        filterOptionsTableView.hidden = true
+        momentTableView.hidden = false
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        var count:Int?
-        
         if tableView == filterOptionsTableView {
-            count = Moment.momentCategories.count
+            return Moment.momentCategories.count
+            
+        } else if tableView == momentTableView {
+            
+            return momentsToShow.count
+        } else {
+            return 0
         }
         
-        if tableView == momentTableView {
-            if momentsToShow == nil {
-                momentsToShow = moments
-            }
-            count = momentsToShow?.count
-        }
-        
-        return count!
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        
-        
         if tableView == self.filterOptionsTableView {
             
             let cell = tableView.dequeueReusableCellWithIdentifier("CategoryTableViewCell", forIndexPath: indexPath) as! CategoriesTableViewCell
             
-            let categoryLabel = categoriesToShow[indexPath.row]
+            let categoryLabel = Moment.momentCategories[indexPath.row]
             cell.categoryLabel.text = categoryLabel
             
             return cell
             
-        }
-        
-        if tableView == self.momentTableView {
+        } else if tableView == self.momentTableView {
+            
             let cell = tableView.dequeueReusableCellWithIdentifier("MomentTableViewCell", forIndexPath: indexPath) as! MomentTableViewCell
             
-            if let momentsToShow = momentsToShow {
-                cell.withMoment(momentsToShow[indexPath.row])
-            }
+            cell.withMoment(momentsToShow[indexPath.row])
+            
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             
             return cell
+            
+        } else {
+            return tableView.dequeueReusableCellWithIdentifier("MomentTableViewCell", forIndexPath: indexPath) as! MomentTableViewCell
         }
         
-        var cell: MomentTableViewCell?
-        
-        cell = tableView.dequeueReusableCellWithIdentifier("MomentTableViewCell", forIndexPath: indexPath) as! MomentTableViewCell
-        return cell!
+
     }
     
     func configureTableView() {
@@ -120,57 +115,44 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         
         if tableView == momentTableView {
         
-        let momentCell = self.momentTableView.cellForRowAtIndexPath(indexPath) as! MomentTableViewCell
-        
-        let actionController = SpotifyActionController()
-        
-        actionController.headerData = SpotifyHeaderData(title: momentCell.captionLabel.text! , subtitle: "", image: momentCell.momentImageView.image!)
-        
-        actionController.addAction(Action(ActionData(title: "Send"), style: .Default, handler: { action in }))
-        actionController.addAction(Action(ActionData(title: "Edit"), style: .Default, handler: { action in }))
-        actionController.addAction(Action(ActionData(title: "Delete"), style: .Default, handler: { action in }))
-        
-        
-        
-        presentViewController(actionController, animated: true, completion: nil)
-        }
-        
-        else if tableView == filterOptionsTableView {
-        
-        let categoryCell = self.filterOptionsTableView.cellForRowAtIndexPath(indexPath) as! CategoriesTableViewCell
+            let momentCell = self.momentTableView.cellForRowAtIndexPath(indexPath) as! MomentTableViewCell
             
-        let selected = categoryCell.categoryLabel.text
-    
+            let actionController = SpotifyActionController()
             
-            categoriesToShow.removeAll()
-            categoriesToShow.append(selected!)
+            actionController.headerData = SpotifyHeaderData(title: momentCell.captionLabel.text! , subtitle: "", image: momentCell.momentImageView.image!)
+            
+            actionController.addAction(Action(ActionData(title: "Send"), style: .Default, handler: { action in }))
+            actionController.addAction(Action(ActionData(title: "Edit"), style: .Default, handler: { action in }))
+            actionController.addAction(Action(ActionData(title: "Delete"), style: .Default, handler: { action in }))
+            
+            presentViewController(actionController, animated: true, completion: nil)
+        
+        } else if tableView == filterOptionsTableView {
+            
+            let categoryCell = self.filterOptionsTableView.cellForRowAtIndexPath(indexPath) as! CategoriesTableViewCell
+                
+            let selected = categoryCell.categoryLabel.text
+
+            applyFilter(selected!)
+
             refresh()
-            filterOptionsLabel.hidden = false
-            filterOptionsLabel.text = selected
-            filterButton.titleLabel?.hidden = true
-          
             
-            filterOptionsTableView.hidden = true
-            momentTableView.hidden = false
-            }
-            
-            
+            filterButton.setTitle(selected, forState: UIControlState.Normal)
         
+            hideFilterOptions()
+            
+        }
 
     }
     
-    
-    
-    func applyFilter() {
+    func applyFilter(filter: String) {
         momentsToShow = [Moment]()
         
-        if let moments = moments {
-            for moment in moments {
-                for category in moment.categoriesTagged! {
-                    if categoriesToShow.indexOf(category) != nil {
-                        momentsToShow?.append(moment)
-                        break
-                    }
+        for moment in moments {
+            for category in moment.categoriesTagged! {
+                if moment.categoriesTagged!.indexOf(filter) != nil || filter == "All" {
+                    momentsToShow.append(moment)
+                    break
                 }
             }
         }
@@ -178,7 +160,6 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     
     func refresh() {
         populateStudentInfo()
-        applyFilter()
         
         dispatch_async(dispatch_get_main_queue(), {
             self.momentTableView.reloadData()
@@ -187,25 +168,26 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         // if this is a student table
         if let student = student {
             student.fetchMoments() { (foundMoments) -> Void in
                 self.moments = foundMoments
+                self.applyFilter("All")
                 self.refresh()
             }
             
-        // if this is an untagged moments table
-        } else {
-            User.current().fetchUntaggedMoments() { (foundMoments) -> Void in
-                self.moments = foundMoments
-                self.refresh()
-            }
+//        // if this is an untagged moments table
+//        } else {
+//            User.current().fetchUntaggedMoments() { (foundMoments) -> Void in
+//                self.moments = foundMoments
+//                self.refresh()
+//            }
         }
     }
     
     func populateStudentInfo() {
-        let numberOfMoments = moments == nil ? 0 : moments!.count
+        let numberOfMoments = moments.count
         countLabel.text = String(numberOfMoments)
         
         if let student = student {
@@ -241,7 +223,6 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         momentTableView.registerNib(cellNib, forCellReuseIdentifier: "MomentTableViewCell")
         
         self.addBackgroundView()
-        filterOptionsLabel.hidden = true
         filterOptionsTableView.hidden = true
         
         // Header
