@@ -20,10 +20,6 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var photoButton: UIButton!
     
-    
-//    @IBOutlet weak var toolbarToTableViewConstraint: NSLayoutConstraint!
-//    var bottomConstraint: NSLayoutConstraint!
-    
     var input = [String?](count: 4, repeatedValue: nil)
     
     
@@ -41,8 +37,6 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardDidShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
-        
-//        bottomConstraint = 
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

@@ -33,6 +33,8 @@ class SPSettingsViewController : UIViewController, UITableViewDelegate, UITableV
         self.tableView.tableFooterView = UIView()
 
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
     }
     
     
@@ -142,6 +144,22 @@ class SPSettingsViewController : UIViewController, UITableViewDelegate, UITableV
             return false
         }
         return true
+    }
+    
+    func keyboardWasShown(notification: NSNotification) {
+        UIView.animateWithDuration(0.1, animations: { () -> Void in
+            if let userInfo = notification.userInfo {
+                if let keyboardSize: CGSize = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size {
+                    let contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0)
+                    self.tableView.contentInset = contentInset
+                }
+            }
+        })
+    }
+    
+    func keyboardWillBeHidden (notification: NSNotification) {
+        let contentInset = UIEdgeInsetsZero
+        tableView.contentInset = contentInset
     }
     
     
