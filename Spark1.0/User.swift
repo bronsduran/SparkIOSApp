@@ -228,21 +228,26 @@ class User: Equatable {
     
     func fetchUntaggedMoments(callback: (foundMoments: [Moment]) -> Void) {
         let array = self.untaggedMoments
-        var momentsArray = [Moment]()
+        var untaggedMomentsArray = [Moment]()
         if (array == nil) {
-            callback(foundMoments: momentsArray)
+            callback(foundMoments: untaggedMomentsArray)
         } else {
             for object in array! as [String] {
                 let query = PFQuery(className: "Moment")
                 let contents:PFObject?
                 do {
                     contents = try query.getObjectWithId(object)
+                    untaggedMomentsArray.append(Moment(contents!))
                 } catch _ {
                     contents = nil
                 }
-                momentsArray.append(Moment(contents!))
             }
-            callback(foundMoments: momentsArray)
+            
+            // just in case some state became inconsistent, reset it here.
+            User.current().numberUntaggedMoments = untaggedMomentsArray.count
+            User.current().save(nil)
+            
+            callback(foundMoments: untaggedMomentsArray)
         }
     }
     

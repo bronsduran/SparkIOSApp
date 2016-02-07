@@ -20,6 +20,10 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var photoButton: UIButton!
     
+    
+//    @IBOutlet weak var toolbarToTableViewConstraint: NSLayoutConstraint!
+//    var bottomConstraint: NSLayoutConstraint!
+    
     var input = [String?](count: 4, repeatedValue: nil)
     
     
@@ -34,6 +38,11 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
         self.photoButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
         self.photoButton.imageView?.layer.cornerRadius = self.photoButton.frame.width / 2.0
         self.photoButton.imageView?.clipsToBounds = true
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
+        
+//        bottomConstraint = 
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -162,6 +171,22 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
             return false
         }
         return true
+    }
+    
+    func keyboardWasShown(notification: NSNotification) {
+        UIView.animateWithDuration(0.1, animations: { () -> Void in
+            if let userInfo = notification.userInfo {
+                if let keyboardSize: CGSize = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size {
+                    let contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0)
+                    self.tableView.contentInset = contentInset
+                }
+            }
+        })
+    }
+    
+    func keyboardWillBeHidden (notification: NSNotification) {
+        let contentInset = UIEdgeInsetsZero
+        tableView.contentInset = contentInset
     }
     
 }
