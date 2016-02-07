@@ -342,16 +342,9 @@
                                     <action selector="filterButtonPressed:" destination="mjq-oN-foE" eventType="touchUpInside" id="FhS-A7-bNF"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XYF-OW-Xon">
-                                <rect key="frame" x="139" y="219" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="XYF-OW-Xon" firstAttribute="centerX" secondItem="scA-RS-vyz" secondAttribute="centerX" id="1WE-fh-8ci"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LDd-46-6BB" secondAttribute="trailing" constant="-20" id="7R0-Ny-iWQ"/>
                             <constraint firstItem="TOC-KM-6cj" firstAttribute="leading" secondItem="scA-RS-vyz" secondAttribute="leading" id="7fz-If-dVD"/>
                             <constraint firstAttribute="trailing" secondItem="ebY-yG-1NZ" secondAttribute="trailing" id="8Ph-l1-TpO"/>
@@ -362,14 +355,12 @@
                             <constraint firstAttribute="trailing" secondItem="Bbh-kJ-rt7" secondAttribute="trailing" id="Yrs-kr-UiR"/>
                             <constraint firstItem="LDd-46-6BB" firstAttribute="leading" secondItem="scA-RS-vyz" secondAttribute="leadingMargin" constant="-20" id="aQV-GM-yAz"/>
                             <constraint firstItem="ebY-yG-1NZ" firstAttribute="leading" secondItem="scA-RS-vyz" secondAttribute="leading" id="f9v-Ok-L6S"/>
-                            <constraint firstItem="TOC-KM-6cj" firstAttribute="top" secondItem="XYF-OW-Xon" secondAttribute="bottom" constant="23" id="j19-lF-akW"/>
                             <constraint firstItem="LDd-46-6BB" firstAttribute="top" secondItem="IpL-Nt-clz" secondAttribute="bottom" id="nHc-u2-oQc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ooe-yY-86x" secondAttribute="trailing" constant="-20" id="onA-1P-zuu"/>
                             <constraint firstItem="Bbh-kJ-rt7" firstAttribute="top" secondItem="scA-RS-vyz" secondAttribute="top" id="pjf-ub-iJH"/>
                             <constraint firstAttribute="trailing" secondItem="TOC-KM-6cj" secondAttribute="trailing" id="rbr-f0-gxm"/>
                             <constraint firstItem="TOC-KM-6cj" firstAttribute="top" secondItem="ooe-yY-86x" secondAttribute="bottom" constant="4" id="tWa-Sx-paW"/>
                             <constraint firstItem="ooe-yY-86x" firstAttribute="leading" secondItem="scA-RS-vyz" secondAttribute="leadingMargin" constant="-20" id="upa-yQ-Em9"/>
-                            <constraint firstItem="XYF-OW-Xon" firstAttribute="top" secondItem="LDd-46-6BB" secondAttribute="bottom" constant="13" id="xug-f4-ERi"/>
                             <constraint firstItem="xMq-P5-0cK" firstAttribute="top" secondItem="ebY-yG-1NZ" secondAttribute="bottom" id="yra-Mu-knw"/>
                         </constraints>
                     </view>
@@ -379,7 +370,6 @@
                         <outlet property="countLabel" destination="l7C-8H-umS" id="SjV-o5-PbP"/>
                         <outlet property="countView" destination="53O-mJ-lc5" id="Kat-iP-bBJ"/>
                         <outlet property="filterButton" destination="ooe-yY-86x" id="Sir-Nc-BF9"/>
-                        <outlet property="filterOptionsLabel" destination="XYF-OW-Xon" id="Itg-Gz-yjq"/>
                         <outlet property="filterOptionsTableView" destination="TOC-KM-6cj" id="D6C-Z0-GR3"/>
                         <outlet property="momentTableView" destination="ebY-yG-1NZ" id="DEj-4s-yT1"/>
                         <outlet property="nameLabel" destination="C7I-ko-VW8" id="nRq-uv-0OW"/>

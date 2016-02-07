@@ -173,9 +173,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension UIViewController {
     func addBackgroundView() -> UIImageView {
-        let screenRect = UIScreen.mainScreen().bounds
-        let backgroundView = UIImageView(image: UIImage(named: "Login_Background"))
-        backgroundView.frame = screenRect
+        
+        let backgroundView = UIImageView(image: UIImage(named: "applicationBackground"))
+        backgroundView.frame.size.height = self.view.frame.size.height
+        backgroundView.frame.size.width = self.view.frame.size.height
         self.view.addSubview(backgroundView)
         view.sendSubviewToBack(backgroundView)
         return backgroundView
