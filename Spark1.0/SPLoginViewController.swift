@@ -15,7 +15,6 @@ class SPLoginViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     
     @IBOutlet weak var logo: UIImageView!
-    @IBOutlet weak var backGround: UIImageView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     
@@ -34,13 +33,18 @@ class SPLoginViewController: UIViewController {
         addBackgroundView()
         activityIndicator.hidden = true
         
+        emailField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName:UIColor.whiteColor()])
+        
+        passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName:UIColor.whiteColor()])
+        
         // Do not include the below code until we have a way to log out
-        /*if let _ = User.current() {
-            let appDelegate: UIApplicationDelegate! = UIApplication.sharedApplication().delegate
-            
-            appDelegate!.window!!.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-        }*/
-        self.addBackgroundView()
+//        if let _ = User.current() {
+//            let appDelegate: UIApplicationDelegate! = UIApplication.sharedApplication().delegate
+//            
+//            appDelegate!.window!!.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+//        }
+        
+
     }
     
     func handleSingleTap(gesture: UITapGestureRecognizer) {

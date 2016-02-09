@@ -16,6 +16,8 @@ class MomentTableViewCell: UITableViewCell {
     @IBOutlet weak var audioIndicator: UIImageView!
     @IBOutlet weak var noAudioIndicator: UIView!
     
+    @IBOutlet weak var imageToCaptionConstraint: NSLayoutConstraint!
+    
     var moment: Moment!
     
     override func layoutSubviews() {
@@ -37,6 +39,14 @@ class MomentTableViewCell: UITableViewCell {
         
         audioIndicator.hidden = !hasAudio // moment.audio == nil
         noAudioIndicator.hidden = hasAudio // moment.audio != nil
+    }
+    
+    func resizeLabel(maxHeight : CGFloat) {
+        let rect = captionLabel.attributedText?.boundingRectWithSize(CGSizeMake(100, maxHeight),
+            options: .UsesLineFragmentOrigin, context: nil)
+        var frame = captionLabel.frame
+        frame.size.height = rect!.size.height
+        captionLabel.frame = frame
     }
     
     func withMoment(moment: Moment) {
@@ -72,11 +82,12 @@ class MomentTableViewCell: UITableViewCell {
         if let image = moment.image {
             momentImageView.image = image
             momentImageView.contentMode = UIViewContentMode.ScaleAspectFill
-            momentImageView.layer.cornerRadius = momentImageView.frame.height / 2
+            momentImageView.layer.cornerRadius = 5.0 //momentImageView.frame.height / 2
             momentImageView.layer.masksToBounds = true
             momentImageView.layer.opaque = false
         } else {
-            momentImageView.image = UIImage(named: "Tag_Circle")
+            imageToCaptionConstraint.constant = -(momentImageView.frame.width)
+            
         }
         
         // notes
@@ -86,6 +97,13 @@ class MomentTableViewCell: UITableViewCell {
             captionLabel.text = "No notes currently exist for this moment."
         }
         
+//        captionLabel.sizeToFit()
+        //resizeLabel(50)
+
+        
+//        frame.size.height = label.frame.size.height;
+//        label.frame = frame;
+//        
         // voice indicator
         audioIndicator.hidden = moment.voiceData == nil
         noAudioIndicator.hidden = !audioIndicator.hidden

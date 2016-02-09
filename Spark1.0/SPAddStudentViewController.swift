@@ -20,23 +20,25 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var photoButton: UIButton!
     
+    var image : UIImage?
+    
     var input = [String?](count: 4, repeatedValue: nil)
     
     
     override func viewDidLoad() {
         let cellNib: UINib = UINib(nibName: "TextInputTableViewCell", bundle: nil)
-        self.tableView.registerNib(cellNib, forCellReuseIdentifier: "TextInputTableViewCell")
+        tableView.registerNib(cellNib, forCellReuseIdentifier: "TextInputTableViewCell")
         
-        self.addBackgroundView()
+        addBackgroundView()
         
-        self.tableView.backgroundColor = UIColor.clearColor()
-        
-        self.photoButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
-        self.photoButton.imageView?.layer.cornerRadius = self.photoButton.frame.width / 2.0
-        self.photoButton.imageView?.clipsToBounds = true
+        tableView.backgroundColor = UIColor.clearColor()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardDidShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
+
+        photoButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
+        photoButton.imageView?.layer.cornerRadius = self.photoButton.frame.width / 2.0
+        photoButton.imageView?.clipsToBounds = true
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -74,10 +76,6 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
-    func getCellText() {
-        
-    }
-    
     func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if let cell = cell as? TextInputTableViewCell {
             if (indexPath.row < input.count) {
@@ -98,18 +96,19 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
 
     @IBAction func addMoreButtonPressed(sender: AnyObject) {
         createStudent()
+        resetFields()
     }
     
     @IBAction func doneButtonPressed(sender: AnyObject) {
         // let firstNameCell = tableView.cellForRowAtIndexPath(0) as TextInputTableViewCell
         createStudent()
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     func createStudent() -> Bool {
         
         // try to replace cached fields with more up to date info
-        for i in 0..<tableView.visibleCells.count {
+        for i in 0..<tableView.numberOfRowsInSection(0) {
             
             let indexPath = NSIndexPath(forRow: i, inSection: 0)
             let cell = tableView.cellForRowAtIndexPath(indexPath) as! TextInputTableViewCell
@@ -123,9 +122,33 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
             }
         }
         
-        Student.addStudent(input[0]!, lastName: input[1]!, phoneNumber: input[2], parentEmail: input[3], photo: photoButton.imageView!.image)
-        
+        Student.addStudent(input[0]!, lastName: input[1]!, phoneNumber: input[2], parentEmail: input[3], photo: self.image)
+        self.presentAlertWithTitle("Student Added", message: "Student " + input[0]! + " " + input[1]! + " successfully added!")
         return true
+    }
+    
+    func resetFields() {
+        
+        image = nil
+        updatePhotoButtonImage()
+        
+        for i in 0..<tableView.numberOfRowsInSection(0) {
+            
+            let indexPath = NSIndexPath(forRow: i, inSection: 0)
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! TextInputTableViewCell
+            
+            cell.textField.text = ""
+            input[i] = nil
+        }
+
+    }
+    
+    func updatePhotoButtonImage() {
+        if image != nil {
+            photoButton.setImage(image, forState: UIControlState.Normal)
+        } else {
+            photoButton.imageView?.image = UIImage(named: "addStudentCameraIcon")
+        }
     }
     
     
@@ -139,6 +162,7 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
         if NSUserDefaults.standardUserDefaults().boolForKey("isSimulator") {
             return
         }
+        image = nil
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .Camera
@@ -146,9 +170,9 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        
-        photoButton.setImage(image, forState: UIControlState.Normal)
-        self.imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        self.image = image
+        updatePhotoButtonImage()
+        imagePicker.dismissViewControllerAnimated(true, completion: nil)
     }
     
     

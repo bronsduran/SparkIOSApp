@@ -119,8 +119,13 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
             
             let actionController = SpotifyActionController()
             
-            actionController.headerData = SpotifyHeaderData(title: momentCell.captionLabel.text! , subtitle: "", image: momentCell.momentImageView.image!)
+            var image = momentCell.momentImageView.image
+            if image == nil {
+                image = UIImage()
+            }
             
+            actionController.headerData = SpotifyHeaderData(title: momentCell.captionLabel.text! , subtitle: "", image: image!)
+        
             actionController.addAction(Action(ActionData(title: "Send"), style: .Default, handler: { action in }))
             actionController.addAction(Action(ActionData(title: "Edit"), style: .Default, handler: { action in }))
             actionController.addAction(Action(ActionData(title: "Delete"), style: .Default, handler: { action in }))
