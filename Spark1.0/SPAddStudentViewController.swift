@@ -12,7 +12,7 @@ import Parse
 
 class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
                                     UIGestureRecognizerDelegate, UIImagePickerControllerDelegate,
-                                    UINavigationControllerDelegate {
+                                    UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -33,7 +33,7 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
         
         tableView.backgroundColor = UIColor.clearColor()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeShown:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
 
         photoButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
@@ -44,12 +44,14 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell : TextInputTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("TextInputTableViewCell") as! TextInputTableViewCell
         
+        cell.textField.delegate = self
+        cell.textField.tag = indexPath.row
+        
         switch indexPath.row {
         case 0:
             cell.labelImage.image = UIImage(named: "Dark_Grey_Circle")
             cell.textField.attributedPlaceholder = stringForPlaceholder("First Name")
             cell.labelView.text = "First Name"
-            
         case 1:
             cell.labelImage.image = UIImage(named: "Dark_Grey_Circle")
             cell.textField.attributedPlaceholder = stringForPlaceholder("Last Name")
@@ -191,7 +193,7 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
         return true
     }
     
-    func keyboardWasShown(notification: NSNotification) {
+    func keyboardWillBeShown(notification: NSNotification) {
         UIView.animateWithDuration(0.1, animations: { () -> Void in
             if let userInfo = notification.userInfo {
                 if let keyboardSize: CGSize = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size {
@@ -205,6 +207,21 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     func keyboardWillBeHidden (notification: NSNotification) {
         let contentInset = UIEdgeInsetsZero
         tableView.contentInset = contentInset
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.superview;
+        
+        let nextRow: NSInteger = textField.tag + 1;
+
+        if let nextCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: nextRow, inSection: 0)) {
+            let nextCellAsTextInput = nextCell as! TextInputTableViewCell
+            nextCellAsTextInput.textField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        
+        return false // We do not want UITextField to insert line-breaks.
     }
     
 }
