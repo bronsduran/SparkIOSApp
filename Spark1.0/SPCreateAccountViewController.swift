@@ -23,6 +23,8 @@ class SPCreateAccountViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     
     
+   
+    
     @IBAction func createAccount(sender: UIButton) {
         let firstName = self.firstNameField.text
         let lastName = self.lastNameField.text
@@ -66,8 +68,17 @@ class SPCreateAccountViewController: UIViewController {
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return true
+        let nextTag: NSInteger = textField.tag + 1;
+        
+        // Try to find next responder
+        if let nextResponder: UIResponder! = textField.superview!.viewWithTag(nextTag){
+            nextResponder.becomeFirstResponder()
+        }
+        else {
+            // Not found, so remove keyboard.
+            textField.resignFirstResponder()
+        }
+        return false // We do not want UITextField to insert line-breaks.
     }
     
     override func viewDidLoad() {
@@ -83,6 +94,8 @@ class SPCreateAccountViewController: UIViewController {
         activityIndicator.hidden = true
         view.backgroundColor = UIColor(patternImage: UIImage(named: "Login_Background")!)
         self.addBackgroundView()
+        
+        
     }
     
     func handleSingleTap(gesture: UITapGestureRecognizer) {
