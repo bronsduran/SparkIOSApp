@@ -100,6 +100,10 @@ class SPTagCategoryViewController: UIViewController, UICollectionViewDelegate, U
             imageFile: MomentSingleton.sharedInstance.image, voiceFile: MomentSingleton.sharedInstance.voiceFile)
         
         self.navigationController?.popToRootViewControllerAnimated(false)
+        
+        // TODO: move this into the capture view controller in a callback or something
+        self.presentAlertWithTitle("Moment Saved", message: "We successfully saved your moment!")
+
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {

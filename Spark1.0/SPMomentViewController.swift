@@ -38,7 +38,7 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
             imageView.layer.masksToBounds = true
             imageView.layer.cornerRadius = 10
         } else {
-            imageView.image = nil
+            imageView.hidden = true
         }
         
         if let caption = moment.notes {
