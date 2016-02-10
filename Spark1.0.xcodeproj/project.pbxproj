@@ -44,6 +44,9 @@
 		4BCBAF111C5D4E3E00D8BB07 /* ActionControllerSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCBAF0B1C5D4E3E00D8BB07 /* ActionControllerSettings.swift */; };
 		4BCBAF121C5D4E3E00D8BB07 /* DynamicCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCBAF0C1C5D4E3E00D8BB07 /* DynamicCollectionViewFlowLayout.swift */; };
 		4BCBAF131C5D4E3E00D8BB07 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCBAF0D1C5D4E3E00D8BB07 /* Action.swift */; };
+		8664E7AC1C6984BA003FF49A /* SPMomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664E7AB1C6984BA003FF49A /* SPMomentViewController.swift */; };
+		8664E7AE1C69876E003FF49A /* MomentDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8664E7AD1C69876E003FF49A /* MomentDetailTableViewCell.xib */; };
+		8664E7B01C698964003FF49A /* MomentDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664E7AF1C698964003FF49A /* MomentDetailTableViewCell.swift */; };
 		C50BFB171C5EE6FB00AB490C /* ButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C50BFB161C5EE6FB00AB490C /* ButtonTableViewCell.xib */; };
 		C50BFB1A1C5EE7A600AB490C /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50BFB191C5EE7A600AB490C /* ButtonTableViewCell.swift */; };
 		C50BFB1C1C5F1D4B00AB490C /* SPManageStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50BFB1B1C5F1D4B00AB490C /* SPManageStudentsViewController.swift */; };
@@ -156,6 +159,9 @@
 		4BCBAF0B1C5D4E3E00D8BB07 /* ActionControllerSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionControllerSettings.swift; path = ../XLActionController/Source/ActionControllerSettings.swift; sourceTree = "<group>"; };
 		4BCBAF0C1C5D4E3E00D8BB07 /* DynamicCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamicCollectionViewFlowLayout.swift; path = ../XLActionController/Source/DynamicCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		4BCBAF0D1C5D4E3E00D8BB07 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Action.swift; path = ../XLActionController/Source/Action.swift; sourceTree = "<group>"; };
+		8664E7AB1C6984BA003FF49A /* SPMomentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPMomentViewController.swift; sourceTree = "<group>"; };
+		8664E7AD1C69876E003FF49A /* MomentDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MomentDetailTableViewCell.xib; sourceTree = "<group>"; };
+		8664E7AF1C698964003FF49A /* MomentDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentDetailTableViewCell.swift; sourceTree = "<group>"; };
 		C50BFB161C5EE6FB00AB490C /* ButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonTableViewCell.xib; sourceTree = "<group>"; };
 		C50BFB191C5EE7A600AB490C /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
 		C50BFB1B1C5F1D4B00AB490C /* SPManageStudentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPManageStudentsViewController.swift; sourceTree = "<group>"; };
@@ -245,6 +251,7 @@
 				D4BD3BA11C589E13003BBFC8 /* SPStudentViewController.swift */,
 				C54399171C5A135B0049D903 /* SPSettingsViewController.swift */,
 				C50BFB1B1C5F1D4B00AB490C /* SPManageStudentsViewController.swift */,
+				8664E7AB1C6984BA003FF49A /* SPMomentViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -372,6 +379,8 @@
 				4B2A21BF1C62D4DE00F11D71 /* CategoriesTableViewCell.swift */,
 				C50BFB161C5EE6FB00AB490C /* ButtonTableViewCell.xib */,
 				C50BFB191C5EE7A600AB490C /* ButtonTableViewCell.swift */,
+				8664E7AD1C69876E003FF49A /* MomentDetailTableViewCell.xib */,
+				8664E7AF1C698964003FF49A /* MomentDetailTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -510,6 +519,7 @@
 				4B2A21BD1C62D47E00F11D71 /* CategoriesTableViewCell.xib in Resources */,
 				C54399131C58840A0049D903 /* TextInputTableViewCell.xib in Resources */,
 				4BCBAF051C5D4D9900D8BB07 /* SpotifyCell.xib in Resources */,
+				8664E7AE1C69876E003FF49A /* MomentDetailTableViewCell.xib in Resources */,
 				C50BFB171C5EE6FB00AB490C /* ButtonTableViewCell.xib in Resources */,
 				D4BD3BA51C589F7F003BBFC8 /* MomentTableViewCell.xib in Resources */,
 				4BCBAF0F1C5D4E3E00D8BB07 /* ActionCell.xib in Resources */,
@@ -534,6 +544,7 @@
 				4B2A21C01C62D4DE00F11D71 /* CategoriesTableViewCell.swift in Sources */,
 				D4BD3BA31C589E13003BBFC8 /* SPStudentViewController.swift in Sources */,
 				4BCBAF121C5D4E3E00D8BB07 /* DynamicCollectionViewFlowLayout.swift in Sources */,
+				8664E7B01C698964003FF49A /* MomentDetailTableViewCell.swift in Sources */,
 				4B8B72711C5895DF00E6E73B /* CategoryCollectionViewCell.swift in Sources */,
 				C5C1D7791C50B44400C20DF9 /* LLSimpleCamera.m in Sources */,
 				C5C1D7811C52EA9700C20DF9 /* SPTagCategoryViewController.swift in Sources */,
@@ -557,6 +568,7 @@
 				0A40F57D1C5D799E000485B5 /* Moment.swift in Sources */,
 				0A40F5781C5D7964000485B5 /* Class.swift in Sources */,
 				4BCBAF111C5D4E3E00D8BB07 /* ActionControllerSettings.swift in Sources */,
+				8664E7AC1C6984BA003FF49A /* SPMomentViewController.swift in Sources */,
 				4B2286041C4AE4E800CE4146 /* Spark1_0.xcdatamodeld in Sources */,
 				4B2285FC1C4AE4E800CE4146 /* AppDelegate.swift in Sources */,
 				C50BFB1A1C5EE7A600AB490C /* ButtonTableViewCell.swift in Sources */,

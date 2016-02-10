@@ -114,18 +114,8 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if tableView == momentTableView {
-        
-            let momentCell = self.momentTableView.cellForRowAtIndexPath(indexPath) as! MomentTableViewCell
-            
-            let actionController = SpotifyActionController()
-            
-            actionController.headerData = SpotifyHeaderData(title: momentCell.captionLabel.text! , subtitle: "", image: momentCell.momentImageView.image!)
-            
-            actionController.addAction(Action(ActionData(title: "Send"), style: .Default, handler: { action in }))
-            actionController.addAction(Action(ActionData(title: "Edit"), style: .Default, handler: { action in }))
-            actionController.addAction(Action(ActionData(title: "Delete"), style: .Default, handler: { action in }))
-            
-            presentViewController(actionController, animated: true, completion: nil)
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! MomentTableViewCell
+            performSegueWithIdentifier("toMomentViewController", sender: cell)
         
         } else if tableView == filterOptionsTableView {
             
@@ -144,6 +134,18 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         }
 
     }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "toMomentViewController"){
+            if let destination = segue.destinationViewController as? SPMomentViewController,
+                let cell = sender as? MomentTableViewCell,
+                let moment = cell.moment {
+                    destination.moment = moment
+            }
+        }
+    }
+    
     
     func applyFilter(filter: String) {
         momentsToShow = [Moment]()
