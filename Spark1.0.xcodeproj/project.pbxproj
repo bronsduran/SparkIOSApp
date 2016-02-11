@@ -448,7 +448,7 @@
 				TargetAttributes = {
 					4B2285F71C4AE4E800CE4146 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 7A54D534F5;
+						DevelopmentTeam = 8YJ2342CPM;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
 								enabled = 0;
@@ -743,6 +743,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Spark1.0-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Release;
 		};
