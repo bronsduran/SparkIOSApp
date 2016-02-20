@@ -39,6 +39,10 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
         photoButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
         photoButton.imageView?.layer.cornerRadius = self.photoButton.frame.width / 2.0
         photoButton.imageView?.clipsToBounds = true
+        
+        for button in addStudentButtons {
+            button.enabled = false
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -95,6 +99,7 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
         return 4
     }
     
+    @IBOutlet var addStudentButtons: [UIBarButtonItem]!
 
     @IBAction func addMoreButtonPressed(sender: AnyObject) {
         createStudent()
@@ -107,16 +112,20 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func createStudent() -> Bool {
-        
+    func updateInputCache() {
         // try to replace cached fields with more up to date info
         for i in 0..<tableView.numberOfRowsInSection(0) {
             
             let indexPath = NSIndexPath(forRow: i, inSection: 0)
-            let cell = tableView.cellForRowAtIndexPath(indexPath) as! TextInputTableViewCell
-
-            input[i] = cell.textField.text
+            if let cell = tableView.cellForRowAtIndexPath(indexPath) as? TextInputTableViewCell {
+                input[i] = cell.textField.text
+            }
         }
+    }
+    
+    func createStudent() -> Bool {
+        
+        updateInputCache()
         
         for field in input {
             if field == nil {
@@ -207,6 +216,21 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     func keyboardWillBeHidden (notification: NSNotification) {
         let contentInset = UIEdgeInsetsZero
         tableView.contentInset = contentInset
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        updateInputCache()
+        
+        var enableButtons = true
+        for str in input {
+            if str == nil || str! == ""{
+                enableButtons = false
+            }
+        }
+        
+        for button in addStudentButtons {
+            button.enabled = enableButtons
+        }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
