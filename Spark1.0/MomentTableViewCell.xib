@@ -13,17 +13,17 @@
             <rect key="frame" x="0.0" y="0.0" width="328" height="130"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gsZ-N3-K5N" id="gPp-0l-OBI">
-                <rect key="frame" x="0.0" y="0.0" width="328" height="115"/>
+                <rect key="frame" x="0.0" y="0.0" width="328" height="130"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Camera_Button" translatesAutoresizingMaskIntoConstraints="NO" id="lwQ-Zp-kCc" userLabel="@@@">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Camera_Button" translatesAutoresizingMaskIntoConstraints="NO" id="lwQ-Zp-kCc" userLabel="@@@">
                         <rect key="frame" x="302" y="49" width="18" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="3av-cM-M5V"/>
                             <constraint firstAttribute="width" constant="18" id="rtO-w8-mv9"/>
                         </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Sx-Aw-6Mp" userLabel="---">
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Sx-Aw-6Mp" userLabel="---">
                         <rect key="frame" x="308" y="54" width="6" height="6"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -31,7 +31,7 @@
                             <constraint firstAttribute="height" constant="6" id="r8s-JN-D0G"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8Z-ts-Al8">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8Z-ts-Al8">
                         <rect key="frame" x="17" y="2" width="27" height="31"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

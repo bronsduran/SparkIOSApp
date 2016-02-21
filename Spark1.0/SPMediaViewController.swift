@@ -46,6 +46,10 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     @IBOutlet weak var textCloseButton: UIButton!
     @IBOutlet weak var textView: UITextView!
     
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var tagButton: UIBarButtonItem!
+    
+    
     @IBOutlet weak var textViewDistanceToBottomOfAudioView: NSLayoutConstraint!
     
     override func viewDidLoad() {
@@ -53,6 +57,9 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         
         self.backgroundView = self.addBackgroundView()
         setupAudioSession()
+        enableDisableSaveTagButtons()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -73,9 +80,24 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
                 self.view.sendSubviewToBack(self.imageView)
                 self.view.sendSubviewToBack(self.backgroundView!)
             }
-            
         }
+    }
+    
+    override func canBecomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    func keyPressed(command: UIKeyCommand) {
+        print("hi")
+    }
+    
+    func enableDisableSaveTagButtons() {
+        let hasRecording = !audioViewContainer.hidden && !isRecording
+        let hasNotes = textView.text != nil && textView.text != ""
         
+        let enableButtons = hasNotes || hasRecording || image != nil
+        saveButton.enabled = enableButtons
+        tagButton.enabled = enableButtons
     }
     
     func getSoundFile() -> NSURL {
@@ -91,8 +113,8 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         
         let soundFileURL = getSoundFile()
 
-        var error: NSError?
-        var session : AVAudioSession = AVAudioSession.sharedInstance()
+//        var error: NSError?
+        let session : AVAudioSession = AVAudioSession.sharedInstance()
         
         do {
             try session.setCategory(AVAudioSessionCategoryPlayAndRecord)
@@ -137,6 +159,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     
     func hideAudioContainer() {
         self.audioViewContainer.hidden = true
+        
         textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
         UIView.animateWithDuration(0.3) {
             self.view.layoutIfNeeded()
@@ -160,6 +183,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     
     @IBAction func textCloseButtonPressed(sender: AnyObject) {
         hideTextContainer()
+        enableDisableSaveTagButtons()
     }
     
     @IBAction func viewWasTapped(sender: AnyObject) {
@@ -185,11 +209,12 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         }
         
         self.isRecording = !self.isRecording
-
+        enableDisableSaveTagButtons()
     }
     
     @IBAction func audioCloseButtonPressed(sender: AnyObject) {
         hideAudioContainer()
+        enableDisableSaveTagButtons()
     }
     
     @IBAction func saveButtonPressed(sender: AnyObject) {
@@ -215,6 +240,10 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         if textView.text.isEmpty {
             self.textViewContainer.hidden = true
         }
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification) {
+        enableDisableSaveTagButtons()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

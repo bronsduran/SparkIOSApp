@@ -35,7 +35,7 @@ class MomentTableViewCell: UITableViewCell {
     }
     
     func setAudio() {
-        let hasAudio = arc4random_uniform(2) == 0 ? true: false // just because we don't have real moments yet
+        let hasAudio = moment.voiceData != nil
         
         audioIndicator.hidden = !hasAudio // moment.audio == nil
         noAudioIndicator.hidden = hasAudio // moment.audio != nil

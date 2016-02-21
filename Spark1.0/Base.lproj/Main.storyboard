@@ -937,6 +937,8 @@
                         <outlet property="audioRecordButton" destination="A9b-nV-WdW" id="NvI-31-4Fd"/>
                         <outlet property="audioRecordingLabel" destination="lVh-co-Dvy" id="6by-Dq-bf2"/>
                         <outlet property="audioViewContainer" destination="tJ2-NX-ACT" id="QKj-mZ-Hjs"/>
+                        <outlet property="saveButton" destination="n5O-Ep-DGd" id="97K-kI-oQZ"/>
+                        <outlet property="tagButton" destination="Q9k-Fl-9LT" id="oWK-Vt-dsb"/>
                         <outlet property="textCloseButton" destination="4Py-TR-bmW" id="kys-JC-k9L"/>
                         <outlet property="textView" destination="Oi0-Lv-QTe" id="fSr-6p-Vgg"/>
                         <outlet property="textViewContainer" destination="LcR-wm-frR" id="WNx-rK-3HU"/>
