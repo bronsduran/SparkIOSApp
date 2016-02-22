@@ -25,6 +25,7 @@ class SPTagCategoryViewController: UIViewController, UICollectionViewDelegate, U
         self.collectionView.allowsMultipleSelection = true
         
         // set view's background image
+        addStatusBarStyle()
         self.addBackgroundView()
         
         

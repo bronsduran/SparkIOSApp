@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class SPMomentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AVAudioPlayerDelegate {
     
     
@@ -65,6 +66,8 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
 
             }
         })
+
+        addStatusBarStyle()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

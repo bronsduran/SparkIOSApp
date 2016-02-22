@@ -21,7 +21,9 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addStatusBarStyle()
         self.addBackgroundView()
+        
         
         let cellNib: UINib = UINib(nibName: "StudentCollectionViewCell", bundle: nil)
         self.collectionView.registerNib(cellNib, forCellWithReuseIdentifier: "StudentCollectionViewCell")
@@ -45,7 +47,8 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
     
     override func viewWillAppear(animated: Bool) {
         
-        User.currentUser()!.students() { (retrievedStudents) -> Void in
+        User.currentUser()!.students { (retrievedStudents) -> Void in
+            self.navigationController?.navigationBar.backgroundColor = UIColor(red:255/255.0, green:71/255.0, blue:108/255.0,  alpha:1.0);
             self.students = retrievedStudents
             self.refresh()
         }

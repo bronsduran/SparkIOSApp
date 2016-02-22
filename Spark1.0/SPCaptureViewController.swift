@@ -32,11 +32,13 @@ class SPCaptureViewController: UIViewController {
         self.view.bringSubviewToFront(self.toolbar)
 
         self.navigationController?.navigationBar.hidden = false
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         self.camera.start()
         MomentSingleton.sharedInstance.image = nil
+        self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
     }
     
     override func viewDidAppear(animated: Bool) {

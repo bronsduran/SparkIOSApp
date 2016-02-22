@@ -48,11 +48,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if (arch(i386) || arch(x86_64)) && os(iOS)
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isSimulator")
         #endif
-
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
         
         initSegmentedControlAppearance()
         initNavBarAppearance()
         initToolBarAppearance()
+        
         
         return true
     }
@@ -73,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().translucent = true
         
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-        UINavigationBar.appearance().translucent = true
+        UINavigationBar.appearance().backgroundColor = UIColor(red:255/255.0, green:71/255.0, blue:108/255.0,  alpha:1.0);
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
     }
     
@@ -187,6 +188,14 @@ extension UIViewController {
         return backgroundView
     }
     
+    func addStatusBarStyle()
+    {
+        let view: UIView = UIView.init(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 20))
+        view.backgroundColor = UIColor(red:255/255.0, green:71/255.0, blue:108/255.0,  alpha:1.0) //The colour you want to set
+        self.view.addSubview(view)
+        view.sendSubviewToBack(view)
+       
+    }
     func presentAlertWithTitle(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil))

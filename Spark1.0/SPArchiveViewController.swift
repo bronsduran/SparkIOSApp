@@ -34,7 +34,7 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         let cellNib: UINib = UINib(nibName: "StudentCollectionViewCell", bundle: nil)
         
         self.archiveCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "StudentCollectionViewCell")
-        
+        addStatusBarStyle()
         self.addBackgroundView()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refresh", name: "studentRefresh", object: nil)

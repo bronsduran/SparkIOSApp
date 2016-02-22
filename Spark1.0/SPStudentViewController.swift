@@ -6,118 +6,88 @@
 //  Copyright © 2016 Bronson Duran. All rights reserved.
 //
 
-import XLActionController
 
-class SPStudentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
+class SPStudentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AKPickerViewDataSource, AKPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var studentInfoView: UIView!
-    @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var momentTableView: UITableView!
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var countView: UIView!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var backGround: UIImageView!
     @IBOutlet weak var nameLabel: UINavigationItem!
-    @IBOutlet weak var filterOptionsTableView: UITableView!
     @IBOutlet weak var studentInfoViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var filterButtonHeight: NSLayoutConstraint!
+    @IBOutlet weak var pickerView: AKPickerView!
+
+    var imagePicker : UIImagePickerController!
+    var image : UIImage?
     
     var student: Student?
     var moments: [Moment] = []
     var momentsToShow: [Moment] = []
     var categoriesToShow = Moment.momentCategories
-    
-    
-    @IBAction func filterButtonPressed(sender: UIButton) {
+
         
-        if filterOptionsTableView.hidden == false {
-            hideFilterOptions()
-            applyFilter("All")
-            self.momentTableView.reloadData()
-        } else {
-            showFilterOptions()
+    @IBAction func cameraButtonPressed(sender: UIButton) {
+        if pictureImageView.image == UIImage(named: "addStudentCameraIcon") {
+            
+            if NSUserDefaults.standardUserDefaults().boolForKey("isSimulator") {
+                return
+            }
+            image = nil
+            imagePicker = UIImagePickerController()
+            
+            imagePicker.delegate = self
+            imagePicker.sourceType = .Camera
+            presentViewController(imagePicker, animated: true, completion: nil)
         }
+        
+        
     }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        self.image = image
+        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+    
+    }
+    
+    func updateStudentImageView() {
+        if self.image != nil {
+            self.pictureImageView.image = self.image
+        } else {
+            self.pictureImageView.image = UIImage(named: "addStudentCameraIcon")
+        }
+        self.pictureImageView.setNeedsDisplay() 
+    }
+    
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    func showFilterOptions() {
-        self.filterButton.setTitle("All", forState: UIControlState.Normal)
-        filterOptionsTableView.hidden = false
-        momentTableView.hidden = true
-    }
-    
-    func hideFilterOptions() {
-        filterOptionsTableView.hidden = true
-        momentTableView.hidden = false
-    }
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if tableView == filterOptionsTableView {
-            return Moment.momentCategories.count
-            
-        } else if tableView == momentTableView {
-            return momentsToShow.count
-        
-        } else {
-            return 0
-        }
-        
+        return momentsToShow.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("MomentTableViewCell", forIndexPath: indexPath) as! MomentTableViewCell
+        cell.withMoment(momentsToShow[indexPath.row])
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         
-        if tableView == self.filterOptionsTableView {
-            
-            let cell = tableView.dequeueReusableCellWithIdentifier("CategoryTableViewCell", forIndexPath: indexPath) as! CategoriesTableViewCell
-            let categoryLabel = Moment.momentCategories[indexPath.row]
-            cell.categoryLabel.text = categoryLabel
-            
-            return cell
-            
-        } else if tableView == self.momentTableView {
-            
-            let cell = tableView.dequeueReusableCellWithIdentifier("MomentTableViewCell", forIndexPath: indexPath) as! MomentTableViewCell
-            cell.withMoment(momentsToShow[indexPath.row])
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
-            
-            return cell
-            
-        } else {
-            return tableView.dequeueReusableCellWithIdentifier("MomentTableViewCell", forIndexPath: indexPath) as! MomentTableViewCell
-        }
-
+        return cell
     }
     
     func configureTableView() {
         momentTableView.backgroundColor = UIColor.clearColor()
         momentTableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
         momentTableView.separatorColor = UIColor(red: 106/255.0, green: 117/255.0, blue: 128/255.0, alpha: 1.0)
-        
-        filterOptionsTableView.backgroundColor = UIColor.clearColor()
-        filterOptionsTableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
-        filterOptionsTableView.separatorColor = UIColor(red: 106/255.0, green: 117/255.0, blue: 128/255.0, alpha: 1.0)
+
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        if tableView == momentTableView {
-            let cell = tableView.cellForRowAtIndexPath(indexPath) as! MomentTableViewCell
-            performSegueWithIdentifier("toMomentViewController", sender: cell)
-        
-        } else if tableView == filterOptionsTableView {
-            
-            let categoryCell = self.filterOptionsTableView.cellForRowAtIndexPath(indexPath) as! CategoriesTableViewCell
-            let selected = categoryCell.categoryLabel.text
-            applyFilter(selected!)
-            self.momentTableView.reloadData()
-            
-            filterButton.setTitle(selected, forState: UIControlState.Normal)
-            hideFilterOptions()
-        }
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! MomentTableViewCell
+        performSegueWithIdentifier("toMomentViewController", sender: cell)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -157,6 +127,11 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+
+        if categoriesToShow.count == 7 {
+            categoriesToShow.insert("All", atIndex: 3)
+        }
+        updateStudentImageView()
 
         // if this is a student table
         if let student = student {
@@ -206,7 +181,8 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
                 self.pictureImageView.layer.masksToBounds = true
                 self.pictureImageView.layer.opaque = false
             } else {
-                self.pictureImageView.image = UIImage(named: "Untagged_Icon")
+                // no picture taken image
+                self.pictureImageView.image = UIImage(named: "addStudentCameraIcon")
             }
         }
         
@@ -216,30 +192,64 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         studentInfoViewHeight.constant = 0
         studentInfoView.hidden = true
         nameLabel.title = "Untagged"
-        filterButtonHeight.constant = 0
-        filterButton.hidden = true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.pickerView.delegate = self
+        self.pickerView.dataSource = self
         
-
-        let momentCellNib: UINib = UINib(nibName: "CategoriesTableViewCell", bundle: nil)
-        filterOptionsTableView.registerNib(momentCellNib, forCellReuseIdentifier: "CategoryTableViewCell")
+        self.pickerView.font = UIFont(name: "HelveticaNeue-Light", size: 20)!
+        self.pickerView.highlightedFont = UIFont(name: "HelveticaNeue-Bold", size: 20)!
+        self.pickerView.pickerViewStyle = .Wheel
+        self.pickerView.maskDisabled = false
+        self.pickerView.reloadData()
+        addStatusBarStyle()
+     
         
         
         let cellNib: UINib = UINib(nibName: "MomentTableViewCell", bundle: nil)
         momentTableView.registerNib(cellNib, forCellReuseIdentifier: "MomentTableViewCell")
         
         self.addBackgroundView()
-        filterOptionsTableView.hidden = true
+      
         
         // Header
         countView.layer.cornerRadius = countView.frame.height / 2
         countView.backgroundColor = UIColor(white: 0.0, alpha: 0.1)
         
         configureTableView()
-        filterButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+      
+    }
+    
+    
+    // MARK: - AKPickerViewDataSource
+    
+    func numberOfItemsInPickerView(pickerView: AKPickerView) -> Int {
+        return self.categoriesToShow.count
+    }
+    
+    /*
+    
+    Image Support
+    -------------
+    Please comment '-pickerView:titleForItem:' entirely and
+    uncomment '-pickerView:imageForItem:' to see how it works.
+    
+    */
+    func pickerView(pickerView: AKPickerView, titleForItem item: Int) -> String {
+        return self.categoriesToShow[item]
+    }
+    
+    func pickerView(pickerView: AKPickerView, imageForItem item: Int) -> UIImage {
+        return UIImage(named: self.categoriesToShow[item])!
+    }
+    
+    // MARK: - AKPickerViewDelegate
+    
+    func pickerView(pickerView: AKPickerView, didSelectItem item: Int) {
+        applyFilter(categoriesToShow[item])
+        self.momentTableView.reloadData()
     }
 
 }

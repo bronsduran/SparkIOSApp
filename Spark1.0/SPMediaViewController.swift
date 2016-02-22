@@ -81,6 +81,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
                 self.view.sendSubviewToBack(self.backgroundView!)
             }
         }
+        self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
     }
     
     override func canBecomeFirstResponder() -> Bool {
