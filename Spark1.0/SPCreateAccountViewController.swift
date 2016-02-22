@@ -43,23 +43,10 @@ class SPCreateAccountViewController: UIViewController {
         }
         activityIndicator.hidden = false
         activityIndicator.startAnimating()
-        User.register(email!, password: password!, firstName: firstName!, lastName: lastName!) { (user) -> Void in
+        User.register(email!, password: password!, firstName: firstName!, lastName: lastName!) { (success) -> Void in
             
-            if user != nil {
-                user.save(nil)
-                /*Student.addStudent("Kevin", lastName: "Khieu", phoneNumber: "9526881582", parentEmail: "kkhieu@stanford.edu", photo: UIImage(named: "Red_Button")!)
-                Student.addStudent("Kevin2", lastName: "Khieu", phoneNumber: "9526881582", parentEmail: "kkhieu@stanford.edu", photo: UIImage(named: "Red_Button")!)
-                Student.addStudent("Kevin3", lastName: "Khieu", phoneNumber: "9526881582", parentEmail: "kkhieu@stanford.edu", photo: UIImage(named: "Red_Button")!)
-                Student.addStudent("Kevin4", lastName: "Khieu", phoneNumber: "9526881582", parentEmail: "kkhieu@stanford.edu", photo: UIImage(named: "Red_Button")!)
-                
-                User.current().fetchStudents() { (retrievedStudents) -> Void in
-                    for kid in retrievedStudents as [Student] {
-                        print(kid.firstName)
-                    }
-                }*/
-                
-                UIAlertView(title: "Account Successfully Created", message: "Please Login With Your New Username and Password.",
-                    delegate: nil, cancelButtonTitle: "Okay").show()
+            if success {
+                self.presentAlertWithTitle("Account Successfully Created", message: "Please Login With Your New Username and Password.")
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
             self.activityIndicator.hidden = true

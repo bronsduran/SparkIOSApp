@@ -10,71 +10,54 @@ import Foundation
 import UIKit
 import Parse
 
-class User: Equatable {
-    static var currentUser: User!
-    var objectId: String!
-    var userName: String!
-    var email: String!
-    var emailVerified: Bool = false
-    var firstName: String!
-    var lastName: String!
-    var parse: PFUser!
-    var students: [String]!
-    var untaggedMoments: [String]!
-    var numberUntaggedMoments: Int!
-    var classes: [String]!
-    
 
-    convenience init(_ user: PFUser) {
-        self.init()
-        self.objectId = user.objectId
-        self.userName = user.username
-        self.email = user.email
-        self.firstName = user["firstName"] as? String
-        self.lastName = user["lastName"] as? String
-        self.parse = user
-        self.students = user["students"] as? [String]  // Array of ObjectID's
-        self.classes = user["classes"] as? [String]     // Array of ObjectID's
-        self.untaggedMoments = user["untaggedMoments"] as? [String] // Array of ObjectID's
-        if self.untaggedMoments == nil {
-            self.untaggedMoments = [String]()
-        }
-        self.numberUntaggedMoments = self.untaggedMoments.count
-        if let emailVerified = user["emailVerified"] as? Bool {
-            self.emailVerified = emailVerified
-        }
-        User.currentUser = self
-    }
+
+class User: PFUser {
     
-    class func register(email: String, password: String, firstName: String, lastName: String, callback: (user: User!) -> Void) {
+//    static var current: User!
+    
+//    var userName: String!
+//    var email: String!
+//    var emailVerified: Bool = false
+//    var firstName: String!
+//    var lastName: String!
+//    var parse: PFUser!
+//    var students: [String]!
+//    var untaggedMoments: [String]!
+//    var numberUntaggedMoments: Int!
+//    var classes: [String]!
+//
+
+    class func register(email: String, password: String, firstName: String, lastName: String, callback: (success: Bool) -> Void) {
         
-        let pfuser = PFUser()
+        let newUser = User()
         
-        pfuser.email = email
-        pfuser.username = email
-        pfuser.password = password
+        newUser.email = email
+        newUser.username = email
+        newUser.password = password
         
-        pfuser["firstName"] = firstName
-        pfuser["lastName"] = lastName
-        pfuser["students"] = []
+        newUser["firstName"] = firstName
+        newUser["lastName"] = lastName
+        newUser["students"] = []
         
-        pfuser.signUpInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-            if success {
-                callback(user: User(pfuser))
+        newUser.signUpInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if error == nil {
+                callback(success: true)
             } else {
-                callback(user: nil)
+                print("error signing up:", error)
+                callback(success: false)
             }
         }
     }
     
     
-    class func login(email: String, password: String, callback: (user: User!) -> Void) {
-        PFUser.logInWithUsernameInBackground(email, password: password) { (pfuser: PFUser?, error: NSError?) -> Void in
-            if let user = pfuser {
-
-                callback(user: User(user))
+    class func login(email: String, password: String, callback: (success: Bool, user: User?) -> Void) {
+        
+        User.logInWithUsernameInBackground(email, password: password) { (pfuser: PFUser?, error: NSError?) -> Void in
+            if error == nil {
+                callback(success: true, user: pfuser as? User)
             } else {
-                callback(user: nil)
+                callback(success: false, user: nil)
             }
         }
     }
@@ -83,73 +66,24 @@ class User: Equatable {
         PFUser.requestPasswordResetForEmailInBackground(email)
     }
     
-    class func current() -> User! {
-        if let user = User.currentUser {
-            return user
-        }  else if let pfuser = PFUser.currentUser() {
-            do {
-                return try User(pfuser.fetch())
-            } catch {
-                return nil
-            }
-        } else {
-            return nil
-        }
-    }
-    
-    func save(callback: (() -> Void)!) {
-        if self.firstName != nil {
-            self.parse["firstName"] = self.firstName
-        }
-        
-        if self.lastName != nil {
-            self.parse["lastName"] = self.lastName
-        }
-
-        if self.students != nil {
-            self.parse["students"] = self.students
-        }
-        
-        if self.classes != nil {
-            self.parse["classes"] = self.classes
-        }
-        
-        if(self.email != nil) {
-            self.parse.email = self.email
-        }
-        
-        if(self.untaggedMoments != nil) {
-            self.parse["untaggedMoments"] = self.untaggedMoments
-        }
-        
-        do {
-            try self.parse.save()
-        } catch _ {
-            print("ERROR SAVING")
-        }
-    }
-    
-    func addStudent(child: PFObject) {
+    func addStudent(student: PFObject) {
         // Add Student Parse Object to Array in Parse
-        var array = self.students
+        let array = self["students"] as? NSMutableArray
+        
         print("ADD STUDENTS")
         print(array)
-        if (array == nil) {
-            let new_array:NSMutableArray = NSMutableArray()
-            print(self.objectId)
-            new_array.addObject(child.objectId!)
-            self.parse["students"] = new_array
-        } else {
-            array.append(child.objectId!)
-            self.parse["students"] = array
-        }
         
-        self.students.append(child.objectId!)
+        if let students = self["students"] {
+            students.addObject(student.objectId!)
+            self["students"] = students
+        } else {
+            self["students"] = [student.objectId!]
+        }
         
         // Update number of shares on parse
         
         do {
-            try self.parse.save()
+            try self.save()
         } catch _ {
             print("ERROR SAVING")
         }
@@ -157,115 +91,89 @@ class User: Equatable {
     
     func addClass(newClass: PFObject) {
         // Add Class to list of classes
-        let array = self.parse["classes"] as? NSMutableArray
-        if (array == nil) {
-            let new_array:NSMutableArray = NSMutableArray()
-            print(self.objectId)
-            new_array.addObject(newClass.objectId!)
-            self.parse["classes"] = new_array
+        if let classes = self["classes"] {
+            classes.addObject(newClass.objectId!)
+            self["classes"] = classes
         } else {
-            array!.addObject(newClass.objectId!)
-            self.parse["classes"] = array
+            self["classes"] = [newClass.objectId!]
         }
-        
-        self.classes.append(newClass.objectId!)
         
         do {
-            try self.parse.save()
+            try self.save()
         } catch _ {
             print("ERROR SAVING")
-        }
-    }
-    
-    // Check out SPCaptureView for example of how to use
-    func fetchStudents(callback: (foundStudents: [Student]) -> Void) {
-        let array = self.students
-        var studentArray = [Student]()
-        if (array == nil) {
-            callback(foundStudents: studentArray)
-        } else {
-            // print("fetch students")
-            for object in array! as [String] {
-                // print(object)
-                let query = PFQuery(className: "Student")
-                let contents:PFObject?
-                
-                do {
-                    contents = try query.getObjectWithId(object)
-                    studentArray.append(Student(contents!))
-                } catch _ {
-                    contents = nil
-                }
-            }
-            callback(foundStudents: studentArray)
         }
     }
     
     func addUntaggedMoment(moment: PFObject) {
         // Add Student Parse Object to Array in Parse
-        var array = self.untaggedMoments
-        if (array == nil) {
-            let new_array:NSMutableArray = NSMutableArray()
-            new_array.addObject(moment.objectId!)
-            self.parse["untaggedMoments"] = new_array
+        
+        if let untaggedMomentsArray = self["untaggedMoments"] {
+            untaggedMomentsArray.addObject(moment.objectId!)
+            self["untaggedMoments"] = untaggedMomentsArray
         } else {
-            array.append(moment.objectId!)
-            self.parse["untaggedMoments"] = array
+            self["untaggedMoments"] = [moment.objectId!]
         }
         
-        self.untaggedMoments.append(moment.objectId!)
-        self.numberUntaggedMoments = self.numberUntaggedMoments + 1
         do {
-            try self.parse.save()
+            try self.save()
         } catch _ {
-            print("ERROR SAVING")
+            print("Error saving after adding untagged moment")
         }
     }
     
     func getNumberUntaggedMoments() -> Int {
-        return self.numberUntaggedMoments
+        if let untaggedMoments = self["untaggedMoments"] {
+            return untaggedMoments.count
+        } else {
+            return 0
+        }
     }
     
-    func fetchUntaggedMoments(callback: (foundMoments: [Moment]) -> Void) {
-        let array = self.untaggedMoments
-        var untaggedMomentsArray = [Moment]()
-        if (array == nil) {
-            callback(foundMoments: untaggedMomentsArray)
-        } else {
-            for object in array! as [String] {
-                let query = PFQuery(className: "Moment")
-                let contents:PFObject?
+    func removeUntaggedMoment(objectId: String) {
+        if let untaggedMoments = self["untaggedMoments"] as? NSMutableArray {
+            if untaggedMoments.containsObject(objectId) {
+                let elementIndex = untaggedMoments.indexOfObject(objectId)
+                untaggedMoments.removeObjectAtIndex(elementIndex)
+                self["untaggedMoments"] = untaggedMoments
+                
                 do {
-                    contents = try query.getObjectWithId(object)
-                    untaggedMomentsArray.append(Moment(contents!))
+                    try self.save()
                 } catch _ {
-                    contents = nil
+                    print("Error saving after removing untagged moment")
                 }
             }
-            
-            // just in case some state became inconsistent, reset it here.
-            User.current().numberUntaggedMoments = untaggedMomentsArray.count
-            User.current().save(nil)
-            
-            callback(foundMoments: untaggedMomentsArray)
         }
     }
     
-    func removeUntaggedMoment(object: String) {
-        if self.untaggedMoments.contains(object) {
-            let elementIndex = self.untaggedMoments.indexOf(object)
-            self.untaggedMoments.removeAtIndex(elementIndex!)
-            self.numberUntaggedMoments = self.numberUntaggedMoments - 1
+    func students(callback: [Student] -> Void) {
+        self.loadObjectIds("students", classname: "Student") { (foundObjects) -> Void in
+            callback(foundObjects as! [Student])
+        }
+    }
+
+    func untaggedMoments(callback: [Moment] -> Void) {
+        self.loadObjectIds("untaggedMoments", classname: "Moment") { (foundObjects) -> Void in
+            callback(foundObjects as! [Moment])
         }
     }
     
+    func refreshUntaggedMoments(callback: ((Bool) -> Void)?) {
+        self.fetchObjectIds("untaggedMoments", classname: "Moment") { (foundObjects) -> Void in
+            callback?(foundObjects != nil)
+        }
+    }
+    
+    func refreshStudents(callback: ((Bool) -> Void)?) {
+        self.fetchObjectIds("students", classname: "Student") { (foundObjects) -> Void in
+            NSNotificationCenter.defaultCenter().postNotificationName("studentRefresh", object: nil)
+            callback?(foundObjects != nil)
+        }
+    }
     
     class func logout() {
         PFUser.logOut()
     }
 }
 
-func ==(lhs: User, rhs: User) -> Bool {
-    return lhs.objectId == rhs.objectId
-}
 

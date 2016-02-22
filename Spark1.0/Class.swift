@@ -10,31 +10,34 @@ import Foundation
 import UIKit
 import Parse
 
-class Class {
+class Class: PFObject, PFSubclassing {
     
-    var objectId: String!
-    var teacher: PFUser!
-    var parse: PFObject!
-
-    convenience init(_ object: PFObject) {
-        self.init()
-        self.objectId = object.objectId
-        self.parse = object
-        self.teacher = User.current().parse
+    override class func initialize() {
+        struct Static {
+            static var onceToken : dispatch_once_t = 0;
+        }
+        dispatch_once(&Static.onceToken) {
+            self.registerSubclass()
+        }
+    }
+    
+    static func parseClassName() -> String {
+        return "Class"
     }
 
     class func createClass(classTeacher: PFUser) {
-        let newClass = PFObject(className: "Class")
-        newClass["teacher"] = User.current().parse
-        
+        let newClass = Class()
+        newClass["teacher"] = User.currentUser()
+
         newClass.saveInBackgroundWithBlock {
             (success: Bool, error: NSError?) -> Void in
             if success {
-                User.current().addClass(newClass)
+                User.currentUser()!.addClass(newClass)
                 print("Created Class")
             } else {
                 print(error)
             }
         }
     }
+    
 }

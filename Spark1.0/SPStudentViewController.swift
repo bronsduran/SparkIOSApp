@@ -20,32 +20,28 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var nameLabel: UINavigationItem!
     @IBOutlet weak var filterOptionsTableView: UITableView!
     @IBOutlet weak var studentInfoViewHeight: NSLayoutConstraint!
-
+    @IBOutlet weak var filterButtonHeight: NSLayoutConstraint!
     
-    @IBAction func filterButtonPressed(sender: UIButton) {
-        
-        if filterOptionsTableView.hidden == false {
-            hideFilterOptions()
-            categoriesToShow = Moment.momentCategories
-            
-            applyFilter("All")
-            refresh()
-            
-        } else {
-            showFilterOptions()
-        }
-    
-    }
-  
     var student: Student?
     var moments: [Moment] = []
     var momentsToShow: [Moment] = []
     var categoriesToShow = Moment.momentCategories
     
+    
+    @IBAction func filterButtonPressed(sender: UIButton) {
+        
+        if filterOptionsTableView.hidden == false {
+            hideFilterOptions()
+            applyFilter("All")
+            self.momentTableView.reloadData()
+        } else {
+            showFilterOptions()
+        }
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    
     
     func showFilterOptions() {
         self.filterButton.setTitle("All", forState: UIControlState.Normal)
@@ -64,21 +60,19 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
             return Moment.momentCategories.count
             
         } else if tableView == momentTableView {
-            
             return momentsToShow.count
+        
         } else {
             return 0
         }
         
     }
     
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if tableView == self.filterOptionsTableView {
             
             let cell = tableView.dequeueReusableCellWithIdentifier("CategoryTableViewCell", forIndexPath: indexPath) as! CategoriesTableViewCell
-            
             let categoryLabel = Moment.momentCategories[indexPath.row]
             cell.categoryLabel.text = categoryLabel
             
@@ -87,9 +81,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         } else if tableView == self.momentTableView {
             
             let cell = tableView.dequeueReusableCellWithIdentifier("MomentTableViewCell", forIndexPath: indexPath) as! MomentTableViewCell
-            
             cell.withMoment(momentsToShow[indexPath.row])
-            
             cell.selectionStyle = UITableViewCellSelectionStyle.None
             
             return cell
@@ -97,7 +89,6 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         } else {
             return tableView.dequeueReusableCellWithIdentifier("MomentTableViewCell", forIndexPath: indexPath) as! MomentTableViewCell
         }
-        
 
     }
     
@@ -120,21 +111,14 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         } else if tableView == filterOptionsTableView {
             
             let categoryCell = self.filterOptionsTableView.cellForRowAtIndexPath(indexPath) as! CategoriesTableViewCell
-                
             let selected = categoryCell.categoryLabel.text
-
             applyFilter(selected!)
-
-            refresh()
+            self.momentTableView.reloadData()
             
             filterButton.setTitle(selected, forState: UIControlState.Normal)
-        
             hideFilterOptions()
-            
         }
-
     }
-    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "toMomentViewController"){
@@ -146,71 +130,94 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    
     func applyFilter(filter: String) {
         momentsToShow = [Moment]()
         
         for moment in moments {
-            for category in moment.categoriesTagged! {
-                if moment.categoriesTagged!.indexOf(filter) != nil || filter == "All" {
-                    momentsToShow.append(moment)
-                    break
-                }
+            if moment.categoriesTagged().indexOf(filter) != nil || filter == "All" {
+                momentsToShow.append(moment)
             }
+        }
+
+        momentsToShow.sortInPlace { (moment1: Moment, moment2: Moment) -> Bool in
+            return moment1.createdAt!.compare(moment2.createdAt!) == NSComparisonResult.OrderedDescending
         }
     }
     
-    func refresh() {
-        populateStudentInfo()
-        
-        dispatch_async(dispatch_get_main_queue(), {
-            self.momentTableView.reloadData()
-        })
+    func dateFromString(string: String?) -> NSDate? {
+        if string != nil {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSS'Z'"
+            return dateFormatter.dateFromString(string!)
+        } else {
+            return nil
+        }
     }
+
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
         // if this is a student table
         if let student = student {
-            student.fetchMoments() { (foundMoments) -> Void in
-                self.moments = foundMoments
-                self.applyFilter("All")
-                self.refresh()
+            populateStudentInfo(student)
+            
+            if !student.hasFetchedMoments {
+                student.refreshMoments({ (success) -> Void in
+                    if success {
+                        student.hasFetchedMoments = true
+                        student.moments({ (moments: [Moment]) -> Void in
+                            self.moments = moments
+                            self.applyFilter("All")
+                            self.momentTableView.reloadData()
+                        })
+                    }
+                })
+            } else {
+                student.moments({ (moments: [Moment]) -> Void in
+                    self.moments = moments
+                    self.applyFilter("All")
+                    self.momentTableView.reloadData()
+                })
             }
             
-//        // if this is an untagged moments table
-//        } else {
-//            User.current().fetchUntaggedMoments() { (foundMoments) -> Void in
-//                self.moments = foundMoments
-//                self.refresh()
-//            }
+        // if this is an untagged moments table
+        } else {
+            prepareUntaggedTableView()
+            User.currentUser()!.untaggedMoments() { (foundMoments) -> Void in
+                self.moments = foundMoments
+                self.applyFilter("All")
+                self.momentTableView.reloadData()
+            }
         }
     }
     
-    func populateStudentInfo() {
+    func populateStudentInfo(student: Student) {
         let numberOfMoments = moments.count
         countLabel.text = String(numberOfMoments)
         
-        if let student = student {
-            nameLabel.title = student.firstName
-            if let picture = student.studentImage {
-                pictureImageView.image = picture
-                
-                pictureImageView.contentMode = UIViewContentMode.ScaleAspectFill
-                pictureImageView.layer.cornerRadius = pictureImageView.frame.height / 2
-                pictureImageView.layer.masksToBounds = true
-                pictureImageView.layer.opaque = false
+        nameLabel.title = student["firstName"] as? String
+        
+        student.image { (image: UIImage?) -> Void in
+            if image != nil {
+                self.pictureImageView.image = image
+                self.pictureImageView.contentMode = UIViewContentMode.ScaleAspectFill
+                self.pictureImageView.layer.cornerRadius = self.pictureImageView.frame.height / 2
+                self.pictureImageView.layer.masksToBounds = true
+                self.pictureImageView.layer.opaque = false
             } else {
-                // no picture taken image
-                pictureImageView.image = UIImage(named: "Untagged_Icon")
+                self.pictureImageView.image = UIImage(named: "Untagged_Icon")
             }
-        } else {
-            studentInfoViewHeight.constant = 0
-            studentInfoView.hidden = true
-            nameLabel.title = "Untagged"
-            
         }
+        
+    }
+    
+    func prepareUntaggedTableView() {
+        studentInfoViewHeight.constant = 0
+        studentInfoView.hidden = true
+        nameLabel.title = "Untagged"
+        filterButtonHeight.constant = 0
+        filterButton.hidden = true
     }
     
     override func viewDidLoad() {

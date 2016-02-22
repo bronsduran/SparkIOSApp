@@ -21,6 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         Parse.enableLocalDatastore()
         
+        User.registerSubclass()
+        Student.registerSubclass()
+        Moment.registerSubclass()
+        Class.registerSubclass()
+
         // Initialize Parse.
         Parse.setApplicationId("inkL3uIc4NC2L4LgJi0ccNZUcHETUk7ebpbDQ9DJ",
             clientKey: "5XttMKEEaXT4fCyWH6Y2PmK3LixZuwH7VphKWf5g")

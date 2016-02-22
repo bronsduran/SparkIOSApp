@@ -35,10 +35,12 @@ class MomentTableViewCell: UITableViewCell {
     }
     
     func setAudio() {
-        let hasAudio = moment.voiceData != nil
-        
-        audioIndicator.hidden = !hasAudio // moment.audio == nil
-        noAudioIndicator.hidden = hasAudio // moment.audio != nil
+    
+        moment.getFileNamed("voiceData") { (data: NSData?) -> Void in
+            let hasAudio = data != nil
+            self.audioIndicator.hidden = !hasAudio // moment.audio == nil
+            self.noAudioIndicator.hidden = hasAudio // moment.audio != nil
+        }
     }
     
     func resizeLabel(maxHeight : CGFloat) {
@@ -63,12 +65,12 @@ class MomentTableViewCell: UITableViewCell {
         
         
         // categories
-        if let categoriesTagged = moment.categoriesTagged {
-            let numCategories = categoriesTagged.count
+        if moment.categoriesTagged().count > 0 {
+            let numCategories = moment.categoriesTagged().count
             if numCategories == 0 {
                 categoryLabel.text = "No Category Tags"
             } else {
-                categoryLabel.text = categoriesTagged[0]
+                categoryLabel.text = moment.categoriesTagged()[0]
                 
                 if numCategories > 1 {
                     categoryLabel.text = categoryLabel.text! + ", ..."
@@ -79,33 +81,33 @@ class MomentTableViewCell: UITableViewCell {
         }
         
         // picture
-        if let image = moment.image {
-            momentImageView.image = image
-            momentImageView.contentMode = UIViewContentMode.ScaleAspectFill
-            momentImageView.layer.cornerRadius = 5.0 //momentImageView.frame.height / 2
-            momentImageView.layer.masksToBounds = true
-            momentImageView.layer.opaque = false
-        } else {
-            imageToCaptionConstraint.constant = -(momentImageView.frame.width)
-            
+        moment.image { (image: UIImage?) -> Void in
+            if image != nil {
+                self.momentImageView.image = image
+                self.momentImageView.contentMode = UIViewContentMode.ScaleAspectFill
+                self.momentImageView.layer.cornerRadius = 5.0
+                self.momentImageView.layer.masksToBounds = true
+                self.momentImageView.layer.opaque = false
+            } else {
+                self.imageToCaptionConstraint.constant = -(self.momentImageView.frame.width)
+                
+            }
         }
+
         
         // notes
-        if let notes = moment.notes {
+        if let notes = moment["notes"] as? String {
             captionLabel.text = notes
         } else {
             captionLabel.text = "No notes currently exist for this moment."
         }
         
-//        captionLabel.sizeToFit()
-        //resizeLabel(50)
-
-        
-//        frame.size.height = label.frame.size.height;
-//        label.frame = frame;
-//        
         // voice indicator
-        audioIndicator.hidden = moment.voiceData == nil
+        moment.getFileNamed("voiceData") { (data: NSData?) -> Void in
+            self.audioIndicator.hidden = data == nil
+        }
+        
+        
         noAudioIndicator.hidden = !audioIndicator.hidden
         
     }

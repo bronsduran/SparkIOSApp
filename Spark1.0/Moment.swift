@@ -10,57 +10,54 @@ import Foundation
 import UIKit
 import Parse
 
-class Moment {
-    var objectId: String!
-    var mediaType: Int?     // 0 = video, 1 = image
-    var image: UIImage?
-    var notes: String?
-    var voiceData: NSData?
-    var teacher: User!
-    var parse: PFObject!
-    var studentsTagged: [String]?
-    var categoriesTagged: [String]?
-    var untagged: Bool!
+class Moment: PFObject, PFSubclassing {
+    
+    var image : UIImage? = nil
+    
+    override class func initialize() {
+        struct Static {
+            static var onceToken : dispatch_once_t = 0;
+        }
+        dispatch_once(&Static.onceToken) {
+            self.registerSubclass()
+        }
+    }
+    
+    static func parseClassName() -> String {
+        return "Moment"
+    }
     
     static let momentCategories = ["Self Regulation", "Social & Emotional", "Language & Literacy", "Math & Science", "Motor Skills", "Social Science", "Arts"]
+
     
-    convenience init(_ object: PFObject) {
-        self.init()
-        self.mediaType = object["mediaType"] as? Int
-        self.notes = object["notes"] as? String
-        self.teacher = object["teacher"] as? User
-        self.parse = object
-        self.categoriesTagged = object["categoriesTagged"] as? [String]
-        self.studentsTagged = object["studentsTagged"] as? [String]
-        self.objectId = object.objectId
-        self.untagged = object["untagged"] as? Bool
-//        var momentData: PFFile!
-//        var voice: PFFile!
-        var imageData: NSData!
-        var voiceData: NSData!
+    func categoriesTagged() -> [String] {
+        if let categoriesTagged = self["categoriesTagged"] as? [String] {
+            return categoriesTagged
+        } else {
+            return []
+        }
+    }
+    
+    func image(callback: (UIImage?) -> Void) {
         
-        
-        do {
-            if let momentData = self.parse?["momentData"] as? PFFile {
-                try imageData  = momentData.getData()
-                self.image = UIImage(data: imageData!)
-            }
-            
-            if let voice = self.parse?["voiceData"] as? PFFile {
-                try voiceData = voice.getData()
-                self.voiceData = voiceData
-            }
-            
-        } catch _ {
-            self.image = nil
-            self.voiceData = nil
+        if self.image != nil {
+            callback(self.image)
+        } else {
+            getFileNamed("momentData", callback: { (data: NSData?) -> Void in
+                if data != nil {
+                    self.image = UIImage(data: data!)
+                } else {
+                    self.image = nil
+                }
+                callback(self.image)
+            })
         }
     }
     
     // typeOfMoment: True if IMAGE, false if VIDEO. For now always put True
     class func createMoment(typeOfMoment: Bool, students: [Student]?, categories: [String]?, notes: String?, imageFile: UIImage?, voiceFile: NSURL?) {
         
-        let moment = PFObject(className: "Moment")
+        let moment = Moment()
         
         // Media Type
         if (typeOfMoment == true) {
@@ -79,7 +76,7 @@ class Moment {
             
             var studentsTagged = [String]()
             for student in taggedStudents {
-                studentsTagged.append(student.objectId as String)
+                studentsTagged.append(student.objectId! as String)
             }
             moment["studentsTagged"] = studentsTagged
         }
@@ -104,7 +101,7 @@ class Moment {
         }
         
         // Teacher
-        moment["teacher"] = User.current().parse
+        moment["teacher"] = User.currentUser()
         
         do {
             try moment.save()
@@ -117,36 +114,34 @@ class Moment {
                 student.addMoment(moment)
             }
         } else {
-            User.current().addUntaggedMoment(moment)
+            User.currentUser()!.addUntaggedMoment(moment)
         }
     }
     
     func addTagging(students: [Student], categories: [String]) {
-        self.parse["untagged"] = false
+        self["untagged"] = false
         // Students Tagged
         var studentsTagged = [String]()
         for student in students as [Student] {
-            studentsTagged.append(student.objectId as String)
+            studentsTagged.append(student.objectId! as String)
         }
-        self.studentsTagged = studentsTagged
-        self.categoriesTagged = categories
-        self.untagged = false
-        self.parse["studentsTagged"] = studentsTagged
-        self.parse["categoriesTagged"] = categories
+        self["studentsTagged"] = studentsTagged
+        self["categoriesTagged"] = categories
+        self["untagged"] = false
         
         do {
-            try self.parse.save()
+            try self.save()
         } catch _ {
             print("ERROR SAVING")
         }
         
-        User.current().removeUntaggedMoment(self.objectId)
+        User.currentUser()!.removeUntaggedMoment(self.objectId!)
     }
     
     func updateMomentInfo(firstName: String?, lastName: String?, phoneNumber: String?, parentEmail: String?, photo: UIImage?) {
         
         // TODO: implement this method...
-        
+//        
 //        if (firstName != nil) {
 //            self.parse["firstName"] = firstName
 //            self.firstName = firstName
@@ -174,31 +169,16 @@ class Moment {
 //            }
 //            self.studentImage = photo
 //        }
-        
+//        
         do {
-            try self.parse.save()
+            try self.save()
         } catch _ {
             print("ERROR SAVING")
         }
     }
     
     func getDate() -> NSDate? {
-        let date = self.parse.createdAt
-        return date
-    }
-    
-    func save() {
-        if self.parse == nil {
-            self.parse = PFObject(className: "Moment")
-        }
-        
-        self.parse["mediaType"] = self.mediaType
-        // self.parse["mediaFile"] = self.mediaFile
-        self.parse["notes"] = self.notes
-        // self.parse["voiceFile"] = self.voiceFile
-        self.parse["teacher"] = self.teacher.parse
-        self.parse["studentsTagged"] = self.studentsTagged
-        self.parse.saveInBackground()
+        return self.createdAt
     }
     
 }

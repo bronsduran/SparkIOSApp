@@ -45,7 +45,7 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
     
     override func viewWillAppear(animated: Bool) {
         
-        User.current().fetchStudents() { (retrievedStudents) -> Void in
+        User.currentUser()!.students() { (retrievedStudents) -> Void in
             self.students = retrievedStudents
             self.refresh()
         }

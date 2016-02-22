@@ -33,32 +33,38 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
         
         view.backgroundColor = UIColor(patternImage: UIImage(named: "applicationBackground")!)
         
-        if let image = moment.image {
-            imageView.image = image
-            imageView.layer.masksToBounds = true
-            imageView.layer.cornerRadius = 10
-        } else {
-            imageView.hidden = true
+        moment.getFileNamed("momentData") { (data: NSData?) -> Void in
+            if data != nil {
+                self.imageView.image = UIImage(data: data!)
+                self.imageView.layer.masksToBounds = true
+                self.imageView.layer.cornerRadius = 10
+            } else {
+                self.imageView.hidden = true
+                
+            }
         }
-        
-        if let caption = moment.notes {
-            captionLabel.text = caption
+    
+        if let notes = moment["notes"] as? String {
+            captionLabel.text = notes
         } else {
             captionLabel.text = "No notes were taken with this moment."
         }
         captionLabel.textColor = UIColor.whiteColor()
         
-        if let audio = moment.voiceData {
-            do {
-                player = try AVAudioPlayer(data: audio)
-                player?.delegate = self
-                self.player?.prepareToPlay()
-            } catch let error as NSError {
-                print("ERROR with setting up player", error.localizedDescription)
+        moment.getFileNamed("voiceData", callback: { (data: NSData?) -> Void in
+            if data != nil {
+                do {
+                    self.player = try AVAudioPlayer(data: data!)
+                    self.player?.delegate = self
+                    self.player?.prepareToPlay()
+                } catch let error as NSError {
+                    print("ERROR with setting up player", error.localizedDescription)
+                }
+            } else {
+                self.audioView.hidden = true
+
             }
-        } else {
-            audioView.hidden = true
-        }
+        })
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

@@ -10,47 +10,28 @@ import Foundation
 import UIKit
 import Parse
 
-class Student: Equatable {
-    var objectId: String!
-    var firstName: String!
-    var lastName: String!
-    var numberOfMoments: Int!
-    var moments: [String]!
-    var parse: PFObject!
-    var parentPhone: String?
-    var parentEmail: String?
-    var studentImage: UIImage?
+class Student: PFObject, PFSubclassing {
     
+    var image : UIImage? = nil
+    var hasFetchedMoments : Bool = false
     
-    convenience init(_ object: PFObject) {
-        self.init()
-        self.firstName = object["firstName"] as? String
-        self.lastName = object["lastName"] as? String
-        self.numberOfMoments = object["numberOfMoments"] as? Int
-        self.parse = object
-        self.moments = object["moments"] as? [String]
-        self.objectId = object.objectId
-        self.parentPhone = object["parentPhone"] as? String
-        self.parentEmail = object["parentEmail"] as? String
-        
-        if let userPicture = object["studentImage"] as? PFFile {
-            do {
-                let imageData = try userPicture.getData()
-                studentImage = UIImage(data: imageData)
-                
-                if studentImage!.size == CGSizeMake(1, 1) {
-                    studentImage = nil
-                }
-            } catch _ {
-                studentImage = nil
-            }
+    override class func initialize() {
+        struct Static {
+            static var onceToken : dispatch_once_t = 0;
         }
+        dispatch_once(&Static.onceToken) {
+            self.registerSubclass()
+        }
+    }
+    
+    static func parseClassName() -> String {
+        return "Student"
     }
     
     //class func addStudent(name: String,
     class func addStudent(firstName: String!, lastName: String!, phoneNumber: String?, parentEmail: String?, photo: UIImage?) {
         
-        let student = PFObject(className: "Student")
+        let student = Student()
         student["firstName"] = firstName
         student["lastName"] = lastName
         student["parentPhone"] = phoneNumber
@@ -60,7 +41,7 @@ class Student: Equatable {
         if let photo = photo {
             let imageData = UIImageJPEGRepresentation(photo, 0.1)
             let parseImageFile = PFFile(data: imageData!)
-            student.setObject(parseImageFile!, forKey: "studentImage")
+            student["studentImage"] = parseImageFile
         }
         
         do {
@@ -69,121 +50,104 @@ class Student: Equatable {
             print("ERROR SAVING")
         }
  
-        User.current().addStudent(student)
+        User.currentUser()!.addStudent(student)
     }
     
     func updateStudentInfo(firstName: String?, lastName: String?, phoneNumber: String?, parentEmail: String?, photo: UIImage?) {
         
         if (firstName != nil) {
-            self.parse["firstName"] = firstName
-            self.firstName = firstName
+            self["firstName"] = firstName
         }
         
         if (lastName != nil) {
-            self.parse["lastName"] = lastName
-            self.lastName = lastName
+            self["lastName"] = lastName
         }
         
         if (phoneNumber != nil) {
-            self.parse["parentPhone"] = phoneNumber
-            self.parentPhone = phoneNumber
+            self["parentPhone"] = phoneNumber
         }
         
         if (parentEmail != nil) {
-            self.parse["parentEmail"] = parentEmail
-            self.parentEmail = parentEmail
+            self["parentEmail"] = parentEmail
         }
         
-        if (photo != nil) {
-            if let photo = photo {let imageData = UIImageJPEGRepresentation(photo, 0.1)
-                let parseImageFile = PFFile(data: imageData!)
-                self.parse.setObject(parseImageFile!, forKey: "studentImage")
-            }
-            self.studentImage = photo
+        if let photo = photo {
+            let imageData = UIImageJPEGRepresentation(photo, 0.1)
+            let parseImageFile = PFFile(data: imageData!)
+            self["studentImage"] = parseImageFile
         }
         
         do {
-            try self.parse.save()
+            try self.save()
         } catch _ {
             print("ERROR SAVING")
         }
     }
     
-    func save(callback: (() -> Void)!) {
-        if self.firstName != nil {
-            self.parse["firstName"] = self.firstName
-        }
-        
-        if self.lastName != nil {
-            self.parse["lastName"] = self.lastName
-        }
-        
-        if(self.parentEmail != nil) {
-            self.parse["parentEmail"] = self.parentEmail
-        }
-        
-        if(self.parentPhone != nil) {
-            self.parse["parentPhone"] = self.parentPhone
-        }
-        
-        if(self.numberOfMoments != nil) {
-            self.parse["numberOfMoments"] = self.numberOfMoments
-        }
-        
-        self.parse.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-            if success {
-                callback?()
+    func displayName() -> String {
+
+        if let firstName = self["firstName"] as? String {
+            if let lastName = self["lastName"] as? String {
+                return firstName + " " + lastName
             } else {
-                
+                return firstName
             }
+        } else {
+            return ""
+        }
+    }
+    
+    func numberOfMoments() -> Int {
+        if let moments = self["moments"] {
+            return moments.count
+        } else {
+            return 0
         }
     }
     
     func addMoment(newMoment: PFObject) {
-        var array = self.moments
-        if (array == nil) {
-            var new_array: [String] = []
-            new_array.append(newMoment.objectId!)
-            self.parse["moments"] = new_array
-            self.moments = new_array
-
+        
+        if let moments = self["moments"] {
+            moments.addObject(newMoment.objectId!)
+            self["moments"] = moments
         } else {
-            array.append(newMoment.objectId!)
-            self.parse["moments"] = array
-            self.moments = array
+            self["moments"] = [newMoment.objectId!]
         }
+        self.saveEventually { (success: Bool, error: NSError?) -> Void in
+            print("DONE saveEventually: ", success)
+            self.refreshMoments(nil)
+        }
+
+    }
+    
+    func image(callback: (UIImage?) -> Void) {
         
-        self.numberOfMoments =  self.numberOfMoments + 1
-        self.parse["numberOfMoments"] = self.numberOfMoments
-        
-        do {
-            try self.parse.save()
-        } catch _ {
-            print("ERROR SAVING")
+        if self.image != nil {
+            callback(self.image)
+        } else {
+            getFileNamed("studentImage", callback: { (data: NSData?) -> Void in
+                if data != nil {
+                    self.image = UIImage(data: data!)
+                } else {
+                    self.image = nil
+                }
+                callback(self.image)
+            })
         }
     }
     
-    func fetchMoments(callback: (foundStudents: [Moment]) -> Void) {
-        let array = self.moments
-        var momentsArray = [Moment]()
-        if (array == nil) {
-            callback(foundStudents: momentsArray)
-        } else {
-            for object in array! as [String] {
-                let query = PFQuery(className: "Moment")
-                let contents:PFObject?
-                do {
-                    contents = try query.getObjectWithId(object)
-                    momentsArray.append(Moment(contents!))
-                } catch _ {
-                    contents = nil
-                }
-            }
-            callback(foundStudents: momentsArray)
+    func refreshMoments(callback: ((Bool) -> Void)?) {
+        self.fetchObjectIds("moments", classname: "Moment") { (foundObjects) -> Void in
+            callback?(foundObjects != nil)
         }
     }
-}
-
-func ==(lhs: Student, rhs: Student) -> Bool {
-    return lhs.objectId == rhs.objectId
+    
+    func moments(callback: [Moment] -> Void) {
+        self.loadObjectIds("moments", classname: "Moment") { (foundObjects) -> Void in
+            callback(foundObjects as! [Moment])
+        }
+    }
+    
+ 
+    
 }
