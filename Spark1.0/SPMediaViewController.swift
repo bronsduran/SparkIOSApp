@@ -10,6 +10,7 @@
 import Foundation
 import UIKit
 import Parse
+import AVFoundation
 
 
 // for videos: http://stackoverflow.com/questions/1266750/iphone-sdkhow-do-you-play-video-inside-a-view-rather-than-fullscreen
@@ -30,6 +31,9 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
 
     var image: UIImage! = nil
     var imageView: UIImageView! = nil
+    var videoURL: NSURL! = nil
+    var videoPlayer: AVPlayer! = nil
+    var videoPlayerLayer: AVPlayerLayer! = nil
     var recorder: AVAudioRecorder?
     var player: AVAudioPlayer?
     var isRecording: Bool! = false
@@ -80,6 +84,24 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
                 self.view.sendSubviewToBack(self.imageView)
                 self.view.sendSubviewToBack(self.backgroundView!)
             }
+        } else if self.videoURL != nil {
+            videoPlayer = AVPlayer(URL: videoURL)
+            videoPlayer.actionAtItemEnd = AVPlayerActionAtItemEnd.None
+            
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: videoPlayer.currentItem)
+            
+            videoPlayerLayer = AVPlayerLayer(player: videoPlayer)
+            videoPlayerLayer.frame = screenRect
+            view.layer.insertSublayer(videoPlayerLayer, below: backgroundView!.layer)
+            self.view.sendSubviewToBack(backgroundView!)
+            
+            videoPlayer.play()
+        }
+    }
+    
+    func playerItemDidReachEnd(notification: NSNotification) {
+        if let p = notification.object as? AVPlayerItem {
+            p.seekToTime(kCMTimeZero)
         }
     }
     
@@ -87,15 +109,12 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         return true
     }
     
-    func keyPressed(command: UIKeyCommand) {
-        print("hi")
-    }
-    
     func enableDisableSaveTagButtons() {
         let hasRecording = !audioViewContainer.hidden && !isRecording
         let hasNotes = textView.text != nil && textView.text != ""
         
-        let enableButtons = hasNotes || hasRecording || image != nil
+        let enableButtons = hasNotes || hasRecording || image != nil || videoURL != nil
+        
         saveButton.enabled = enableButtons
         tagButton.enabled = enableButtons
     }
@@ -113,7 +132,6 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         
         let soundFileURL = getSoundFile()
 
-//        var error: NSError?
         let session : AVAudioSession = AVAudioSession.sharedInstance()
         
         do {
@@ -218,8 +236,8 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     }
     
     @IBAction func saveButtonPressed(sender: AnyObject) {
-        Moment.createMoment(true, students: nil, categories: nil, notes: MomentSingleton.sharedInstance.notes,
-            imageFile: MomentSingleton.sharedInstance.image, voiceFile: MomentSingleton.sharedInstance.voiceFile)
+        Moment.createMoment(MomentSingleton.sharedInstance.mediaType == 0, students: nil, categories: nil, notes: MomentSingleton.sharedInstance.notes,
+            imageFile: MomentSingleton.sharedInstance.image, videoURL: MomentSingleton.sharedInstance.videoUrl, voiceFile: MomentSingleton.sharedInstance.voiceFile)
         
         self.navigationController?.popViewControllerAnimated(false)
     }

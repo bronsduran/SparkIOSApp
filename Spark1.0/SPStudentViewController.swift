@@ -151,10 +151,11 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         momentsToShow = [Moment]()
         
         for moment in moments {
-            for category in moment.categoriesTagged! {
+            if moment.categoriesTagged == nil && filter == "All" {
+                momentsToShow.append(moment)
+            } else {
                 if moment.categoriesTagged!.indexOf(filter) != nil || filter == "All" {
                     momentsToShow.append(moment)
-                    break
                 }
             }
         }

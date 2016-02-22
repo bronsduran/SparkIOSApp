@@ -22,6 +22,9 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
         self.player?.play()
     }
     
+    var videoPlayer: AVPlayer! = nil
+    var videoPlayerLayer: AVPlayerLayer! = nil
+    
     
     var moment: Moment!
 
@@ -33,13 +36,29 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
         
         view.backgroundColor = UIColor(patternImage: UIImage(named: "applicationBackground")!)
         
-        if let image = moment.image {
-            imageView.image = image
-            imageView.layer.masksToBounds = true
-            imageView.layer.cornerRadius = 10
+        
+        if moment.mediaType! == 0 {
+            if let image = moment.image {
+                imageView.image = image
+                imageView.layer.masksToBounds = true
+                imageView.layer.cornerRadius = 10
+            } else {
+                imageView.hidden = true
+            }
         } else {
-            imageView.hidden = true
+            if let videoURL = moment.videoUrl {
+                videoPlayer = AVPlayer(URL: videoURL)
+                videoPlayer.actionAtItemEnd = AVPlayerActionAtItemEnd.None
+                
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: videoPlayer.currentItem)
+                
+                videoPlayerLayer = AVPlayerLayer(player: videoPlayer)
+            }
         }
+        
+        
+
+        
         
         if let caption = moment.notes {
             captionLabel.text = caption
@@ -58,6 +77,25 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         } else {
             audioView.hidden = true
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        imageView.hidden = true
+        
+        videoPlayerLayer.frame = imageView.frame
+        videoPlayerLayer.cornerRadius = 10
+        videoPlayerLayer.masksToBounds = true
+        
+        videoPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+        view.layer.addSublayer(videoPlayerLayer)
+        
+        videoPlayer.play()
+    }
+    
+    func playerItemDidReachEnd(notification: NSNotification) {
+        if let p = notification.object as? AVPlayerItem {
+            p.seekToTime(kCMTimeZero)
         }
     }
     

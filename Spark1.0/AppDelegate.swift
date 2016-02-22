@@ -221,8 +221,10 @@ extension Array where Element: Equatable {
 class MomentSingleton {
     static let sharedInstance = MomentSingleton()
     var image : UIImage?
+    var videoUrl: NSURL?
     var notes : String?
     var voiceFile : NSURL?
+    var mediaType : Int?
     var students : [Student]?
     var categories : [String]?
     

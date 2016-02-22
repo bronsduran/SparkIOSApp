@@ -95,9 +95,9 @@ class SPTagCategoryViewController: UIViewController, UICollectionViewDelegate, U
             MomentSingleton.sharedInstance.categories = self.selectedCategories
         }
         
-        Moment.createMoment(true, students: MomentSingleton.sharedInstance.students,
+        Moment.createMoment(MomentSingleton.sharedInstance.mediaType == 0, students: MomentSingleton.sharedInstance.students,
             categories: MomentSingleton.sharedInstance.categories, notes: MomentSingleton.sharedInstance.notes,
-            imageFile: MomentSingleton.sharedInstance.image, voiceFile: MomentSingleton.sharedInstance.voiceFile)
+            imageFile: MomentSingleton.sharedInstance.image, videoURL: MomentSingleton.sharedInstance.videoUrl, voiceFile: MomentSingleton.sharedInstance.voiceFile)
         
         self.navigationController?.popToRootViewControllerAnimated(false)
         

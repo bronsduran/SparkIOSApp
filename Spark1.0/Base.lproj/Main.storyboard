@@ -710,12 +710,24 @@
                     </navigationItem>
                     <connections>
                         <outlet property="captureButton" destination="8J6-Vo-9WW" id="nGv-vC-k2J"/>
+                        <outlet property="longPressGestureRecognizer" destination="mb5-xO-A5z" id="bzH-zD-K0z"/>
                         <outlet property="skipButton" destination="vwM-Xu-a1F" id="lvY-li-ucs"/>
+                        <outlet property="tapGestureRecognizer" destination="o8G-JB-ACo" id="Nb8-MX-VxQ"/>
                         <outlet property="toolbar" destination="CaL-N5-0uL" id="fH8-uC-5Fq"/>
                         <segue destination="ZaX-yA-hlv" kind="push" identifier="toMediaViewController" id="iTq-8L-MSd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ww-hU-MYw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="mb5-xO-A5z">
+                    <connections>
+                        <action selector="captureHeldDown:" destination="Oj9-cQ-Faf" id="lRm-pe-X6o"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <tapGestureRecognizer id="o8G-JB-ACo">
+                    <connections>
+                        <action selector="captureTapped:" destination="Oj9-cQ-Faf" id="F01-UQ-ujh"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1154" y="393"/>
         </scene>

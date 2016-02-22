@@ -22,7 +22,7 @@ class MomentTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         colorLabels()
         backgroundColor = UIColor(white: 1.0, alpha: 0.1)
         setAudio()
@@ -50,9 +50,14 @@ class MomentTableViewCell: UITableViewCell {
     }
     
     func withMoment(moment: Moment) {
+        
+        captionLabel.text = nil
+        momentImageView.image = nil
+        audioIndicator.hidden = true
+        noAudioIndicator.hidden = false
+        
         self.moment = moment
         
-        // TODO: add date label text when that exists
         if let date = moment.getDate() {
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "MMM dd, yyyy"
@@ -78,16 +83,45 @@ class MomentTableViewCell: UITableViewCell {
             categoryLabel.text = "No Category Tags"
         }
         
+        var mediaType = 0
+        if let mType = moment.mediaType where mType == 1 {
+            mediaType = 1
+        }
+        
+        var image: UIImage?
         // picture
-        if let image = moment.image {
+        if mediaType == 0 {
+            image = moment.image
+        // video
+        } else {
+            if let videoUrl = moment.videoUrl {
+                let asset = AVAsset(URL: videoUrl)
+                
+                let assetImgGenerate = AVAssetImageGenerator(asset: asset)
+                assetImgGenerate.appliesPreferredTrackTransform = true
+                assetImgGenerate.requestedTimeToleranceAfter = kCMTimeZero
+                assetImgGenerate.requestedTimeToleranceBefore = kCMTimeZero
+                
+                let time = CMTimeMakeWithSeconds(0, 600)
+                do {
+                    let img = try assetImgGenerate.copyCGImageAtTime(time, actualTime: nil)
+                    image = UIImage(CGImage: img)
+                } catch {
+                    let fetchError = error as NSError
+                    print("problem getting thumbnail")
+                    image = nil
+                }
+            }
+        }
+        
+        if let image = image {
             momentImageView.image = image
             momentImageView.contentMode = UIViewContentMode.ScaleAspectFill
-            momentImageView.layer.cornerRadius = 5.0 //momentImageView.frame.height / 2
+            momentImageView.layer.cornerRadius = 5.0
             momentImageView.layer.masksToBounds = true
             momentImageView.layer.opaque = false
         } else {
             imageToCaptionConstraint.constant = -(momentImageView.frame.width)
-            
         }
         
         // notes
@@ -97,13 +131,6 @@ class MomentTableViewCell: UITableViewCell {
             captionLabel.text = "No notes currently exist for this moment."
         }
         
-//        captionLabel.sizeToFit()
-        //resizeLabel(50)
-
-        
-//        frame.size.height = label.frame.size.height;
-//        label.frame = frame;
-//        
         // voice indicator
         audioIndicator.hidden = moment.voiceData == nil
         noAudioIndicator.hidden = !audioIndicator.hidden

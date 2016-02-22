@@ -12,8 +12,9 @@ import Parse
 
 class Moment {
     var objectId: String!
-    var mediaType: Int?     // 0 = video, 1 = image
+    var mediaType: Int?     // 0 = video, 1 = image ......... i think this is wrong?
     var image: UIImage?
+    var videoUrl: NSURL?
     var notes: String?
     var voiceData: NSData?
     var teacher: User!
@@ -34,16 +35,20 @@ class Moment {
         self.studentsTagged = object["studentsTagged"] as? [String]
         self.objectId = object.objectId
         self.untagged = object["untagged"] as? Bool
-//        var momentData: PFFile!
-//        var voice: PFFile!
         var imageData: NSData!
         var voiceData: NSData!
         
         
         do {
             if let momentData = self.parse?["momentData"] as? PFFile {
-                try imageData  = momentData.getData()
-                self.image = UIImage(data: imageData!)
+                if self.mediaType == 0 {
+                    imageData = try momentData.getData()
+                    self.image = UIImage(data: imageData!)
+                } else {
+                    self.videoUrl = NSURL(string: momentData.url!)
+//                    try imageVideoData.writeToURL(<#T##url: NSURL##NSURL#>, options: <#T##NSDataWritingOptions#>)
+//                    self.video =
+                }
             }
             
             if let voice = self.parse?["voiceData"] as? PFFile {
@@ -58,16 +63,12 @@ class Moment {
     }
     
     // typeOfMoment: True if IMAGE, false if VIDEO. For now always put True
-    class func createMoment(typeOfMoment: Bool, students: [Student]?, categories: [String]?, notes: String?, imageFile: UIImage?, voiceFile: NSURL?) {
+    class func createMoment(typeOfMoment: Bool, students: [Student]?, categories: [String]?, notes: String?, imageFile: UIImage?, videoURL: NSURL?, voiceFile: NSURL?) {
         
         let moment = PFObject(className: "Moment")
         
         // Media Type
-        if (typeOfMoment == true) {
-            moment["mediaType"] = 0
-        } else {
-            moment["mediaType"] = 1
-        }
+        moment["mediaType"] = typeOfMoment ? 0 : 1
         
         // Notes
         if let momentNotes = notes {
@@ -89,13 +90,6 @@ class Moment {
             moment["categoriesTagged"] = categories
         }
         
-        // Image Data
-        if let file = imageFile {
-            let imageData = UIImageJPEGRepresentation(file, 0.1)
-            let parseImageFile = PFFile(data: imageData!)
-            moment.setObject(parseImageFile!, forKey: "momentData")
-        }
-        
         // Voice Data
         if let file = voiceFile {
             let voice = NSData(contentsOfURL: file)
@@ -106,6 +100,38 @@ class Moment {
         // Teacher
         moment["teacher"] = User.current().parse
         
+        
+        // Image Data
+        if let file = imageFile {
+            let imageData = UIImageJPEGRepresentation(file, 0.1)
+            let parseImageFile = PFFile(data: imageData!)
+            moment.setObject(parseImageFile!, forKey: "momentData")
+        } else if let url = videoURL {
+            let tempUrl = (UIApplication.sharedApplication().delegate as! AppDelegate).applicationDocumentsDirectory.URLByAppendingPathComponent("tempVideo").URLByAppendingPathExtension("mov")
+            do {
+                try NSFileManager.defaultManager().removeItemAtURL(tempUrl)
+            } catch {}
+            
+            let asset = AVURLAsset(URL: url)
+            if let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetLowQuality) {
+                exportSession.outputURL = tempUrl
+                exportSession.outputFileType = AVFileTypeQuickTimeMovie
+                exportSession.exportAsynchronouslyWithCompletionHandler { () -> Void in
+                    if exportSession.status == AVAssetExportSessionStatus.Completed {
+                        let videoData = NSFileManager.defaultManager().contentsAtPath(tempUrl.path!)
+                        let parseVideoFile = PFFile(name: "blah.mov", data: videoData!)
+                        moment.setObject(parseVideoFile!, forKey: "momentData")
+                        saveMoment(moment, students: students)
+                    }
+                }
+            }
+            return
+        }
+        
+        saveMoment(moment, students: students)
+    }
+    
+    class func saveMoment(moment: PFObject, students: [Student]?) {
         do {
             try moment.save()
         } catch _ {
