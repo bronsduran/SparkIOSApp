@@ -9,13 +9,9 @@
 class MomentTableViewCell: UITableViewCell {
     
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var momentImageView: UIImageView!
-    
-    @IBOutlet weak var audioIndicator: UIImageView!
-    @IBOutlet weak var noAudioIndicator: UIView!
-    
+
     @IBOutlet weak var imageToCaptionConstraint: NSLayoutConstraint!
     
     var moment: Moment!
@@ -25,23 +21,21 @@ class MomentTableViewCell: UITableViewCell {
 
         colorLabels()
         backgroundColor = UIColor(white: 1.0, alpha: 0.1)
-        setAudio()
     }
     
     func colorLabels() {
-        dateLabel.textColor = UIColor(white: 1.0, alpha: 0.4)
-        categoryLabel.textColor = UIColor(white: 1.0, alpha: 0.4)
-        captionLabel.textColor = UIColor.whiteColor()
+        dateLabel.textColor = UIColor.lightGrayColor()
+        captionLabel.textColor = UIColor.darkGrayColor()
     }
     
-    func setAudio() {
-    
-        moment.getFileNamed("voiceData") { (data: NSData?) -> Void in
-            let hasAudio = data != nil
-            self.audioIndicator.hidden = !hasAudio // moment.audio == nil
-            self.noAudioIndicator.hidden = hasAudio // moment.audio != nil
-        }
-    }
+//    func setAudio() {
+//    
+//        moment.getFileNamed("voiceData") { (data: NSData?) -> Void in
+//            let hasAudio = data != nil
+//            self.audioIndicator.hidden = !hasAudio // moment.audio == nil
+//            self.noAudioIndicator.hidden = hasAudio // moment.audio != nil
+//        }
+//    }
     
     func resizeLabel(maxHeight : CGFloat) {
         let rect = captionLabel.attributedText?.boundingRectWithSize(CGSizeMake(100, maxHeight),
@@ -55,8 +49,6 @@ class MomentTableViewCell: UITableViewCell {
         
         captionLabel.text = nil
         momentImageView.image = nil
-        audioIndicator.hidden = true
-        noAudioIndicator.hidden = false
         
         self.moment = moment
         
@@ -69,36 +61,31 @@ class MomentTableViewCell: UITableViewCell {
         }
         
         
-        // categories
-        if moment.categoriesTagged().count > 0 {
-            let numCategories = moment.categoriesTagged().count
-            if numCategories == 0 {
-                categoryLabel.text = "No Category Tags"
-            } else {
-                categoryLabel.text = moment.categoriesTagged()[0]
-                
-                if numCategories > 1 {
-                    categoryLabel.text = categoryLabel.text! + ", ..."
-                }
-            }
-        } else {
-            categoryLabel.text = "No Category Tags"
-        }
+//        // categories
+//        if moment.categoriesTagged().count > 0 {
+//            let numCategories = moment.categoriesTagged().count
+//            if numCategories == 0 {
+//                categoryLabel.text = "No Category Tags"
+//            } else {
+//                categoryLabel.text = moment.categoriesTagged()[0]
+//                
+//                if numCategories > 1 {
+//                    categoryLabel.text = categoryLabel.text! + ", ..."
+//                }
+//            }
+//        } else {
+//            categoryLabel.text = "No Category Tags"
+//        }
         
+
         // notes
         if let notes = moment["notes"] as? String {
-            captionLabel.text = notes
+            self.captionLabel.text = notes
         } else {
-            captionLabel.text = "No notes currently exist for this moment."
+            self.captionLabel.text = "No notes currently exist for this moment."
         }
         
-        // voice indicator
-        moment.getFileNamed("voiceData") { (data: NSData?) -> Void in
-            self.audioIndicator.hidden = data == nil
-        }
-        
-        noAudioIndicator.hidden = !audioIndicator.hidden
-        
+
         self.imageToCaptionConstraint.constant = -(self.momentImageView.frame.width)
         
         // picture / video
@@ -112,6 +99,16 @@ class MomentTableViewCell: UITableViewCell {
                 self.imageToCaptionConstraint.constant = 8
             }
         })
+
+        
+//        // voice indicator
+//        moment.getFileNamed("voiceData") { (data: NSData?) -> Void in
+//            self.audioIndicator.hidden = data == nil
+//        }
+//        
+//        
+//        noAudioIndicator.hidden = !audioIndicator.hidden
+//        
     }
 }
  

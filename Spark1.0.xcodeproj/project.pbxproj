@@ -31,6 +31,7 @@
 		4B2286141C4AE4E800CE4146 /* Spark1_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2286131C4AE4E800CE4146 /* Spark1_0Tests.swift */; };
 		4B2A21BD1C62D47E00F11D71 /* CategoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B2A21BC1C62D47E00F11D71 /* CategoriesTableViewCell.xib */; };
 		4B2A21C01C62D4DE00F11D71 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2A21BF1C62D4DE00F11D71 /* CategoriesTableViewCell.swift */; };
+		4B2C5F101C7A5DB400B097AE /* AKPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2C5F0F1C7A5DB400B097AE /* AKPickerView.swift */; };
 		4B693A391C588693005478D9 /* StudentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B693A381C588693005478D9 /* StudentCollectionViewCell.xib */; };
 		4B693A3B1C58872B005478D9 /* StudentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B693A3A1C58872B005478D9 /* StudentCollectionViewCell.swift */; };
 		4B693A3D1C588FC7005478D9 /* CategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B693A3C1C588FC6005478D9 /* CategoryCollectionViewCell.xib */; };
@@ -112,6 +113,7 @@
 		4B2286151C4AE4E800CE4146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B2A21BC1C62D47E00F11D71 /* CategoriesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoriesTableViewCell.xib; sourceTree = "<group>"; };
 		4B2A21BF1C62D4DE00F11D71 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
+		4B2C5F0F1C7A5DB400B097AE /* AKPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKPickerView.swift; sourceTree = "<group>"; };
 		4B693A381C588693005478D9 /* StudentCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StudentCollectionViewCell.xib; path = ../StudentCollectionViewCell.xib; sourceTree = "<group>"; };
 		4B693A3A1C58872B005478D9 /* StudentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudentCollectionViewCell.swift; path = ../StudentCollectionViewCell.swift; sourceTree = "<group>"; };
 		4B693A3C1C588FC6005478D9 /* CategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CategoryCollectionViewCell.xib; path = ../CategoryCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				C54399171C5A135B0049D903 /* SPSettingsViewController.swift */,
 				C50BFB1B1C5F1D4B00AB490C /* SPManageStudentsViewController.swift */,
 				8664E7AB1C6984BA003FF49A /* SPMomentViewController.swift */,
+				4B2C5F0F1C7A5DB400B097AE /* AKPickerView.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				8664E7B01C698964003FF49A /* MomentDetailTableViewCell.swift in Sources */,
 				4B8B72711C5895DF00E6E73B /* CategoryCollectionViewCell.swift in Sources */,
 				C5C1D7791C50B44400C20DF9 /* LLSimpleCamera.m in Sources */,
+				4B2C5F101C7A5DB400B097AE /* AKPickerView.swift in Sources */,
 				C5C1D7811C52EA9700C20DF9 /* SPTagCategoryViewController.swift in Sources */,
 				C543990F1C5879C60049D903 /* SPAddStudentViewController.swift in Sources */,
 				C50BFB1C1C5F1D4B00AB490C /* SPManageStudentsViewController.swift in Sources */,

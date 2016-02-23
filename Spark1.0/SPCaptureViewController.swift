@@ -17,23 +17,25 @@ class SPCaptureViewController: UIViewController {
     var videoURL : NSURL! = nil
     
     @IBOutlet weak var toolbar: UIToolbar!
-    @IBOutlet weak var skipButton: UIBarButtonItem!
     @IBOutlet weak var captureButton: UIBarButtonItem!
     
     @IBOutlet var longPressGestureRecognizer: UILongPressGestureRecognizer!
     @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet weak var textButton: UIButton!
+    @IBOutlet weak var audioButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
                 
         let screenRect = UIScreen.mainScreen().bounds
-        self.addBackgroundView()
         
         self.camera = LLSimpleCamera(quality: AVCaptureSessionPresetHigh, position: LLCameraPositionRear, videoEnabled: true)
         
         self.camera!.attachToViewController(self, withFrame: CGRectMake(0, 0, screenRect.size.width, screenRect.size.height))
         
         self.view.bringSubviewToFront(self.toolbar)
+        self.view.bringSubviewToFront(self.textButton)
+        self.view.bringSubviewToFront(self.audioButton)
 
         self.navigationController?.navigationBar.hidden = false
         
@@ -52,36 +54,7 @@ class SPCaptureViewController: UIViewController {
         print(captureButton.customView)
     }
     
-//    @IBAction func captureHeldDown(sender: AnyObject) {
-//        
-//        let outputUrl = (UIApplication.sharedApplication().delegate as! AppDelegate).applicationDocumentsDirectory.URLByAppendingPathComponent("recording").URLByAppendingPathComponent("mov")
-//        
-//        if sender.state == UIGestureRecognizerState.Began {
-//            print("start")
-//            
-//            print("before start: " + outputUrl.path!)
-//            self.camera.startRecordingWithOutputUrl(outputUrl)
-//            
-//            
-//            print(NSFileManager.defaultManager().fileExistsAtPath(<#T##path: String##String#>))
-//        } else if sender.state == UIGestureRecognizerState.Ended {
-//            print("stop")
-//            camera.stop()
-//            self.camera.stopRecording {
-//                (camera: LLSimpleCamera!, outputFileUrl: NSURL!, error: NSError!) -> Void in
-//                
-//                print(outputFileUrl)
-//                
-//                if error == nil {
-//                    //                    self.video = video at url
-//                    //                    MomentSingleton.sharedInstance.video = video
-//                    //                    self.performSegueWithIdentifier("toMediaViewController", sender: self)
-//                    print("did it")
-//                }
-//            }
-//        }
-//    }
-    
+
     @IBAction func captureHeldDown(sender: AnyObject) {
         
         videoURL = (UIApplication.sharedApplication().delegate as! AppDelegate).applicationDocumentsDirectory.URLByAppendingPathComponent("recording").URLByAppendingPathExtension("mov")
@@ -120,6 +93,7 @@ class SPCaptureViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         self.camera.start()
         MomentSingleton.sharedInstance.image = nil
+        self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -173,7 +147,7 @@ class SPCaptureViewController: UIViewController {
     @IBAction func skipButtonPressed(sender: AnyObject) {
         self.captureButton.enabled = false
         self.image = nil
-        self.performSegueWithIdentifier("toMediaViewController", sender: self)
+        self.performSegueWithIdentifier("toMediaViewController", sender: sender)
         self.captureButton.enabled = true
     }
     
@@ -181,8 +155,21 @@ class SPCaptureViewController: UIViewController {
         
         if segue.identifier == "toMediaViewController" {
             let mediaViewController = segue.destinationViewController as! SPMediaViewController
+
+            mediaViewController.initWithRecording = false
+            mediaViewController.initWithText = false
             mediaViewController.image = self.image
             mediaViewController.videoURL = self.videoURL
+  
+            if self.image == nil {
+                let button = sender as! UIButton
+                if button.tag == 0 {
+                    mediaViewController.initWithRecording = true
+                } else if button.tag == 1 {
+                    mediaViewController.initWithText = true
+                }
+            }
+            
         }
         
     }

@@ -33,16 +33,16 @@ class StudentCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         
         // background
-        backgroundColor = UIColor(white: 1.0, alpha: 0.1)
+        backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         let selectedColor = UIImage(color: UIColor.blackColor().colorWithAlphaComponent(0.3))
         self.selectedBackgroundView = UIImageView(image: selectedColor)
         
         // name label
-        nameLabel.textColor = UIColor.whiteColor()
+        nameLabel.textColor = UIColor.blackColor()
         
         // count view
-        countLabel.textColor = UIColor.whiteColor()
-        countView.backgroundColor = UIColor(white: 1.0, alpha: 0.1)
+        countView.backgroundColor = UIColor(red: 100.0/255, green: 168.0/255, blue: 205.0/255, alpha: 1.0)
+        
         countView.layer.cornerRadius = countView.frame.height / 2.0
     }
     
@@ -60,7 +60,12 @@ class StudentCollectionViewCell: UICollectionViewCell {
                 self.pictureImageView.layer.masksToBounds = true
                 self.pictureImageView.layer.opaque = false
             } else {
-                self.pictureImageView.image = UIImage(named: "nameIcon")
+                self.pictureImageView.image = UIImage(named: "addStudentCameraIcon")
+                self.pictureImageView.contentMode = UIViewContentMode.ScaleAspectFill
+                self.pictureImageView.layer.cornerRadius = self.pictureImageView.frame.height / 2
+                self.pictureImageView.layer.masksToBounds = true
+                self.pictureImageView.layer.opaque = false
+                self.pictureImageView.backgroundColor = UIColor(red:224/255.0, green:224/255.0, blue:224/255.0,  alpha:1.0)
             }
 
         }

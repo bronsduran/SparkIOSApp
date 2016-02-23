@@ -48,11 +48,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if (arch(i386) || arch(x86_64)) && os(iOS)
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isSimulator")
         #endif
-
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
         
         initSegmentedControlAppearance()
         initNavBarAppearance()
         initToolBarAppearance()
+        initCollectionViewAppearance()
         
         return true
     }
@@ -73,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().translucent = true
         
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-        UINavigationBar.appearance().translucent = true
+        UINavigationBar.appearance().backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
     }
     
@@ -82,10 +83,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIToolbar.appearance().tintColor = UIColor.whiteColor()
 //        UIToolbar.appearance().translucent = true
-        UIToolbar.appearance().backgroundColor = UIColor(red:197/255.0, green:207/255.0, blue:227/255.0,  alpha:0.65);
+        UIToolbar.appearance().backgroundColor = UIColor(white: 1.0, alpha: 0.1)
 
     }
 
+    func initCollectionViewAppearance() {
+        UICollectionView.appearance().backgroundColor = UIColor(red:240/255.0, green:240/255.0, blue:240/255.0,  alpha:1);
+    }
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -187,6 +191,14 @@ extension UIViewController {
         return backgroundView
     }
     
+    func addStatusBarStyle()
+    {
+        let view: UIView = UIView.init(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 20))
+        view.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0) //The colour you want to set
+        self.view.addSubview(view)
+        view.sendSubviewToBack(view)
+       
+    }
     func presentAlertWithTitle(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil))

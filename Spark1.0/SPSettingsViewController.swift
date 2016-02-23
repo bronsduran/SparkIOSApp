@@ -25,9 +25,9 @@ class SPSettingsViewController : UIViewController, UITableViewDelegate, UITableV
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
-        self.addBackgroundView()
-        
+
+        addStatusBarStyle()
+
         self.tableView.backgroundColor = UIColor.clearColor()
         
         self.tableView.tableFooterView = UIView()
@@ -51,7 +51,7 @@ class SPSettingsViewController : UIViewController, UITableViewDelegate, UITableV
                 cell.textField.attributedPlaceholder = stringForPlaceholder("First Last")
                 cell.labelView.text = "Name"
             case 1:
-                cell.labelImage.image = UIImage(named: "Tag_Circle")
+                cell.labelImage.image = UIImage(named: "phoneIcon")
                 cell.textField.attributedPlaceholder = stringForPlaceholder("123 456 7890")
                 cell.labelView.text = "Email"
             case 2:
@@ -68,7 +68,7 @@ class SPSettingsViewController : UIViewController, UITableViewDelegate, UITableV
             var cell = self.tableView.dequeueReusableCellWithIdentifier("ButtonTableViewCell") as! ButtonTableViewCell
             switch indexPath.row {
             case 3:
-                cell.labelImage.image = UIImage(named: "addStudent")
+                cell.labelImage.image = UIImage(named: "addStudentDark")
                 cell.labelView.text = "Manage Students"
                 
                 cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "manageStudentsButtonPressed"))

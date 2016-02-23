@@ -15,15 +15,6 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var countView: UIView!
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    // required
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        backgroundColor = UIColor.greenColor()
-    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -32,9 +23,6 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         backgroundColor = UIColor(white: 1.0, alpha: 0.1)
         let selectedColor = UIImage(color: UIColor.blackColor().colorWithAlphaComponent(0.3))
         self.selectedBackgroundView = UIImageView(image: selectedColor)
-        
-        // name label
-        categoryLabel.textColor = UIColor.whiteColor()
         
         // count view
         countLabel.textColor = UIColor.whiteColor()

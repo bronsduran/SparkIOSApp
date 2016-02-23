@@ -21,8 +21,8 @@ class TextInputTableViewCell : UITableViewCell {
         backgroundColor = UIColor(white: 1.0, alpha: 0.1)
         
         // name label
-        labelView.textColor = UIColor.whiteColor()
-        textField.textColor = UIColor.whiteColor()
+        labelView.textColor = UIColor.darkGrayColor()
+        textField.textColor = UIColor.lightGrayColor()
         textField.borderStyle = UITextBorderStyle.None
     }
 }

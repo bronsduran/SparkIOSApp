@@ -37,13 +37,13 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     var recorder: AVAudioRecorder?
     var player: AVAudioPlayer?
     var isRecording: Bool! = false
-    var backgroundView: UIImageView?
-    
+    var initWithRecording = false
+    var initWithText = false
+
     @IBOutlet weak var audioViewContainer: UIView!
     @IBOutlet weak var audioCloseButton: UIButton!
     @IBOutlet weak var audioImageView: UIImageView!
     @IBOutlet weak var audioPlayButton: UIButton!
-    @IBOutlet weak var audioRecordButton: UIBarButtonItem!
     @IBOutlet weak var audioRecordingLabel: UILabel!
     
     @IBOutlet weak var textViewContainer: UIView!
@@ -53,15 +53,18 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var tagButton: UIBarButtonItem!
     
+    @IBOutlet weak var audioButton: UIButton!
+    @IBOutlet weak var textButton: UIButton!
     
     @IBOutlet weak var textViewDistanceToBottomOfAudioView: NSLayoutConstraint!
     
     override func viewDidLoad() {
         textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
         
-        self.backgroundView = self.addBackgroundView()
         setupAudioSession()
         enableDisableSaveTagButtons()
+        
+        addStatusBarStyle()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
     }
@@ -82,7 +85,6 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
                 self.imageView.frame = screenRect
                 self.view.addSubview(self.imageView)
                 self.view.sendSubviewToBack(self.imageView)
-                self.view.sendSubviewToBack(self.backgroundView!)
             }
         } else if self.videoURL != nil {
             videoPlayer = AVPlayer(URL: videoURL)
@@ -92,8 +94,15 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
             
             videoPlayerLayer = AVPlayerLayer(player: videoPlayer)
             videoPlayerLayer.frame = screenRect
-            view.layer.insertSublayer(videoPlayerLayer, below: backgroundView!.layer)
-            self.view.sendSubviewToBack(backgroundView!)
+            
+            
+            view.layer.insertSublayer(videoPlayerLayer, above: view.layer)
+////            self.view.sendSubviewToBack(backgroundView!)
+////            
+//            view.layer.addSublayer(videoPlayerLayer)
+//    
+//            self.view.sendSubviewToBack(videoPlayerLayer)
+//            
             
             videoPlayer.play()
         }
@@ -107,14 +116,22 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         }
     }
     
-    func playerItemDidReachEnd(notification: NSNotification) {
-        if let p = notification.object as? AVPlayerItem {
-            p.seekToTime(kCMTimeZero)
+    override func viewDidAppear(animated: Bool) {
+        if initWithRecording {
+            recordButtonPressed(self)
+        } else if initWithText {
+            textButtonPressed(self)
         }
     }
     
     override func canBecomeFirstResponder() -> Bool {
         return true
+    }
+    
+    func playerItemDidReachEnd(notification: NSNotification) {
+        if let p = notification.object as? AVPlayerItem {
+            p.seekToTime(kCMTimeZero)
+        }
     }
     
     func enableDisableSaveTagButtons() {
@@ -176,6 +193,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     }
     
     func showAudioContainer() {
+        self.audioButton.setImage(UIImage(named: "recordStopButton"), forState: UIControlState.Normal)
         textViewDistanceToBottomOfAudioView.constant = 8
         UIView.animateWithDuration(0.3) {
             self.view.layoutIfNeeded()
@@ -184,8 +202,8 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     }
     
     func hideAudioContainer() {
+        self.audioButton.setImage(UIImage(named: "microphoneButton"), forState: UIControlState.Normal)
         self.audioViewContainer.hidden = true
-        
         textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
         UIView.animateWithDuration(0.3) {
             self.view.layoutIfNeeded()
@@ -193,11 +211,13 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     }
     
     func showTextContainer() {
+        self.textButton.setImage(UIImage(named: "textButtonSelected"), forState: UIControlState.Normal)
         self.textViewContainer.hidden = false
         self.textView.becomeFirstResponder()
     }
     
     func hideTextContainer() {
+        self.textButton.setImage(UIImage(named: "textButton"), forState: UIControlState.Normal)
         self.textView.text = ""
         self.textView.endEditing(true)
         self.textViewContainer.hidden = true
@@ -219,7 +239,6 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     @IBAction func recordButtonPressed(sender: AnyObject) {
         
         if self.isRecording == false {
-            self.audioRecordButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.redColor()], forState: UIControlState.Normal)
             showAudioContainer()
             self.audioPlayButton.hidden = true
             self.audioRecordingLabel.hidden = false
@@ -227,7 +246,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
             self.recorder?.record()
             
         } else {
-            self.audioRecordButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
+            self.audioButton.setImage(UIImage(named: "microphoneButtonSelected"), forState: UIControlState.Normal)
             self.audioPlayButton.hidden = false
             self.audioRecordingLabel.hidden = true
             self.audioImageView.hidden = false

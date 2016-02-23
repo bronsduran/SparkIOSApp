@@ -25,12 +25,8 @@ class SPTagCategoryViewController: UIViewController, UICollectionViewDelegate, U
         self.collectionView.allowsMultipleSelection = true
         
         // set view's background image
-        self.addBackgroundView()
-        
-        
-        // make collection view transparent
-        collectionView.backgroundColor = UIColor.clearColor()
-        
+        addStatusBarStyle()
+            
     }
     
     override func viewWillAppear(animated: Bool) {

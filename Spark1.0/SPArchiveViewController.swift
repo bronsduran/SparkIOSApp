@@ -30,17 +30,14 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     // view did load
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        addStatusBarStyle()
+
         let cellNib: UINib = UINib(nibName: "StudentCollectionViewCell", bundle: nil)
         
         self.archiveCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "StudentCollectionViewCell")
         
-        self.addBackgroundView()
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refresh", name: "studentRefresh", object: nil)
         
-        // make collection view transparent
-        archiveCollectionView.backgroundColor = UIColor.clearColor()
    }
     
     override func viewWillLayoutSubviews() {
@@ -48,12 +45,13 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         
         // collection view
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: (archiveCollectionView.frame.width - 4.0)/3.0, height: 148.0)
-        layout.minimumInteritemSpacing = 2
-        layout.minimumLineSpacing = 2
+        layout.itemSize = CGSize(width: (archiveCollectionView.frame.width - 6.0)/3.0, height: 148.0)
+        layout.minimumInteritemSpacing = 3
+        layout.minimumLineSpacing = 3
         
         archiveCollectionView.collectionViewLayout = layout
     }
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)

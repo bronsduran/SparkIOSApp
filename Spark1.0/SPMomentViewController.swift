@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class SPMomentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AVAudioPlayerDelegate {
     
     
@@ -43,7 +44,6 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
         } else {
             captionLabel.text = "No notes were taken with this moment."
         }
-        captionLabel.textColor = UIColor.whiteColor()
         
         
         // image
@@ -85,6 +85,8 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
                 self.audioView.hidden = true
             }
         })
+
+        addStatusBarStyle()
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
