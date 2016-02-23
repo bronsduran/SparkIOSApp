@@ -46,8 +46,6 @@ class Moment {
                     self.image = UIImage(data: imageData!)
                 } else {
                     self.videoUrl = NSURL(string: momentData.url!)
-//                    try imageVideoData.writeToURL(<#T##url: NSURL##NSURL#>, options: <#T##NSDataWritingOptions#>)
-//                    self.video =
                 }
             }
             
