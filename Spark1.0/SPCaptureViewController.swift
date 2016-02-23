@@ -161,7 +161,7 @@ class SPCaptureViewController: UIViewController {
             mediaViewController.image = self.image
             mediaViewController.videoURL = self.videoURL
   
-            if self.image == nil {
+            if self.image == nil &&  self.videoURL == nil {
                 let button = sender as! UIButton
                 if button.tag == 0 {
                     mediaViewController.initWithRecording = true

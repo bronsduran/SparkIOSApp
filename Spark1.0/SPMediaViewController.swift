@@ -39,7 +39,9 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     var isRecording: Bool! = false
     var initWithRecording = false
     var initWithText = false
+    var backgroundView: UIImageView?
 
+    
     @IBOutlet weak var audioViewContainer: UIView!
     @IBOutlet weak var audioCloseButton: UIButton!
     @IBOutlet weak var audioImageView: UIImageView!
@@ -63,7 +65,8 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         
         setupAudioSession()
         enableDisableSaveTagButtons()
-        
+        self.backgroundView = self.addBackgroundView()
+
         addStatusBarStyle()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
@@ -76,7 +79,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         MomentSingleton.sharedInstance.notes = nil
         MomentSingleton.sharedInstance.voiceFile = nil
         
-        if self.image != nil {
+        if self.videoURL == nil {
             
             if self.imageView != nil {
                 self.imageView.image = self.image
@@ -86,7 +89,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
                 self.view.addSubview(self.imageView)
                 self.view.sendSubviewToBack(self.imageView)
             }
-        } else if self.videoURL != nil {
+        } else {
             videoPlayer = AVPlayer(URL: videoURL)
             videoPlayer.actionAtItemEnd = AVPlayerActionAtItemEnd.None
             
@@ -95,14 +98,8 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
             videoPlayerLayer = AVPlayerLayer(player: videoPlayer)
             videoPlayerLayer.frame = screenRect
             
-            
-            view.layer.insertSublayer(videoPlayerLayer, above: view.layer)
-////            self.view.sendSubviewToBack(backgroundView!)
-////            
-//            view.layer.addSublayer(videoPlayerLayer)
-//    
-//            self.view.sendSubviewToBack(videoPlayerLayer)
-//            
+            view.layer.insertSublayer(videoPlayerLayer, below: backgroundView!.layer)
+            self.view.sendSubviewToBack(backgroundView!)
             
             videoPlayer.play()
         }
