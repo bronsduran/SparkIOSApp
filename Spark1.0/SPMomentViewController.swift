@@ -50,7 +50,6 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
         } else {
             captionLabel.text = "No notes were taken with this moment."
         }
-        captionLabel.textColor = UIColor.whiteColor()
         
         moment.getFileNamed("voiceData", callback: { (data: NSData?) -> Void in
             if data != nil {

@@ -371,18 +371,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ABn-1C-PsL">
-                                <rect key="frame" x="-8" y="436" width="336" height="132"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="132" id="t5d-Ko-u0O"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="dataSource" destination="lkN-nd-Ys1" id="S4m-NA-tjH"/>
-                                    <outlet property="delegate" destination="lkN-nd-Ys1" id="reR-j8-kgi"/>
-                                </connections>
-                            </tableView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7zb-4X-mbw">
                                 <rect key="frame" x="59" y="72" width="203" height="203"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -428,6 +416,18 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ABn-1C-PsL">
+                                <rect key="frame" x="-8" y="436" width="336" height="132"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="132" id="t5d-Ko-u0O"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="lkN-nd-Ys1" id="S4m-NA-tjH"/>
+                                    <outlet property="delegate" destination="lkN-nd-Ys1" id="reR-j8-kgi"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
