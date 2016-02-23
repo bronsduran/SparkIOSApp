@@ -894,7 +894,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="k7I-5M-pqt"/>
-                                    <barButtonItem image="tagStudent" id="Q9k-Fl-9LT">
+                                    <barButtonItem image="tagStudentIcon" id="Q9k-Fl-9LT">
                                         <connections>
                                             <action selector="tagButtonPressed:" destination="ZaX-yA-hlv" id="gZk-Rm-5wF"/>
                                             <segue destination="YEJ-Fe-AzA" kind="push" id="xwe-gq-VOM"/>
@@ -1166,7 +1166,7 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="UEh-8S-kjA"/>
-                                    <barButtonItem image="rightIcon" id="gCV-Q4-XZP">
+                                    <barButtonItem image="tagCategoryIcon" id="gCV-Q4-XZP">
                                         <connections>
                                             <segue destination="J7N-vn-7W1" kind="push" id="XYr-z4-oUx"/>
                                         </connections>
@@ -1327,10 +1327,10 @@
         <image name="nameIcon" width="40" height="40"/>
         <image name="passwordIcon" width="36" height="42"/>
         <image name="playButton" width="59" height="59"/>
-        <image name="rightIcon" width="15" height="30"/>
-        <image name="saveIcon" width="50" height="54"/>
+        <image name="saveIcon" width="30" height="55"/>
         <image name="settingsIcon" width="44" height="36"/>
-        <image name="tagStudent" width="66" height="58"/>
+        <image name="tagCategoryIcon" width="70" height="59"/>
+        <image name="tagStudentIcon" width="64" height="59"/>
         <image name="textButton" width="55" height="55"/>
         <image name="waveForm" width="530" height="53"/>
     </resources>

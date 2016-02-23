@@ -83,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIToolbar.appearance().tintColor = UIColor.whiteColor()
 //        UIToolbar.appearance().translucent = true
-        UIToolbar.appearance().backgroundColor = UIColor(red:197/255.0, green:207/255.0, blue:227/255.0,  alpha:0.65);
+        UIToolbar.appearance().backgroundColor = UIColor(white: 1.0, alpha: 0.1)
 
     }
 
