@@ -61,8 +61,6 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         enableDisableSaveTagButtons()
         
         addStatusBarStyle()
-        self.view.backgroundColor = UIColor(red:240/255.0, green:240/255.0, blue:240/255.0,  alpha:1.0)
-        
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
     }
@@ -162,6 +160,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     }
     
     func showAudioContainer() {
+        self.audioButton.setImage(UIImage(named: "microphoneButtonSelected"), forState: UIControlState.Normal)
         textViewDistanceToBottomOfAudioView.constant = 8
         UIView.animateWithDuration(0.3) {
             self.view.layoutIfNeeded()
@@ -170,8 +169,8 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     }
     
     func hideAudioContainer() {
+        self.audioButton.setImage(UIImage(named: "microphoneButton"), forState: UIControlState.Normal)
         self.audioViewContainer.hidden = true
-        
         textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
         UIView.animateWithDuration(0.3) {
             self.view.layoutIfNeeded()
@@ -179,11 +178,13 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     }
     
     func showTextContainer() {
+        self.textButton.setImage(UIImage(named: "textButtonSelected"), forState: UIControlState.Normal)
         self.textViewContainer.hidden = false
         self.textView.becomeFirstResponder()
     }
     
     func hideTextContainer() {
+        self.textButton.setImage(UIImage(named: "textButton"), forState: UIControlState.Normal)
         self.textView.text = ""
         self.textView.endEditing(true)
         self.textViewContainer.hidden = true
@@ -205,7 +206,6 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     @IBAction func recordButtonPressed(sender: AnyObject) {
         
         if self.isRecording == false {
-//            self.audioButton.setBackgroundImage(<#T##image: UIImage?##UIImage?#>, forState: <#T##UIControlState#>)
             showAudioContainer()
             self.audioPlayButton.hidden = true
             self.audioRecordingLabel.hidden = false
@@ -213,7 +213,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
             self.recorder?.record()
             
         } else {
-            //            self.audioButton.setBackgroundImage(<#T##image: UIImage?##UIImage?#>, forState: <#T##UIControlState#>)
+            self.audioButton.setImage(UIImage(named: "microphoneButtonSelected"), forState: UIControlState.Normal)
             self.audioPlayButton.hidden = false
             self.audioRecordingLabel.hidden = true
             self.audioImageView.hidden = false

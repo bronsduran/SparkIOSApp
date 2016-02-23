@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initSegmentedControlAppearance()
         initNavBarAppearance()
         initToolBarAppearance()
-        
+        initCollectionViewAppearance()
         
         return true
     }
@@ -87,6 +87,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     }
 
+    func initCollectionViewAppearance() {
+        UICollectionView.appearance().backgroundColor = UIColor(red:240/255.0, green:240/255.0, blue:240/255.0,  alpha:1);
+    }
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -20,7 +20,6 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
     // view did load
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         addStatusBarStyle()
         
         let cellNib: UINib = UINib(nibName: "StudentCollectionViewCell", bundle: nil)
@@ -29,24 +28,23 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
         self.collectionView.allowsMultipleSelection = true
         
         // make collection view transparent
-        collectionView.backgroundColor = UIColor.clearColor()
         self.title = "Tag Student"
         
     }
     
     override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
-        layout.itemSize = CGSize(width: (collectionView.frame.width - 4.0)/3.0, height: 148.0)
-        layout.minimumInteritemSpacing = 2
-        layout.minimumLineSpacing = 2
+        layout.itemSize = CGSize(width: (collectionView.frame.width - 6.0)/3.0, height: 148.0)
+        layout.minimumInteritemSpacing = 3
+        layout.minimumLineSpacing = 3
         collectionView.collectionViewLayout = layout
     }
     
     override func viewWillAppear(animated: Bool) {
-        
+        super.viewWillAppear(animated)
+
         User.currentUser()!.students { (retrievedStudents) -> Void in
-            self.navigationController?.navigationBar.backgroundColor = UIColor(red:255/255.0, green:71/255.0, blue:108/255.0,  alpha:1.0);
             self.students = retrievedStudents
             self.refresh()
         }
