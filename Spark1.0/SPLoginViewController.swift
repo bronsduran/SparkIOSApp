@@ -28,14 +28,9 @@ class SPLoginViewController: UIViewController {
         tapper.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapper)
         
-        loginButton.layer.borderWidth = 1
-        loginButton.layer.borderColor = UIColor.lightGrayColor().CGColor
+        loginButton.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
         addBackgroundView()
         activityIndicator.hidden = true
-        
-        emailField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName:UIColor.whiteColor()])
-        
-        passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName:UIColor.whiteColor()])
 
     }
     
@@ -52,7 +47,10 @@ class SPLoginViewController: UIViewController {
         self.view.endEditing(true)
         return true
     }
-
+    
+    
+    
+    
     @IBAction func loginPressed(sender: AnyObject) {
         
         activityIndicator.hidden = false

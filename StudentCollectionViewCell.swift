@@ -38,11 +38,11 @@ class StudentCollectionViewCell: UICollectionViewCell {
         self.selectedBackgroundView = UIImageView(image: selectedColor)
         
         // name label
-        nameLabel.textColor = UIColor.darkGrayColor()
+        nameLabel.textColor = UIColor.blackColor()
         
         // count view
         countLabel.textColor = UIColor.darkGrayColor()
-        countView.backgroundColor = UIColor.lightGrayColor()
+        countView.backgroundColor = UIColor(red:224/255.0, green:224/255.0, blue:224/255.0,  alpha:1.0)
         countView.layer.cornerRadius = countView.frame.height / 2.0
     }
     
@@ -65,7 +65,7 @@ class StudentCollectionViewCell: UICollectionViewCell {
                 self.pictureImageView.layer.cornerRadius = self.pictureImageView.frame.height / 2
                 self.pictureImageView.layer.masksToBounds = true
                 self.pictureImageView.layer.opaque = false
-                self.pictureImageView.backgroundColor = UIColor.lightGrayColor()
+                self.pictureImageView.backgroundColor = UIColor(red:224/255.0, green:224/255.0, blue:224/255.0,  alpha:1.0)
             }
 
         }

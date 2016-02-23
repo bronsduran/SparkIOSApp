@@ -76,10 +76,9 @@ class SPCreateAccountViewController: UIViewController {
         tapper.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapper)
         
-        signUpButton.layer.borderWidth = 1
-        signUpButton.layer.borderColor = UIColor.lightGrayColor().CGColor
+        signUpButton.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
         activityIndicator.hidden = true
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "Login_Background")!)
+       
         self.addBackgroundView()
         
         

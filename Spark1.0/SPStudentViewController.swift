@@ -127,7 +127,11 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
+        
+        self.pickerView.reloadData()
+        self.applyFilter(self.pickerView.selectedItem.description)
+        
+        
         if categoriesToShow.count == 7 {
             categoriesToShow.insert("All", atIndex: 3)
         }

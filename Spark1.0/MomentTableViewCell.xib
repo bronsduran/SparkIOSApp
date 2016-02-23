@@ -31,8 +31,8 @@
                             <constraint firstAttribute="height" constant="6" id="r8s-JN-D0G"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8Z-ts-Al8">
-                        <rect key="frame" x="287.5" y="0.0" width="26.5" height="10"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8Z-ts-Al8">
+                        <rect key="frame" x="287" y="2" width="26.5" height="8"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -55,11 +55,11 @@
                 <constraints>
                     <constraint firstItem="lwQ-Zp-kCc" firstAttribute="leading" secondItem="jLM-hE-Wwb" secondAttribute="trailing" constant="2" id="3aS-ei-nUg"/>
                     <constraint firstItem="y7p-g9-Yht" firstAttribute="top" secondItem="jLM-hE-Wwb" secondAttribute="top" constant="1" id="A6d-jD-tMV"/>
-                    <constraint firstItem="jLM-hE-Wwb" firstAttribute="top" secondItem="u8Z-ts-Al8" secondAttribute="bottom" constant="1" id="JSd-Vf-iG5"/>
+                    <constraint firstItem="jLM-hE-Wwb" firstAttribute="top" secondItem="u8Z-ts-Al8" secondAttribute="bottom" constant="2" id="JSd-Vf-iG5"/>
                     <constraint firstItem="2Sx-Aw-6Mp" firstAttribute="centerX" secondItem="lwQ-Zp-kCc" secondAttribute="centerX" id="O8D-aM-tIP"/>
                     <constraint firstAttribute="bottomMargin" secondItem="y7p-g9-Yht" secondAttribute="bottom" constant="4.5" id="Ooy-wH-vnI"/>
                     <constraint firstItem="jLM-hE-Wwb" firstAttribute="leading" secondItem="y7p-g9-Yht" secondAttribute="trailing" constant="8" id="UHg-9o-nyI"/>
-                    <constraint firstItem="u8Z-ts-Al8" firstAttribute="top" secondItem="gPp-0l-OBI" secondAttribute="topMargin" constant="-8" id="V73-lx-11s"/>
+                    <constraint firstItem="u8Z-ts-Al8" firstAttribute="top" secondItem="gPp-0l-OBI" secondAttribute="topMargin" constant="-6" id="V73-lx-11s"/>
                     <constraint firstItem="y7p-g9-Yht" firstAttribute="leading" secondItem="gPp-0l-OBI" secondAttribute="leadingMargin" id="bBk-nQ-rtd"/>
                     <constraint firstItem="2Sx-Aw-6Mp" firstAttribute="centerY" secondItem="lwQ-Zp-kCc" secondAttribute="centerY" constant="-1" id="fO4-vw-kJZ"/>
                     <constraint firstItem="2Sx-Aw-6Mp" firstAttribute="width" secondItem="lwQ-Zp-kCc" secondAttribute="height" multiplier="1:3" id="pFG-eV-RPQ"/>
@@ -67,6 +67,12 @@
                     <constraint firstAttribute="trailingMargin" secondItem="u8Z-ts-Al8" secondAttribute="trailing" constant="6" id="zBv-kk-3xg"/>
                     <constraint firstItem="lwQ-Zp-kCc" firstAttribute="centerY" secondItem="gPp-0l-OBI" secondAttribute="centerY" id="zFf-Or-Eb3"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="A6d-jD-tMV"/>
+                        <exclude reference="3aS-ei-nUg"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="audioIndicator" destination="lwQ-Zp-kCc" id="OPW-DQ-Kb7"/>

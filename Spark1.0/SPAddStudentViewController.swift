@@ -53,20 +53,20 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
         
         switch indexPath.row {
         case 0:
-            cell.labelImage.image = UIImage(named: "Dark_Grey_Circle")
+            cell.labelImage.image = UIImage(named: "nameIcon")
             cell.textField.attributedPlaceholder = stringForPlaceholder("First Name")
             cell.labelView.text = "First Name"
         case 1:
-            cell.labelImage.image = UIImage(named: "Dark_Grey_Circle")
+            cell.labelImage.image = UIImage(named: "nameIcon")
             cell.textField.attributedPlaceholder = stringForPlaceholder("Last Name")
             cell.labelView.text = "Last Name"
 
         case 2:
-            cell.labelImage.image = UIImage(named: "Dark_Grey_Circle")
+            cell.labelImage.image = UIImage(named: "phoneIcon")
             cell.textField.attributedPlaceholder = stringForPlaceholder("123 456 7890")
             cell.labelView.text = "Parent Phone"
         case 3:
-            cell.labelImage.image = UIImage(named: "Dark_Grey_Circle")
+            cell.labelImage.image = UIImage(named: "emailIcon")
             cell.textField.attributedPlaceholder = stringForPlaceholder("example@example.com")
             cell.labelView.text = "Parent Email"
         default:

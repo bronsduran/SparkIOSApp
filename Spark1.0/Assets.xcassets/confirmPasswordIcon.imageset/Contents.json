@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Sign_In_Button_Outline.png",
+      "filename" : "confirmPasswordIcon.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "confirmPasswordIcon@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "confirmPasswordIcon@3x.png",
       "scale" : "3x"
     }
   ],

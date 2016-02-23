@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().translucent = true
         
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-        UINavigationBar.appearance().backgroundColor = UIColor(red:255/255.0, green:71/255.0, blue:108/255.0,  alpha:1.0);
+        UINavigationBar.appearance().backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
     }
     
@@ -191,7 +191,7 @@ extension UIViewController {
     func addStatusBarStyle()
     {
         let view: UIView = UIView.init(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 20))
-        view.backgroundColor = UIColor(red:255/255.0, green:71/255.0, blue:108/255.0,  alpha:1.0) //The colour you want to set
+        view.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0) //The colour you want to set
         self.view.addSubview(view)
         view.sendSubviewToBack(view)
        
