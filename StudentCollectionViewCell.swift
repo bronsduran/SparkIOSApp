@@ -46,26 +46,28 @@ class StudentCollectionViewCell: UICollectionViewCell {
         countView.layer.cornerRadius = countView.frame.height / 2.0
     }
     
-    func withStudentData(student: Student) {
+    func withStudentData(student: Student!) {
         self.student = student
-        nameLabel.text = student.firstName + " " + String(student.lastName[student.lastName.startIndex]) + "."
-        countLabel.text = String(student.numberOfMoments)
-        // TODO: this needs to not always be 0!!
-        //      print("\(student.firstName): \(student.numberOfMoments) moments")
         
-        if let image = student.studentImage {
-            pictureImageView.image = image
-            pictureImageView.contentMode = UIViewContentMode.ScaleAspectFill
-            pictureImageView.layer.cornerRadius = pictureImageView.frame.height / 2
-            pictureImageView.layer.masksToBounds = true
-            pictureImageView.layer.opaque = false
-        } else {
-            pictureImageView.image = UIImage(named: "nameIcon")
+        nameLabel.text = student.displayName()
+        countLabel.text = String(student.numberOfMoments())
+        
+        student.image { (image: UIImage?) -> Void in
+            if image != nil {
+                self.pictureImageView.image = image
+                self.pictureImageView.contentMode = UIViewContentMode.ScaleAspectFill
+                self.pictureImageView.layer.cornerRadius = self.pictureImageView.frame.height / 2
+                self.pictureImageView.layer.masksToBounds = true
+                self.pictureImageView.layer.opaque = false
+            } else {
+                self.pictureImageView.image = UIImage(named: "nameIcon")
+            }
+
         }
     }
     
     func withUntaggedData() {
-        numUntaggedMoments = User.current().getNumberUntaggedMoments()
+        numUntaggedMoments = User.currentUser()!.getNumberUntaggedMoments()
         student = nil
         
         nameLabel.text = "Untagged"

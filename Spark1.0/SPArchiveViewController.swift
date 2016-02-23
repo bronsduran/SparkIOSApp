@@ -37,6 +37,8 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         
         self.addBackgroundView()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refresh", name: "studentRefresh", object: nil)
+        
         // make collection view transparent
         archiveCollectionView.backgroundColor = UIColor.clearColor()
    }
@@ -57,7 +59,7 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         super.viewWillAppear(animated)
             
         // load in all students
-        User.current().fetchStudents() { (retrievedStudents) -> Void in
+        User.currentUser()!.students() { (retrievedStudents) -> Void in
             self.students = retrievedStudents
             self.refresh()
         }
@@ -67,10 +69,17 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         dispatch_async(dispatch_get_main_queue(), { () -> Void in
             
             // sort by name first, so that ties will be broken correctly when you sort by moments
-            self.students = self.students.sort({ $0.firstName < $1.firstName })
+            self.students.sortInPlace({ (student1: Student, student2: Student) -> Bool in
+                return (student1["firstName"] as! String) < (student2["firstName"] as! String)
+            })
+            
             
             if (self.sortByControl.selectedSegmentIndex == 1) {
-                self.students = self.students.sort({ $0.numberOfMoments < $1.numberOfMoments })
+                
+                self.students.sortInPlace({ (student1: Student, student2: Student) -> Bool in
+                    return (student1["numberOfMoments"] as! Int) < (student2["numberOfMoments"] as! Int)
+                })
+
             }
             
             self.archiveCollectionView.reloadData()
@@ -83,11 +92,10 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         return 1
     }
 
-    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         var numItems = 0
         
-        if User.current().getNumberUntaggedMoments() > 0 {
+        if User.currentUser()!.getNumberUntaggedMoments() > 0 {
             numItems++
         }
         
@@ -102,7 +110,7 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StudentCollectionViewCell", forIndexPath: indexPath) as! StudentCollectionViewCell
         
-        let offset = User.current().getNumberUntaggedMoments() == 0 ? 0 : 1
+        let offset = User.currentUser()!.getNumberUntaggedMoments() == 0 ? 0 : 1
         if offset == 1 && indexPath.row == 0 {
             cell.withUntaggedData()
         } else {

@@ -165,7 +165,9 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     
     
     @IBAction func closeButtonPressed(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        User.currentUser()?.refreshStudents({ (success) -> Void in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
     }
     
     

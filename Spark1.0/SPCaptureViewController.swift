@@ -25,9 +25,7 @@ class SPCaptureViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        User.current().save(nil)
-        
+                
         let screenRect = UIScreen.mainScreen().bounds
         self.addBackgroundView()
         

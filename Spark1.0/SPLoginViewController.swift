@@ -36,14 +36,6 @@ class SPLoginViewController: UIViewController {
         emailField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSForegroundColorAttributeName:UIColor.whiteColor()])
         
         passwordField.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [NSForegroundColorAttributeName:UIColor.whiteColor()])
-        
-        // Do not include the below code until we have a way to log out
-//        if let _ = User.current() {
-//            let appDelegate: UIApplicationDelegate! = UIApplication.sharedApplication().delegate
-//            
-//            appDelegate!.window!!.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-//        }
-        
 
     }
     
@@ -72,17 +64,20 @@ class SPLoginViewController: UIViewController {
             emailField.text = "dev@stanford.edu"
             passwordField.text = "dev"
         }
-   
+    
         logo.rotate360Degrees()
-        User.login(self.emailField.text!, password: self.passwordField.text!) { (user) -> Void in
+
+        User.login(self.emailField.text!, password: self.passwordField.text!) { (success, user) -> Void in
             
-            if user != nil {
+            if success {
                 let appDelegate: UIApplicationDelegate! = UIApplication.sharedApplication().delegate
-                
                 appDelegate!.window!!.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+                
+                user?.refreshStudents(nil)
+                user?.refreshUntaggedMoments(nil)
+                
             } else {
-                UIAlertView(title: "Incorrect E-Mail or Password", message: "Please try again.",
-                    delegate: nil, cancelButtonTitle: "Okay").show()
+                self.presentAlertWithTitle("Incorrect E-Mail or Password", message: "Please try again.")
             }
             
             self.activityIndicator.stopAnimating()

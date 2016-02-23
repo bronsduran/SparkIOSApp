@@ -35,10 +35,12 @@ class MomentTableViewCell: UITableViewCell {
     }
     
     func setAudio() {
-        let hasAudio = moment.voiceData != nil
-        
-        audioIndicator.hidden = !hasAudio // moment.audio == nil
-        noAudioIndicator.hidden = hasAudio // moment.audio != nil
+    
+        moment.getFileNamed("voiceData") { (data: NSData?) -> Void in
+            let hasAudio = data != nil
+            self.audioIndicator.hidden = !hasAudio // moment.audio == nil
+            self.noAudioIndicator.hidden = hasAudio // moment.audio != nil
+        }
     }
     
     func resizeLabel(maxHeight : CGFloat) {
@@ -68,12 +70,12 @@ class MomentTableViewCell: UITableViewCell {
         
         
         // categories
-        if let categoriesTagged = moment.categoriesTagged {
-            let numCategories = categoriesTagged.count
+        if moment.categoriesTagged().count > 0 {
+            let numCategories = moment.categoriesTagged().count
             if numCategories == 0 {
                 categoryLabel.text = "No Category Tags"
             } else {
-                categoryLabel.text = categoriesTagged[0]
+                categoryLabel.text = moment.categoriesTagged()[0]
                 
                 if numCategories > 1 {
                     categoryLabel.text = categoryLabel.text! + ", ..."
@@ -83,58 +85,33 @@ class MomentTableViewCell: UITableViewCell {
             categoryLabel.text = "No Category Tags"
         }
         
-        var mediaType = 0
-        if let mType = moment.mediaType where mType == 1 {
-            mediaType = 1
-        }
-        
-        var image: UIImage?
-        // picture
-        if mediaType == 0 {
-            image = moment.image
-        // video
-        } else {
-            if let videoUrl = moment.videoUrl {
-                let asset = AVAsset(URL: videoUrl)
-                
-                let assetImgGenerate = AVAssetImageGenerator(asset: asset)
-                assetImgGenerate.appliesPreferredTrackTransform = true
-                assetImgGenerate.requestedTimeToleranceAfter = kCMTimeZero
-                assetImgGenerate.requestedTimeToleranceBefore = kCMTimeZero
-                
-                let time = CMTimeMakeWithSeconds(0, 600)
-                do {
-                    let img = try assetImgGenerate.copyCGImageAtTime(time, actualTime: nil)
-                    image = UIImage(CGImage: img)
-                } catch {
-                    let fetchError = error as NSError
-                    print("problem getting thumbnail")
-                    image = nil
-                }
-            }
-        }
-        
-        if let image = image {
-            momentImageView.image = image
-            momentImageView.contentMode = UIViewContentMode.ScaleAspectFill
-            momentImageView.layer.cornerRadius = 5.0
-            momentImageView.layer.masksToBounds = true
-            momentImageView.layer.opaque = false
-        } else {
-            imageToCaptionConstraint.constant = -(momentImageView.frame.width)
-        }
-        
         // notes
-        if let notes = moment.notes {
+        if let notes = moment["notes"] as? String {
             captionLabel.text = notes
         } else {
             captionLabel.text = "No notes currently exist for this moment."
         }
         
         // voice indicator
-        audioIndicator.hidden = moment.voiceData == nil
+        moment.getFileNamed("voiceData") { (data: NSData?) -> Void in
+            self.audioIndicator.hidden = data == nil
+        }
+        
         noAudioIndicator.hidden = !audioIndicator.hidden
         
+        self.imageToCaptionConstraint.constant = -(self.momentImageView.frame.width)
+        
+        // picture / video
+        moment.image({ image in
+            if let image = image {
+                self.momentImageView.image = image
+                self.momentImageView.contentMode = UIViewContentMode.ScaleAspectFill
+                self.momentImageView.layer.cornerRadius = 5.0
+                self.momentImageView.layer.masksToBounds = true
+                self.momentImageView.layer.opaque = false
+                self.imageToCaptionConstraint.constant = 8
+            }
+        })
     }
 }
  

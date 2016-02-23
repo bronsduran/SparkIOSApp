@@ -37,60 +37,88 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
         view.backgroundColor = UIColor(patternImage: UIImage(named: "applicationBackground")!)
         
         
-        if moment.mediaType! == 0 {
-            if let image = moment.image {
-                imageView.image = image
-                imageView.layer.masksToBounds = true
-                imageView.layer.cornerRadius = 10
-            } else {
-                imageView.hidden = true
-            }
-        } else {
-            if let videoURL = moment.videoUrl {
-                videoPlayer = AVPlayer(URL: videoURL)
-                videoPlayer.actionAtItemEnd = AVPlayerActionAtItemEnd.None
-                
-                NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: videoPlayer.currentItem)
-                
-                videoPlayerLayer = AVPlayerLayer(player: videoPlayer)
-            }
-        }
-        
-        
-
-        
-        
-        if let caption = moment.notes {
+        // notes
+        if let caption = moment["notes"] as? String {
             captionLabel.text = caption
         } else {
             captionLabel.text = "No notes were taken with this moment."
         }
         captionLabel.textColor = UIColor.whiteColor()
         
-        if let audio = moment.voiceData {
-            do {
-                player = try AVAudioPlayer(data: audio)
-                player?.delegate = self
-                self.player?.prepareToPlay()
-            } catch let error as NSError {
-                print("ERROR with setting up player", error.localizedDescription)
-            }
+        
+        // image
+        if !moment.isVideo() {
+            moment.image({ image in
+                if let image = image {
+                    self.imageView.image = image
+                    self.imageView.layer.masksToBounds = true
+                    self.imageView.layer.cornerRadius = 10
+                } else {
+                    self.imageView.hidden = true
+                }
+            })
+        // video
         } else {
-            audioView.hidden = true
+            moment.video({ video in
+                if let video = video, let videoUrl = video.url {
+                    self.videoPlayer = AVPlayer(URL: NSURL(string: videoUrl)!)
+                    self.videoPlayer.actionAtItemEnd = AVPlayerActionAtItemEnd.None
+                    
+                    NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: self.videoPlayer.currentItem)
+                    
+                    self.videoPlayerLayer = AVPlayerLayer(player: self.videoPlayer)
+                    self.videoPlayer.addObserver(self, forKeyPath: "status", options: NSKeyValueObservingOptions(), context: nil)
+                }
+            })
+        }
+        
+        moment.getFileNamed("voiceData", callback: { (data: NSData?) -> Void in
+            if data != nil {
+                do {
+                    self.player = try AVAudioPlayer(data: data!)
+                    self.player?.delegate = self
+                    self.player?.prepareToPlay()
+                } catch let error as NSError {
+                    print("ERROR with setting up player", error.localizedDescription)
+                }
+            } else {
+                self.audioView.hidden = true
+            }
+        })
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        
+        if let object = object as? AVPlayer where object == videoPlayer && keyPath == "status" {
+            if (videoPlayer.status == AVPlayerStatus.ReadyToPlay) {
+                print("last")
+                videoPlayer.play()
+            } else if (videoPlayer.status == AVPlayerStatus.Failed) {
+                // something went wrong. player.error should contain some information
+            }
         }
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        videoPlayer.removeObserver(self, forKeyPath: "status")
+    }
+    
     override func viewDidLayoutSubviews() {
-        imageView.hidden = true
-        
-        videoPlayerLayer.frame = imageView.frame
-        videoPlayerLayer.cornerRadius = 10
-        videoPlayerLayer.masksToBounds = true
-        
-        videoPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-        view.layer.addSublayer(videoPlayerLayer)
-        
-        videoPlayer.play()
+        if moment.isVideo() {
+            imageView.hidden = true
+            
+            videoPlayerLayer.frame = imageView.frame
+            videoPlayerLayer.cornerRadius = 10
+            videoPlayerLayer.masksToBounds = true
+            
+            videoPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+            view.layer.addSublayer(videoPlayerLayer)
+            
+//            videoPlayer.play()
+            print("first")
+        }
     }
     
     func playerItemDidReachEnd(notification: NSNotification) {

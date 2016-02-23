@@ -57,6 +57,7 @@
 		C543991A1C5AF5900049D903 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C54399191C5AF5900049D903 /* AVFoundation.framework */; };
 		C543991E1C5D68D20049D903 /* XLActionController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCBAEFB1C5D4CDF00D8BB07 /* XLActionController.framework */; };
 		C54399201C5D68EB0049D903 /* XLActionController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCBAEFB1C5D4CDF00D8BB07 /* XLActionController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C562F8981C76DB2C000964C8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C562F8971C76DB2C000964C8 /* Extensions.swift */; };
 		C57DB7651C4F49C600022D3A /* SPCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57DB7641C4F49C600022D3A /* SPCreateAccountViewController.swift */; };
 		C57DB7671C4F4A2800022D3A /* SPCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57DB7661C4F4A2800022D3A /* SPCaptureViewController.swift */; };
 		C5C1D7791C50B44400C20DF9 /* LLSimpleCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C1D7761C50B44400C20DF9 /* LLSimpleCamera.m */; };
@@ -170,6 +171,7 @@
 		C54399141C5888A10049D903 /* TextInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputTableViewCell.swift; sourceTree = "<group>"; };
 		C54399171C5A135B0049D903 /* SPSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPSettingsViewController.swift; sourceTree = "<group>"; };
 		C54399191C5AF5900049D903 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C562F8971C76DB2C000964C8 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C57DB7641C4F49C600022D3A /* SPCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPCreateAccountViewController.swift; sourceTree = "<group>"; };
 		C57DB7661C4F4A2800022D3A /* SPCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPCaptureViewController.swift; sourceTree = "<group>"; };
 		C5C1D7741C50B44300C20DF9 /* Spark1.0-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Spark1.0-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
@@ -279,6 +281,7 @@
 		0A40F5751C5D5ECC000485B5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C562F8971C76DB2C000964C8 /* Extensions.swift */,
 				0A40F5731C5D5EC6000485B5 /* User.swift */,
 				0A40F5771C5D7964000485B5 /* Class.swift */,
 				0A40F57A1C5D7984000485B5 /* Student.swift */,
@@ -560,6 +563,7 @@
 				C5C1D77F1C52E50900C20DF9 /* SPTagStudentViewController.swift in Sources */,
 				C54399181C5A135B0049D903 /* SPSettingsViewController.swift in Sources */,
 				C54399151C5888A10049D903 /* TextInputTableViewCell.swift in Sources */,
+				C562F8981C76DB2C000964C8 /* Extensions.swift in Sources */,
 				C5C1D77A1C50B44400C20DF9 /* UIImage+FixOrientation.m in Sources */,
 				4BCBAF131C5D4E3E00D8BB07 /* Action.swift in Sources */,
 				0A40F57B1C5D7984000485B5 /* Student.swift in Sources */,
