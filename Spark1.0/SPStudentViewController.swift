@@ -48,6 +48,10 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         self.image = image
+        if let student = student {
+            student.updateStudentInfo(student["firstName"] as? String, lastName: student["lastName"] as? String, phoneNumber: student["parentPhone"] as? String, parentEmail: student["parentEmail"] as? String, photo: image)
+        }
+        
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
     
     }
