@@ -31,57 +31,46 @@
                             <constraint firstAttribute="height" constant="6" id="r8s-JN-D0G"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8Z-ts-Al8">
-                        <rect key="frame" x="17" y="2" width="27" height="31"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Category" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BHc-z1-Gcl">
-                        <rect key="frame" x="260" y="2" width="52" height="34"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8Z-ts-Al8">
+                        <rect key="frame" x="287.5" y="0.0" width="26.5" height="10"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Lorem ipsum dolor sit amet, consecte herp de derp de derp de derp de derp de derp de blah de blah de blah" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jLM-hE-Wwb">
-                        <rect key="frame" x="95" y="46" width="205" height="28"/>
+                        <rect key="frame" x="121" y="46" width="179" height="28"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" semanticContentAttribute="forceLeftToRight" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y7p-g9-Yht">
-                        <rect key="frame" x="17" y="46" width="70" height="70"/>
+                        <rect key="frame" x="8" y="12" width="105" height="105"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="70" id="GJ0-Tn-f9K"/>
+                            <constraint firstAttribute="height" constant="105" id="GJ0-Tn-f9K"/>
                             <constraint firstAttribute="width" secondItem="y7p-g9-Yht" secondAttribute="height" multiplier="1:1" id="bBx-Qn-mvQ"/>
-                            <constraint firstAttribute="width" constant="70" id="u3Q-1D-f4m"/>
+                            <constraint firstAttribute="width" constant="105" id="u3Q-1D-f4m"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="u8Z-ts-Al8" firstAttribute="top" secondItem="gPp-0l-OBI" secondAttribute="topMargin" constant="-6" id="1Vp-Lh-pwJ"/>
                     <constraint firstItem="lwQ-Zp-kCc" firstAttribute="leading" secondItem="jLM-hE-Wwb" secondAttribute="trailing" constant="2" id="3aS-ei-nUg"/>
-                    <constraint firstItem="BHc-z1-Gcl" firstAttribute="centerY" secondItem="u8Z-ts-Al8" secondAttribute="centerY" id="7BT-Eu-y0Z"/>
-                    <constraint firstItem="y7p-g9-Yht" firstAttribute="top" secondItem="jLM-hE-Wwb" secondAttribute="top" id="A6d-jD-tMV"/>
-                    <constraint firstItem="BHc-z1-Gcl" firstAttribute="top" secondItem="gPp-0l-OBI" secondAttribute="topMargin" constant="-6" id="AYj-Pu-6Qi"/>
-                    <constraint firstItem="y7p-g9-Yht" firstAttribute="top" secondItem="u8Z-ts-Al8" secondAttribute="bottom" constant="10" id="EKm-xu-sUD"/>
-                    <constraint firstItem="BHc-z1-Gcl" firstAttribute="height" secondItem="u8Z-ts-Al8" secondAttribute="height" id="HhW-ML-uVC"/>
+                    <constraint firstItem="y7p-g9-Yht" firstAttribute="top" secondItem="jLM-hE-Wwb" secondAttribute="top" constant="1" id="A6d-jD-tMV"/>
+                    <constraint firstItem="jLM-hE-Wwb" firstAttribute="top" secondItem="u8Z-ts-Al8" secondAttribute="bottom" constant="1" id="JSd-Vf-iG5"/>
                     <constraint firstItem="2Sx-Aw-6Mp" firstAttribute="centerX" secondItem="lwQ-Zp-kCc" secondAttribute="centerX" id="O8D-aM-tIP"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="y7p-g9-Yht" secondAttribute="bottom" constant="5.5" id="Ooy-wH-vnI"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="y7p-g9-Yht" secondAttribute="bottom" constant="4.5" id="Ooy-wH-vnI"/>
                     <constraint firstItem="jLM-hE-Wwb" firstAttribute="leading" secondItem="y7p-g9-Yht" secondAttribute="trailing" constant="8" id="UHg-9o-nyI"/>
-                    <constraint firstItem="y7p-g9-Yht" firstAttribute="leading" secondItem="gPp-0l-OBI" secondAttribute="leadingMargin" constant="9" id="bBk-nQ-rtd"/>
+                    <constraint firstItem="u8Z-ts-Al8" firstAttribute="top" secondItem="gPp-0l-OBI" secondAttribute="topMargin" constant="-8" id="V73-lx-11s"/>
+                    <constraint firstItem="y7p-g9-Yht" firstAttribute="leading" secondItem="gPp-0l-OBI" secondAttribute="leadingMargin" id="bBk-nQ-rtd"/>
                     <constraint firstItem="2Sx-Aw-6Mp" firstAttribute="centerY" secondItem="lwQ-Zp-kCc" secondAttribute="centerY" constant="-1" id="fO4-vw-kJZ"/>
-                    <constraint firstItem="y7p-g9-Yht" firstAttribute="leading" secondItem="u8Z-ts-Al8" secondAttribute="leading" id="lDP-9Q-ci2"/>
                     <constraint firstItem="2Sx-Aw-6Mp" firstAttribute="width" secondItem="lwQ-Zp-kCc" secondAttribute="height" multiplier="1:3" id="pFG-eV-RPQ"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="BHc-z1-Gcl" secondAttribute="trailing" constant="8" id="qHX-pT-Ot8"/>
                     <constraint firstAttribute="trailingMargin" secondItem="2Sx-Aw-6Mp" secondAttribute="trailing" constant="6" id="yei-45-lxI"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="u8Z-ts-Al8" secondAttribute="trailing" constant="6" id="zBv-kk-3xg"/>
                     <constraint firstItem="lwQ-Zp-kCc" firstAttribute="centerY" secondItem="gPp-0l-OBI" secondAttribute="centerY" id="zFf-Or-Eb3"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="audioIndicator" destination="lwQ-Zp-kCc" id="OPW-DQ-Kb7"/>
                 <outlet property="captionLabel" destination="jLM-hE-Wwb" id="sGr-yx-GoV"/>
-                <outlet property="categoryLabel" destination="BHc-z1-Gcl" id="N7h-8K-PDL"/>
                 <outlet property="dateLabel" destination="u8Z-ts-Al8" id="1Zh-v0-KcG"/>
                 <outlet property="imageToCaptionConstraint" destination="UHg-9o-nyI" id="Lyh-ta-rlq"/>
                 <outlet property="momentImageView" destination="y7p-g9-Yht" id="phJ-p6-MmR"/>

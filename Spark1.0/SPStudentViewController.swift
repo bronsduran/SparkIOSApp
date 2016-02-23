@@ -203,11 +203,10 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         self.pickerView.highlightedFont = UIFont(name: "HelveticaNeue-Bold", size: 20)!
         self.pickerView.pickerViewStyle = .Wheel
         self.pickerView.maskDisabled = false
+        self.pickerView.layer.shadowColor = UIColor.lightGrayColor().CGColor
         self.pickerView.reloadData()
         addStatusBarStyle()
      
-        
-        
         let cellNib: UINib = UINib(nibName: "MomentTableViewCell", bundle: nil)
         momentTableView.registerNib(cellNib, forCellReuseIdentifier: "MomentTableViewCell")
         

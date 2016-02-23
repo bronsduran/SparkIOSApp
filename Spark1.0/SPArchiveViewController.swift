@@ -35,7 +35,7 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         
         self.archiveCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "StudentCollectionViewCell")
         addStatusBarStyle()
-        self.addBackgroundView()
+        self.view.backgroundColor = UIColor(red:240/255.0, green:240/255.0, blue:240/255.0,  alpha:1.0)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refresh", name: "studentRefresh", object: nil)
         

@@ -9,7 +9,6 @@
 class MomentTableViewCell: UITableViewCell {
     
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var momentImageView: UIImageView!
     
@@ -29,9 +28,8 @@ class MomentTableViewCell: UITableViewCell {
     }
     
     func colorLabels() {
-        dateLabel.textColor = UIColor(white: 1.0, alpha: 0.4)
-        categoryLabel.textColor = UIColor(white: 1.0, alpha: 0.4)
-        captionLabel.textColor = UIColor.whiteColor()
+        dateLabel.textColor = UIColor.lightGrayColor()
+        captionLabel.textColor = UIColor.darkGrayColor()
     }
     
     func setAudio() {
@@ -64,21 +62,21 @@ class MomentTableViewCell: UITableViewCell {
         }
         
         
-        // categories
-        if moment.categoriesTagged().count > 0 {
-            let numCategories = moment.categoriesTagged().count
-            if numCategories == 0 {
-                categoryLabel.text = "No Category Tags"
-            } else {
-                categoryLabel.text = moment.categoriesTagged()[0]
-                
-                if numCategories > 1 {
-                    categoryLabel.text = categoryLabel.text! + ", ..."
-                }
-            }
-        } else {
-            categoryLabel.text = "No Category Tags"
-        }
+//        // categories
+//        if moment.categoriesTagged().count > 0 {
+//            let numCategories = moment.categoriesTagged().count
+//            if numCategories == 0 {
+//                categoryLabel.text = "No Category Tags"
+//            } else {
+//                categoryLabel.text = moment.categoriesTagged()[0]
+//                
+//                if numCategories > 1 {
+//                    categoryLabel.text = categoryLabel.text! + ", ..."
+//                }
+//            }
+//        } else {
+//            categoryLabel.text = "No Category Tags"
+//        }
         
         // picture
         moment.image { (image: UIImage?) -> Void in
