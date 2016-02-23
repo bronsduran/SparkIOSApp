@@ -99,6 +99,14 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         }
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let videoPlayer = videoPlayer {
+            videoPlayer.pause()
+        }
+    }
+    
     func playerItemDidReachEnd(notification: NSNotification) {
         if let p = notification.object as? AVPlayerItem {
             p.seekToTime(kCMTimeZero)

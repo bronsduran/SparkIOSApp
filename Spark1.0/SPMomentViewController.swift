@@ -103,6 +103,9 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewWillDisappear(animated)
         
         videoPlayer.removeObserver(self, forKeyPath: "status")
+        if let videoPlayer = videoPlayer {
+            videoPlayer.pause()
+        }
     }
     
     override func viewDidLayoutSubviews() {

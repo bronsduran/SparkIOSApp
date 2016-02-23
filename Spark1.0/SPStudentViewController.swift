@@ -6,8 +6,6 @@
 //  Copyright © 2016 Bronson Duran. All rights reserved.
 //
 
-import XLActionController
-
 class SPStudentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var studentInfoView: UIView!
