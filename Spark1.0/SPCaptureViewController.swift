@@ -16,8 +16,10 @@ class SPCaptureViewController: UIViewController {
     var image : UIImage! = nil
     
     @IBOutlet weak var toolbar: UIToolbar!
-    @IBOutlet weak var skipButton: UIBarButtonItem!
     @IBOutlet weak var captureButton: UIBarButtonItem!
+    
+    @IBOutlet weak var textButton: UIButton!
+    @IBOutlet weak var audioButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,8 @@ class SPCaptureViewController: UIViewController {
         self.camera!.attachToViewController(self, withFrame: CGRectMake(0, 0, screenRect.size.width, screenRect.size.height))
         
         self.view.bringSubviewToFront(self.toolbar)
+        self.view.bringSubviewToFront(self.textButton)
+        self.view.bringSubviewToFront(self.audioButton)
 
         self.navigationController?.navigationBar.hidden = false
         
@@ -80,7 +84,7 @@ class SPCaptureViewController: UIViewController {
     @IBAction func skipButtonPressed(sender: AnyObject) {
         self.captureButton.enabled = false
         self.image = nil
-        self.performSegueWithIdentifier("toMediaViewController", sender: self)
+        self.performSegueWithIdentifier("toMediaViewController", sender: sender)
         self.captureButton.enabled = true
     }
     
@@ -88,7 +92,20 @@ class SPCaptureViewController: UIViewController {
         
         if segue.identifier == "toMediaViewController" {
             let mediaViewController = segue.destinationViewController as! SPMediaViewController
+
+            mediaViewController.initWithRecording = false
+            mediaViewController.initWithText = false
             mediaViewController.image = self.image
+            
+            if self.image == nil {
+                let button = sender as! UIButton
+                if button.tag == 0 {
+                    mediaViewController.initWithRecording = true
+                } else if button.tag == 1 {
+                    mediaViewController.initWithText = true
+                }
+            }
+            
         }
         
     }

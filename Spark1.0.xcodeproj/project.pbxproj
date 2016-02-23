@@ -47,8 +47,6 @@
 		C54399151C5888A10049D903 /* TextInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54399141C5888A10049D903 /* TextInputTableViewCell.swift */; };
 		C54399181C5A135B0049D903 /* SPSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54399171C5A135B0049D903 /* SPSettingsViewController.swift */; };
 		C543991A1C5AF5900049D903 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C54399191C5AF5900049D903 /* AVFoundation.framework */; };
-		C543991E1C5D68D20049D903 /* XLActionController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCBAEFB1C5D4CDF00D8BB07 /* XLActionController.framework */; };
-		C54399201C5D68EB0049D903 /* XLActionController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4BCBAEFB1C5D4CDF00D8BB07 /* XLActionController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C562F8981C76DB2C000964C8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C562F8971C76DB2C000964C8 /* Extensions.swift */; };
 		C57DB7651C4F49C600022D3A /* SPCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57DB7641C4F49C600022D3A /* SPCreateAccountViewController.swift */; };
 		C57DB7671C4F4A2800022D3A /* SPCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57DB7661C4F4A2800022D3A /* SPCaptureViewController.swift */; };
@@ -374,7 +372,7 @@
 				TargetAttributes = {
 					4B2285F71C4AE4E800CE4146 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 8YJ2342CPM;
+						DevelopmentTeam = 7A54D534F5;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
 								enabled = 0;
