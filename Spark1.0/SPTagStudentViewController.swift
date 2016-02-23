@@ -22,8 +22,6 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
         super.viewDidLoad()
         
         addStatusBarStyle()
-        self.addBackgroundView()
-        
         
         let cellNib: UINib = UINib(nibName: "StudentCollectionViewCell", bundle: nil)
         self.collectionView.registerNib(cellNib, forCellWithReuseIdentifier: "StudentCollectionViewCell")
@@ -77,6 +75,7 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StudentCollectionViewCell", forIndexPath: indexPath) as! StudentCollectionViewCell
         
         cell.withStudentData(self.students[indexPath.row])
+        cell.countView.hidden = true
         return cell
     }
     

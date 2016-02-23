@@ -25,7 +25,6 @@ class SPCaptureViewController: UIViewController {
         super.viewDidLoad()
                 
         let screenRect = UIScreen.mainScreen().bounds
-        self.addBackgroundView()
         
         self.camera = LLSimpleCamera(quality: AVCaptureSessionPresetHigh, position: LLCameraPositionRear, videoEnabled: true)
         

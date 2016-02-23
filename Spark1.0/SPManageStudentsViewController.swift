@@ -12,9 +12,7 @@ class SPManageStudentsViewController : UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.addBackgroundView()
-        
+                
         // collection view
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: (self.collectionView!.frame.width - 4.0)/3.0, height: 148.0)

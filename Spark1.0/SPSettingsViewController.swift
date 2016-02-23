@@ -25,8 +25,7 @@ class SPSettingsViewController : UIViewController, UITableViewDelegate, UITableV
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
-        self.addBackgroundView()
+
         addStatusBarStyle()
 
         self.tableView.backgroundColor = UIColor.clearColor()

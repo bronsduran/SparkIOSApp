@@ -26,12 +26,9 @@ class SPTagCategoryViewController: UIViewController, UICollectionViewDelegate, U
         
         // set view's background image
         addStatusBarStyle()
-        self.addBackgroundView()
-        
-        
-        // make collection view transparent
-        collectionView.backgroundColor = UIColor.clearColor()
-        
+                
+        self.view.backgroundColor = UIColor(red:240/255.0, green:240/255.0, blue:240/255.0,  alpha:1.0)
+
     }
     
     override func viewWillAppear(animated: Bool) {

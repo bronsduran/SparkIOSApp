@@ -78,9 +78,6 @@ class SPCreateAccountViewController: UIViewController {
         
         signUpButton.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
         activityIndicator.hidden = true
-       
-        self.addBackgroundView()
-        
         
     }
     

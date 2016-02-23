@@ -33,7 +33,6 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     var recorder: AVAudioRecorder?
     var player: AVAudioPlayer?
     var isRecording: Bool! = false
-    var backgroundView: UIImageView?
     var initWithRecording = false
     var initWithText = false
 
@@ -58,7 +57,6 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     override func viewDidLoad() {
         textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
         
-        self.backgroundView = self.addBackgroundView()
         setupAudioSession()
         enableDisableSaveTagButtons()
         
@@ -85,7 +83,6 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
                 self.imageView.frame = screenRect
                 self.view.addSubview(self.imageView)
                 self.view.sendSubviewToBack(self.imageView)
-                self.view.sendSubviewToBack(self.backgroundView!)
             }
         }
     }

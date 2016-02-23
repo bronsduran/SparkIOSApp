@@ -41,8 +41,8 @@ class StudentCollectionViewCell: UICollectionViewCell {
         nameLabel.textColor = UIColor.blackColor()
         
         // count view
-        countLabel.textColor = UIColor.darkGrayColor()
-        countView.backgroundColor = UIColor(red:224/255.0, green:224/255.0, blue:224/255.0,  alpha:1.0)
+        countView.backgroundColor = UIColor(red: 100.0/255, green: 168.0/255, blue: 205.0/255, alpha: 1.0)
+        
         countView.layer.cornerRadius = countView.frame.height / 2.0
     }
     

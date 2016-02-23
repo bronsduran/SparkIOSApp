@@ -213,9 +213,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
      
         let cellNib: UINib = UINib(nibName: "MomentTableViewCell", bundle: nil)
         momentTableView.registerNib(cellNib, forCellReuseIdentifier: "MomentTableViewCell")
-        
-        self.addBackgroundView()
-      
+              
         
         // Header
         countView.layer.cornerRadius = countView.frame.height / 2

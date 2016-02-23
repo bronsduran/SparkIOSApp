@@ -48,9 +48,9 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         
         // collection view
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: (archiveCollectionView.frame.width - 4.0)/3.0, height: 148.0)
-        layout.minimumInteritemSpacing = 2
-        layout.minimumLineSpacing = 2
+        layout.itemSize = CGSize(width: (archiveCollectionView.frame.width - 6.0)/3.0, height: 148.0)
+        layout.minimumInteritemSpacing = 3
+        layout.minimumLineSpacing = 3
         
         archiveCollectionView.collectionViewLayout = layout
     }

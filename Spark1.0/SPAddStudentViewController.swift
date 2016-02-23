@@ -28,9 +28,7 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         let cellNib: UINib = UINib(nibName: "TextInputTableViewCell", bundle: nil)
         tableView.registerNib(cellNib, forCellReuseIdentifier: "TextInputTableViewCell")
-        
-        addBackgroundView()
-        
+                
         tableView.backgroundColor = UIColor.clearColor()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeShown:", name: UIKeyboardWillShowNotification, object: nil)
