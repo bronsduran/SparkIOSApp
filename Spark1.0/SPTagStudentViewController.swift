@@ -21,7 +21,6 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         addStatusBarStyle()
-        
         let cellNib: UINib = UINib(nibName: "StudentCollectionViewCell", bundle: nil)
         self.collectionView.registerNib(cellNib, forCellWithReuseIdentifier: "StudentCollectionViewCell")
         
@@ -35,7 +34,7 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: (collectionView.frame.width - 6.0)/3.0, height: 148.0)
+        layout.itemSize = CGSize(width: (collectionView.frame.width - 6.0)/3.0, height: 151.0)
         layout.minimumInteritemSpacing = 3
         layout.minimumLineSpacing = 3
         collectionView.collectionViewLayout = layout
