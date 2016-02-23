@@ -34,12 +34,13 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     var player: AVAudioPlayer?
     var isRecording: Bool! = false
     var backgroundView: UIImageView?
-    
+    var initWithRecording = false
+    var initWithText = false
+
     @IBOutlet weak var audioViewContainer: UIView!
     @IBOutlet weak var audioCloseButton: UIButton!
     @IBOutlet weak var audioImageView: UIImageView!
     @IBOutlet weak var audioPlayButton: UIButton!
-    @IBOutlet weak var audioRecordButton: UIBarButtonItem!
     @IBOutlet weak var audioRecordingLabel: UILabel!
     
     @IBOutlet weak var textViewContainer: UIView!
@@ -49,6 +50,8 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var tagButton: UIBarButtonItem!
     
+    @IBOutlet weak var audioButton: UIButton!
+    @IBOutlet weak var textButton: UIButton!
     
     @IBOutlet weak var textViewDistanceToBottomOfAudioView: NSLayoutConstraint!
     
@@ -58,6 +61,10 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         self.backgroundView = self.addBackgroundView()
         setupAudioSession()
         enableDisableSaveTagButtons()
+        
+        addStatusBarStyle()
+        self.view.backgroundColor = UIColor(red:240/255.0, green:240/255.0, blue:240/255.0,  alpha:1.0)
+        
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
     }
@@ -81,7 +88,14 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
                 self.view.sendSubviewToBack(self.backgroundView!)
             }
         }
-        self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if initWithRecording {
+            recordButtonPressed(self)
+        } else if initWithText {
+            textButtonPressed(self)
+        }
     }
     
     override func canBecomeFirstResponder() -> Bool {
@@ -194,7 +208,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     @IBAction func recordButtonPressed(sender: AnyObject) {
         
         if self.isRecording == false {
-            self.audioRecordButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.redColor()], forState: UIControlState.Normal)
+//            self.audioButton.setBackgroundImage(<#T##image: UIImage?##UIImage?#>, forState: <#T##UIControlState#>)
             showAudioContainer()
             self.audioPlayButton.hidden = true
             self.audioRecordingLabel.hidden = false
@@ -202,7 +216,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
             self.recorder?.record()
             
         } else {
-            self.audioRecordButton.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
+            //            self.audioButton.setBackgroundImage(<#T##image: UIImage?##UIImage?#>, forState: <#T##UIControlState#>)
             self.audioPlayButton.hidden = false
             self.audioRecordingLabel.hidden = true
             self.audioImageView.hidden = false

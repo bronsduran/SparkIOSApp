@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E39d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pR4-Z0-oNV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pR4-Z0-oNV">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -653,18 +653,6 @@
                                     <constraint firstAttribute="height" constant="70" id="Twb-eF-k5r"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem image="ArchiveIcon" style="plain" id="cpF-7P-STb">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mqw-8Y-3JV">
-                                            <rect key="frame" x="16" y="6" width="51" height="58"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" backgroundImage="ArchiveIcon">
-                                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <segue destination="2JU-SN-RMR" kind="modal" id="uzh-eO-k4Z"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="YFa-rU-lad"/>
                                     <barButtonItem image="captureButton" style="plain" id="8J6-Vo-9WW">
                                         <connections>
@@ -672,22 +660,57 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="L8P-a4-ZrD"/>
-                                    <barButtonItem image="rightIcon" id="vwM-Xu-a1F">
-                                        <connections>
-                                            <action selector="skipButtonPressed:" destination="Oj9-cQ-Faf" id="AUa-69-XjI"/>
-                                        </connections>
-                                    </barButtonItem>
                                 </items>
                             </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ws-sR-tXc">
+                                <rect key="frame" x="235" y="340" width="65" height="65"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="Mvq-Z2-1rm"/>
+                                    <constraint firstAttribute="width" constant="65" id="SiM-XJ-nmG"/>
+                                </constraints>
+                                <state key="normal" image="microphoneIcon"/>
+                                <connections>
+                                    <action selector="skipButtonPressed:" destination="Oj9-cQ-Faf" eventType="touchUpInside" id="JdJ-Md-RwY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lbH-oC-0To">
+                                <rect key="frame" x="235" y="413" width="65" height="65"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" id="IjL-FW-tuV"/>
+                                    <constraint firstAttribute="height" constant="65" id="NtI-iw-3Ei"/>
+                                </constraints>
+                                <state key="normal" image="textIcon"/>
+                                <connections>
+                                    <action selector="skipButtonPressed:" destination="Oj9-cQ-Faf" eventType="touchUpInside" id="5pF-T5-lvV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="lbH-oC-0To" firstAttribute="top" secondItem="3ws-sR-tXc" secondAttribute="bottom" constant="8" id="EbG-mV-ToS"/>
+                            <constraint firstAttribute="trailing" secondItem="lbH-oC-0To" secondAttribute="trailing" constant="20" id="F1g-SC-Op4"/>
                             <constraint firstAttribute="bottom" secondItem="CaL-N5-0uL" secondAttribute="bottom" id="FSI-2J-Z2M"/>
+                            <constraint firstAttribute="trailing" secondItem="3ws-sR-tXc" secondAttribute="trailing" constant="20" id="NId-dV-iHD"/>
+                            <constraint firstItem="CaL-N5-0uL" firstAttribute="top" secondItem="lbH-oC-0To" secondAttribute="bottom" constant="20" id="TU1-gW-fap"/>
                             <constraint firstItem="CaL-N5-0uL" firstAttribute="leading" secondItem="POr-pK-aQu" secondAttribute="leading" id="cjC-5z-jsP"/>
                             <constraint firstAttribute="trailing" secondItem="CaL-N5-0uL" secondAttribute="trailing" id="yhK-uz-NkL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Kf1-6y-JHu">
+                        <barButtonItem key="leftBarButtonItem" image="ArchiveIcon" style="plain" id="cpF-7P-STb">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mqw-8Y-3JV">
+                                <rect key="frame" x="16" y="-7" width="51" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="ArchiveIcon">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="2JU-SN-RMR" kind="modal" id="uzh-eO-k4Z"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="settingsIcon" id="6V4-qS-AHb">
                             <connections>
                                 <action selector="settingsButtonPressed:" destination="Oj9-cQ-Faf" id="lhc-IW-Azv"/>
@@ -696,10 +719,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="audioButton" destination="3ws-sR-tXc" id="soR-dK-keJ"/>
                         <outlet property="captureButton" destination="8J6-Vo-9WW" id="nGv-vC-k2J"/>
-                        <outlet property="skipButton" destination="vwM-Xu-a1F" id="lvY-li-ucs"/>
+                        <outlet property="textButton" destination="lbH-oC-0To" id="shv-3b-1cm"/>
                         <outlet property="toolbar" destination="CaL-N5-0uL" id="fH8-uC-5Fq"/>
-                        <segue destination="ZaX-yA-hlv" kind="push" identifier="toMediaViewController" id="iTq-8L-MSd"/>
+                        <segue destination="ZaX-yA-hlv" kind="push" identifier="toMediaViewController" animates="NO" id="iTq-8L-MSd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ww-hU-MYw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -798,8 +822,8 @@
                                             <action selector="audioCloseButtonPressed:" destination="ZaX-yA-hlv" eventType="touchUpInside" id="WEh-19-EVw"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90x-Rq-ocX">
-                                        <rect key="frame" x="8" y="10" width="30" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90x-Rq-ocX">
+                                        <rect key="frame" x="8" y="-4.5" width="59" height="59"/>
                                         <state key="normal" backgroundImage="playButton">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -807,15 +831,15 @@
                                             <action selector="audioPlayButtonPressed:" destination="ZaX-yA-hlv" eventType="touchUpInside" id="W0o-bR-Lsn"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" misplaced="YES" image="waveForm" translatesAutoresizingMaskIntoConstraints="NO" id="459-Jg-Yvl">
-                                        <rect key="frame" x="46" y="8" width="228" height="34"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="waveForm" translatesAutoresizingMaskIntoConstraints="NO" id="459-Jg-Yvl">
+                                        <rect key="frame" x="75" y="8" width="199" height="34"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="ez7-CA-XWe"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVh-co-Dvy">
-                                        <rect key="frame" x="8" y="16" width="83" height="18"/>
+                                        <rect key="frame" x="8" y="16" width="82.5" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -878,18 +902,6 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="k7I-5M-pqt"/>
-                                    <barButtonItem image="textIcon" id="FpY-7T-dF0">
-                                        <connections>
-                                            <action selector="textButtonPressed:" destination="ZaX-yA-hlv" id="yKR-4r-bQM"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="e5h-Og-OHp"/>
-                                    <barButtonItem image="microphoneIcon" id="A9b-nV-WdW">
-                                        <connections>
-                                            <action selector="recordButtonPressed:" destination="ZaX-yA-hlv" id="iYd-Tk-hva"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="egg-hK-RLP"/>
                                     <barButtonItem image="tagStudent" id="Q9k-Fl-9LT">
                                         <connections>
                                             <action selector="tagButtonPressed:" destination="ZaX-yA-hlv" id="gZk-Rm-5wF"/>
@@ -898,17 +910,45 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8SS-tK-Anj">
+                                <rect key="frame" x="235" y="328" width="65" height="65"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" id="atE-yU-eLH"/>
+                                    <constraint firstAttribute="height" constant="65" id="xxv-zv-g0b"/>
+                                </constraints>
+                                <state key="normal" image="microphoneIcon"/>
+                                <connections>
+                                    <action selector="recordButtonPressed:" destination="ZaX-yA-hlv" eventType="touchUpInside" id="3IK-1X-Oxo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Pc-vb-qbG">
+                                <rect key="frame" x="235" y="413" width="65" height="65"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" id="3gI-NQ-Vfh"/>
+                                    <constraint firstAttribute="height" constant="65" id="GYf-eY-FLW"/>
+                                </constraints>
+                                <state key="normal" image="textIcon"/>
+                                <connections>
+                                    <action selector="textButtonPressed:" destination="ZaX-yA-hlv" eventType="touchUpInside" id="45Q-zG-wWF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="3Pc-vb-qbG" secondAttribute="trailing" constant="20" id="23e-Z1-Anv"/>
                             <constraint firstItem="PGI-qN-pYs" firstAttribute="leading" secondItem="zKW-j9-Bvc" secondAttribute="leading" id="3Sf-58-Ppx"/>
                             <constraint firstItem="tJ2-NX-ACT" firstAttribute="top" secondItem="oFO-84-hmn" secondAttribute="bottom" constant="8" id="4Vy-rM-iwd"/>
+                            <constraint firstAttribute="trailing" secondItem="8SS-tK-Anj" secondAttribute="trailing" constant="20" id="AfA-Bu-hV4"/>
                             <constraint firstItem="LcR-wm-frR" firstAttribute="leading" secondItem="zKW-j9-Bvc" secondAttribute="leading" id="Dq4-xo-k1e"/>
                             <constraint firstAttribute="trailing" secondItem="PGI-qN-pYs" secondAttribute="trailing" id="FPR-QJ-1K4"/>
+                            <constraint firstItem="PGI-qN-pYs" firstAttribute="top" secondItem="3Pc-vb-qbG" secondAttribute="bottom" constant="20" id="Nuw-s5-8C3"/>
                             <constraint firstItem="PGI-qN-pYs" firstAttribute="bottom" secondItem="zKW-j9-Bvc" secondAttribute="bottomMargin" id="Rqm-i8-ASe"/>
                             <constraint firstItem="tJ2-NX-ACT" firstAttribute="leading" secondItem="zKW-j9-Bvc" secondAttribute="leading" id="VTJ-AC-d0B"/>
                             <constraint firstItem="LcR-wm-frR" firstAttribute="top" secondItem="tJ2-NX-ACT" secondAttribute="bottom" constant="8" identifier="audio_text_8" id="bV5-1C-yTU"/>
+                            <constraint firstItem="3Pc-vb-qbG" firstAttribute="top" secondItem="8SS-tK-Anj" secondAttribute="bottom" constant="20" id="fBU-5d-Xeh"/>
                             <constraint firstAttribute="trailing" secondItem="tJ2-NX-ACT" secondAttribute="trailing" id="lg4-iI-CpR"/>
                             <constraint firstAttribute="trailing" secondItem="LcR-wm-frR" secondAttribute="trailing" id="wFw-Ih-U2y"/>
                         </constraints>
@@ -918,14 +958,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="PKI-nN-8YJ"/>
                     <connections>
+                        <outlet property="audioButton" destination="8SS-tK-Anj" id="OTF-zD-uaI"/>
                         <outlet property="audioCloseButton" destination="ksf-0P-ZVb" id="hfb-nG-J29"/>
                         <outlet property="audioImageView" destination="459-Jg-Yvl" id="seL-yp-b6r"/>
                         <outlet property="audioPlayButton" destination="90x-Rq-ocX" id="23U-82-7NF"/>
-                        <outlet property="audioRecordButton" destination="A9b-nV-WdW" id="NvI-31-4Fd"/>
                         <outlet property="audioRecordingLabel" destination="lVh-co-Dvy" id="6by-Dq-bf2"/>
                         <outlet property="audioViewContainer" destination="tJ2-NX-ACT" id="QKj-mZ-Hjs"/>
                         <outlet property="saveButton" destination="n5O-Ep-DGd" id="97K-kI-oQZ"/>
                         <outlet property="tagButton" destination="Q9k-Fl-9LT" id="oWK-Vt-dsb"/>
+                        <outlet property="textButton" destination="3Pc-vb-qbG" id="bHz-cI-gbc"/>
                         <outlet property="textCloseButton" destination="4Py-TR-bmW" id="kys-JC-k9L"/>
                         <outlet property="textView" destination="Oi0-Lv-QTe" id="fSr-6p-Vgg"/>
                         <outlet property="textViewContainer" destination="LcR-wm-frR" id="WNx-rK-3HU"/>
