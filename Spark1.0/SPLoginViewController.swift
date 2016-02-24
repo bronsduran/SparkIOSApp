@@ -53,9 +53,6 @@ class SPLoginViewController: UIViewController {
     
     @IBAction func loginPressed(sender: AnyObject) {
         
-        activityIndicator.hidden = false
-        activityIndicator.startAnimating()
-        
         // For testing only
         if (emailField.text == nil || passwordField.text == nil ||
             emailField.text == "" || passwordField.text == "") {
@@ -77,9 +74,6 @@ class SPLoginViewController: UIViewController {
             } else {
                 self.presentAlertWithTitle("Incorrect E-Mail or Password", message: "Please try again.")
             }
-            
-            self.activityIndicator.stopAnimating()
-            self.activityIndicator.hidden = true
         }
 
         // For logout: http://stackoverflow.com/questions/19962276/best-practices-for-storyboard-login-screen-handling-clearing-of-data-upon-logou

@@ -105,8 +105,9 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        videoPlayer.removeObserver(self, forKeyPath: "status")
+        if (videoPlayer != nil) {
+            videoPlayer.removeObserver(self, forKeyPath: "status")
+        }
         if let videoPlayer = videoPlayer {
             videoPlayer.pause()
         }
@@ -155,15 +156,11 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
         if (indexPath.row == 0) {
             let mailComposeViewController = configuredMailComposeViewController()
             if MFMailComposeViewController.canSendMail() {
-                if (student["parentEmail"] != nil) {
-                    self.presentViewController(mailComposeViewController, animated: true, completion: nil)
-                } else {
-                    let errorAlert = UIAlertView(title: "Could Not Send Email", message: "No Parent E-Mail assigned to student.", delegate: self, cancelButtonTitle: "OK")
-                    errorAlert.show()
-                }
+                self.presentViewController(mailComposeViewController, animated: true, completion: nil)
             } else {
                 self.showSendMailErrorAlert()
             }
+            print("DONE")
         }
         // performSegueWithIdentifier("toMomentViewController", sender: cell)
     }
@@ -195,7 +192,7 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
         mailComposerVC.setToRecipients([student["parentEmail"] as! String])
         mailComposerVC.setSubject("Spark Moment For Your Child")
         if (moment["notes"] != nil) {
-            notes = moment["notes"] as! String
+            notes = moment["notes"] as? String
         } else {
             notes = "Check out what your child did in class!"
         }
@@ -212,6 +209,7 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
         })
         
         mailComposerVC.setMessageBody(notes, isHTML: false)
+        print("bye")
         return mailComposerVC
     }
     
