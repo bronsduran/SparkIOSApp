@@ -88,7 +88,7 @@ class SPSettingsViewController : UIViewController, UITableViewDelegate, UITableV
     }
     
     func stringForPlaceholder(text: String) -> NSAttributedString {
-        let placeholderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        let placeholderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         return NSAttributedString(string: text, attributes: [NSForegroundColorAttributeName:placeholderColor])
     }
     

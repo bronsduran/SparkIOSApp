@@ -131,6 +131,11 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBAction func addStudentButtonPressed(sender: AnyObject) {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = mainStoryboard.instantiateViewControllerWithIdentifier("SPAddStudentViewController") as! SPAddStudentViewController
+        
+        vc.didDissmiss = { (data: String) -> Void in
+            self.presentAlertWithTitle("Student Added", message: "Student " + data + " successfully added!")
+        }
+        
         self.presentViewController(vc, animated: true, completion: nil)
     }
     

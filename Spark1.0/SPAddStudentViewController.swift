@@ -24,6 +24,7 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     
     var input = [String?](count: 4, repeatedValue: nil)
     
+    var didDissmiss : ((String) -> Void)? = nil
     
     override func viewDidLoad() {
         let cellNib: UINib = UINib(nibName: "TextInputTableViewCell", bundle: nil)
@@ -89,7 +90,7 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func stringForPlaceholder(text: String) -> NSAttributedString {
-        let placeholderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.5)
+        let placeholderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         return NSAttributedString(string: text, attributes: [NSForegroundColorAttributeName:placeholderColor])
     }
     
@@ -106,8 +107,11 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func doneButtonPressed(sender: AnyObject) {
         // let firstNameCell = tableView.cellForRowAtIndexPath(0) as TextInputTableViewCell
-        createStudent()
-        dismissViewControllerAnimated(true, completion: nil)
+        var created : Bool = createStudent()
+        
+        if created {
+            refreshStudentsAndDismiss()
+        }
     }
     
     func updateInputCache() {
@@ -132,7 +136,6 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         Student.addStudent(input[0]!, lastName: input[1]!, phoneNumber: input[2], parentEmail: input[3], photo: self.image)
-        self.presentAlertWithTitle("Student Added", message: "Student " + input[0]! + " " + input[1]! + " successfully added!")
         return true
     }
     
@@ -163,11 +166,16 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     
     
     @IBAction func closeButtonPressed(sender: AnyObject) {
-        User.currentUser()?.refreshStudents({ (success) -> Void in
-            self.dismissViewControllerAnimated(true, completion: nil)
-        })
+        refreshStudentsAndDismiss()
     }
     
+    func refreshStudentsAndDismiss() {
+        User.currentUser()?.refreshStudents({ (success) -> Void in
+            self.dismissViewControllerAnimated(true, completion: nil)
+            var studentName = self.input[0]! + " " + self.input[1]!
+            self.didDissmiss?(studentName)
+        })
+    }
     
     @IBAction func photoButtonPressed(sender: AnyObject) {
         if NSUserDefaults.standardUserDefaults().boolForKey("isSimulator") {
