@@ -23,9 +23,10 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
         addStatusBarStyle()
         let cellNib: UINib = UINib(nibName: "StudentCollectionViewCell", bundle: nil)
         self.collectionView.registerNib(cellNib, forCellWithReuseIdentifier: "StudentCollectionViewCell")
-        
         self.collectionView.allowsMultipleSelection = true
         
+        self.navigationController?.navigationBar.hidden = false
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
         // make collection view transparent
         self.title = "Tag Student"
         
@@ -42,7 +43,7 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
+        UIToolbar.appearance().tintColor = UIColor.blackColor()
         User.currentUser()!.students { (retrievedStudents) -> Void in
             self.students = retrievedStudents
             self.refresh()
