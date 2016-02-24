@@ -30,7 +30,8 @@ public extension UIImage {
 class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
 
     var image: UIImage! = nil
-    var imageView: UIImageView! = nil
+    var imageView: UIImageView? = nil
+    var videoView: UIView? = nil
     var videoURL: NSURL! = nil
     var videoPlayer: AVPlayer! = nil
     var videoPlayerLayer: AVPlayerLayer! = nil
@@ -39,8 +40,6 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     var isRecording: Bool! = false
     var initWithRecording = false
     var initWithText = false
-    var backgroundView: UIImageView?
-
     
     @IBOutlet weak var audioViewContainer: UIView!
     @IBOutlet weak var audioCloseButton: UIButton!
@@ -65,7 +64,6 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         
         setupAudioSession()
         enableDisableSaveTagButtons()
-        self.backgroundView = self.addBackgroundView()
 
         addStatusBarStyle()
         
@@ -81,15 +79,17 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         
         if self.videoURL == nil {
             
-            if self.imageView != nil {
-                self.imageView.image = self.image
-            } else {
-                self.imageView = UIImageView(image: self.image)
-                self.imageView.frame = screenRect
-                self.view.addSubview(self.imageView)
-                self.view.sendSubviewToBack(self.imageView)
+            if self.imageView == nil {
+                addBackgroundImageView()
             }
+            
+            if let view = self.videoView {
+                self.view.sendSubviewToBack(view)
+            }
+            self.imageView!.image = self.image
+            
         } else {
+            
             videoPlayer = AVPlayer(URL: videoURL)
             videoPlayer.actionAtItemEnd = AVPlayerActionAtItemEnd.None
             
@@ -98,11 +98,29 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
             videoPlayerLayer = AVPlayerLayer(player: videoPlayer)
             videoPlayerLayer.frame = screenRect
             
-            view.layer.insertSublayer(videoPlayerLayer, below: backgroundView!.layer)
-            self.view.sendSubviewToBack(backgroundView!)
-            
+            if self.videoView == nil {
+                addBackgroundVideoView()
+            }
+            if let view = self.imageView {
+                self.view.sendSubviewToBack(view)
+            }
             videoPlayer.play()
         }
+
+    }
+    
+    func addBackgroundImageView() {
+        self.imageView = UIImageView(image: self.image)
+        self.imageView!.frame = self.view.frame
+        self.view.addSubview(self.imageView!)
+        self.view.sendSubviewToBack(self.imageView!)
+    }
+
+    func addBackgroundVideoView() {
+        self.videoView = UIView(frame: self.view.frame)
+        self.videoView!.layer.addSublayer(videoPlayerLayer)
+        self.view.addSubview(self.videoView!)
+        self.view.sendSubviewToBack(self.videoView!)
     }
     
     override func viewWillDisappear(animated: Bool) {

@@ -49,6 +49,15 @@ class SPCaptureViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.camera.start()
+        MomentSingleton.sharedInstance.image = nil
+        self.image = nil
+        self.videoURL = nil
+        self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
+    }
+
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         print(captureButton.customView)
@@ -88,16 +97,6 @@ class SPCaptureViewController: UIViewController {
     
     @IBAction func captureTapped(sender: AnyObject) {
         captureButtonPressed(sender)
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        self.camera.start()
-        MomentSingleton.sharedInstance.image = nil
-        self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
     }
 
     override func didReceiveMemoryWarning() {
@@ -147,6 +146,7 @@ class SPCaptureViewController: UIViewController {
     @IBAction func skipButtonPressed(sender: AnyObject) {
         self.captureButton.enabled = false
         self.image = nil
+        self.videoURL = nil
         self.performSegueWithIdentifier("toMediaViewController", sender: sender)
         self.captureButton.enabled = true
     }
