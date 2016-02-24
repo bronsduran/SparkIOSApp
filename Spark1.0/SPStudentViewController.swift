@@ -99,6 +99,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
                 let cell = sender as? MomentTableViewCell,
                 let moment = cell.moment {
                     destination.moment = moment
+                    destination.student = student
             }
         }
     }

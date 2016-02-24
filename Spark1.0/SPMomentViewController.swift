@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import MessageUI
 
 
-class SPMomentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AVAudioPlayerDelegate {
+class SPMomentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AVAudioPlayerDelegate, MFMailComposeViewControllerDelegate {
     
     
     var player: AVAudioPlayer?
@@ -28,6 +29,7 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     var moment: Moment!
+    var student: Student!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,6 +151,23 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if (indexPath.row == 0) {
+            let mailComposeViewController = configuredMailComposeViewController()
+            if MFMailComposeViewController.canSendMail() {
+                if (student["parentEmail"] != nil) {
+                    self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+                } else {
+                    let errorAlert = UIAlertView(title: "Could Not Send Email", message: "No Parent E-Mail assigned to student.", delegate: self, cancelButtonTitle: "OK")
+                    errorAlert.show()
+                }
+            } else {
+                self.showSendMailErrorAlert()
+            }
+        }
+        // performSegueWithIdentifier("toMomentViewController", sender: cell)
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -167,4 +186,44 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     */
 
+    
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
+        var notes: String!
+        
+        mailComposerVC.setToRecipients([student["parentEmail"] as! String])
+        mailComposerVC.setSubject("Spark Moment For Your Child")
+        if (moment["notes"] != nil) {
+            notes = moment["notes"] as! String
+        } else {
+            notes = "Check out what your child did in class!"
+        }
+        moment.getFileNamed("momentData") { (data: NSData?) -> Void in
+            if data != nil {
+                mailComposerVC.addAttachmentData(data!, mimeType: "image/png", fileName: "moment.png")
+            }
+        }
+        
+        moment.getFileNamed("voiceData", callback: { (data: NSData?) -> Void in
+            if data != nil {
+                mailComposerVC.addAttachmentData(data!, mimeType: "audio/mp3", fileName: "momentRecording.mp3")
+            }
+        })
+        
+        mailComposerVC.setMessageBody(notes, isHTML: false)
+        return mailComposerVC
+    }
+    
+    func showSendMailErrorAlert() {
+        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
+        sendMailErrorAlert.show()
+    }
+    
+    // MARK: MFMailComposeViewControllerDelegate
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
 }
