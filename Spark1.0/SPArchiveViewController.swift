@@ -13,7 +13,6 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     
     
     // Untagged moments
-    @IBOutlet weak var untaggedMomentsButton: UIButton!
     
     @IBOutlet weak var archiveCollectionView: UICollectionView!
     
