@@ -169,6 +169,7 @@ class SPCaptureViewController: UIViewController {
                 } else if button.tag == 1 {
                     mediaViewController.initWithText = true
                 }
+                mediaViewController.image = UIImage(named: "applicationBackground")
             }
             
         }
