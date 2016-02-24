@@ -31,6 +31,7 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
         self.title = "Tag Student"
         
     }
+
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
