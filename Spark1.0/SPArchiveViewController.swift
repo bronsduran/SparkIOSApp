@@ -13,7 +13,6 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     
     
     // Untagged moments
-    @IBOutlet weak var untaggedMomentsButton: UIButton!
     
     @IBOutlet weak var archiveCollectionView: UICollectionView!
     
@@ -76,7 +75,7 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
             if (self.sortByControl.selectedSegmentIndex == 1) {
                 
                 self.students.sortInPlace({ (student1: Student, student2: Student) -> Bool in
-                    return (student1["numberOfMoments"] as! Int) < (student2["numberOfMoments"] as! Int)
+                    return (student1.numberOfMoments() as! Int) < (student2.numberOfMoments() as! Int)
                 })
 
             }
@@ -132,8 +131,10 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = mainStoryboard.instantiateViewControllerWithIdentifier("SPAddStudentViewController") as! SPAddStudentViewController
         
-        vc.didDissmiss = { (data: String) -> Void in
-            self.presentAlertWithTitle("Student Added", message: "Student " + data + " successfully added!")
+        vc.didDissmiss = { (data: String?) -> Void in
+            if let studentName = data {
+                self.presentAlertWithTitle("Student Added", message: "Student " + studentName + " successfully added!")
+            }
         }
         
         self.presentViewController(vc, animated: true, completion: nil)

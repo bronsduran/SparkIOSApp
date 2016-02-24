@@ -19,9 +19,6 @@ class ButtonTableViewCell : UITableViewCell {
         // background
         backgroundColor = UIColor(white: 1.0, alpha: 0.1)
         
-        // name label
-        labelView.textColor = UIColor.whiteColor()
-        
     }
     
 }

@@ -18,7 +18,6 @@ class SPLoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +29,11 @@ class SPLoginViewController: UIViewController {
         
         loginButton.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
         addBackgroundView()
-        activityIndicator.hidden = true
 
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBar.hidden = true
     }
     
     func handleSingleTap(gesture: UITapGestureRecognizer) {
