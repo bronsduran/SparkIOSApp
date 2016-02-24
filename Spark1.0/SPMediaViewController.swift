@@ -68,6 +68,8 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         addStatusBarStyle()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
+        
+        self.navigationItem.setHidesBackButton(true, animated: false)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -109,6 +111,10 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
             videoPlayer.play()
         }
 
+    }
+    
+    @IBAction func deleteButtonPressed(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(false)
     }
     
     func addBackgroundImageView() {
@@ -225,6 +231,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         UIView.animateWithDuration(0.3) {
             self.view.layoutIfNeeded()
         }
+        
     }
     
     func showTextContainer() {

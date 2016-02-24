@@ -76,7 +76,7 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
             if (self.sortByControl.selectedSegmentIndex == 1) {
                 
                 self.students.sortInPlace({ (student1: Student, student2: Student) -> Bool in
-                    return (student1["numberOfMoments"] as! Int) < (student2["numberOfMoments"] as! Int)
+                    return (student1.numberOfMoments() as! Int) < (student2.numberOfMoments() as! Int)
                 })
 
             }

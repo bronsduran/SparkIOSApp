@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pR4-Z0-oNV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pR4-Z0-oNV">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -786,7 +786,7 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="axZ-Jg-Qpb">
-                        <barButtonItem key="rightBarButtonItem" title="X" id="ryg-4S-edZ">
+                        <barButtonItem key="rightBarButtonItem" image="deleteIcon" id="ryg-4S-edZ">
                             <connections>
                                 <action selector="closeButtonPressed:" destination="UG9-Vc-GXI" id="gsq-mx-400"/>
                             </connections>
@@ -964,7 +964,13 @@
                             <outletCollection property="gestureRecognizers" destination="Qbc-yg-5gQ" appends="YES" id="5lf-9h-tF0"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="PKI-nN-8YJ"/>
+                    <navigationItem key="navigationItem" id="PKI-nN-8YJ">
+                        <barButtonItem key="rightBarButtonItem" image="deleteIcon" id="rJf-M9-y0o">
+                            <connections>
+                                <action selector="deleteButtonPressed:" destination="ZaX-yA-hlv" id="VVx-GO-oNj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="audioButton" destination="8SS-tK-Anj" id="OTF-zD-uaI"/>
                         <outlet property="audioCloseButton" destination="ksf-0P-ZVb" id="hfb-nG-J29"/>
@@ -1043,7 +1049,7 @@
                                     <constraint firstAttribute="height" constant="77" id="KIt-q8-hWq"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="Add More" id="8jk-mv-OO9">
+                                    <barButtonItem title="Add Another" id="8jk-mv-OO9">
                                         <connections>
                                             <action selector="addMoreButtonPressed:" destination="u6T-Nu-23k" id="B6B-wy-MN7"/>
                                         </connections>
@@ -1062,8 +1068,8 @@
                                     <constraint firstAttribute="height" constant="64" id="hHK-W7-vrS"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="Add Student" id="TCX-PA-VUy">
-                                        <barButtonItem key="rightBarButtonItem" title="X" id="CMe-Vi-zbb">
+                                    <navigationItem title="Add Students" id="TCX-PA-VUy">
+                                        <barButtonItem key="rightBarButtonItem" image="deleteIcon" id="CMe-Vi-zbb">
                                             <connections>
                                                 <action selector="closeButtonPressed:" destination="u6T-Nu-23k" id="IVD-h8-Mbm"/>
                                             </connections>
