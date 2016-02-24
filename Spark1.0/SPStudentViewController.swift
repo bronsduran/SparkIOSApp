@@ -10,6 +10,7 @@
 
 class SPStudentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AKPickerViewDataSource, AKPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    @IBOutlet weak var pickerHeight: NSLayoutConstraint!
     @IBOutlet weak var studentInfoView: UIView!
     @IBOutlet weak var momentTableView: UITableView!
     @IBOutlet weak var pictureImageView: UIImageView!
@@ -201,6 +202,9 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         studentInfoViewHeight.constant = 0
         studentInfoView.hidden = true
         nameLabel.title = "Untagged"
+        pickerHeight.constant = 0
+        pickerView.hidden = true
+        
     }
     
     override func viewDidLoad() {

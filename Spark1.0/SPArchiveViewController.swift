@@ -31,6 +31,7 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     override func viewDidLoad() {
         super.viewDidLoad()
         addStatusBarStyle()
+        addBackgroundView()
 
         let cellNib: UINib = UINib(nibName: "StudentCollectionViewCell", bundle: nil)
         
@@ -45,9 +46,9 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         
         // collection view
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: (archiveCollectionView.frame.width - 6.0)/3.0, height: 148.0)
-        layout.minimumInteritemSpacing = 3
-        layout.minimumLineSpacing = 3
+        layout.itemSize = CGSize(width: (archiveCollectionView.frame.width - 12.0)/3.0, height: 148.0)
+        layout.minimumInteritemSpacing = 6
+        layout.minimumLineSpacing = 6
         
         archiveCollectionView.collectionViewLayout = layout
     }

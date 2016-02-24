@@ -20,12 +20,12 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         
         // background
-        backgroundColor = UIColor(white: 1.0, alpha: 0.1)
+        backgroundColor = UIColor(white: 1.0, alpha: 1.0)
         let selectedColor = UIImage(color: UIColor.blackColor().colorWithAlphaComponent(0.3))
         self.selectedBackgroundView = UIImageView(image: selectedColor)
         
         // count view
-        countLabel.textColor = UIColor.whiteColor()
+        countLabel.textColor = UIColor.darkGrayColor()
         countView.backgroundColor = UIColor(white: 1.0, alpha: 0.1)
         countView.layer.cornerRadius = countView.frame.height / 2.0
     }
