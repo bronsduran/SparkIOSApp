@@ -132,8 +132,10 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = mainStoryboard.instantiateViewControllerWithIdentifier("SPAddStudentViewController") as! SPAddStudentViewController
         
-        vc.didDissmiss = { (data: String) -> Void in
-            self.presentAlertWithTitle("Student Added", message: "Student " + data + " successfully added!")
+        vc.didDissmiss = { (data: String?) -> Void in
+            if let studentName = data {
+                self.presentAlertWithTitle("Student Added", message: "Student " + studentName + " successfully added!")
+            }
         }
         
         self.presentViewController(vc, animated: true, completion: nil)

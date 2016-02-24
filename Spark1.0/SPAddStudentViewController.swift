@@ -24,7 +24,8 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     
     var input = [String?](count: 4, repeatedValue: nil)
     
-    var didDissmiss : ((String) -> Void)? = nil
+    var didDissmiss : ((String?) -> Void)? = nil
+    
     
     override func viewDidLoad() {
         let cellNib: UINib = UINib(nibName: "TextInputTableViewCell", bundle: nil)
@@ -110,7 +111,11 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
         var created : Bool = createStudent()
         
         if created {
-            refreshStudentsAndDismiss()
+            User.currentUser()?.refreshStudents({ (success) -> Void in
+                self.dismissViewControllerAnimated(true, completion: nil)
+                var studentName = self.input[0]! + " " + self.input[1]!
+                self.didDissmiss?(studentName)
+            })
         }
     }
     
@@ -163,17 +168,9 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    
-    
     @IBAction func closeButtonPressed(sender: AnyObject) {
-        refreshStudentsAndDismiss()
-    }
-    
-    func refreshStudentsAndDismiss() {
         User.currentUser()?.refreshStudents({ (success) -> Void in
             self.dismissViewControllerAnimated(true, completion: nil)
-            var studentName = self.input[0]! + " " + self.input[1]!
-            self.didDissmiss?(studentName)
         })
     }
     
