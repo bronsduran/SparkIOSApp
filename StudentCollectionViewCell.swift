@@ -33,7 +33,7 @@ class StudentCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         
         // background
-        backgroundColor = UIColor(white: 1.0, alpha: 1.0)
+        backgroundColor = UIColor(white: 1.0, alpha: 0.7)
         let selectedColor = UIImage(color: UIColor.blackColor().colorWithAlphaComponent(0.3))
         self.selectedBackgroundView = UIImageView(image: selectedColor)
         

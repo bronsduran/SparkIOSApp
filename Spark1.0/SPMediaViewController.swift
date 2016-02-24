@@ -73,9 +73,11 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     override func viewWillAppear(animated: Bool) {
         
         let screenRect = UIScreen.mainScreen().bounds;
-
+        self.navigationController?.navigationBar.hidden = false
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
         MomentSingleton.sharedInstance.notes = nil
         MomentSingleton.sharedInstance.voiceFile = nil
+        UIToolbar.appearance().tintColor = UIColor.whiteColor()
         
         if self.videoURL == nil {
             

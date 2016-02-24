@@ -55,6 +55,7 @@ class SPCaptureViewController: UIViewController {
         self.image = nil
         self.videoURL = nil
         self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
+        UIToolbar.appearance().tintColor = UIColor.whiteColor()
     }
 
     

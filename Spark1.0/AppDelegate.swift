@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func initSegmentedControlAppearance() {
         // Control colors (selected):
-        UISegmentedControl.appearance().tintColor = UIColor(white: 1.0, alpha: 0.1)
+        UISegmentedControl.appearance().tintColor = UIColor(white: 1.0, alpha: 0.5)
         
         // Font colors:
         UISegmentedControl.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Nav Bar
         UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         UINavigationBar.appearance().shadowImage = UIImage()
-        UINavigationBar.appearance().translucent = true
+        //UINavigationBar.appearance().translucent = true
         
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
