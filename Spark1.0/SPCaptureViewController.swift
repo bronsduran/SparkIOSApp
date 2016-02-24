@@ -42,6 +42,7 @@ class SPCaptureViewController: UIViewController {
         self.camera.start()
         MomentSingleton.sharedInstance.image = nil
         self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
+        UIToolbar.appearance().tintColor = UIColor.whiteColor()
     }
     
     override func viewDidAppear(animated: Bool) {
