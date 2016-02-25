@@ -18,6 +18,7 @@
 		0A2F59CA1C4F3C720053300C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2F59C91C4F3C720053300C /* SystemConfiguration.framework */; };
 		0A2F59CC1C4F3C7F0053300C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2F59CB1C4F3C7F0053300C /* libz.tbd */; };
 		0A2F59CE1C4F3C8C0053300C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A2F59CD1C4F3C8C0053300C /* libsqlite3.tbd */; };
+		0A32E3171C7ED8F700E333C5 /* SPForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32E3161C7ED8F700E333C5 /* SPForgotPasswordViewController.swift */; };
 		0A40F5741C5D5EC6000485B5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40F5731C5D5EC6000485B5 /* User.swift */; };
 		0A40F5781C5D7964000485B5 /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40F5771C5D7964000485B5 /* Class.swift */; };
 		0A40F57B1C5D7984000485B5 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A40F57A1C5D7984000485B5 /* Student.swift */; };
@@ -96,6 +97,7 @@
 		0A2F59C91C4F3C720053300C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0A2F59CB1C4F3C7F0053300C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		0A2F59CD1C4F3C8C0053300C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		0A32E3161C7ED8F700E333C5 /* SPForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		0A40F5731C5D5EC6000485B5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0A40F5771C5D7964000485B5 /* Class.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
 		0A40F57A1C5D7984000485B5 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			children = (
 				4B2285FD1C4AE4E800CE4146 /* SPLoginViewController.swift */,
 				C57DB7641C4F49C600022D3A /* SPCreateAccountViewController.swift */,
+				0A32E3161C7ED8F700E333C5 /* SPForgotPasswordViewController.swift */,
 				C57DB7661C4F4A2800022D3A /* SPCaptureViewController.swift */,
 				C5C1D77C1C52E06000C20DF9 /* SPMediaViewController.swift */,
 				C5C1D77E1C52E50900C20DF9 /* SPTagStudentViewController.swift */,
@@ -372,7 +375,7 @@
 				TargetAttributes = {
 					4B2285F71C4AE4E800CE4146 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 7A54D534F5;
+						DevelopmentTeam = 8YJ2342CPM;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
 								enabled = 0;
@@ -460,6 +463,7 @@
 				0A40F57B1C5D7984000485B5 /* Student.swift in Sources */,
 				C57DB7651C4F49C600022D3A /* SPCreateAccountViewController.swift in Sources */,
 				D4BD3B991C5395DA003BBFC8 /* SPArchiveViewController.swift in Sources */,
+				0A32E3171C7ED8F700E333C5 /* SPForgotPasswordViewController.swift in Sources */,
 				0A40F57D1C5D799E000485B5 /* Moment.swift in Sources */,
 				0A40F5781C5D7964000485B5 /* Class.swift in Sources */,
 				8664E7AC1C6984BA003FF49A /* SPMomentViewController.swift in Sources */,

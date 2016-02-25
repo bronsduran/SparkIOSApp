@@ -13,6 +13,7 @@ class SPLoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var forgotPasswordButton: UIButton!
     
     @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var loginButton: UIButton!
