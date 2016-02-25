@@ -39,7 +39,7 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
         photoButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
         photoButton.imageView?.layer.cornerRadius = self.photoButton.frame.width / 2.0
         photoButton.imageView?.clipsToBounds = true
-        UIToolbar.appearance().tintColor = UIColor.blackColor()
+
         for button in addStudentButtons {
             button.enabled = false
         }

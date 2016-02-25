@@ -88,11 +88,7 @@ class Student: PFObject, PFSubclassing {
     func displayName() -> String {
 
         if let firstName = self["firstName"] as? String {
-            if let lastName = self["lastName"] as? String {
-                return firstName + " " + lastName
-            } else {
-                return firstName
-            }
+            return firstName
         } else {
             return ""
         }

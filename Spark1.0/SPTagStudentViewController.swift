@@ -44,7 +44,6 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        UIToolbar.appearance().tintColor = UIColor.blackColor()
         User.currentUser()!.students { (retrievedStudents) -> Void in
             self.students = retrievedStudents
             self.refresh()
