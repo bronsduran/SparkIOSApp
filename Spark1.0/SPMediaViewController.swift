@@ -67,7 +67,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         textView.returnKeyType = UIReturnKeyType.Done
         textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
         self.navigationItem.setHidesBackButton(true, animated: false)
-
+        self.title = "Moment"
         setupAudioSession()
         enableDisableSaveTagButtons()
         addStatusBarStyle()
