@@ -22,7 +22,6 @@ class SPCreateAccountViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var signUpButton: UIButton!
     
-    
    
     
     @IBAction func createAccount(sender: UIButton) {
@@ -78,7 +77,6 @@ class SPCreateAccountViewController: UIViewController {
         
         signUpButton.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
         activityIndicator.hidden = true
-        
     }
     
     func handleSingleTap(gesture: UITapGestureRecognizer) {
@@ -93,6 +91,5 @@ class SPCreateAccountViewController: UIViewController {
     @IBAction func returnToLogin(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
 }
 

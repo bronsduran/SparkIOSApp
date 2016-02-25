@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class SPLoginViewController: UIViewController {
+class SPLoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -17,11 +17,12 @@ class SPLoginViewController: UIViewController {
     @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
-    
+    var keyboardOn: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.emailField.delegate = self
+        self.passwordField.delegate = self
         let tapper = UITapGestureRecognizer(target: self, action: Selector("handleSingleTap:"))
         
         tapper.cancelsTouchesInView = false
@@ -29,6 +30,9 @@ class SPLoginViewController: UIViewController {
         
         loginButton.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
         addBackgroundView()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
 
     }
     
@@ -45,10 +49,10 @@ class SPLoginViewController: UIViewController {
         
     }
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    /* func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return true
-    }
+    }*/
     
     
     
@@ -58,7 +62,7 @@ class SPLoginViewController: UIViewController {
         // For testing only
         if (emailField.text == nil || passwordField.text == nil ||
             emailField.text == "" || passwordField.text == "") {
-            emailField.text = "dev@stanford.edu"
+            emailField.text = "sparkdev@stanford.edu"
             passwordField.text = "dev"
         }
     
@@ -81,11 +85,39 @@ class SPLoginViewController: UIViewController {
         // For logout: http://stackoverflow.com/questions/19962276/best-practices-for-storyboard-login-screen-handling-clearing-of-data-upon-logou
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == self.emailField {
+            self.passwordField.becomeFirstResponder()
+            
+        } else {
+            textField.resignFirstResponder()
+            loginPressed(self)
+        }
+
+        return true
+    }
     
     @IBAction func signUpPressed(sender: UIButton) {
     
     }
 
+    func keyboardWillShow(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            if (!keyboardOn) {
+                self.view.frame.origin.y -= keyboardSize.height
+                keyboardOn = true
+            }
+        }
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            self.view.frame.origin.y += keyboardSize.height
+            keyboardOn = false
+        }
+    }
 
 }
 
