@@ -45,8 +45,15 @@ class SPCreateAccountViewController: UIViewController {
         User.register(email!, password: password!, firstName: firstName!, lastName: lastName!) { (success) -> Void in
             
             if success {
-                self.presentAlertWithTitle("Account Successfully Created", message: "Please Login With Your New Username and Password.")
-                self.dismissViewControllerAnimated(true, completion: nil)
+
+                let registerAlert = UIAlertController(title: "Account Successfully Created", message: "Please Login With Your New Username and Password.", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                registerAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }))
+                
+                self.presentViewController(registerAlert, animated: true, completion: nil)
+                
             }
             self.activityIndicator.hidden = true
             self.activityIndicator.stopAnimating()
