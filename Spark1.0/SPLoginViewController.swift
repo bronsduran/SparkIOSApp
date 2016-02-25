@@ -17,7 +17,7 @@ class SPLoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
-    
+    var keyboardOn: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +30,9 @@ class SPLoginViewController: UIViewController, UITextFieldDelegate {
         
         loginButton.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
         addBackgroundView()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
 
     }
     
@@ -85,10 +88,12 @@ class SPLoginViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField == self.emailField {
             self.passwordField.becomeFirstResponder()
+            
         } else {
             textField.resignFirstResponder()
+            loginPressed(self)
         }
-        
+
         return true
     }
     
@@ -96,6 +101,23 @@ class SPLoginViewController: UIViewController, UITextFieldDelegate {
     
     }
 
+    func keyboardWillShow(notification: NSNotification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            if (!keyboardOn) {
+                self.view.frame.origin.y -= keyboardSize.height
+                keyboardOn = true
+            }
+        }
+        
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            self.view.frame.origin.y += keyboardSize.height
+            keyboardOn = false
+        }
+    }
 
 }
 
