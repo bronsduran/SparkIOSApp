@@ -81,12 +81,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func initToolBarAppearance() {
-        UIToolbar.appearance().setBackgroundImage(UIImage(), forToolbarPosition: UIBarPosition.Any, barMetrics: UIBarMetrics.Default)
-        
         UIToolbar.appearance().tintColor = UIColor.whiteColor()
-//        UIToolbar.appearance().translucent = true
         UIToolbar.appearance().backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
-
+        UIToolbar.appearance().barTintColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
     }
 
     func initCollectionViewAppearance() {
