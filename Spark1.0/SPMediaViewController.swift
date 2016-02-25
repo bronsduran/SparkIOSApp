@@ -167,7 +167,6 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     func enableDisableSaveTagButtons() {
         let hasRecording = !audioViewContainer.hidden && !isRecording
         let hasNotes = textView.text != nil && textView.text != ""
-        
         let enableButtons = hasNotes || hasRecording || image != nil || videoURL != nil
         
         saveButton.enabled = enableButtons
@@ -284,22 +283,22 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     
     @IBAction func recordButtonPressed(sender: AnyObject) {
         
-        if self.isRecording == false {
+        if isRecording == false {
             showAudioContainer()
-            self.audioPlayButton.hidden = true
-            self.audioRecordingLabel.hidden = false
-            self.audioImageView.hidden = true
-            self.recorder?.record()
+            audioPlayButton.hidden = true
+            audioRecordingLabel.hidden = false
+            audioImageView.hidden = true
+            recorder?.record()
             
         } else {
-            self.audioButton.setImage(UIImage(named: "microphoneButtonSelected"), forState: UIControlState.Normal)
-            self.audioPlayButton.hidden = false
-            self.audioRecordingLabel.hidden = true
-            self.audioImageView.hidden = false
-            self.recorder?.stop()
+            audioButton.setImage(UIImage(named: "microphoneButtonSelected"), forState: UIControlState.Normal)
+            audioPlayButton.hidden = false
+            audioRecordingLabel.hidden = true
+            audioImageView.hidden = false
+            recorder?.stop()
         }
         
-        self.isRecording = !self.isRecording
+        isRecording = !isRecording
         enableDisableSaveTagButtons()
     }
     
@@ -309,6 +308,9 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     }
     
     @IBAction func saveButtonPressed(sender: AnyObject) {
+        
+        updateMomentSingleton()
+        
         Moment.createMoment(MomentSingleton.sharedInstance.mediaType == 0, students: nil, categories: nil, notes: MomentSingleton.sharedInstance.notes,
             imageFile: MomentSingleton.sharedInstance.image, videoURL: MomentSingleton.sharedInstance.videoUrl, voiceFile: MomentSingleton.sharedInstance.voiceFile)
         
@@ -348,14 +350,18 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         enableDisableSaveTagButtons()
     }
     
+    func updateMomentSingleton() {
+        if !self.audioViewContainer.hidden {
+            MomentSingleton.sharedInstance.voiceFile = getSoundFile()
+        }
+        if !self.textViewContainer.hidden && !self.textView.text.isEmpty {
+            MomentSingleton.sharedInstance.notes = self.textView.text
+        }
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.destinationViewController.isKindOfClass(SPTagStudentViewController) {
-            if !self.audioViewContainer.hidden {
-                MomentSingleton.sharedInstance.voiceFile = getSoundFile()
-            }
-            if !self.textViewContainer.hidden && !self.textView.text.isEmpty {
-                MomentSingleton.sharedInstance.notes = self.textView.text
-            }
+            updateMomentSingleton()
         }
     }
     

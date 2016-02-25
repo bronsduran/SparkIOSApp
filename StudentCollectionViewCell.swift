@@ -49,7 +49,6 @@ class StudentCollectionViewCell: UICollectionViewCell {
         nameLabel.textColor = UIColor.blackColor()
         
         // count view
-        countView.backgroundColor = UIColor(red:100/255.0, green:168/255.0, blue:205/255.0,  alpha:0.7);
         countLabel.textColor = UIColor.whiteColor()
         countView.layer.cornerRadius = countView.frame.height / 2.0
     }
@@ -59,7 +58,8 @@ class StudentCollectionViewCell: UICollectionViewCell {
         
         nameLabel.text = student.displayName()
         countLabel.text = String(student.numberOfMoments())
-        
+        countView.backgroundColor = UIColor(red:100/255.0, green:168/255.0, blue:205/255.0,  alpha:0.7);
+
         student.image { (image: UIImage?) -> Void in
             if image != nil {
                 self.pictureImageView.image = image
