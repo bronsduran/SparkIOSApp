@@ -61,17 +61,10 @@ class SPManageStudentsViewController : UICollectionViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let editStudentProfileViewController = storyboard.instantiateViewControllerWithIdentifier("SPStudentProfileViewController") as! SPStudentProfileViewController
         editStudentProfileViewController.tableView = UITableView()
+        editStudentProfileViewController.student = students[indexPath.row]
         editStudentProfileViewController.editMode = true
         self.navigationController?.pushViewController(editStudentProfileViewController, animated: true)
     }
-    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if(segue.identifier == "toStudentProfileViewController"){
-//            if let destination = segue.destinationViewController as? SPStudentProfileViewController {
-//                destination.editMode = true
-//            }
-//        }
-//    }
     
     
 }

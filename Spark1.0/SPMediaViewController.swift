@@ -62,32 +62,26 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     override func viewDidLoad() {
         super.viewDidLoad()
         self.textView.delegate = self
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
+
         textView.returnKeyType = UIReturnKeyType.Done
         textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
-        print("SUP BRO")
+        self.navigationItem.setHidesBackButton(true, animated: false)
+
         setupAudioSession()
         enableDisableSaveTagButtons()
-
         addStatusBarStyle()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
-        
-        self.navigationItem.setHidesBackButton(true, animated: false)
     }
     
     override func viewWillAppear(animated: Bool) {
         
         let screenRect = UIScreen.mainScreen().bounds;
-        self.navigationController?.navigationBar.hidden = false
-        // self.navigationController?.navigationBar.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
-        self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
-        //self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
-        //self.navigationController?.navigationBar.shadowImage = UIImage()
+
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
         self.navigationController?.navigationBar.translucent = true
+
         MomentSingleton.sharedInstance.notes = nil
         MomentSingleton.sharedInstance.voiceFile = nil
-        UIToolbar.appearance().tintColor = UIColor.whiteColor()
-        
         
         if self.videoURL == nil {
             
@@ -98,7 +92,12 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
             if let view = self.videoView {
                 self.view.sendSubviewToBack(view)
             }
-            self.imageView!.image = self.image
+            
+            if let backgroundImage = self.image {
+                self.imageView!.image = backgroundImage
+            } else {
+                self.imageView!.image = UIImage(named: "applicationBackground")
+            }
             
         } else {
             
@@ -226,10 +225,10 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     func showAudioContainer() {
         self.audioButton.setImage(UIImage(named: "recordStopButton"), forState: UIControlState.Normal)
         textViewDistanceToBottomOfAudioView.constant = 8
+        self.audioViewContainer.hidden = false
         UIView.animateWithDuration(0.3) {
             self.view.layoutIfNeeded()
         }
-        self.audioViewContainer.hidden = false
     }
     
     func hideAudioContainer() {
@@ -239,13 +238,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         UIView.animateWithDuration(0.3) {
             self.view.layoutIfNeeded()
         }
-        
-    }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        print("FIRST")
-        return true
+        returnToCaptureIfNeeded()
     }
     
     func showTextContainer() {
@@ -259,7 +252,22 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         self.textView.text = ""
         self.textView.endEditing(true)
         self.textViewContainer.hidden = true
+        returnToCaptureIfNeeded()
     }
+    
+    func returnToCaptureIfNeeded() {
+        if image == nil && audioViewContainer.hidden && textViewContainer.hidden {
+            self.navigationController?.popViewControllerAnimated(false)
+        }
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        print("FIRST")
+        return true
+    }
+    
+
     
     @IBAction func textButtonPressed(sender: AnyObject) {
         showTextContainer()
@@ -304,7 +312,18 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         Moment.createMoment(MomentSingleton.sharedInstance.mediaType == 0, students: nil, categories: nil, notes: MomentSingleton.sharedInstance.notes,
             imageFile: MomentSingleton.sharedInstance.image, videoURL: MomentSingleton.sharedInstance.videoUrl, voiceFile: MomentSingleton.sharedInstance.voiceFile)
         
-        self.navigationController?.popViewControllerAnimated(false)
+        User.currentUser()?.refreshUntaggedMoments(nil)
+        
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            if let view = self.imageView {
+                view.frame = CGRect(x: 0.0, y: self.view.frame.height, width: 50.0, height: 50.0)
+            } else if let view = self.videoPlayerLayer {
+                view.frame = CGRect(x: 0.0, y: self.view.frame.height, width: 50.0, height: 50.0)
+            }
+        }) { (success) -> Void in
+            self.navigationController?.popViewControllerAnimated(false)
+        }
+        
     }
     
     @IBAction func tagButtonPressed(sender: AnyObject) {

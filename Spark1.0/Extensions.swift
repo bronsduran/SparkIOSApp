@@ -39,6 +39,7 @@ extension PFObject {
         if let objectIds = self[objectArrayName] as? [String] {
             print("Fetching ", objectArrayName, " : ", objectIds)
             
+            print(classname)
             let query = PFQuery(className: classname)
             query.whereKey("objectId", containedIn: objectIds)
             

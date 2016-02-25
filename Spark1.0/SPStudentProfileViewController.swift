@@ -19,11 +19,14 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
     var imagePicker : UIImagePickerController!
     
     @IBOutlet weak var photoButton: UIButton!
+    @IBOutlet weak var addAnotherDeleteButton: UIBarButtonItem!
+    @IBOutlet weak var doneSaveButton: UIBarButtonItem!
     
     var image : UIImage?
     var input = [String?](count: 4, repeatedValue: nil)
     var didDissmiss : ((String?) -> Void)? = nil
     var editMode = false // defaults to addMode
+    var student: Student? = nil
     
     
     override func viewDidLoad() {
@@ -39,14 +42,22 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
         photoButton.imageView?.layer.cornerRadius = self.photoButton.frame.width / 2.0
         photoButton.imageView?.clipsToBounds = true
         UIToolbar.appearance().tintColor = UIColor.blackColor()
-        for button in bottomBarButtons {
-            button.enabled = false
-        }
+        
         
         if editMode {
-            bottomBarButtons[0].title = "Save"
-            bottomBarButtons[0].title = "Delete"
+            if let student = student {
+                input[0] = student["firstName"] as? String
+                input[1] = student["lastName"] as? String
+                input[2] = student["parentPhone"] as? String
+                input[3] = student["parentEmail"] as? String
+            }
+            
+            addAnotherDeleteButton.title = "Delete"
+            doneSaveButton.title = "Save"
+        } else {
+            addAnotherDeleteButton.enabled = false
         }
+        doneSaveButton.enabled = false
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -102,28 +113,47 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
-    
-    @IBOutlet var bottomBarButtons: [UIBarButtonItem]!
 
-    @IBAction func leftBarButtonPressed(sender: AnyObject) {
+    @IBAction func addAnotherDeleteButtonPressed(sender: AnyObject) {
         if editMode {
-            
+            if let student = student {
+                do {
+                    try student.delete()
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                } catch {
+                    self.presentAlertWithTitle("Delete failed.", message: "There was an error connecting to the server, and and the student could not be deleted. To delete student, try again.")
+                }
+            }
         } else {
             createStudent()
             resetFields()
         }
     }
     
-    @IBAction func rightBarButtonPressed(sender: AnyObject) {
+    @IBAction func doneSaveButtonPressed(sender: AnyObject) {
         if editMode {
-            
+            updateInputCache()
+            if let student = student {
+                student["firstName"] = input[0]!
+                student["lastName"] = input[1]!
+                student["parentPhone"] = input[2]!
+                student["parentEmail"] = input[3]!
+                
+                student.saveInBackgroundWithBlock( { success in
+                    if success.0 {
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    } else {
+                        self.presentAlertWithTitle("Save failed.", message: "There was an error connecting to the server, and changes couldn't be saved. To save changes, try again.")
+                    }
+                })
+            }
         } else {
             var created : Bool = createStudent()
             
             if created {
                 User.currentUser()?.refreshStudents({ (success) -> Void in
                     self.dismissViewControllerAnimated(true, completion: nil)
-                    var studentName = self.input[0]! + " " + self.input[1]!
+                    let studentName = self.input[0]! + " " + self.input[1]!
                     self.didDissmiss?(studentName)
                 })
             }
@@ -245,9 +275,10 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
             }
         }
         
-        for button in bottomBarButtons {
-            button.enabled = enableButtons
+        if !editMode {
+            addAnotherDeleteButton.enabled = enableButtons
         }
+        doneSaveButton.enabled = enableButtons
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

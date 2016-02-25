@@ -33,7 +33,7 @@ class SPLoginViewController: UIViewController, UITextFieldDelegate {
         self.view.addGestureRecognizer(tapper)
         
         loginButton.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
-        addBackgroundView()
+       
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)

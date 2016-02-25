@@ -171,6 +171,24 @@ class User: PFUser {
         }
     }
     
+    func deleteStudent(student: Student, callback: ((Bool) -> Void)?) {
+        let query = PFQuery(className: "Student")
+        
+        print("@@@@@@@\(student["objectId"])")
+        
+        query.whereKey("objectId", equalTo: student["objectId"] as! String)
+//        query.whereKey("columnName", equalTo)
+        query.findObjectsInBackgroundWithBlock({ results in
+            if let students = results.0 {
+                for student in students {
+                    student.deleteInBackgroundWithBlock({ success in
+                        callback?(results.1 == nil)
+                    })
+                }
+            }
+        })
+    }
+    
     class func logout() {
         PFUser.logOut()
     }
