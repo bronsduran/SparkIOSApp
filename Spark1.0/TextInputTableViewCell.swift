@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TextInputTableViewCell : UITableViewCell, UITextFieldDelegate {
+class TextInputTableViewCell : UITableViewCell {
     
     @IBOutlet weak var labelImage: UIImageView!
     @IBOutlet weak var labelView: UILabel!
@@ -24,13 +24,12 @@ class TextInputTableViewCell : UITableViewCell, UITextFieldDelegate {
         labelView.textColor = UIColor.darkGrayColor()
         textField.textColor = UIColor.lightGrayColor()
         textField.borderStyle = UITextBorderStyle.None
-        textField.delegate = self
         textField.returnKeyType = UIReturnKeyType.Default
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        
-        return true
-    }
+//    func textFieldShouldReturn(textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+//        
+//        return true
+//    }
 }
