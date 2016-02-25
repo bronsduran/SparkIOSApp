@@ -313,7 +313,17 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
             imageFile: MomentSingleton.sharedInstance.image, videoURL: MomentSingleton.sharedInstance.videoUrl, voiceFile: MomentSingleton.sharedInstance.voiceFile)
         
         User.currentUser()?.refreshUntaggedMoments(nil)
-        self.navigationController?.popViewControllerAnimated(false)
+        
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            if let view = self.imageView {
+                view.frame = CGRect(x: 0.0, y: self.view.frame.height, width: 50.0, height: 50.0)
+            } else if let view = self.videoPlayerLayer {
+                view.frame = CGRect(x: 0.0, y: self.view.frame.height, width: 50.0, height: 50.0)
+            }
+        }) { (success) -> Void in
+            self.navigationController?.popViewControllerAnimated(false)
+        }
+        
     }
     
     @IBAction func tagButtonPressed(sender: AnyObject) {

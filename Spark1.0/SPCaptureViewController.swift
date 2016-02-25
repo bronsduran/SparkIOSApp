@@ -48,6 +48,7 @@ class SPCaptureViewController: UIViewController {
         self.image = nil
         self.videoURL = nil
         self.isVideoRecording = false
+        setCaptureButtonImage("captureButton")
         self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
     }
@@ -108,6 +109,8 @@ class SPCaptureViewController: UIViewController {
     
     func endVideoRecord() {
         camera.stop()
+        setCaptureButtonImage("videoCaptureButton")
+        
         self.camera.stopRecording {
             (camera: LLSimpleCamera!, outputFileUrl: NSURL!, error: NSError!) -> Void in
             
