@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class SPLoginViewController: UIViewController {
+class SPLoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -21,7 +21,8 @@ class SPLoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.emailField.delegate = self
+        self.passwordField.delegate = self
         let tapper = UITapGestureRecognizer(target: self, action: Selector("handleSingleTap:"))
         
         tapper.cancelsTouchesInView = false
@@ -45,10 +46,10 @@ class SPLoginViewController: UIViewController {
         
     }
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    /* func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return true
-    }
+    }*/
     
     
     
@@ -81,6 +82,15 @@ class SPLoginViewController: UIViewController {
         // For logout: http://stackoverflow.com/questions/19962276/best-practices-for-storyboard-login-screen-handling-clearing-of-data-upon-logou
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if textField == self.emailField {
+            self.passwordField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        
+        return true
+    }
     
     @IBAction func signUpPressed(sender: UIButton) {
     

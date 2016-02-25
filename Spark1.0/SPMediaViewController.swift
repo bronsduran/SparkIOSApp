@@ -61,6 +61,8 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.textView.delegate = self
+        textView.returnKeyType = UIReturnKeyType.Done
         textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
         print("SUP BRO")
         setupAudioSession()
@@ -240,6 +242,12 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        print("FIRST")
+        return true
+    }
+    
     func showTextContainer() {
         self.textButton.setImage(UIImage(named: "textButtonSelected"), forState: UIControlState.Normal)
         self.textViewContainer.hidden = false
@@ -330,6 +338,16 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
                 MomentSingleton.sharedInstance.notes = self.textView.text
             }
         }
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n") {
+            if (textView.text == "") {
+                self.textButton.setImage(UIImage(named: "textButton"), forState: UIControlState.Normal)
+            }
+            textView.resignFirstResponder()
+        }
+        return true
     }
 
 }
