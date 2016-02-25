@@ -14,6 +14,7 @@ class StudentCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel : UILabel!
     @IBOutlet weak var countLabel : UILabel!
     @IBOutlet weak var countView : UIView!
+    @IBOutlet weak var nameBackground: UIView!
     
     var student : Student?
     
@@ -33,16 +34,24 @@ class StudentCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         
         // background
-        backgroundColor = UIColor(white: 1.0, alpha: 0.7)
+        backgroundColor = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 0.77)
         let selectedColor = UIImage(color: UIColor.blackColor().colorWithAlphaComponent(0.3))
         self.selectedBackgroundView = UIImageView(image: selectedColor)
+        self.layer.cornerRadius = 4
+        
+        //nameBackground
+        nameBackground.backgroundColor = UIColor(red: 255.0/255, green: 255.0/255, blue: 255.0/255, alpha: 0.55)
+        
+        //photoBackground
+        pictureImageView.backgroundColor = UIColor.clearColor()
         
         // name label
         nameLabel.textColor = UIColor.blackColor()
+        ()
         
         // count view
-        countView.backgroundColor = UIColor(red: 100.0/255, green: 168.0/255, blue: 205.0/255, alpha: 1.0)
-        
+        countView.backgroundColor = UIColor(red: 209.0/255, green: 209.0/255, blue: 209.0/255, alpha: 1.0)
+        countLabel.textColor = UIColor.darkGrayColor()
         countView.layer.cornerRadius = countView.frame.height / 2.0
     }
     
@@ -77,7 +86,7 @@ class StudentCollectionViewCell: UICollectionViewCell {
         
         nameLabel.text = "Untagged"
         countLabel.text = String(numUntaggedMoments)
-        pictureImageView.image = UIImage(named: "nameIcon")
+        pictureImageView.image = UIImage(named: "untaggedIcon")
     }
     
     

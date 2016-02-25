@@ -40,8 +40,12 @@
                             <constraint firstAttribute="height" constant="30" id="pJd-uV-jPC"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TGK-bG-Amv">
+                        <rect key="frame" x="0.0" y="110" width="115" height="26"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rg8-5Z-f5s">
-                        <rect key="frame" x="35" y="107" width="45" height="20.5"/>
+                        <rect key="frame" x="35" y="107.5" width="45" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -52,15 +56,20 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="u3U-oV-R1L" firstAttribute="centerX" secondItem="K7K-1t-1yL" secondAttribute="centerX" id="BaR-EL-9rj"/>
+                <constraint firstAttribute="trailing" secondItem="TGK-bG-Amv" secondAttribute="trailing" id="Btg-vg-QZl"/>
+                <constraint firstItem="TGK-bG-Amv" firstAttribute="top" secondItem="u3U-oV-R1L" secondAttribute="bottom" constant="8" id="J4N-GG-inN"/>
                 <constraint firstAttribute="topMargin" secondItem="u3U-oV-R1L" secondAttribute="top" constant="-4" id="LyR-xp-NOb"/>
                 <constraint firstAttribute="bottom" secondItem="Rg8-5Z-f5s" secondAttribute="bottom" constant="8.5" id="MJd-ha-50K"/>
+                <constraint firstItem="TGK-bG-Amv" firstAttribute="leading" secondItem="K7K-1t-1yL" secondAttribute="leading" id="QpD-8a-ET6"/>
                 <constraint firstItem="opd-2E-rgA" firstAttribute="top" secondItem="K7K-1t-1yL" secondAttribute="top" constant="8" id="e3d-kv-kUP"/>
+                <constraint firstAttribute="bottom" secondItem="TGK-bG-Amv" secondAttribute="bottom" id="jBW-7n-seW"/>
                 <constraint firstAttribute="trailing" secondItem="opd-2E-rgA" secondAttribute="trailing" constant="8" id="jkA-2U-KAp"/>
                 <constraint firstItem="Rg8-5Z-f5s" firstAttribute="centerX" secondItem="K7K-1t-1yL" secondAttribute="centerX" id="li1-9Y-RBV"/>
             </constraints>
             <connections>
                 <outlet property="countLabel" destination="z63-tg-2dE" id="Su0-50-hrf"/>
                 <outlet property="countView" destination="opd-2E-rgA" id="3hP-CB-Nxy"/>
+                <outlet property="nameBackground" destination="TGK-bG-Amv" id="2Rs-ED-niZ"/>
                 <outlet property="nameLabel" destination="Rg8-5Z-f5s" id="nwC-Ev-s6V"/>
                 <outlet property="pictureImageView" destination="u3U-oV-R1L" id="nBE-tB-8mA"/>
             </connections>

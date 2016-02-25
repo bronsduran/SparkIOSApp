@@ -93,7 +93,7 @@ class MomentTableViewCell: UITableViewCell {
             if let image = image {
                 self.momentImageView.image = image
                 self.momentImageView.contentMode = UIViewContentMode.ScaleAspectFill
-                self.momentImageView.layer.cornerRadius = 5.0
+                self.momentImageView.layer.cornerRadius = 3.0
                 self.momentImageView.layer.masksToBounds = true
                 self.momentImageView.layer.opaque = false
                 self.imageToCaptionConstraint.constant = 8

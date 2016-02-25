@@ -227,6 +227,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         countView.backgroundColor = UIColor(white: 0.0, alpha: 0.1)
         
         configureTableView()
+        //addBackgroundView()
       
     }
     

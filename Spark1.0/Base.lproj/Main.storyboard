@@ -210,14 +210,14 @@
                             </connections>
                         </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="hHE-AN-t8c">
-                            <rect key="frame" x="62" y="2" width="192" height="40"/>
+                            <rect key="frame" x="62" y="7" width="192" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="39" id="Hv1-DK-fry"/>
                             </constraints>
                             <segments>
                                 <segment title="NAME"/>
-                                <segment title="NUMBER"/>
+                                <segment title="AMOUNT"/>
                             </segments>
                             <connections>
                                 <action selector="sortByControl:" destination="XHc-6l-Ic5" eventType="valueChanged" id="lyF-df-6DJ"/>
@@ -287,7 +287,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.10581896551724138" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="142" id="0cv-n0-vdx"/>
                                     <constraint firstItem="i4c-2V-Pyg" firstAttribute="width" secondItem="TUZ-hc-d23" secondAttribute="width" id="0ot-WR-JOU"/>
@@ -303,18 +303,17 @@
                                     <constraint firstItem="TUZ-hc-d23" firstAttribute="top" secondItem="LDd-46-6BB" secondAttribute="top" constant="8" id="sxT-1F-1L7"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="130" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ebY-yG-1NZ">
-                                <rect key="frame" x="0.0" y="263" width="320" height="305"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="130" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ebY-yG-1NZ">
+                                <rect key="frame" x="0.0" y="247" width="320" height="321"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="7" maxY="0.0"/>
+                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="mjq-oN-foE" id="o4Z-LJ-lUj"/>
                                     <outlet property="delegate" destination="mjq-oN-foE" id="seP-pR-xzl"/>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yXL-P5-8ym" customClass="AKPickerView" customModule="Spark1_0" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="214" width="320" height="41"/>
+                                <rect key="frame" x="0.0" y="206" width="320" height="41"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="qKr-CW-yLc"/>
@@ -323,11 +322,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ebY-yG-1NZ" firstAttribute="top" secondItem="yXL-P5-8ym" secondAttribute="bottom" constant="8" id="1ym-jN-Lnk"/>
+                            <constraint firstItem="ebY-yG-1NZ" firstAttribute="top" secondItem="yXL-P5-8ym" secondAttribute="bottom" id="1ym-jN-Lnk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LDd-46-6BB" secondAttribute="trailing" constant="-20" id="7R0-Ny-iWQ"/>
                             <constraint firstAttribute="trailing" secondItem="yXL-P5-8ym" secondAttribute="trailing" id="Aof-qb-fs0"/>
                             <constraint firstItem="ebY-yG-1NZ" firstAttribute="leading" secondItem="scA-RS-vyz" secondAttribute="leading" id="PEG-dz-Yaf"/>
-                            <constraint firstItem="yXL-P5-8ym" firstAttribute="top" secondItem="LDd-46-6BB" secondAttribute="bottom" constant="8" id="Z5f-IK-p8J"/>
+                            <constraint firstItem="yXL-P5-8ym" firstAttribute="top" secondItem="LDd-46-6BB" secondAttribute="bottom" id="Z5f-IK-p8J"/>
                             <constraint firstItem="LDd-46-6BB" firstAttribute="leading" secondItem="scA-RS-vyz" secondAttribute="leadingMargin" constant="-20" id="aQV-GM-yAz"/>
                             <constraint firstItem="yXL-P5-8ym" firstAttribute="leading" secondItem="scA-RS-vyz" secondAttribute="leading" id="csi-hL-7FL"/>
                             <constraint firstAttribute="trailing" secondItem="ebY-yG-1NZ" secondAttribute="trailing" id="mnO-jq-SR4"/>

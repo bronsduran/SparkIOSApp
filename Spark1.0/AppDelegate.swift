@@ -65,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Font colors:
         UISegmentedControl.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
         UISegmentedControl.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Selected)
+        
     }
     
     func initNavBarAppearance() {
