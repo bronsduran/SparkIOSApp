@@ -42,7 +42,7 @@
 		C50BFB171C5EE6FB00AB490C /* ButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C50BFB161C5EE6FB00AB490C /* ButtonTableViewCell.xib */; };
 		C50BFB1A1C5EE7A600AB490C /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50BFB191C5EE7A600AB490C /* ButtonTableViewCell.swift */; };
 		C50BFB1C1C5F1D4B00AB490C /* SPManageStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50BFB1B1C5F1D4B00AB490C /* SPManageStudentsViewController.swift */; };
-		C543990F1C5879C60049D903 /* SPAddStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C543990E1C5879C60049D903 /* SPAddStudentViewController.swift */; };
+		C543990F1C5879C60049D903 /* SPStudentProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C543990E1C5879C60049D903 /* SPStudentProfileViewController.swift */; };
 		C54399131C58840A0049D903 /* TextInputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C54399121C58840A0049D903 /* TextInputTableViewCell.xib */; };
 		C54399151C5888A10049D903 /* TextInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54399141C5888A10049D903 /* TextInputTableViewCell.swift */; };
 		C54399181C5A135B0049D903 /* SPSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54399171C5A135B0049D903 /* SPSettingsViewController.swift */; };
@@ -124,7 +124,7 @@
 		C50BFB161C5EE6FB00AB490C /* ButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonTableViewCell.xib; sourceTree = "<group>"; };
 		C50BFB191C5EE7A600AB490C /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
 		C50BFB1B1C5F1D4B00AB490C /* SPManageStudentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPManageStudentsViewController.swift; sourceTree = "<group>"; };
-		C543990E1C5879C60049D903 /* SPAddStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPAddStudentViewController.swift; sourceTree = "<group>"; };
+		C543990E1C5879C60049D903 /* SPStudentProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPStudentProfileViewController.swift; sourceTree = "<group>"; };
 		C54399121C58840A0049D903 /* TextInputTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextInputTableViewCell.xib; sourceTree = "<group>"; };
 		C54399141C5888A10049D903 /* TextInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputTableViewCell.swift; sourceTree = "<group>"; };
 		C54399171C5A135B0049D903 /* SPSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPSettingsViewController.swift; sourceTree = "<group>"; };
@@ -205,7 +205,7 @@
 				C5C1D77C1C52E06000C20DF9 /* SPMediaViewController.swift */,
 				C5C1D77E1C52E50900C20DF9 /* SPTagStudentViewController.swift */,
 				C5C1D7801C52EA9700C20DF9 /* SPTagCategoryViewController.swift */,
-				C543990E1C5879C60049D903 /* SPAddStudentViewController.swift */,
+				C543990E1C5879C60049D903 /* SPStudentProfileViewController.swift */,
 				D4BD3B981C5395DA003BBFC8 /* SPArchiveViewController.swift */,
 				D4BD3BA11C589E13003BBFC8 /* SPStudentViewController.swift */,
 				C54399171C5A135B0049D903 /* SPSettingsViewController.swift */,
@@ -447,7 +447,7 @@
 				C5C1D7791C50B44400C20DF9 /* LLSimpleCamera.m in Sources */,
 				4B2C5F101C7A5DB400B097AE /* AKPickerView.swift in Sources */,
 				C5C1D7811C52EA9700C20DF9 /* SPTagCategoryViewController.swift in Sources */,
-				C543990F1C5879C60049D903 /* SPAddStudentViewController.swift in Sources */,
+				C543990F1C5879C60049D903 /* SPStudentProfileViewController.swift in Sources */,
 				C50BFB1C1C5F1D4B00AB490C /* SPManageStudentsViewController.swift in Sources */,
 				C57DB7671C4F4A2800022D3A /* SPCaptureViewController.swift in Sources */,
 				4B693A3B1C58872B005478D9 /* StudentCollectionViewCell.swift in Sources */,

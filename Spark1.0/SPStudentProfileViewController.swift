@@ -1,5 +1,5 @@
 //
-//  SPAddStudentViewController.swift
+//  SPStudentProfileViewController.swift
 //  Spark1.0
 //
 //  Created by Nathan Eidelson on 1/26/16.
@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Parse
 
-class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
+class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
                                     UIGestureRecognizerDelegate, UIImagePickerControllerDelegate,
                                     UINavigationControllerDelegate, UITextFieldDelegate {
     
@@ -21,10 +21,9 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var photoButton: UIButton!
     
     var image : UIImage?
-    
     var input = [String?](count: 4, repeatedValue: nil)
-    
     var didDissmiss : ((String?) -> Void)? = nil
+    var editMode = false // defaults to addMode
     
     
     override func viewDidLoad() {
@@ -40,8 +39,13 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
         photoButton.imageView?.layer.cornerRadius = self.photoButton.frame.width / 2.0
         photoButton.imageView?.clipsToBounds = true
         UIToolbar.appearance().tintColor = UIColor.blackColor()
-        for button in addStudentButtons {
+        for button in bottomBarButtons {
             button.enabled = false
+        }
+        
+        if editMode {
+            bottomBarButtons[0].title = "Save"
+            bottomBarButtons[0].title = "Delete"
         }
     }
     
@@ -99,24 +103,32 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
         return 4
     }
     
-    @IBOutlet var addStudentButtons: [UIBarButtonItem]!
+    @IBOutlet var bottomBarButtons: [UIBarButtonItem]!
 
-    @IBAction func addMoreButtonPressed(sender: AnyObject) {
-        createStudent()
-        resetFields()
+    @IBAction func leftBarButtonPressed(sender: AnyObject) {
+        if editMode {
+            
+        } else {
+            createStudent()
+            resetFields()
+        }
     }
     
-    @IBAction func doneButtonPressed(sender: AnyObject) {
-        // let firstNameCell = tableView.cellForRowAtIndexPath(0) as TextInputTableViewCell
-        var created : Bool = createStudent()
-        
-        if created {
-            User.currentUser()?.refreshStudents({ (success) -> Void in
-                self.dismissViewControllerAnimated(true, completion: nil)
-                var studentName = self.input[0]! + " " + self.input[1]!
-                self.didDissmiss?(studentName)
-            })
+    @IBAction func rightBarButtonPressed(sender: AnyObject) {
+        if editMode {
+            
+        } else {
+            var created : Bool = createStudent()
+            
+            if created {
+                User.currentUser()?.refreshStudents({ (success) -> Void in
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                    var studentName = self.input[0]! + " " + self.input[1]!
+                    self.didDissmiss?(studentName)
+                })
+            }
         }
+        
     }
     
     func updateInputCache() {
@@ -233,7 +245,7 @@ class SPAddStudentViewController: UIViewController, UITableViewDelegate, UITable
             }
         }
         
-        for button in addStudentButtons {
+        for button in bottomBarButtons {
             button.enabled = enableButtons
         }
     }

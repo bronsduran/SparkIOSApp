@@ -10,6 +10,8 @@ import Foundation
 
 class SPManageStudentsViewController : UICollectionViewController {
     
+    var students: [Student]! = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
                 
@@ -18,6 +20,7 @@ class SPManageStudentsViewController : UICollectionViewController {
         layout.itemSize = CGSize(width: (self.collectionView!.frame.width - 4.0)/3.0, height: 148.0)
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 2
+        self.view.backgroundColor = UIColor(red:232/255.0, green:232/255.0, blue:232/255.0,  alpha:1.0)
         self.collectionView?.collectionViewLayout = layout
         
         let cellNib: UINib = UINib(nibName: "StudentCollectionViewCell", bundle: nil)
@@ -27,12 +30,17 @@ class SPManageStudentsViewController : UICollectionViewController {
         self.collectionView!.backgroundColor = UIColor.clearColor()
         self.title = "Manage Students"
         
-    
+        User.currentUser()?.students( { students in
+            self.students = students
+            
+            self.students.sortInPlace({ $1["firstName"] as? String > $0["firstName"] as? String})
+            self.collectionView?.reloadData()
+        })
         
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return students.count
     }
     
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -43,18 +51,27 @@ class SPManageStudentsViewController : UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StudentCollectionViewCell", forIndexPath: indexPath) as! StudentCollectionViewCell
         
         // Contents (Picture / name / count)
-        cell.pictureImageView.image = UIImage(named: "Untagged_Icon")
-        cell.nameLabel.text = "Lucas"
+        cell.withStudentData(students[indexPath.row])
         cell.countView.hidden = true
         
         return cell
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-//        performSegueWithIdentifier("toStudentViewController", sender: self)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let editStudentProfileViewController = storyboard.instantiateViewControllerWithIdentifier("SPStudentProfileViewController") as! SPStudentProfileViewController
+        editStudentProfileViewController.tableView = UITableView()
+        editStudentProfileViewController.editMode = true
+        self.navigationController?.pushViewController(editStudentProfileViewController, animated: true)
     }
     
-
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if(segue.identifier == "toStudentProfileViewController"){
+//            if let destination = segue.destinationViewController as? SPStudentProfileViewController {
+//                destination.editMode = true
+//            }
+//        }
+//    }
     
     
 }

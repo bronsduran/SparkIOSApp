@@ -17,6 +17,10 @@ class SPLoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var logo: UIImageView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
+    
+    var keyboardShift: CGFloat = 0
+    
+    
     var keyboardOn: Bool = false
     
     override func viewDidLoad() {
@@ -105,7 +109,9 @@ class SPLoginViewController: UIViewController, UITextFieldDelegate {
         
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
             if (!keyboardOn) {
-                self.view.frame.origin.y -= keyboardSize.height
+                keyboardShift = keyboardSize.height - (view.frame.height - loginButton.frame.maxY) + 12
+                
+                self.view.frame.origin.y -= keyboardShift
                 keyboardOn = true
             }
         }
@@ -113,10 +119,8 @@ class SPLoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            self.view.frame.origin.y += keyboardSize.height
-            keyboardOn = false
-        }
+        self.view.frame.origin.y += keyboardShift
+        keyboardOn = false
     }
 
 }

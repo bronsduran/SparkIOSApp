@@ -30,7 +30,6 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     override func viewDidLoad() {
         super.viewDidLoad()
         addStatusBarStyle()
-       // addBackgroundView()
         self.view.backgroundColor = UIColor(red:232/255.0, green:232/255.0, blue:232/255.0,  alpha:1.0)
         let cellNib: UINib = UINib(nibName: "StudentCollectionViewCell", bundle: nil)
         
@@ -75,7 +74,7 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
             if (self.sortByControl.selectedSegmentIndex == 1) {
                 
                 self.students.sortInPlace({ (student1: Student, student2: Student) -> Bool in
-                    return (student1.numberOfMoments() as! Int) < (student2.numberOfMoments() as! Int)
+                    return (student1.numberOfMoments()) < (student2.numberOfMoments() as! Int)
                 })
 
             }
@@ -129,7 +128,7 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     
     @IBAction func addStudentButtonPressed(sender: AnyObject) {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = mainStoryboard.instantiateViewControllerWithIdentifier("SPAddStudentViewController") as! SPAddStudentViewController
+        let vc = mainStoryboard.instantiateViewControllerWithIdentifier("SPStudentProfileViewController") as! SPStudentProfileViewController
         
         vc.didDissmiss = { (data: String?) -> Void in
             if let studentName = data {
