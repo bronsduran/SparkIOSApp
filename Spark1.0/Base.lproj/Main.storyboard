@@ -672,6 +672,7 @@
                                         </segmentedControl>
                                     </barButtonItem>
                                 </items>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rQ9-xJ-BuK">
@@ -703,7 +704,7 @@
                             <constraint firstItem="CaL-N5-0uL" firstAttribute="top" secondItem="lbH-oC-0To" secondAttribute="bottom" id="IZz-Mr-oFl"/>
                             <constraint firstItem="CaL-N5-0uL" firstAttribute="top" secondItem="3ws-sR-tXc" secondAttribute="bottom" id="Wdr-Ab-Fdl"/>
                             <constraint firstItem="CaL-N5-0uL" firstAttribute="leading" secondItem="POr-pK-aQu" secondAttribute="leading" id="cjC-5z-jsP"/>
-                            <constraint firstItem="lbH-oC-0To" firstAttribute="leading" secondItem="rQ9-xJ-BuK" secondAttribute="trailing" constant="3" id="tnQ-6O-095"/>
+                            <constraint firstItem="lbH-oC-0To" firstAttribute="leading" secondItem="rQ9-xJ-BuK" secondAttribute="trailing" constant="4" id="tnQ-6O-095"/>
                             <constraint firstAttribute="trailing" secondItem="CaL-N5-0uL" secondAttribute="trailing" id="yhK-uz-NkL"/>
                         </constraints>
                     </view>
@@ -888,7 +889,7 @@
                                     <constraint firstAttribute="trailing" secondItem="4Py-TR-bmW" secondAttribute="trailing" constant="8" id="tua-2T-f0w"/>
                                 </constraints>
                             </view>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PGI-qN-pYs">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PGI-qN-pYs">
                                 <rect key="frame" x="0.0" y="498" width="320" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="C7J-K3-Rh1"/>
@@ -943,9 +944,9 @@
                             <constraint firstItem="PGI-qN-pYs" firstAttribute="bottom" secondItem="zKW-j9-Bvc" secondAttribute="bottomMargin" id="Rqm-i8-ASe"/>
                             <constraint firstItem="PGI-qN-pYs" firstAttribute="top" secondItem="8SS-tK-Anj" secondAttribute="bottom" id="VLx-u3-QEi"/>
                             <constraint firstItem="tJ2-NX-ACT" firstAttribute="leading" secondItem="zKW-j9-Bvc" secondAttribute="leading" id="VTJ-AC-d0B"/>
-                            <constraint firstItem="3Pc-vb-qbG" firstAttribute="leading" secondItem="nJq-kI-IJz" secondAttribute="trailing" constant="3" id="bNv-TR-Vby"/>
+                            <constraint firstItem="3Pc-vb-qbG" firstAttribute="leading" secondItem="nJq-kI-IJz" secondAttribute="trailing" constant="4" id="bNv-TR-Vby"/>
                             <constraint firstItem="LcR-wm-frR" firstAttribute="top" secondItem="tJ2-NX-ACT" secondAttribute="bottom" constant="8" identifier="audio_text_8" id="bV5-1C-yTU"/>
-                            <constraint firstItem="nJq-kI-IJz" firstAttribute="leading" secondItem="8SS-tK-Anj" secondAttribute="trailing" constant="3" id="hSv-1y-nD1"/>
+                            <constraint firstItem="nJq-kI-IJz" firstAttribute="leading" secondItem="8SS-tK-Anj" secondAttribute="trailing" constant="4" id="hSv-1y-nD1"/>
                             <constraint firstAttribute="trailing" secondItem="tJ2-NX-ACT" secondAttribute="trailing" id="lg4-iI-CpR"/>
                             <constraint firstAttribute="trailing" secondItem="LcR-wm-frR" secondAttribute="trailing" id="wFw-Ih-U2y"/>
                         </constraints>
@@ -1332,7 +1333,7 @@
         <image name="addStudent" width="33" height="34"/>
         <image name="addStudentCameraIcon" width="231" height="231"/>
         <image name="cameraIcon" width="29" height="27"/>
-        <image name="captureButton" width="46" height="46"/>
+        <image name="captureButton" width="55" height="55"/>
         <image name="deleteIcon" width="20" height="19"/>
         <image name="loginLogo" width="303" height="303"/>
         <image name="microphoneButton" width="55" height="55"/>

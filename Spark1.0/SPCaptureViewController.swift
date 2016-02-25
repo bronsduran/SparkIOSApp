@@ -38,7 +38,7 @@ class SPCaptureViewController: UIViewController {
         self.view.bringSubviewToFront(self.textButton)
         self.view.bringSubviewToFront(self.audioButton)
 
-        self.navigationController?.navigationBar.hidden = false
+//        self.navigationController?.navigationBar.hidden = false
         
 //        if let image = UIImage(named: "captureButton") {
 //            let button = UIButton()
@@ -188,7 +188,6 @@ class SPCaptureViewController: UIViewController {
                 } else if button.tag == 1 {
                     mediaViewController.initWithText = true
                 }
-                mediaViewController.image = UIImage(named: "applicationBackground")
             }
             
         }
