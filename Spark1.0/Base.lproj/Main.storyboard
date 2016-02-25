@@ -660,12 +660,15 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="L8P-a4-ZrD"/>
                                     <barButtonItem style="plain" id="lwa-Db-2Z6">
                                         <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="l3Z-Ml-oWL">
-                                            <rect key="frame" x="208" y="20" width="96" height="30"/>
+                                            <rect key="frame" x="194" y="20" width="110" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
                                                 <segment title="Photo"/>
                                                 <segment title="Video"/>
                                             </segments>
+                                            <connections>
+                                                <action selector="cameraToggled:" destination="Oj9-cQ-Faf" eventType="valueChanged" id="TZs-fj-U3O"/>
+                                            </connections>
                                         </segmentedControl>
                                     </barButtonItem>
                                 </items>
@@ -714,25 +717,14 @@
                     </navigationItem>
                     <connections>
                         <outlet property="audioButton" destination="3ws-sR-tXc" id="soR-dK-keJ"/>
+                        <outlet property="cameraToggle" destination="l3Z-Ml-oWL" id="Hcr-Ge-30Z"/>
                         <outlet property="captureButton" destination="8J6-Vo-9WW" id="nGv-vC-k2J"/>
-                        <outlet property="longPressGestureRecognizer" destination="mb5-xO-A5z" id="bzH-zD-K0z"/>
-                        <outlet property="tapGestureRecognizer" destination="o8G-JB-ACo" id="Nb8-MX-VxQ"/>
                         <outlet property="textButton" destination="lbH-oC-0To" id="shv-3b-1cm"/>
                         <outlet property="toolbar" destination="CaL-N5-0uL" id="fH8-uC-5Fq"/>
                         <segue destination="ZaX-yA-hlv" kind="push" identifier="toMediaViewController" animates="NO" id="iTq-8L-MSd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ww-hU-MYw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="mb5-xO-A5z">
-                    <connections>
-                        <action selector="captureHeldDown:" destination="Oj9-cQ-Faf" id="lRm-pe-X6o"/>
-                    </connections>
-                </pongPressGestureRecognizer>
-                <tapGestureRecognizer id="o8G-JB-ACo">
-                    <connections>
-                        <action selector="captureTapped:" destination="Oj9-cQ-Faf" id="F01-UQ-ujh"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1154" y="393"/>
         </scene>
