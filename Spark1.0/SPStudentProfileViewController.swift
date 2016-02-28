@@ -116,12 +116,24 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
 
     @IBAction func addAnotherDeleteButtonPressed(sender: AnyObject) {
         if editMode {
+            let studentID = student!.objectId;
             if let student = student {
                 do {
                     try student.delete()
                     self.dismissViewControllerAnimated(true, completion: nil)
                 } catch {
                     self.presentAlertWithTitle("Delete failed.", message: "There was an error connecting to the server, and and the student could not be deleted. To delete student, try again.")
+                }
+                let studentsArray = User.currentUser()!["students"] as! NSMutableArray
+                studentsArray.removeObject(studentID!);
+                User.currentUser()!["students"] = studentsArray;
+                
+                User.currentUser()!.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+                    if success {
+                        print("success")
+                    } else {
+                        print(error)
+                    }
                 }
             }
         } else {
