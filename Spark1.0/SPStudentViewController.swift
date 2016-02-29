@@ -17,6 +17,8 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var backGround: UIImageView!
     @IBOutlet weak var nameLabel: UINavigationItem!
     @IBOutlet weak var studentInfoViewHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var pickerView: AKPickerView!
 
     var imagePicker : UIImagePickerController!
@@ -173,6 +175,8 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
                 self.momentTableView.reloadData()
             }
         }
+        self.backgroundImage.image = self.pictureImageView.image
+        
     }
     
     func populateStudentInfo(student: Student) {
