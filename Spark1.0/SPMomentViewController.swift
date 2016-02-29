@@ -23,7 +23,9 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var audioView: UIView!
     
+    @IBOutlet weak var audioBlur: UIVisualEffectView!
  
+    @IBOutlet weak var textBlur: UIVisualEffectView!
     @IBAction func playButton(sender: UIButton) {
         self.player?.play()
     }
@@ -41,14 +43,15 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
         let cellNib: UINib = UINib(nibName: "MomentDetailTableViewCell", bundle: nil)
         self.tableView.registerNib(cellNib, forCellReuseIdentifier: "MomentDetailTableViewCell")
         
-       // view.backgroundColor = UIColor(patternImage: UIImage(named: "applicationBackground")!)
-        
-        
         // notes
         if let caption = moment["notes"] as? String {
             captionLabel.text = caption
+            captionLabel.hidden = false
+            textBlur.hidden = false
         } else {
             captionLabel.text = "No notes were taken with this moment."
+            captionLabel.hidden = true
+            textBlur.hidden = true
         }
         
         
@@ -87,6 +90,7 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
                 }
             } else {
                 self.audioView.hidden = true
+                self.audioBlur.hidden = true
             }
         })
 

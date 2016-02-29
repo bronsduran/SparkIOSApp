@@ -226,7 +226,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     
     func showAudioContainer() {
         self.audioButton.setImage(UIImage(named: "recordStopButton"), forState: UIControlState.Normal)
-        textViewDistanceToBottomOfAudioView.constant = 8
+        textViewDistanceToBottomOfAudioView.constant = 4
         self.audioViewContainer.hidden = false
         UIView.animateWithDuration(0.3) {
             self.view.layoutIfNeeded()

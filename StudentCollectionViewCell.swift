@@ -72,8 +72,6 @@ class StudentCollectionViewCell: UICollectionViewCell {
                 self.initialsLabel.hidden = true
                 self.pictureImageView.hidden = false
             } else {
-                //self.pictureImageView.image = UIImage(named: "addStudentCameraIcon")
-                //self.pictureImageView.contentMode = UIViewContentMode.ScaleAspectFill
                 self.initialsLabel.layer.cornerRadius = self.initialsLabel.frame.height / 2
                 self.initialsLabel.layer.masksToBounds = true
                 self.initialsLabel.layer.opaque = false
@@ -81,8 +79,6 @@ class StudentCollectionViewCell: UICollectionViewCell {
                 self.pictureImageView.hidden = true
                 self.initialsLabel.frame.origin.y = self.pictureImageView.frame.origin.y
                 self.initialsLabel.backgroundColor = UIColor(red:224/255.0, green:224/255.0, blue:224/255.0,  alpha:1.0)
-
-               // self.initialsLabel.text  =
             }
 
         }
