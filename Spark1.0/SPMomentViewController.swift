@@ -158,13 +158,18 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if (indexPath.row == 0) {
-            let mailComposeViewController = configuredMailComposeViewController()
-            if MFMailComposeViewController.canSendMail() {
-                self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+            if (student != nil && student["parentEmail"] != nil) {
+                let mailComposeViewController = configuredMailComposeViewController()
+                if MFMailComposeViewController.canSendMail() {
+                    self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+                } else {
+                    self.showSendMailErrorAlert()
+                }
+                print("DONE")
             } else {
-                self.showSendMailErrorAlert()
+                let noEmailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "No email assigned to current student's parents.", delegate: self, cancelButtonTitle: "OK")
+                noEmailErrorAlert.show()
             }
-            print("DONE")
         }
         // performSegueWithIdentifier("toMomentViewController", sender: cell)
     }
