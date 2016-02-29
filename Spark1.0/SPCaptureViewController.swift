@@ -20,6 +20,7 @@ class SPCaptureViewController: UIViewController {
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var captureButton: UIBarButtonItem!
 
+    @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var textButton: UIButton!
     @IBOutlet weak var audioButton: UIButton!
     
@@ -33,11 +34,13 @@ class SPCaptureViewController: UIViewController {
         self.camera = LLSimpleCamera(quality: AVCaptureSessionPresetHigh, position: LLCameraPositionRear, videoEnabled: true)
         
         self.camera!.attachToViewController(self, withFrame: CGRectMake(0, 0, screenRect.size.width, screenRect.size.height))
-        
+        self.view.bringSubviewToFront(self.visualEffectView)
         self.view.bringSubviewToFront(self.toolbar)
         self.view.bringSubviewToFront(self.textButton)
         self.view.bringSubviewToFront(self.audioButton)
-
+        
+        self.toolbar.backgroundColor = UIColor.clearColor()
+        
 //        self.navigationController?.navigationBar.hidden = false
         
     }

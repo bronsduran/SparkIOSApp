@@ -8,6 +8,8 @@
 
 import UIKit
 import MessageUI
+import Foundation
+import AVFoundation
 
 
 class SPMomentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AVAudioPlayerDelegate, MFMailComposeViewControllerDelegate {
@@ -15,11 +17,13 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
     
     var player: AVAudioPlayer?
     
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var audioView: UIView!
     
+ 
     @IBAction func playButton(sender: UIButton) {
         self.player?.play()
     }
@@ -37,7 +41,7 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
         let cellNib: UINib = UINib(nibName: "MomentDetailTableViewCell", bundle: nil)
         self.tableView.registerNib(cellNib, forCellReuseIdentifier: "MomentDetailTableViewCell")
         
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "applicationBackground")!)
+       // view.backgroundColor = UIColor(patternImage: UIImage(named: "applicationBackground")!)
         
         
         // notes
@@ -53,8 +57,6 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
             moment.image({ image in
                 if let image = image {
                     self.imageView.image = image
-                    self.imageView.layer.masksToBounds = true
-                    self.imageView.layer.cornerRadius = 10
                 } else {
                     self.imageView.hidden = true
                 }
@@ -89,7 +91,11 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
         })
 
         addStatusBarStyle()
+        
+      
     }
+   
+  
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         
@@ -103,6 +109,7 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         if (videoPlayer != nil) {
@@ -112,16 +119,13 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
             videoPlayer.pause()
         }
     }
+ 
     
     override func viewDidLayoutSubviews() {
         if moment.isVideo() {
             imageView.hidden = true
             
             videoPlayerLayer.frame = imageView.frame
-            videoPlayerLayer.cornerRadius = 10
-            videoPlayerLayer.masksToBounds = true
-            
-            videoPlayerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
             view.layer.addSublayer(videoPlayerLayer)
             
 //            videoPlayer.play()

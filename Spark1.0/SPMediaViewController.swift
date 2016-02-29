@@ -57,6 +57,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     @IBOutlet weak var audioButton: UIButton!
     @IBOutlet weak var textButton: UIButton!
     
+    @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var textViewDistanceToBottomOfAudioView: NSLayoutConstraint!
     
     override func viewDidLoad() {
@@ -128,6 +129,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         self.imageView = UIImageView(image: self.image)
         self.imageView!.frame = self.view.frame
         self.view.addSubview(self.imageView!)
+        self.view.sendSubviewToBack(self.visualEffectView)
         self.view.sendSubviewToBack(self.imageView!)
     }
 
@@ -135,6 +137,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         self.videoView = UIView(frame: self.view.frame)
         self.videoView!.layer.addSublayer(videoPlayerLayer)
         self.view.addSubview(self.videoView!)
+        self.view.sendSubviewToBack(self.visualEffectView)
         self.view.sendSubviewToBack(self.videoView!)
     }
     

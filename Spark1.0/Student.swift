@@ -94,6 +94,21 @@ class Student: PFObject, PFSubclassing {
         }
     }
     
+    func initials() -> String {
+        
+        
+        let firstInitial =  displayName()[displayName().startIndex]
+        
+        if let lastName = self["lastName"] as? String {
+            let lastInitial = lastName[lastName.startIndex]
+            return String(firstInitial) + String(lastInitial)
+        }
+        
+       return String(firstInitial)
+        
+        
+    }
+    
     func numberOfMoments() -> Int {
         if let moments = self["moments"] {
             return moments.count
