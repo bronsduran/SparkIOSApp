@@ -147,6 +147,7 @@ class SPCaptureViewController: UIViewController {
     }
     
     @IBAction func skipButtonPressed(sender: AnyObject) {
+        MomentSingleton.sharedInstance.mediaType = 0
         self.captureButton.enabled = false
         self.image = nil
         self.videoURL = nil
