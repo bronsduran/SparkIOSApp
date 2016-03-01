@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15E49a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -15,15 +15,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Ee-FX-PKh">
-                        <rect key="frame" x="20" y="18" width="30" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="30" id="9oM-fq-aLp"/>
-                            <constraint firstAttribute="width" constant="30" id="IhM-h3-kqX"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uag-R9-2LS">
-                        <rect key="frame" x="58" y="17" width="61" height="30"/>
+                        <rect key="frame" x="46" y="17" width="61" height="30"/>
                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -35,15 +28,28 @@
                             <constraint firstAttribute="width" constant="13" id="nwh-CG-UcG"/>
                         </constraints>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Ee-FX-PKh">
+                        <rect key="frame" x="8" y="17" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="9oM-fq-aLp"/>
+                            <constraint firstAttribute="width" constant="30" id="IhM-h3-kqX"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="cpa-vy-L8O" secondAttribute="trailing" constant="20" id="6RX-Sg-5Go"/>
                     <constraint firstItem="uag-R9-2LS" firstAttribute="leading" secondItem="2Ee-FX-PKh" secondAttribute="trailing" constant="8" id="g8G-l2-PLT"/>
-                    <constraint firstItem="2Ee-FX-PKh" firstAttribute="leading" secondItem="ibx-7F-ye7" secondAttribute="leading" constant="20" id="gz5-lN-z5F"/>
+                    <constraint firstItem="2Ee-FX-PKh" firstAttribute="leading" secondItem="ibx-7F-ye7" secondAttribute="leading" constant="8" id="gz5-lN-z5F"/>
                     <constraint firstItem="uag-R9-2LS" firstAttribute="top" secondItem="ibx-7F-ye7" secondAttribute="top" constant="17" id="hjx-FN-Ajg"/>
+                    <constraint firstItem="uag-R9-2LS" firstAttribute="leading" secondItem="2Ee-FX-PKh" secondAttribute="trailing" constant="8" id="jJV-9U-eXN"/>
                     <constraint firstItem="uag-R9-2LS" firstAttribute="centerY" secondItem="2Ee-FX-PKh" secondAttribute="centerY" id="l6q-8X-2An"/>
                     <constraint firstItem="cpa-vy-L8O" firstAttribute="centerY" secondItem="ibx-7F-ye7" secondAttribute="centerY" id="sSD-fv-dRu"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="g8G-l2-PLT"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <gestureRecognizers/>
             <connections>

@@ -74,7 +74,7 @@ class SPSettingsViewController : UIViewController, UITableViewDelegate, UITableV
                 cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "manageStudentsButtonPressed"))
                 
             case 4:
-                cell.labelImage.image = UIImage(named: "Tag_Circle")
+                cell.labelImage.image = UIImage(named: "logoutIcon")
                 cell.labelView.text = "Logout"
                 cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "logoutButtonPressed"))
 

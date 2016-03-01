@@ -57,6 +57,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     @IBOutlet weak var audioButton: UIButton!
     @IBOutlet weak var textButton: UIButton!
     
+    @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var textViewDistanceToBottomOfAudioView: NSLayoutConstraint!
     
     override func viewDidLoad() {
@@ -67,7 +68,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         textView.returnKeyType = UIReturnKeyType.Done
         textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
         self.navigationItem.setHidesBackButton(true, animated: false)
-
+        self.title = "Moment"
         setupAudioSession()
         enableDisableSaveTagButtons()
         addStatusBarStyle()
@@ -128,6 +129,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         self.imageView = UIImageView(image: self.image)
         self.imageView!.frame = self.view.frame
         self.view.addSubview(self.imageView!)
+        self.view.sendSubviewToBack(self.visualEffectView)
         self.view.sendSubviewToBack(self.imageView!)
     }
 
@@ -135,6 +137,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         self.videoView = UIView(frame: self.view.frame)
         self.videoView!.layer.addSublayer(videoPlayerLayer)
         self.view.addSubview(self.videoView!)
+        self.view.sendSubviewToBack(self.visualEffectView)
         self.view.sendSubviewToBack(self.videoView!)
     }
     
@@ -223,7 +226,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     
     func showAudioContainer() {
         self.audioButton.setImage(UIImage(named: "recordStopButton"), forState: UIControlState.Normal)
-        textViewDistanceToBottomOfAudioView.constant = 8
+        textViewDistanceToBottomOfAudioView.constant = 4
         self.audioViewContainer.hidden = false
         UIView.animateWithDuration(0.3) {
             self.view.layoutIfNeeded()

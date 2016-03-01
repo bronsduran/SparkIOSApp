@@ -15,6 +15,7 @@ class StudentCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var countLabel : UILabel!
     @IBOutlet weak var countView : UIView!
     @IBOutlet weak var nameBackground: UIView!
+    @IBOutlet weak var initialsLabel: UILabel!
     
     var student : Student?
     
@@ -57,6 +58,7 @@ class StudentCollectionViewCell: UICollectionViewCell {
         self.student = student
         
         nameLabel.text = student.displayName()
+        initialsLabel.text = student.initials()
         countLabel.text = String(student.numberOfMoments())
         countView.backgroundColor = UIColor(red:100/255.0, green:168/255.0, blue:205/255.0,  alpha:0.7);
 
@@ -67,13 +69,16 @@ class StudentCollectionViewCell: UICollectionViewCell {
                 self.pictureImageView.layer.cornerRadius = self.pictureImageView.frame.height / 2
                 self.pictureImageView.layer.masksToBounds = true
                 self.pictureImageView.layer.opaque = false
+                self.initialsLabel.hidden = true
+                self.pictureImageView.hidden = false
             } else {
-                self.pictureImageView.image = UIImage(named: "addStudentCameraIcon")
-                self.pictureImageView.contentMode = UIViewContentMode.ScaleAspectFill
-                self.pictureImageView.layer.cornerRadius = self.pictureImageView.frame.height / 2
-                self.pictureImageView.layer.masksToBounds = true
-                self.pictureImageView.layer.opaque = false
-                self.pictureImageView.backgroundColor = UIColor(red:224/255.0, green:224/255.0, blue:224/255.0,  alpha:1.0)
+                self.initialsLabel.layer.cornerRadius = self.initialsLabel.frame.height / 2
+                self.initialsLabel.layer.masksToBounds = true
+                self.initialsLabel.layer.opaque = false
+                self.initialsLabel.hidden = false
+                self.pictureImageView.hidden = true
+                self.initialsLabel.frame.origin.y = self.pictureImageView.frame.origin.y
+                self.initialsLabel.backgroundColor = UIColor(red:224/255.0, green:224/255.0, blue:224/255.0,  alpha:1.0)
             }
 
         }
