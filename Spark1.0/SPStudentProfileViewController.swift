@@ -21,6 +21,7 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var photoButton: UIButton!
     @IBOutlet weak var addAnotherDeleteButton: UIBarButtonItem!
     @IBOutlet weak var doneSaveButton: UIBarButtonItem!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var image : UIImage?
     var input = [String?](count: 4, repeatedValue: nil)
@@ -58,6 +59,9 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
             addAnotherDeleteButton.enabled = false
         }
         doneSaveButton.enabled = false
+        
+        activityIndicator.hidesWhenStopped = true
+        view.bringSubviewToFront(activityIndicator)
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -119,9 +123,13 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
             let studentID = student!.objectId;
             if let student = student {
                 do {
+                    activityIndicator.hidden = false
+                    activityIndicator.startAnimating()
                     try student.delete()
+                    activityIndicator.stopAnimating()
                     self.dismissViewControllerAnimated(true, completion: nil)
                 } catch {
+                    activityIndicator.stopAnimating()
                     self.presentAlertWithTitle("Delete failed.", message: "There was an error connecting to the server, and and the student could not be deleted. To delete student, try again.")
                 }
                 let studentsArray = User.currentUser()!["students"] as! NSMutableArray
@@ -144,6 +152,8 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
     
     @IBAction func doneSaveButtonPressed(sender: AnyObject) {
         if editMode {
+            activityIndicator.hidden = false
+            activityIndicator.startAnimating()
             updateInputCache()
             if let student = student {
                 student["firstName"] = input[0]!
