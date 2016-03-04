@@ -51,15 +51,19 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     @IBOutlet weak var textCloseButton: UIButton!
     @IBOutlet weak var textView: UITextView!
     
-    @IBOutlet weak var saveButton: UIBarButtonItem!
-    @IBOutlet weak var tagButton: UIBarButtonItem!
+    @IBOutlet weak var textButtonContainer: UIVisualEffectView!
+    @IBOutlet weak var audioButtonContainer: UIVisualEffectView!
+    @IBOutlet weak var tagButtonContainer: UIVisualEffectView!
+    @IBOutlet weak var saveButtonContainer: UIVisualEffectView!
     
     @IBOutlet weak var audioButton: UIButton!
     @IBOutlet weak var textButton: UIButton!
     
-    @IBOutlet weak var visualEffectView: UIVisualEffectView!
+    @IBOutlet weak var tagButton: UIButton!
+    
     @IBOutlet weak var textViewDistanceToBottomOfAudioView: NSLayoutConstraint!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.textView.delegate = self
@@ -68,18 +72,20 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         textView.returnKeyType = UIReturnKeyType.Done
         textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
         self.navigationItem.setHidesBackButton(true, animated: false)
-        self.title = "Moment"
+        self.title = ""
         setupAudioSession()
-        enableDisableSaveTagButtons()
         addStatusBarStyle()
+        setUpButtons()
+        
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         
         let screenRect = UIScreen.mainScreen().bounds;
 
-        self.navigationController?.navigationBar.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
-        self.navigationController?.navigationBar.translucent = true
+        //self.navigationController?.navigationBar.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
+        //self.navigationController?.navigationBar.translucent = true
 
         MomentSingleton.sharedInstance.notes = nil
         MomentSingleton.sharedInstance.voiceFile = nil
@@ -97,7 +103,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
             if let backgroundImage = self.image {
                 self.imageView!.image = backgroundImage
             } else {
-                self.imageView!.image = UIImage(named: "applicationBackground")
+                self.imageView!.image = UIImage(named: "noMediaBackground")
             }
             
         } else {
@@ -126,19 +132,34 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     }
     
     func addBackgroundImageView() {
+        
         self.imageView = UIImageView(image: self.image)
         self.imageView!.frame = self.view.frame
         self.view.addSubview(self.imageView!)
-        self.view.sendSubviewToBack(self.visualEffectView)
         self.view.sendSubviewToBack(self.imageView!)
+        self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
+        
     }
 
     func addBackgroundVideoView() {
         self.videoView = UIView(frame: self.view.frame)
         self.videoView!.layer.addSublayer(videoPlayerLayer)
         self.view.addSubview(self.videoView!)
-        self.view.sendSubviewToBack(self.visualEffectView)
         self.view.sendSubviewToBack(self.videoView!)
+    }
+    
+    func setUpButtons() {
+        //probably a more concise way to do this 
+        self.saveButtonContainer.layer.cornerRadius = self.saveButtonContainer.frame.height / 8
+        self.saveButtonContainer.layer.masksToBounds = true
+        self.audioButtonContainer.layer.cornerRadius = self.audioButtonContainer.frame.height / 2
+        self.audioButtonContainer.layer.masksToBounds = true
+        self.tagButtonContainer.layer.cornerRadius = self.tagButtonContainer.frame.height / 8
+        self.tagButtonContainer.layer.masksToBounds = true
+        self.textButtonContainer.layer.cornerRadius = self.textButtonContainer.frame.height / 2
+        self.textButtonContainer.layer.masksToBounds = true
+
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -167,14 +188,6 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         }
     }
     
-    func enableDisableSaveTagButtons() {
-        let hasRecording = !audioViewContainer.hidden && !isRecording
-        let hasNotes = textView.text != nil && textView.text != ""
-        let enableButtons = hasNotes || hasRecording || image != nil || videoURL != nil
-        
-        saveButton.enabled = enableButtons
-        tagButton.enabled = enableButtons
-    }
     
     func getSoundFile() -> NSURL {
         let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
@@ -234,7 +247,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     }
     
     func hideAudioContainer() {
-        self.audioButton.setImage(UIImage(named: "microphoneButton"), forState: UIControlState.Normal)
+        self.audioButton.hidden = false
         self.audioViewContainer.hidden = true
         textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
         UIView.animateWithDuration(0.3) {
@@ -277,7 +290,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     
     @IBAction func textCloseButtonPressed(sender: AnyObject) {
         hideTextContainer()
-        enableDisableSaveTagButtons()
+
     }
     
     @IBAction func viewWasTapped(sender: AnyObject) {
@@ -302,12 +315,10 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         }
         
         isRecording = !isRecording
-        enableDisableSaveTagButtons()
     }
     
     @IBAction func audioCloseButtonPressed(sender: AnyObject) {
         hideAudioContainer()
-        enableDisableSaveTagButtons()
     }
     
     @IBAction func saveButtonPressed(sender: AnyObject) {
@@ -350,7 +361,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     }
     
     func keyboardWillBeHidden(notification: NSNotification) {
-        enableDisableSaveTagButtons()
+        
     }
     
     func updateMomentSingleton() {

@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func initSegmentedControlAppearance() {
         // Control colors (selected):
-        UISegmentedControl.appearance().tintColor = UIColor(white: 1.0, alpha: 0.5)
+       // UISegmentedControl.appearance().tintColor = UIColor(white: 1.0, alpha: 0.5)
         
         // Font colors:
         UISegmentedControl.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
@@ -74,16 +74,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().shadowImage = UIImage()
         //UINavigationBar.appearance().translucent = true
         
-        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
-        UINavigationBar.appearance().backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
+        UINavigationBar.appearance().tintColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
+        UINavigationBar.appearance().backgroundColor = UIColor.clearColor()
+        //UINavigationBar.appearance().backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
         
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        //UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        //UINavigationBar.appearance().titleTextAttributes = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
     }
     
     func initToolBarAppearance() {
         //UIToolbar.appearance().tintColor = UIColor.whiteColor()
         //UIToolbar.appearance().backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
           UIToolbar.appearance().backgroundColor = UIColor.clearColor()
+       
         //UIToolbar.appearance().barTintColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
     }
 
@@ -193,10 +196,10 @@ extension UIViewController {
     
     func addStatusBarStyle()
     {
-        let view: UIView = UIView.init(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 20))
-        view.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0) //The colour you want to set
-        self.view.addSubview(view)
-        view.sendSubviewToBack(view)
+//        let view: UIView = UIView.init(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 20))
+//        view.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0) //The colour you want to set
+//        self.view.addSubview(view)
+//        view.sendSubviewToBack(view)
        
     }
     func presentAlertWithTitle(title: String, message: String) {

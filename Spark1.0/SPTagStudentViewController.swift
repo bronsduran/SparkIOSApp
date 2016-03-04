@@ -26,9 +26,10 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
         self.collectionView.allowsMultipleSelection = true
         
         self.navigationController?.navigationBar.hidden = false
-        self.navigationController?.navigationBar.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
+        //self.navigationController?.navigationBar.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
         // make collection view transparent
         self.title = "Tag Student"
+        self.navigationController?.navigationBar.tintColor =  UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
         
     }
 

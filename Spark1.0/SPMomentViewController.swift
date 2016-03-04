@@ -12,20 +12,39 @@ import Foundation
 import AVFoundation
 
 
-class SPMomentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AVAudioPlayerDelegate, MFMailComposeViewControllerDelegate {
+class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailComposeViewControllerDelegate {
     
     
     var player: AVAudioPlayer?
     
 
-    @IBOutlet weak var tableView: UITableView!
+
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var audioView: UIView!
+
+    @IBOutlet weak var bottomBar: UIVisualEffectView!
+    var videoFrameView: UIView!
+   
     
+    @IBAction func sendMomentPressed(sender: AnyObject) {
+        if (student != nil && student["parentEmail"] != nil) {
+            let mailComposeViewController = configuredMailComposeViewController()
+            if MFMailComposeViewController.canSendMail() {
+                self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+            } else {
+                self.showSendMailErrorAlert()
+            }
+            print("DONE")
+        } else {
+            let noEmailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "No email assigned to current student's parents.", delegate: self, cancelButtonTitle: "OK")
+            noEmailErrorAlert.show()
+        }
+    }
     @IBOutlet weak var audioBlur: UIVisualEffectView!
- 
     @IBOutlet weak var textBlur: UIVisualEffectView!
+    
+    
     @IBAction func playButton(sender: UIButton) {
         self.player?.play()
     }
@@ -40,8 +59,8 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let cellNib: UINib = UINib(nibName: "MomentDetailTableViewCell", bundle: nil)
-        self.tableView.registerNib(cellNib, forCellReuseIdentifier: "MomentDetailTableViewCell")
+        
+        
         
         // notes
         if let caption = moment["notes"] as? String {
@@ -74,7 +93,9 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
                     NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: self.videoPlayer.currentItem)
                     
                     self.videoPlayerLayer = AVPlayerLayer(player: self.videoPlayer)
+                
                     self.videoPlayer.addObserver(self, forKeyPath: "status", options: NSKeyValueObservingOptions(), context: nil)
+            
                 }
             })
         }
@@ -99,7 +120,7 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
       
     }
    
-  
+   
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         
@@ -113,6 +134,7 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
@@ -126,11 +148,20 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
  
     
     override func viewDidLayoutSubviews() {
+        let screenRect = UIScreen.mainScreen().bounds;
+        
         if moment.isVideo() {
             imageView.hidden = true
             
-            videoPlayerLayer.frame = imageView.frame
+            videoPlayerLayer.frame = screenRect
             view.layer.addSublayer(videoPlayerLayer)
+            
+            self.view.bringSubviewToFront(self.audioBlur)
+            self.view.bringSubviewToFront(self.audioView)
+            self.view.bringSubviewToFront(self.textBlur)
+            self.view.bringSubviewToFront(self.captionLabel)
+            self.view.bringSubviewToFront(self.bottomBar)
+            
             
 //            videoPlayer.play()
             print("first")
@@ -142,49 +173,7 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
             p.seekToTime(kCMTimeZero)
         }
     }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("MomentDetailTableViewCell") as! MomentDetailTableViewCell
-        switch indexPath.row {
-        case 0:
-            cell.functionLabel.text = "Send"
-        case 1:
-            cell.functionLabel.text = "Edit"
-        case 2:
-            cell.functionLabel.text = "Delete"
-        default:
-            return cell
-        }
-        cell.backgroundColor = UIColor(white: 1.0, alpha: 0.4)
-        return cell
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if (indexPath.row == 0) {
-            if (student != nil && student["parentEmail"] != nil) {
-                let mailComposeViewController = configuredMailComposeViewController()
-                if MFMailComposeViewController.canSendMail() {
-                    self.presentViewController(mailComposeViewController, animated: true, completion: nil)
-                } else {
-                    self.showSendMailErrorAlert()
-                }
-                print("DONE")
-            } else {
-                let noEmailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "No email assigned to current student's parents.", delegate: self, cancelButtonTitle: "OK")
-                noEmailErrorAlert.show()
-            }
-        }
-        // performSegueWithIdentifier("toMomentViewController", sender: cell)
-    }
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
-    }
+
 
     /*
     // MARK: - Navigation

@@ -17,31 +17,36 @@ class SPCaptureViewController: UIViewController {
     var videoURL : NSURL! = nil
     var isVideoRecording: Bool = false
     
-    @IBOutlet weak var toolbar: UIToolbar!
-    @IBOutlet weak var captureButton: UIBarButtonItem!
-
-    @IBOutlet weak var visualEffectView: UIVisualEffectView!
-    @IBOutlet weak var textButton: UIButton!
-    @IBOutlet weak var audioButton: UIButton!
-    
+    @IBOutlet weak var captureButton: UIButton!
+    @IBOutlet weak var visualVoiceBlur: UIVisualEffectView!
+    @IBOutlet weak var captureBlur: UIVisualEffectView!
+    @IBOutlet weak var visualArchiveBlur: UIVisualEffectView!
+    @IBOutlet weak var visualTextBlur: UIVisualEffectView!
     @IBOutlet weak var cameraToggle: UISegmentedControl!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
                 
         let screenRect = UIScreen.mainScreen().bounds
-        
+        self.visualVoiceBlur.layer.cornerRadius = self.visualVoiceBlur.frame.height / 2
+        self.visualVoiceBlur.layer.masksToBounds = true
+        self.visualTextBlur.layer.cornerRadius = self.visualTextBlur.frame.height / 2
+        self.visualTextBlur.layer.masksToBounds = true
+        self.visualArchiveBlur.layer.cornerRadius = self.visualArchiveBlur.frame.height / 8
+        self.visualArchiveBlur.layer.masksToBounds = true
+        self.captureBlur.layer.cornerRadius = self.captureBlur.frame.height / 2
+        self.captureBlur.layer.masksToBounds = true
+      
         self.camera = LLSimpleCamera(quality: AVCaptureSessionPresetHigh, position: LLCameraPositionRear, videoEnabled: true)
-        
         self.camera!.attachToViewController(self, withFrame: CGRectMake(0, 0, screenRect.size.width, screenRect.size.height))
-        self.view.bringSubviewToFront(self.visualEffectView)
-        self.view.bringSubviewToFront(self.toolbar)
-        self.view.bringSubviewToFront(self.textButton)
-        self.view.bringSubviewToFront(self.audioButton)
-        
-        self.toolbar.backgroundColor = UIColor.clearColor()
-        
-//        self.navigationController?.navigationBar.hidden = false
+
+        self.view.bringSubviewToFront(self.visualArchiveBlur)
+        self.view.bringSubviewToFront(self.visualVoiceBlur)
+        self.view.bringSubviewToFront(self.visualTextBlur)
+        self.view.bringSubviewToFront(self.captureBlur)
+        self.view.bringSubviewToFront(self.cameraToggle)
+
         
     }
     
@@ -51,29 +56,27 @@ class SPCaptureViewController: UIViewController {
         self.image = nil
         self.videoURL = nil
         self.isVideoRecording = false
-        setCaptureButtonImage("captureButton")
+        setCaptureButton()
         self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
     }
 
-    @IBAction func cameraToggled(sender: AnyObject) {
+    
+    @IBAction func cameraToggle(sender: AnyObject) {
+        setCaptureButton()
+    }
+    
+    func setCaptureButton() {
+        
         if cameraToggle.selectedSegmentIndex == 0 {
-            setCaptureButtonImage("captureButton")
+            self.captureButton.setBackgroundImage(UIImage(named: "captureButton.png"), forState: UIControlState.Normal)
+            
         } else {
-            setCaptureButtonImage("videoCaptureButton")
+            self.captureButton.setBackgroundImage(UIImage(named: "videoCaptureButton.png"), forState: UIControlState.Normal)
         }
     }
     
-    func setCaptureButtonImage(imageName: String){
-        let image = UIImage(named: imageName)
-        let button = UIButton()
-        button.setImage(image, forState: .Normal)
-        button.frame = CGRectMake(0, 0, 45, 45)
-        button.addTarget(self, action: "captureButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
-        captureButton.customView = button
-    }
-
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -106,13 +109,13 @@ class SPCaptureViewController: UIViewController {
         var delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         var videoURL = delegate.applicationDocumentsDirectory.URLByAppendingPathComponent("recording").URLByAppendingPathExtension("mov")
         camera.startRecordingWithOutputUrl(videoURL)
-        setCaptureButtonImage("videoStopButton")
+        self.captureButton.setBackgroundImage(UIImage(named: "videoStopButton.png"), forState: UIControlState.Normal)
 
     }
     
     func endVideoRecord() {
         camera.stop()
-        setCaptureButtonImage("videoCaptureButton")
+     //   setCaptureButtonImage("videoCaptureButton")
         
         self.camera.stopRecording {
             (camera: LLSimpleCamera!, outputFileUrl: NSURL!, error: NSError!) -> Void in

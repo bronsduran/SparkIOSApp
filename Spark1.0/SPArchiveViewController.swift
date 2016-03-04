@@ -37,6 +37,14 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "refresh", name: "studentRefresh", object: nil)
         archiveCollectionView.backgroundColor = UIColor.clearColor()
+//        let bounds = self.navigationController?.navigationBar.bounds as CGRect!
+//        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+//        visualEffectView.frame = bounds
+//        visualEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+//        self.navigationController?.navigationBar.addSubview(visualEffectView)
+//        //self.navigationController?.navigationBar.sendSubviewToBack(visualEffectView)
+//        self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
+//        self.navigationController?.navigationBar.tintColor = UIColor.redColor()
     
    }
     

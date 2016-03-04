@@ -205,7 +205,7 @@
                             </connections>
                         </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="hHE-AN-t8c">
-                            <rect key="frame" x="62" y="7" width="192" height="30"/>
+                            <rect key="frame" x="87.5" y="7" width="145" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="39" id="Hv1-DK-fry"/>
@@ -214,6 +214,7 @@
                                 <segment title="NAME"/>
                                 <segment title="AMOUNT"/>
                             </segments>
+                            <color key="tintColor" red="1" green="0.0065176879040000002" blue="0.27992091209999997" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="sortByControl:" destination="XHc-6l-Ic5" eventType="valueChanged" id="lyF-df-6DJ"/>
                             </connections>
@@ -418,18 +419,6 @@
                                     <constraint firstItem="GdN-t3-H76" firstAttribute="leading" secondItem="7Eb-G0-uuz" secondAttribute="trailing" constant="12" id="PMU-zG-xIn"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ABn-1C-PsL">
-                                <rect key="frame" x="0.0" y="436" width="320" height="132"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="132" id="t5d-Ko-u0O"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="dataSource" destination="lkN-nd-Ys1" id="S4m-NA-tjH"/>
-                                    <outlet property="delegate" destination="lkN-nd-Ys1" id="reR-j8-kgi"/>
-                                </connections>
-                            </tableView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dHz-YR-zlu">
                                 <rect key="frame" x="0.0" y="122" width="320" height="87"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="jyo-pD-Apw">
@@ -445,18 +434,66 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cNa-JL-Cto">
+                                <rect key="frame" x="0.0" y="526" width="320" height="42"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="paY-ud-a7P">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="42"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jsm-d2-e4D">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="42"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="zk1-Bo-hQq">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="42"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qdg-MK-73u">
+                                                        <rect key="frame" x="8" y="6" width="46" height="30"/>
+                                                        <state key="normal" title="Share">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="sendMomentPressed:" destination="lkN-nd-Ys1" eventType="touchUpInside" id="ZNW-ql-gtW"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v7O-nK-Wjm">
+                                                        <rect key="frame" x="266" y="6" width="46" height="30"/>
+                                                        <state key="normal" title="Delete">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="Qdg-MK-73u" secondAttribute="bottom" constant="6" id="C7j-9z-5Ni"/>
+                                                    <constraint firstAttribute="trailing" secondItem="v7O-nK-Wjm" secondAttribute="trailing" constant="8" id="CiK-9e-Pdb"/>
+                                                    <constraint firstAttribute="bottom" secondItem="v7O-nK-Wjm" secondAttribute="bottom" constant="6" id="KNI-Lu-jN6"/>
+                                                    <constraint firstItem="Qdg-MK-73u" firstAttribute="leading" secondItem="zk1-Bo-hQq" secondAttribute="leading" constant="8" id="mrN-yE-6sP"/>
+                                                </constraints>
+                                            </view>
+                                            <vibrancyEffect>
+                                                <blurEffect style="light"/>
+                                            </vibrancyEffect>
+                                        </visualEffectView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Jsm-d2-e4D" firstAttribute="leading" secondItem="paY-ud-a7P" secondAttribute="leading" id="3Dd-Gh-Wtk"/>
+                                        <constraint firstAttribute="bottom" secondItem="Jsm-d2-e4D" secondAttribute="bottom" id="ioF-Qm-rrj"/>
+                                        <constraint firstAttribute="trailing" secondItem="Jsm-d2-e4D" secondAttribute="trailing" id="um8-zH-B32"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="cNa-JL-Cto" secondAttribute="trailing" id="095-wb-11J"/>
+                            <constraint firstItem="cNa-JL-Cto" firstAttribute="leading" secondItem="hf4-JK-b3V" secondAttribute="leading" id="17U-oa-3Xl"/>
                             <constraint firstItem="7lO-1U-86a" firstAttribute="top" secondItem="7zb-4X-mbw" secondAttribute="bottom" id="1qd-Yy-qUs"/>
                             <constraint firstItem="7zb-4X-mbw" firstAttribute="top" secondItem="hf4-JK-b3V" secondAttribute="top" id="3Q7-rX-Iuk"/>
                             <constraint firstAttribute="trailing" secondItem="AJt-Ot-ZAi" secondAttribute="trailing" id="4L4-Xw-hYz"/>
                             <constraint firstItem="pp0-ig-VCV" firstAttribute="top" secondItem="AJt-Ot-ZAi" secondAttribute="bottom" constant="4" id="4x3-Zc-ccC"/>
-                            <constraint firstItem="ABn-1C-PsL" firstAttribute="leading" secondItem="hf4-JK-b3V" secondAttribute="leadingMargin" constant="-20" id="5rR-LU-n5m"/>
                             <constraint firstItem="7zb-4X-mbw" firstAttribute="leading" secondItem="hf4-JK-b3V" secondAttribute="leading" id="C4a-Yq-IEX"/>
                             <constraint firstAttribute="trailing" secondItem="yVe-jr-DQe" secondAttribute="trailing" id="Crl-Wp-MiP"/>
                             <constraint firstItem="yVe-jr-DQe" firstAttribute="centerY" secondItem="AJt-Ot-ZAi" secondAttribute="centerY" id="QpS-tI-FBa"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ABn-1C-PsL" secondAttribute="trailing" constant="-20" id="RXw-Lb-BDd"/>
                             <constraint firstAttribute="trailing" secondItem="7zb-4X-mbw" secondAttribute="trailing" id="Tn6-ET-pbo"/>
                             <constraint firstItem="yVe-jr-DQe" firstAttribute="leading" secondItem="hf4-JK-b3V" secondAttribute="leading" id="V9n-Ut-i7F"/>
                             <constraint firstItem="yVe-jr-DQe" firstAttribute="top" secondItem="Yd2-Np-KlK" secondAttribute="bottom" constant="4" id="bFw-1M-dqv"/>
@@ -465,7 +502,7 @@
                             <constraint firstAttribute="trailing" secondItem="dHz-YR-zlu" secondAttribute="trailing" id="m2S-GG-6jg"/>
                             <constraint firstItem="pp0-ig-VCV" firstAttribute="leading" secondItem="hf4-JK-b3V" secondAttribute="leading" id="mMN-Uj-78V"/>
                             <constraint firstItem="dHz-YR-zlu" firstAttribute="leading" secondItem="hf4-JK-b3V" secondAttribute="leading" id="rBn-EL-Zmt"/>
-                            <constraint firstItem="7lO-1U-86a" firstAttribute="top" secondItem="ABn-1C-PsL" secondAttribute="bottom" id="rGL-8n-zJk"/>
+                            <constraint firstItem="7lO-1U-86a" firstAttribute="top" secondItem="cNa-JL-Cto" secondAttribute="bottom" id="s4t-Jb-NMT"/>
                             <constraint firstItem="AJt-Ot-ZAi" firstAttribute="leading" secondItem="hf4-JK-b3V" secondAttribute="leading" id="vLV-U6-xiK"/>
                         </constraints>
                     </view>
@@ -473,9 +510,9 @@
                     <connections>
                         <outlet property="audioBlur" destination="yVe-jr-DQe" id="P2u-DJ-WiG"/>
                         <outlet property="audioView" destination="AJt-Ot-ZAi" id="pe3-pz-8nf"/>
+                        <outlet property="bottomBar" destination="cNa-JL-Cto" id="5cj-cx-4At"/>
                         <outlet property="captionLabel" destination="pp0-ig-VCV" id="aMr-bD-If0"/>
                         <outlet property="imageView" destination="7zb-4X-mbw" id="M6z-du-gG8"/>
-                        <outlet property="tableView" destination="ABn-1C-PsL" id="hFv-db-Tpf"/>
                         <outlet property="textBlur" destination="dHz-YR-zlu" id="mis-qB-NBm"/>
                     </connections>
                 </viewController>
@@ -709,109 +746,120 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1R0-Q4-pOm">
-                                <rect key="frame" x="0.0" y="498" width="320" height="70"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="6P4-0I-hmB">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qhg-1o-JS5">
+                                <rect key="frame" x="13" y="505" width="40" height="40"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="glD-CP-PAD">
+                                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dsx-uH-hY1">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
-                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="StW-u0-Trb">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            </view>
-                                            <vibrancyEffect>
-                                                <blurEffect style="light"/>
-                                            </vibrancyEffect>
-                                        </visualEffectView>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MIr-BX-in1">
+                                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                            <state key="normal" backgroundImage="ArchiveIcon"/>
+                                            <connections>
+                                                <segue destination="2JU-SN-RMR" kind="modal" id="8Ml-Kx-650"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Dsx-uH-hY1" firstAttribute="top" secondItem="6P4-0I-hmB" secondAttribute="top" id="3e2-vJ-iFp"/>
-                                        <constraint firstAttribute="bottom" secondItem="Dsx-uH-hY1" secondAttribute="bottom" id="Vel-bt-lw0"/>
-                                        <constraint firstAttribute="trailing" secondItem="Dsx-uH-hY1" secondAttribute="trailing" id="miz-FI-l8L"/>
-                                        <constraint firstItem="Dsx-uH-hY1" firstAttribute="leading" secondItem="6P4-0I-hmB" secondAttribute="leading" id="vej-SG-q13"/>
-                                    </constraints>
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CaL-N5-0uL">
-                                <rect key="frame" x="0.0" y="498" width="320" height="70"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="Twb-eF-k5r"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem image="ArchiveIcon" style="plain" id="cpF-7P-STb">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mqw-8Y-3JV">
-                                            <rect key="frame" x="16" y="6" width="51" height="58"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" backgroundImage="ArchiveIcon">
-                                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <segue destination="2JU-SN-RMR" kind="modal" id="uzh-eO-k4Z"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="YFa-rU-lad"/>
-                                    <barButtonItem image="captureButton" style="done" id="8J6-Vo-9WW">
-                                        <connections>
-                                            <action selector="captureButtonPressed:" destination="Oj9-cQ-Faf" id="pKz-mL-5MF"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="L8P-a4-ZrD"/>
-                                    <barButtonItem style="plain" id="lwa-Db-2Z6">
-                                        <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="l3Z-Ml-oWL">
-                                            <rect key="frame" x="194" y="20" width="110" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <segments>
-                                                <segment title="Photo"/>
-                                                <segment title="Video"/>
-                                            </segments>
-                                            <connections>
-                                                <action selector="cameraToggled:" destination="Oj9-cQ-Faf" eventType="valueChanged" id="TZs-fj-U3O"/>
-                                            </connections>
-                                        </segmentedControl>
-                                    </barButtonItem>
-                                </items>
-                                <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </toolbar>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rQ9-xJ-BuK">
-                                <rect key="frame" x="161" y="370" width="1" height="127"/>
+                                <rect key="frame" x="161" y="370" width="0.0" height="127"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ws-sR-tXc">
-                                <rect key="frame" x="92" y="433" width="65" height="65"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" image="microphoneButton"/>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qjr-ph-21T">
+                                <rect key="frame" x="73" y="502" width="45" height="45"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="WU9-9M-qgo">
+                                    <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ws-sR-tXc">
+                                            <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <state key="normal" image="microphoneButton"/>
+                                            <connections>
+                                                <action selector="skipButtonPressed:" destination="Oj9-cQ-Faf" eventType="touchUpInside" id="JdJ-Md-RwY"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="Foa-dF-Sug"/>
+                                    <constraint firstAttribute="height" constant="45" id="kgb-tO-eAj"/>
+                                </constraints>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tub-ZY-n6q">
+                                <rect key="frame" x="130.5" y="500" width="60" height="60"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="UFb-Zh-net">
+                                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rXV-9g-QeX">
+                                            <rect key="frame" x="2" y="2" width="55" height="55"/>
+                                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <state key="normal" backgroundImage="captureButton"/>
+                                            <connections>
+                                                <action selector="captureButtonPressed:" destination="Oj9-cQ-Faf" eventType="touchUpInside" id="RpY-8y-wqK"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="rXV-9g-QeX" firstAttribute="centerX" secondItem="Tub-ZY-n6q" secondAttribute="centerX" id="J1b-cn-veg"/>
+                                    <constraint firstAttribute="width" constant="60" id="Tia-W4-GAA"/>
+                                    <constraint firstItem="rXV-9g-QeX" firstAttribute="centerY" secondItem="Tub-ZY-n6q" secondAttribute="centerY" id="cc2-cX-kCe"/>
+                                    <constraint firstAttribute="height" constant="60" id="hal-Ac-aKq"/>
+                                </constraints>
+                                <blurEffect style="extraLight"/>
+                            </visualEffectView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UGE-27-BEL">
+                                <rect key="frame" x="255" y="519" width="56" height="29"/>
+                                <segments>
+                                    <segment title="Photo"/>
+                                    <segment title="Video"/>
+                                </segments>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <action selector="skipButtonPressed:" destination="Oj9-cQ-Faf" eventType="touchUpInside" id="JdJ-Md-RwY"/>
+                                    <action selector="cameraToggle:" destination="Oj9-cQ-Faf" eventType="valueChanged" id="RBk-ai-gdw"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lbH-oC-0To">
-                                <rect key="frame" x="165" y="433" width="65" height="65"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" image="textButton"/>
-                                <connections>
-                                    <action selector="skipButtonPressed:" destination="Oj9-cQ-Faf" eventType="touchUpInside" id="5pF-T5-lvV"/>
-                                </connections>
-                            </button>
+                            </segmentedControl>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Blx-Mk-GZr">
+                                <rect key="frame" x="198" y="502" width="45" height="45"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7FU-NY-dV4">
+                                    <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lbH-oC-0To">
+                                            <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <state key="normal" image="textButton"/>
+                                            <connections>
+                                                <action selector="skipButtonPressed:" destination="Oj9-cQ-Faf" eventType="touchUpInside" id="5pF-T5-lvV"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="wa5-Ec-iqV"/>
+                                    <constraint firstAttribute="width" constant="45" id="xdz-o4-n7x"/>
+                                </constraints>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="rQ9-xJ-BuK" firstAttribute="centerX" secondItem="POr-pK-aQu" secondAttribute="centerX" id="7K8-Du-Zjc"/>
-                            <constraint firstAttribute="bottom" secondItem="CaL-N5-0uL" secondAttribute="bottom" id="FSI-2J-Z2M"/>
-                            <constraint firstItem="rQ9-xJ-BuK" firstAttribute="leading" secondItem="3ws-sR-tXc" secondAttribute="trailing" constant="4" id="HXz-vJ-lfX"/>
-                            <constraint firstItem="CaL-N5-0uL" firstAttribute="top" secondItem="lbH-oC-0To" secondAttribute="bottom" id="IZz-Mr-oFl"/>
-                            <constraint firstItem="1R0-Q4-pOm" firstAttribute="top" secondItem="lbH-oC-0To" secondAttribute="bottom" id="KYu-0M-wgi"/>
-                            <constraint firstItem="33v-1T-piy" firstAttribute="top" secondItem="1R0-Q4-pOm" secondAttribute="bottom" id="S7T-VT-gOL"/>
-                            <constraint firstItem="CaL-N5-0uL" firstAttribute="top" secondItem="3ws-sR-tXc" secondAttribute="bottom" id="Wdr-Ab-Fdl"/>
-                            <constraint firstItem="1R0-Q4-pOm" firstAttribute="leading" secondItem="POr-pK-aQu" secondAttribute="leading" id="aNc-eh-6Xd"/>
-                            <constraint firstItem="CaL-N5-0uL" firstAttribute="leading" secondItem="POr-pK-aQu" secondAttribute="leading" id="cjC-5z-jsP"/>
-                            <constraint firstItem="lbH-oC-0To" firstAttribute="leading" secondItem="rQ9-xJ-BuK" secondAttribute="trailing" constant="4" id="tnQ-6O-095"/>
-                            <constraint firstAttribute="trailing" secondItem="1R0-Q4-pOm" secondAttribute="trailing" id="v8s-bY-yh4"/>
-                            <constraint firstAttribute="trailing" secondItem="CaL-N5-0uL" secondAttribute="trailing" id="yhK-uz-NkL"/>
+                            <constraint firstItem="Blx-Mk-GZr" firstAttribute="centerY" secondItem="Tub-ZY-n6q" secondAttribute="centerY" id="6U7-MB-PSK"/>
+                            <constraint firstItem="Blx-Mk-GZr" firstAttribute="leading" secondItem="Tub-ZY-n6q" secondAttribute="trailing" constant="4" id="AJe-NG-r70"/>
+                            <constraint firstItem="Qhg-1o-JS5" firstAttribute="leading" secondItem="POr-pK-aQu" secondAttribute="leadingMargin" id="G6E-uV-lVy"/>
+                            <constraint firstItem="Qhg-1o-JS5" firstAttribute="centerY" secondItem="Tub-ZY-n6q" secondAttribute="centerY" id="K6P-Ib-kvF"/>
+                            <constraint firstItem="UGE-27-BEL" firstAttribute="centerY" secondItem="Tub-ZY-n6q" secondAttribute="centerY" id="OPN-wi-W48"/>
+                            <constraint firstItem="rQ9-xJ-BuK" firstAttribute="centerX" secondItem="POr-pK-aQu" secondAttribute="centerX" id="Qsd-Xf-21u"/>
+                            <constraint firstItem="Qjr-ph-21T" firstAttribute="centerY" secondItem="Tub-ZY-n6q" secondAttribute="centerY" id="ddy-Wu-Rad"/>
+                            <constraint firstItem="Tub-ZY-n6q" firstAttribute="centerX" secondItem="POr-pK-aQu" secondAttribute="centerX" id="e2m-ls-Dog"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UGE-27-BEL" secondAttribute="trailing" constant="-11" id="emZ-42-317"/>
+                            <constraint firstItem="Tub-ZY-n6q" firstAttribute="leading" secondItem="Qjr-ph-21T" secondAttribute="trailing" constant="4" id="mmN-5d-X3p"/>
+                            <constraint firstItem="33v-1T-piy" firstAttribute="top" secondItem="Tub-ZY-n6q" secondAttribute="bottom" constant="8" id="q4V-Xf-JLg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Kf1-6y-JHu">
@@ -823,12 +871,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="audioButton" destination="3ws-sR-tXc" id="soR-dK-keJ"/>
-                        <outlet property="cameraToggle" destination="l3Z-Ml-oWL" id="Hcr-Ge-30Z"/>
-                        <outlet property="captureButton" destination="8J6-Vo-9WW" id="nGv-vC-k2J"/>
-                        <outlet property="textButton" destination="lbH-oC-0To" id="shv-3b-1cm"/>
-                        <outlet property="toolbar" destination="CaL-N5-0uL" id="fH8-uC-5Fq"/>
-                        <outlet property="visualEffectView" destination="1R0-Q4-pOm" id="7Kj-Wh-79l"/>
+                        <outlet property="cameraToggle" destination="UGE-27-BEL" id="W9g-un-AdB"/>
+                        <outlet property="captureBlur" destination="Tub-ZY-n6q" id="yaQ-zj-xpM"/>
+                        <outlet property="captureButton" destination="rXV-9g-QeX" id="iKb-gI-PUa"/>
+                        <outlet property="visualArchiveBlur" destination="Qhg-1o-JS5" id="knk-6U-8H0"/>
+                        <outlet property="visualTextBlur" destination="Blx-Mk-GZr" id="IhO-TF-GEu"/>
+                        <outlet property="visualVoiceBlur" destination="Qjr-ph-21T" id="5dA-El-svA"/>
                         <segue destination="ZaX-yA-hlv" kind="push" identifier="toMediaViewController" animates="NO" id="iTq-8L-MSd"/>
                     </connections>
                 </viewController>
@@ -916,32 +964,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3hD-OP-CHs">
-                                <rect key="frame" x="-0.5" y="498" width="320" height="70"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="vym-xq-4nH">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fqc-xh-4AR">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
-                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5LH-EH-jI7">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            </view>
-                                            <vibrancyEffect>
-                                                <blurEffect style="light"/>
-                                            </vibrancyEffect>
-                                        </visualEffectView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="fqc-xh-4AR" secondAttribute="bottom" id="8Ao-6G-6It"/>
-                                        <constraint firstItem="fqc-xh-4AR" firstAttribute="leading" secondItem="vym-xq-4nH" secondAttribute="leading" id="RvL-1F-Irg"/>
-                                        <constraint firstAttribute="trailing" secondItem="fqc-xh-4AR" secondAttribute="trailing" id="rxb-aK-0LM"/>
-                                        <constraint firstItem="fqc-xh-4AR" firstAttribute="top" secondItem="vym-xq-4nH" secondAttribute="top" id="veM-ka-aOl"/>
-                                    </constraints>
-                                </view>
-                                <blurEffect style="light"/>
-                            </visualEffectView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tJ2-NX-ACT" userLabel="Audio View Container">
                                 <rect key="frame" x="0.0" y="68" width="320" height="50"/>
                                 <subviews>
@@ -1083,71 +1105,141 @@
                                     <constraint firstItem="ZgN-M4-GnR" firstAttribute="top" secondItem="LcR-wm-frR" secondAttribute="top" id="xpr-Za-YG6"/>
                                 </constraints>
                             </view>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PGI-qN-pYs">
-                                <rect key="frame" x="0.0" y="498" width="320" height="70"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="C7J-K3-Rh1"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem image="saveIcon" id="n5O-Ep-DGd">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <action selector="saveButtonPressed:" destination="ZaX-yA-hlv" id="FYQ-p7-Ig3"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="k7I-5M-pqt"/>
-                                    <barButtonItem image="tagStudentIcon" id="Q9k-Fl-9LT">
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <action selector="tagButtonPressed:" destination="ZaX-yA-hlv" id="gZk-Rm-5wF"/>
-                                            <segue destination="YEJ-Fe-AzA" kind="push" id="xwe-gq-VOM"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                                <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </toolbar>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8SS-tK-Anj">
-                                <rect key="frame" x="95" y="433" width="65" height="65"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" image="microphoneButton"/>
-                                <connections>
-                                    <action selector="recordButtonPressed:" destination="ZaX-yA-hlv" eventType="touchUpInside" id="3IK-1X-Oxo"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nJq-kI-IJz">
                                 <rect key="frame" x="160" y="370" width="0.0" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Pc-vb-qbG">
-                                <rect key="frame" x="160" y="433" width="65" height="65"/>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L04-rX-ohb">
+                                <rect key="frame" x="71" y="508" width="45" height="45"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="r1i-hX-n3e">
+                                    <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8SS-tK-Anj">
+                                            <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <state key="normal" image="microphoneButton"/>
+                                            <connections>
+                                                <action selector="recordButtonPressed:" destination="ZaX-yA-hlv" eventType="touchUpInside" id="3IK-1X-Oxo"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="FHD-pQ-nRL"/>
+                                    <constraint firstAttribute="width" constant="45" id="rHh-LO-bS0"/>
+                                </constraints>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UVb-QS-P0A">
+                                <rect key="frame" x="124" y="500" width="60" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" image="textButton"/>
-                                <connections>
-                                    <action selector="textButtonPressed:" destination="ZaX-yA-hlv" eventType="touchUpInside" id="45Q-zG-wWF"/>
-                                </connections>
-                            </button>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="JNz-Af-c8N"/>
+                                    <constraint firstAttribute="width" constant="60" id="UBS-ul-R91"/>
+                                </constraints>
+                            </view>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bK8-89-m1S">
+                                <rect key="frame" x="20" y="511" width="40" height="40"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="3QF-ZO-POG">
+                                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VnU-0e-gnt">
+                                            <rect key="frame" x="4" y="0.0" width="27" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="34" id="0Nn-0u-E3B"/>
+                                                <constraint firstAttribute="width" constant="27" id="GHd-eI-phU"/>
+                                            </constraints>
+                                            <state key="normal" backgroundImage="saveIcon"/>
+                                            <connections>
+                                                <action selector="saveButtonPressed:" destination="ZaX-yA-hlv" eventType="touchUpInside" id="90n-24-vSg"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="VnU-0e-gnt" firstAttribute="centerX" secondItem="3QF-ZO-POG" secondAttribute="centerX" id="1na-J7-rN4"/>
+                                        <constraint firstItem="VnU-0e-gnt" firstAttribute="centerY" secondItem="3QF-ZO-POG" secondAttribute="centerY" id="3C3-3a-ABt"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="C1e-TK-jy1"/>
+                                    <constraint firstAttribute="height" constant="40" id="YXC-ZB-bl5"/>
+                                </constraints>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i7y-as-Heg">
+                                <rect key="frame" x="260" y="508" width="40" height="40"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="AJ4-5w-ySM">
+                                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SIm-Lo-1y9">
+                                            <rect key="frame" x="8" y="0.0" width="18" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="18" id="2Pl-Rv-MBS"/>
+                                                <constraint firstAttribute="height" constant="34" id="dxP-Ma-SkY"/>
+                                            </constraints>
+                                            <state key="normal" backgroundImage="tagStudentIcon"/>
+                                            <connections>
+                                                <action selector="tagButtonPressed:" destination="ZaX-yA-hlv" eventType="touchUpInside" id="N0M-ec-HXM"/>
+                                                <segue destination="YEJ-Fe-AzA" kind="push" id="PnY-OG-DzK"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="SIm-Lo-1y9" firstAttribute="centerX" secondItem="AJ4-5w-ySM" secondAttribute="centerX" id="mzr-3h-ewS"/>
+                                        <constraint firstItem="SIm-Lo-1y9" firstAttribute="centerY" secondItem="AJ4-5w-ySM" secondAttribute="centerY" id="u5c-WK-mAy"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Ybw-gu-etA"/>
+                                    <constraint firstAttribute="width" constant="40" id="jyP-rJ-x7f"/>
+                                </constraints>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Opi-Zz-Va3">
+                                <rect key="frame" x="187" y="508" width="45" height="45"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="PBa-n9-sCC">
+                                    <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Pc-vb-qbG">
+                                            <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <state key="normal" image="textButton"/>
+                                            <connections>
+                                                <action selector="textButtonPressed:" destination="ZaX-yA-hlv" eventType="touchUpInside" id="45Q-zG-wWF"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="Z1b-w7-wwu"/>
+                                    <constraint firstAttribute="height" constant="45" id="o7l-5j-Ort"/>
+                                </constraints>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="PGI-qN-pYs" firstAttribute="leading" secondItem="zKW-j9-Bvc" secondAttribute="leading" id="3Sf-58-Ppx"/>
+                            <constraint firstItem="bK8-89-m1S" firstAttribute="leading" secondItem="zKW-j9-Bvc" secondAttribute="leadingMargin" id="4HG-ug-usv"/>
                             <constraint firstItem="tJ2-NX-ACT" firstAttribute="top" secondItem="oFO-84-hmn" secondAttribute="bottom" constant="4" id="4Vy-rM-iwd"/>
-                            <constraint firstItem="3hD-OP-CHs" firstAttribute="leading" secondItem="zKW-j9-Bvc" secondAttribute="leading" id="4g4-Da-jXX"/>
+                            <constraint firstItem="i7y-as-Heg" firstAttribute="trailing" secondItem="zKW-j9-Bvc" secondAttribute="trailingMargin" id="8jA-D2-G26"/>
                             <constraint firstItem="nJq-kI-IJz" firstAttribute="centerX" secondItem="zKW-j9-Bvc" secondAttribute="centerX" id="Cgc-OR-WyB"/>
+                            <constraint firstItem="dGb-nW-or3" firstAttribute="top" secondItem="UVb-QS-P0A" secondAttribute="bottom" constant="8" id="Clh-sB-5sO"/>
                             <constraint firstItem="LcR-wm-frR" firstAttribute="leading" secondItem="zKW-j9-Bvc" secondAttribute="leading" id="Dq4-xo-k1e"/>
-                            <constraint firstAttribute="trailing" secondItem="PGI-qN-pYs" secondAttribute="trailing" id="FPR-QJ-1K4"/>
-                            <constraint firstItem="PGI-qN-pYs" firstAttribute="top" secondItem="3Pc-vb-qbG" secondAttribute="bottom" id="Mq6-jS-xqg"/>
-                            <constraint firstItem="PGI-qN-pYs" firstAttribute="bottom" secondItem="zKW-j9-Bvc" secondAttribute="bottomMargin" id="Rqm-i8-ASe"/>
-                            <constraint firstItem="PGI-qN-pYs" firstAttribute="top" secondItem="8SS-tK-Anj" secondAttribute="bottom" id="VLx-u3-QEi"/>
-                            <constraint firstItem="3hD-OP-CHs" firstAttribute="top" secondItem="3Pc-vb-qbG" secondAttribute="bottom" id="VRG-lA-fdF"/>
+                            <constraint firstItem="Opi-Zz-Va3" firstAttribute="centerY" secondItem="UVb-QS-P0A" secondAttribute="centerY" id="Err-E7-IvC"/>
                             <constraint firstItem="tJ2-NX-ACT" firstAttribute="leading" secondItem="zKW-j9-Bvc" secondAttribute="leading" id="VTJ-AC-d0B"/>
-                            <constraint firstItem="3Pc-vb-qbG" firstAttribute="leading" secondItem="nJq-kI-IJz" secondAttribute="trailing" constant="4" id="bNv-TR-Vby"/>
+                            <constraint firstItem="UVb-QS-P0A" firstAttribute="leading" secondItem="L04-rX-ohb" secondAttribute="trailing" constant="4" id="Wnp-Tp-5kU"/>
+                            <constraint firstItem="i7y-as-Heg" firstAttribute="centerY" secondItem="UVb-QS-P0A" secondAttribute="centerY" id="Zoe-Bb-cGO"/>
                             <constraint firstItem="LcR-wm-frR" firstAttribute="top" secondItem="tJ2-NX-ACT" secondAttribute="bottom" constant="4" identifier="audio_text_8" id="bV5-1C-yTU"/>
-                            <constraint firstItem="nJq-kI-IJz" firstAttribute="leading" secondItem="8SS-tK-Anj" secondAttribute="trailing" constant="4" id="hSv-1y-nD1"/>
+                            <constraint firstItem="Opi-Zz-Va3" firstAttribute="leading" secondItem="UVb-QS-P0A" secondAttribute="trailing" constant="4" id="fpZ-jV-0IR"/>
+                            <constraint firstItem="UVb-QS-P0A" firstAttribute="centerX" secondItem="zKW-j9-Bvc" secondAttribute="centerX" id="keg-Oq-vA9"/>
+                            <constraint firstItem="L04-rX-ohb" firstAttribute="centerY" secondItem="UVb-QS-P0A" secondAttribute="centerY" id="l5L-jd-k13"/>
                             <constraint firstAttribute="trailing" secondItem="tJ2-NX-ACT" secondAttribute="trailing" id="lg4-iI-CpR"/>
-                            <constraint firstAttribute="trailing" secondItem="3hD-OP-CHs" secondAttribute="trailing" id="pGZ-bA-3ti"/>
-                            <constraint firstItem="dGb-nW-or3" firstAttribute="top" secondItem="3hD-OP-CHs" secondAttribute="bottom" id="tYI-cU-Rcj"/>
+                            <constraint firstItem="bK8-89-m1S" firstAttribute="centerY" secondItem="UVb-QS-P0A" secondAttribute="centerY" id="wBH-a3-mje"/>
                             <constraint firstAttribute="trailing" secondItem="LcR-wm-frR" secondAttribute="trailing" id="wFw-Ih-U2y"/>
                         </constraints>
                         <connections>
@@ -1163,19 +1255,21 @@
                     </navigationItem>
                     <connections>
                         <outlet property="audioButton" destination="8SS-tK-Anj" id="OTF-zD-uaI"/>
+                        <outlet property="audioButtonContainer" destination="L04-rX-ohb" id="Twn-sy-KSo"/>
                         <outlet property="audioCloseButton" destination="ksf-0P-ZVb" id="hfb-nG-J29"/>
                         <outlet property="audioImageView" destination="459-Jg-Yvl" id="seL-yp-b6r"/>
                         <outlet property="audioPlayButton" destination="90x-Rq-ocX" id="23U-82-7NF"/>
                         <outlet property="audioRecordingLabel" destination="lVh-co-Dvy" id="6by-Dq-bf2"/>
                         <outlet property="audioViewContainer" destination="tJ2-NX-ACT" id="QKj-mZ-Hjs"/>
-                        <outlet property="saveButton" destination="n5O-Ep-DGd" id="97K-kI-oQZ"/>
-                        <outlet property="tagButton" destination="Q9k-Fl-9LT" id="oWK-Vt-dsb"/>
+                        <outlet property="saveButtonContainer" destination="bK8-89-m1S" id="BCJ-tc-56N"/>
+                        <outlet property="tagButton" destination="SIm-Lo-1y9" id="f4p-tH-wKg"/>
+                        <outlet property="tagButtonContainer" destination="i7y-as-Heg" id="eZi-5l-136"/>
                         <outlet property="textButton" destination="3Pc-vb-qbG" id="bHz-cI-gbc"/>
+                        <outlet property="textButtonContainer" destination="Opi-Zz-Va3" id="bWF-3Z-mH0"/>
                         <outlet property="textCloseButton" destination="4Py-TR-bmW" id="kys-JC-k9L"/>
                         <outlet property="textView" destination="Oi0-Lv-QTe" id="fSr-6p-Vgg"/>
                         <outlet property="textViewContainer" destination="LcR-wm-frR" id="WNx-rK-3HU"/>
                         <outlet property="textViewDistanceToBottomOfAudioView" destination="bV5-1C-yTU" id="bIF-0j-Skj"/>
-                        <outlet property="visualEffectView" destination="3hD-OP-CHs" id="u3N-R1-zHT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KJ8-MV-77E" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1624,7 +1718,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ArchiveIcon" width="51" height="66"/>
+        <image name="ArchiveIcon" width="55" height="55"/>
         <image name="addStudent" width="33" height="34"/>
         <image name="addStudentCameraIcon" width="231" height="231"/>
         <image name="cameraIcon" width="29" height="27"/>
@@ -1637,11 +1731,11 @@
         <image name="nameIcon" width="40" height="40"/>
         <image name="passwordIcon" width="36" height="42"/>
         <image name="playButton" width="59" height="59"/>
-        <image name="saveIcon" width="30" height="55"/>
-        <image name="settingsIcon" width="44" height="36"/>
+        <image name="saveIcon" width="27" height="36"/>
+        <image name="settingsIcon" width="35" height="35"/>
         <image name="tagCategoryIcon" width="70" height="59"/>
-        <image name="tagStudentIcon" width="64" height="59"/>
+        <image name="tagStudentIcon" width="18" height="36"/>
         <image name="textButton" width="56" height="55"/>
-        <image name="waveForm" width="530" height="53"/>
+        <image name="waveForm" width="549" height="58"/>
     </resources>
 </document>

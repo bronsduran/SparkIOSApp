@@ -24,7 +24,8 @@ class SPTagCategoryViewController: UIViewController, UICollectionViewDelegate, U
         self.collectionView.registerNib(cellNib, forCellWithReuseIdentifier: "CategoryCollectionViewCell")
         self.collectionView.allowsMultipleSelection = true
         self.navigationController?.navigationBar.hidden = false
-        self.navigationController?.navigationBar.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
+        self.title = "Tag Category"
+        //self.navigationController?.navigationBar.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
         
         // set view's background image
         addStatusBarStyle()
