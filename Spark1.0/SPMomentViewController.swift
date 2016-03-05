@@ -18,14 +18,15 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
     var player: AVAudioPlayer?
     
 
-
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var audioView: UIView!
 
     @IBOutlet weak var bottomBar: UIVisualEffectView!
     var videoFrameView: UIView!
-   
+  
+    
+
     
     @IBAction func sendMomentPressed(sender: AnyObject) {
         if (student != nil && student["parentEmail"] != nil) {
@@ -58,8 +59,6 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         
         // notes
@@ -155,6 +154,7 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
             
             videoPlayerLayer.frame = screenRect
             view.layer.addSublayer(videoPlayerLayer)
+            
             
             self.view.bringSubviewToFront(self.audioBlur)
             self.view.bringSubviewToFront(self.audioView)

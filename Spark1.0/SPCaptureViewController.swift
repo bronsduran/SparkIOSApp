@@ -16,13 +16,14 @@ class SPCaptureViewController: UIViewController {
     var image : UIImage! = nil
     var videoURL : NSURL! = nil
     var isVideoRecording: Bool = false
+    var isCamera: Bool = true
     
     @IBOutlet weak var captureButton: UIButton!
     @IBOutlet weak var visualVoiceBlur: UIVisualEffectView!
     @IBOutlet weak var captureBlur: UIVisualEffectView!
     @IBOutlet weak var visualArchiveBlur: UIVisualEffectView!
     @IBOutlet weak var visualTextBlur: UIVisualEffectView!
-    @IBOutlet weak var cameraToggle: UISegmentedControl!
+    @IBOutlet weak var cameraToggle: UIButton!
     
 
     override func viewDidLoad() {
@@ -56,10 +57,11 @@ class SPCaptureViewController: UIViewController {
         self.image = nil
         self.videoURL = nil
         self.isVideoRecording = false
-        setCaptureButton()
         self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+        cameraToggle.hidden = false
+        
     }
 
     
@@ -69,11 +71,15 @@ class SPCaptureViewController: UIViewController {
     
     func setCaptureButton() {
         
-        if cameraToggle.selectedSegmentIndex == 0 {
+        if !isCamera {
             self.captureButton.setBackgroundImage(UIImage(named: "captureButton.png"), forState: UIControlState.Normal)
+            self.cameraToggle.setBackgroundImage(UIImage(named: "videoIcon.png"), forState: UIControlState.Normal)
+            isCamera = true
             
         } else {
             self.captureButton.setBackgroundImage(UIImage(named: "videoCaptureButton.png"), forState: UIControlState.Normal)
+            self.cameraToggle.setBackgroundImage(UIImage(named: "cameraButton.png"), forState: UIControlState.Normal)
+            isCamera = false
         }
     }
     
@@ -115,7 +121,6 @@ class SPCaptureViewController: UIViewController {
     
     func endVideoRecord() {
         camera.stop()
-     //   setCaptureButtonImage("videoCaptureButton")
         
         self.camera.stopRecording {
             (camera: LLSimpleCamera!, outputFileUrl: NSURL!, error: NSError!) -> Void in
@@ -128,6 +133,7 @@ class SPCaptureViewController: UIViewController {
                 self.performSegueWithIdentifier("toMediaViewController", sender: self)
             }
         }
+        self.captureButton.setBackgroundImage(UIImage(named: "videoCaptureButton.png"), forState: UIControlState.Normal)
     }
     
     @IBAction func captureButtonPressed(sender: AnyObject) {
@@ -139,13 +145,14 @@ class SPCaptureViewController: UIViewController {
             return
         }
         
-        if self.cameraToggle.selectedSegmentIndex == 0 {
+        if isCamera {
             takePhoto()
         } else {
             if isVideoRecording {
                 endVideoRecord()
             } else {
                 startVideoRecord()
+                cameraToggle.hidden = true
             }
         }
         

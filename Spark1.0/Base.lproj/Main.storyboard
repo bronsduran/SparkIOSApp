@@ -383,6 +383,7 @@
                             <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7zb-4X-mbw">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yVe-jr-DQe">
                                 <rect key="frame" x="0.0" y="68" width="320" height="50"/>
@@ -813,17 +814,6 @@
                                 </constraints>
                                 <blurEffect style="extraLight"/>
                             </visualEffectView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UGE-27-BEL">
-                                <rect key="frame" x="255" y="519" width="56" height="29"/>
-                                <segments>
-                                    <segment title="Photo"/>
-                                    <segment title="Video"/>
-                                </segments>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="cameraToggle:" destination="Oj9-cQ-Faf" eventType="valueChanged" id="RBk-ai-gdw"/>
-                                </connections>
-                            </segmentedControl>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Blx-Mk-GZr">
                                 <rect key="frame" x="198" y="502" width="45" height="45"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7FU-NY-dV4">
@@ -846,20 +836,31 @@
                                 </constraints>
                                 <blurEffect style="light"/>
                             </visualEffectView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Cn-g8-OuU">
+                                <rect key="frame" x="260" y="518" width="40" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="5Mq-g5-AFJ"/>
+                                    <constraint firstAttribute="height" constant="23" id="WzC-qc-RrA"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="videoIcon"/>
+                                <connections>
+                                    <action selector="cameraToggle:" destination="Oj9-cQ-Faf" eventType="touchUpInside" id="bOp-jk-olD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Blx-Mk-GZr" firstAttribute="centerY" secondItem="Tub-ZY-n6q" secondAttribute="centerY" id="6U7-MB-PSK"/>
                             <constraint firstItem="Blx-Mk-GZr" firstAttribute="leading" secondItem="Tub-ZY-n6q" secondAttribute="trailing" constant="4" id="AJe-NG-r70"/>
                             <constraint firstItem="Qhg-1o-JS5" firstAttribute="leading" secondItem="POr-pK-aQu" secondAttribute="leadingMargin" id="G6E-uV-lVy"/>
+                            <constraint firstItem="0Cn-g8-OuU" firstAttribute="trailing" secondItem="POr-pK-aQu" secondAttribute="trailingMargin" id="HnU-T0-OSu"/>
                             <constraint firstItem="Qhg-1o-JS5" firstAttribute="centerY" secondItem="Tub-ZY-n6q" secondAttribute="centerY" id="K6P-Ib-kvF"/>
-                            <constraint firstItem="UGE-27-BEL" firstAttribute="centerY" secondItem="Tub-ZY-n6q" secondAttribute="centerY" id="OPN-wi-W48"/>
                             <constraint firstItem="rQ9-xJ-BuK" firstAttribute="centerX" secondItem="POr-pK-aQu" secondAttribute="centerX" id="Qsd-Xf-21u"/>
                             <constraint firstItem="Qjr-ph-21T" firstAttribute="centerY" secondItem="Tub-ZY-n6q" secondAttribute="centerY" id="ddy-Wu-Rad"/>
                             <constraint firstItem="Tub-ZY-n6q" firstAttribute="centerX" secondItem="POr-pK-aQu" secondAttribute="centerX" id="e2m-ls-Dog"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="UGE-27-BEL" secondAttribute="trailing" constant="-11" id="emZ-42-317"/>
                             <constraint firstItem="Tub-ZY-n6q" firstAttribute="leading" secondItem="Qjr-ph-21T" secondAttribute="trailing" constant="4" id="mmN-5d-X3p"/>
                             <constraint firstItem="33v-1T-piy" firstAttribute="top" secondItem="Tub-ZY-n6q" secondAttribute="bottom" constant="8" id="q4V-Xf-JLg"/>
+                            <constraint firstItem="0Cn-g8-OuU" firstAttribute="centerY" secondItem="Tub-ZY-n6q" secondAttribute="centerY" id="r2b-CX-ddd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Kf1-6y-JHu">
@@ -871,7 +872,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="cameraToggle" destination="UGE-27-BEL" id="W9g-un-AdB"/>
+                        <outlet property="cameraToggle" destination="0Cn-g8-OuU" id="Qpd-bS-Jyr"/>
                         <outlet property="captureBlur" destination="Tub-ZY-n6q" id="yaQ-zj-xpM"/>
                         <outlet property="captureButton" destination="rXV-9g-QeX" id="iKb-gI-PUa"/>
                         <outlet property="visualArchiveBlur" destination="Qhg-1o-JS5" id="knk-6U-8H0"/>
@@ -1742,6 +1743,7 @@
         <image name="tagCategoryIcon" width="70" height="59"/>
         <image name="tagStudentIcon" width="18" height="36"/>
         <image name="textButton" width="56" height="55"/>
+        <image name="videoIcon" width="40" height="23"/>
         <image name="waveForm" width="549" height="58"/>
     </resources>
 </document>
