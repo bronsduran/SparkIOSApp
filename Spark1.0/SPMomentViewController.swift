@@ -50,8 +50,8 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
         self.player?.play()
     }
     
-    var videoPlayer: AVPlayer! = nil
-    var videoPlayerLayer: AVPlayerLayer! = nil
+    var videoPlayer: AVPlayer? = nil
+    var videoPlayerLayer: AVPlayerLayer? = nil
     
     
     var moment: Moment!
@@ -76,7 +76,7 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
             textBlur.hidden = true
         }
         
-        
+
         // image
         if !moment.isVideo() {
             moment.image({ image in
@@ -91,13 +91,16 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
             moment.video({ video in
                 if let video = video, let videoUrl = video.url {
                     self.videoPlayer = AVPlayer(URL: NSURL(string: videoUrl)!)
-                    self.videoPlayer.actionAtItemEnd = AVPlayerActionAtItemEnd.None
+                    self.videoPlayer!.actionAtItemEnd = AVPlayerActionAtItemEnd.None
                     
-                    NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: self.videoPlayer.currentItem)
+                    NSNotificationCenter.defaultCenter().addObserver(self,
+                        selector: "playerItemDidReachEnd:",
+                        name: AVPlayerItemDidPlayToEndTimeNotification,
+                        object: self.videoPlayer!.currentItem)
                     
-                    self.videoPlayerLayer = AVPlayerLayer(player: self.videoPlayer)
+                    self.videoPlayerLayer = AVPlayerLayer(player: self.videoPlayer!)
                 
-                    self.videoPlayer.addObserver(self, forKeyPath: "status", options: NSKeyValueObservingOptions(), context: nil)
+                    self.videoPlayer!.addObserver(self, forKeyPath: "status", options: NSKeyValueObservingOptions(), context: nil)
             
                 }
             })
@@ -163,10 +166,9 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         
         if let object = object as? AVPlayer where object == videoPlayer && keyPath == "status" {
-            if (videoPlayer.status == AVPlayerStatus.ReadyToPlay) {
-                print("last")
-                videoPlayer.play()
-            } else if (videoPlayer.status == AVPlayerStatus.Failed) {
+            if (videoPlayer?.status == AVPlayerStatus.ReadyToPlay) {
+                videoPlayer?.play()
+            } else if (videoPlayer?.status == AVPlayerStatus.Failed) {
                 // something went wrong. player.error should contain some information
             }
         }
@@ -175,10 +177,10 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        if (videoPlayer != nil) {
+
+        if let videoPlayer = self.videoPlayer {
             videoPlayer.removeObserver(self, forKeyPath: "status")
-        }
-        if let videoPlayer = videoPlayer {
+
             videoPlayer.pause()
         }
     }
@@ -190,8 +192,11 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
         if moment.isVideo() {
             imageView.hidden = true
             
-            videoPlayerLayer.frame = screenRect
-            view.layer.addSublayer(videoPlayerLayer)
+            if let videoPlayerLayer = self.videoPlayerLayer {
+                videoPlayerLayer.frame = screenRect
+                view.layer.addSublayer(videoPlayerLayer)
+            }
+            
             
             
             self.view.bringSubviewToFront(self.audioBlur)
@@ -203,7 +208,6 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
             
             
 //            videoPlayer.play()
-            print("first")
         }
     }
     

@@ -1122,10 +1122,6 @@
                                     <constraint firstItem="ZgN-M4-GnR" firstAttribute="top" secondItem="LcR-wm-frR" secondAttribute="top" id="xpr-Za-YG6"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nJq-kI-IJz">
-                                <rect key="frame" x="160" y="370" width="0.0" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L04-rX-ohb">
                                 <rect key="frame" x="71" y="508" width="45" height="45"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="r1i-hX-n3e">
@@ -1244,7 +1240,6 @@
                             <constraint firstItem="bK8-89-m1S" firstAttribute="leading" secondItem="zKW-j9-Bvc" secondAttribute="leadingMargin" id="4HG-ug-usv"/>
                             <constraint firstItem="tJ2-NX-ACT" firstAttribute="top" secondItem="oFO-84-hmn" secondAttribute="bottom" constant="4" id="4Vy-rM-iwd"/>
                             <constraint firstItem="i7y-as-Heg" firstAttribute="trailing" secondItem="zKW-j9-Bvc" secondAttribute="trailingMargin" id="8jA-D2-G26"/>
-                            <constraint firstItem="nJq-kI-IJz" firstAttribute="centerX" secondItem="zKW-j9-Bvc" secondAttribute="centerX" id="Cgc-OR-WyB"/>
                             <constraint firstItem="dGb-nW-or3" firstAttribute="top" secondItem="UVb-QS-P0A" secondAttribute="bottom" constant="8" id="Clh-sB-5sO"/>
                             <constraint firstItem="LcR-wm-frR" firstAttribute="leading" secondItem="zKW-j9-Bvc" secondAttribute="leading" id="Dq4-xo-k1e"/>
                             <constraint firstItem="Opi-Zz-Va3" firstAttribute="centerY" secondItem="UVb-QS-P0A" secondAttribute="centerY" id="Err-E7-IvC"/>
@@ -1359,11 +1354,7 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="Add Students" id="TCX-PA-VUy">
-                                        <barButtonItem key="rightBarButtonItem" image="deleteIcon" id="CMe-Vi-zbb">
-                                            <connections>
-                                                <action selector="closeButtonPressed:" destination="u6T-Nu-23k" id="IVD-h8-Mbm"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <barButtonItem key="backBarButtonItem" title="Back" id="U55-kZ-s16"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -1445,8 +1436,11 @@
                         <outlet property="activityIndicator" destination="Tqy-80-Gxl" id="HcZ-cu-bdO"/>
                         <outlet property="addAnotherDeleteButton" destination="8jk-mv-OO9" id="DWP-rg-TEQ"/>
                         <outlet property="doneSaveButton" destination="L1g-cg-t8I" id="wbr-Al-m6u"/>
+                        <outlet property="navBar" destination="qmY-mj-G1E" id="Z2p-lX-ap0"/>
+                        <outlet property="navigationItem" destination="Fi1-lQ-Qmq" id="joI-lX-mzS"/>
                         <outlet property="photoButton" destination="2PW-cc-GRy" id="Xuu-wL-ebO"/>
                         <outlet property="tableView" destination="uxz-Z9-ob5" id="u3V-qz-xX1"/>
+                        <outlet property="titleItem" destination="TCX-PA-VUy" id="fOC-AJ-prU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bsX-AS-IuC" userLabel="First Responder" sceneMemberID="firstResponder"/>

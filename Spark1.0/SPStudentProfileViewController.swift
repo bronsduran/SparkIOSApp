@@ -23,12 +23,17 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var doneSaveButton: UIBarButtonItem!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var titleItem: UINavigationItem!
+    
     var image : UIImage?
     var input = [String?](count: 4, repeatedValue: nil)
     var didDissmiss : ((String?) -> Void)? = nil
     var editMode = false // defaults to addMode
     var student: Student? = nil
+    var showCloseButton = true;
     
+    @IBOutlet weak var localNavigationItem: UINavigationItem!
     
     override func viewDidLoad() {
         let cellNib: UINib = UINib(nibName: "TextInputTableViewCell", bundle: nil)
@@ -43,6 +48,7 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
         photoButton.imageView?.layer.cornerRadius = self.photoButton.frame.width / 2.0
         photoButton.imageView?.clipsToBounds = true
         UIToolbar.appearance().tintColor = UIColor.blackColor()
+        
         
         
         if editMode {
@@ -62,7 +68,27 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
         
         activityIndicator.hidesWhenStopped = true
         view.bringSubviewToFront(activityIndicator)
+        
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        if showCloseButton {
+            let closeButton = UIBarButtonItem(
+                image: UIImage(named: "deleteIcon"),
+                style: UIBarButtonItemStyle.Plain,
+                target: self,
+                action: "closeButtonPressed:"
+            )
+            self.navBar.topItem?.rightBarButtonItem = closeButton
+        } else {
+            self.navBar.topItem?.rightBarButtonItem = nil
+        }
+        
+        self.titleItem.title = student?.displayName()
+        self.navigationController
+    }
+    
+
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell : TextInputTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("TextInputTableViewCell") as! TextInputTableViewCell
@@ -127,7 +153,7 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
                     activityIndicator.startAnimating()
                     try student.delete()
                     activityIndicator.stopAnimating()
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    self.navigationController?.popViewControllerAnimated(true)
                 } catch {
                     activityIndicator.stopAnimating()
                     self.presentAlertWithTitle("Delete failed.", message: "There was an error connecting to the server, and and the student could not be deleted. To delete student, try again.")
@@ -163,14 +189,14 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
                 
                 student.saveInBackgroundWithBlock( { success in
                     if success.0 {
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                        self.navigationController?.popViewControllerAnimated(true)
                     } else {
                         self.presentAlertWithTitle("Save failed.", message: "There was an error connecting to the server, and changes couldn't be saved. To save changes, try again.")
                     }
                 })
             }
         } else {
-            var created : Bool = createStudent()
+            let created : Bool = createStudent()
             
             if created {
                 User.currentUser()?.refreshStudents({ (success) -> Void in
@@ -254,8 +280,7 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
         updatePhotoButtonImage()
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    
+ 
     @IBAction func viewWasTapped(sender: AnyObject) {
         for cell in self.tableView.visibleCells {
             let cell = cell as! TextInputTableViewCell

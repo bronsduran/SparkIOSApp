@@ -28,6 +28,19 @@ class SPManageStudentsViewController : UICollectionViewController {
         
         // make collection view transparent
         self.collectionView!.backgroundColor = UIColor.clearColor()
+        
+        let addStudentButton = UIBarButtonItem(
+            image: UIImage(named: "addStudent"),
+            style: UIBarButtonItemStyle.Plain,
+            target: self,
+            action: "addStudentPressed:"
+        )
+    
+        self.navigationItem.rightBarButtonItem = addStudentButton
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         self.title = "Manage Students"
         
         User.currentUser()?.students( { students in
@@ -36,7 +49,6 @@ class SPManageStudentsViewController : UICollectionViewController {
             self.students.sortInPlace({ $1["firstName"] as? String > $0["firstName"] as? String})
             self.collectionView?.reloadData()
         })
-        
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -59,11 +71,21 @@ class SPManageStudentsViewController : UICollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let student = students[indexPath.row]
         let editStudentProfileViewController = storyboard.instantiateViewControllerWithIdentifier("SPStudentProfileViewController") as! SPStudentProfileViewController
         editStudentProfileViewController.tableView = UITableView()
-        editStudentProfileViewController.student = students[indexPath.row]
+        editStudentProfileViewController.student = student
         editStudentProfileViewController.editMode = true
+        editStudentProfileViewController.showCloseButton = false
+        self.title = nil
+
         self.navigationController?.pushViewController(editStudentProfileViewController, animated: true)
+    }
+    
+    func addStudentPressed(sender: AnyObject) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let addStudentProfileViewController = storyboard.instantiateViewControllerWithIdentifier("SPStudentProfileViewController") as! SPStudentProfileViewController
+        self.presentViewController(addStudentProfileViewController, animated: true, completion: nil)
     }
     
     

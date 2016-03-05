@@ -341,6 +341,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         self.audioButton.hidden = false
         self.audioViewContainer.hidden = true
         textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
+        
         UIView.animateWithDuration(0.3) {
             self.view.layoutIfNeeded()
         }
