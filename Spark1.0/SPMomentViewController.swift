@@ -21,13 +21,13 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var audioView: UIView!
-
     @IBOutlet weak var bottomBar: UIVisualEffectView!
+    
+    var viewsAreHidden: Bool = false
+    var audioExists: Bool = false
+    var textExists: Bool = false
     var videoFrameView: UIView!
-  
-    
 
-    
     @IBAction func sendMomentPressed(sender: AnyObject) {
         if (student != nil && student["parentEmail"] != nil) {
             let mailComposeViewController = configuredMailComposeViewController()
@@ -60,12 +60,16 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("screenTapped:"))
+        imageView.addGestureRecognizer(tapGestureRecognizer)
+        view.addGestureRecognizer(tapGestureRecognizer)
         
         // notes
         if let caption = moment["notes"] as? String {
             captionLabel.text = caption
             captionLabel.hidden = false
             textBlur.hidden = false
+            textExists = true
         } else {
             captionLabel.text = "No notes were taken with this moment."
             captionLabel.hidden = true
@@ -101,6 +105,7 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
         
         moment.getFileNamed("voiceData", callback: { (data: NSData?) -> Void in
             if data != nil {
+                self.audioExists = true
                 do {
                     self.player = try AVAudioPlayer(data: data!)
                     self.player?.delegate = self
@@ -118,8 +123,39 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
         
       
     }
-   
-   
+    func screenTapped(sender: AnyObject)
+    {
+        if viewsAreHidden {
+            showViews()
+        } else {
+            hideViews()
+        }
+    }
+    
+    func showViews() {
+        self.bottomBar.hidden = false
+        self.navigationController?.navigationBar.hidden = false
+        
+        if textExists {
+            self.textBlur.hidden = false
+            self.captionLabel.hidden = false
+        }
+        if audioExists {
+            self.audioView.hidden = false
+            self.audioBlur.hidden = false
+        }
+        viewsAreHidden = false
+        
+    }
+    func hideViews() {
+        self.bottomBar.hidden = true
+        self.navigationController?.navigationBar.hidden = true
+        self.captionLabel.hidden = true
+        self.textBlur.hidden = true
+        self.audioBlur.hidden = true
+        self.audioView.hidden = true
+        viewsAreHidden = true
+    }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         
@@ -133,7 +169,6 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
         }
     }
     
-
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
