@@ -79,7 +79,7 @@ class MomentTableViewCell: UITableViewCell {
         
 
         // notes
-        if let notes = moment["notes"] as? String {
+        if let notes = moment["notes"] as? String where notes != "" {
             self.captionLabel.text = notes
         } else {
             self.captionLabel.text = "No notes currently exist for this moment."

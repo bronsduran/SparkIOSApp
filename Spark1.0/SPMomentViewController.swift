@@ -37,7 +37,6 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
             } else {
                 self.showSendMailErrorAlert()
             }
-            print("DONE")
         } else {
             let noEmailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "No email assigned to current student's parents.", delegate: self, cancelButtonTitle: "OK")
             noEmailErrorAlert.show()
@@ -66,7 +65,7 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
         view.addGestureRecognizer(tapGestureRecognizer)
         
         // notes
-        if let caption = moment["notes"] as? String {
+        if let caption = moment["notes"] as? String where caption != "" {
             captionLabel.text = caption
             captionLabel.hidden = false
             textBlur.hidden = false
@@ -233,7 +232,7 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
         
         mailComposerVC.setToRecipients([student["parentEmail"] as! String])
         mailComposerVC.setSubject("Spark Moment For Your Child")
-        if (moment["notes"] != nil) {
+        if moment["notes"] != nil && moment["notes"] as! String != "" {
             notes = moment["notes"] as? String
         } else {
             notes = "Check out what your child did in class!"
