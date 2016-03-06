@@ -23,6 +23,7 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
     @IBOutlet weak var audioView: UIView!
     @IBOutlet weak var bottomBar: UIVisualEffectView!
     
+    var navBlur: UIVisualEffectView!
     var viewsAreHidden: Bool = false
     var audioExists: Bool = false
     var textExists: Bool = false
@@ -120,6 +121,7 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
         })
 
         addStatusBarStyle()
+        addBlurEffect()
         
       
     }
@@ -135,6 +137,7 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
     func showViews() {
         self.bottomBar.hidden = false
         self.navigationController?.navigationBar.hidden = false
+        self.navBlur.hidden = false
         
         if textExists {
             self.textBlur.hidden = false
@@ -154,6 +157,7 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
         self.textBlur.hidden = true
         self.audioBlur.hidden = true
         self.audioView.hidden = true
+        self.navBlur.hidden = true
         viewsAreHidden = true
     }
     
@@ -196,6 +200,7 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
             self.view.bringSubviewToFront(self.textBlur)
             self.view.bringSubviewToFront(self.captionLabel)
             self.view.bringSubviewToFront(self.bottomBar)
+            self.view.bringSubviewToFront(self.navBlur)
             
             
 //            videoPlayer.play()
@@ -260,5 +265,22 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
     func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         controller.dismissViewControllerAnimated(true, completion: nil)
         
+    }
+    
+    func addBlurEffect() {
+        // Add blur view
+        var bounds = self.navigationController?.navigationBar.bounds as CGRect!
+        bounds.offsetInPlace(dx: 0.0, dy: 0.0)
+        bounds.size.height = bounds.height + 20.0
+        
+        navBlur = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        navBlur.frame = bounds
+        navBlur.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        
+        self.view.addSubview(navBlur)
+    
+        
+        // Here you can add visual effects to any UIView control.
+        // Replace custom view with navigation bar in above code to add effects to custom view.
     }
 }

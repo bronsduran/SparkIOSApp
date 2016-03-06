@@ -447,32 +447,36 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="42"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qdg-MK-73u">
-                                                        <rect key="frame" x="8" y="6" width="46" height="30"/>
-                                                        <state key="normal" title="Share">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qdg-MK-73u">
+                                                        <rect key="frame" x="20" y="10" width="40" height="28"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="28" id="7kr-E0-DAH"/>
+                                                            <constraint firstAttribute="width" constant="40" id="DJm-4x-jMC"/>
+                                                        </constraints>
+                                                        <state key="normal" backgroundImage="shareIcon"/>
                                                         <connections>
                                                             <action selector="sendMomentPressed:" destination="lkN-nd-Ys1" eventType="touchUpInside" id="ZNW-ql-gtW"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v7O-nK-Wjm">
-                                                        <rect key="frame" x="266" y="6" width="46" height="30"/>
-                                                        <state key="normal" title="Delete">
+                                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v7O-nK-Wjm">
+                                                        <rect key="frame" x="281" y="1" width="31" height="35"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="31" id="eKc-GP-b3h"/>
+                                                            <constraint firstAttribute="height" constant="35" id="z4n-ZG-zRm"/>
+                                                        </constraints>
+                                                        <state key="normal" backgroundImage="trashIcon">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="Qdg-MK-73u" secondAttribute="bottom" constant="6" id="C7j-9z-5Ni"/>
                                                     <constraint firstAttribute="trailing" secondItem="v7O-nK-Wjm" secondAttribute="trailing" constant="8" id="CiK-9e-Pdb"/>
-                                                    <constraint firstAttribute="bottom" secondItem="v7O-nK-Wjm" secondAttribute="bottom" constant="6" id="KNI-Lu-jN6"/>
+                                                    <constraint firstItem="v7O-nK-Wjm" firstAttribute="centerY" secondItem="zk1-Bo-hQq" secondAttribute="centerY" id="IsR-ly-OmQ"/>
+                                                    <constraint firstItem="Qdg-MK-73u" firstAttribute="centerY" secondItem="zk1-Bo-hQq" secondAttribute="centerY" id="Wbp-c4-sK4"/>
                                                     <constraint firstItem="Qdg-MK-73u" firstAttribute="leading" secondItem="zk1-Bo-hQq" secondAttribute="leading" constant="8" id="mrN-yE-6sP"/>
                                                 </constraints>
                                             </view>
-                                            <vibrancyEffect>
-                                                <blurEffect style="light"/>
-                                            </vibrancyEffect>
+                                            <blurEffect style="light"/>
                                         </visualEffectView>
                                     </subviews>
                                     <constraints>
@@ -847,15 +851,21 @@
                                     <action selector="cameraToggle:" destination="Oj9-cQ-Faf" eventType="touchUpInside" id="bOp-jk-olD"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SbT-Y1-rFL">
+                                <rect key="frame" x="40" y="307" width="240" height="128"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Blx-Mk-GZr" firstAttribute="centerY" secondItem="Tub-ZY-n6q" secondAttribute="centerY" id="6U7-MB-PSK"/>
+                            <constraint firstItem="SbT-Y1-rFL" firstAttribute="centerX" secondItem="POr-pK-aQu" secondAttribute="centerX" id="92B-BL-VXK"/>
                             <constraint firstItem="Blx-Mk-GZr" firstAttribute="leading" secondItem="Tub-ZY-n6q" secondAttribute="trailing" constant="4" id="AJe-NG-r70"/>
                             <constraint firstItem="Qhg-1o-JS5" firstAttribute="leading" secondItem="POr-pK-aQu" secondAttribute="leadingMargin" id="G6E-uV-lVy"/>
                             <constraint firstItem="0Cn-g8-OuU" firstAttribute="trailing" secondItem="POr-pK-aQu" secondAttribute="trailingMargin" id="HnU-T0-OSu"/>
                             <constraint firstItem="Qhg-1o-JS5" firstAttribute="centerY" secondItem="Tub-ZY-n6q" secondAttribute="centerY" id="K6P-Ib-kvF"/>
                             <constraint firstItem="rQ9-xJ-BuK" firstAttribute="centerX" secondItem="POr-pK-aQu" secondAttribute="centerX" id="Qsd-Xf-21u"/>
+                            <constraint firstItem="SbT-Y1-rFL" firstAttribute="centerY" secondItem="POr-pK-aQu" secondAttribute="centerY" id="XQO-Ek-LnT"/>
                             <constraint firstItem="Qjr-ph-21T" firstAttribute="centerY" secondItem="Tub-ZY-n6q" secondAttribute="centerY" id="ddy-Wu-Rad"/>
                             <constraint firstItem="Tub-ZY-n6q" firstAttribute="centerX" secondItem="POr-pK-aQu" secondAttribute="centerX" id="e2m-ls-Dog"/>
                             <constraint firstItem="Tub-ZY-n6q" firstAttribute="leading" secondItem="Qjr-ph-21T" secondAttribute="trailing" constant="4" id="mmN-5d-X3p"/>
@@ -875,6 +885,7 @@
                         <outlet property="cameraToggle" destination="0Cn-g8-OuU" id="Qpd-bS-Jyr"/>
                         <outlet property="captureBlur" destination="Tub-ZY-n6q" id="yaQ-zj-xpM"/>
                         <outlet property="captureButton" destination="rXV-9g-QeX" id="iKb-gI-PUa"/>
+                        <outlet property="testView" destination="SbT-Y1-rFL" id="Gac-qs-mjd"/>
                         <outlet property="visualArchiveBlur" destination="Qhg-1o-JS5" id="knk-6U-8H0"/>
                         <outlet property="visualTextBlur" destination="Blx-Mk-GZr" id="IhO-TF-GEu"/>
                         <outlet property="visualVoiceBlur" destination="Qjr-ph-21T" id="5dA-El-svA"/>
@@ -1740,9 +1751,11 @@
         <image name="playButton" width="59" height="59"/>
         <image name="saveIcon" width="27" height="36"/>
         <image name="settingsIcon" width="35" height="35"/>
+        <image name="shareIcon" width="40" height="26"/>
         <image name="tagCategoryIcon" width="70" height="59"/>
         <image name="tagStudentIcon" width="18" height="36"/>
         <image name="textButton" width="56" height="55"/>
+        <image name="trashIcon" width="32" height="40"/>
         <image name="videoIcon" width="40" height="23"/>
         <image name="waveForm" width="549" height="58"/>
     </resources>

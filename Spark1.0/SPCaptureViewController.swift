@@ -25,6 +25,7 @@ class SPCaptureViewController: UIViewController {
     @IBOutlet weak var visualTextBlur: UIVisualEffectView!
     @IBOutlet weak var cameraToggle: UIButton!
     
+    @IBOutlet weak var testView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +48,7 @@ class SPCaptureViewController: UIViewController {
         self.view.bringSubviewToFront(self.visualTextBlur)
         self.view.bringSubviewToFront(self.captureBlur)
         self.view.bringSubviewToFront(self.cameraToggle)
-
+        self.view.bringSubviewToFront(self.testView)
         
     }
     

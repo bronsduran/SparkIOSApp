@@ -40,6 +40,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     var isRecording: Bool! = false
     var initWithRecording = false
     var initWithText = false
+    var navBlur: UIVisualEffectView!
     
     @IBOutlet weak var audioViewContainer: UIView!
     @IBOutlet weak var audioCloseButton: UIButton!
@@ -76,7 +77,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         setupAudioSession()
         addStatusBarStyle()
         setUpButtons()
-        
+        addBlurEffect()
         
     }
     
@@ -387,6 +388,22 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
             textView.resignFirstResponder()
         }
         return true
+    }
+    func addBlurEffect() {
+        // Add blur view
+        var bounds = self.navigationController?.navigationBar.bounds as CGRect!
+        bounds.offsetInPlace(dx: 0.0, dy: 0.0)
+        bounds.size.height = bounds.height + 20.0
+        
+        navBlur = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        navBlur.frame = bounds
+        navBlur.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        
+        self.view.addSubview(navBlur)
+        
+        
+        // Here you can add visual effects to any UIView control.
+        // Replace custom view with navigation bar in above code to add effects to custom view.
     }
 
 }
