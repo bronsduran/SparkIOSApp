@@ -23,6 +23,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
 
     var imagePicker : UIImagePickerController!
     var image : UIImage?
+    var isUntagged = false
     
     var student: Student?
     var moments: [Moment] = []
@@ -43,8 +44,6 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
             imagePicker.sourceType = .Camera
             presentViewController(imagePicker, animated: true, completion: nil)
         }
-        
-        
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
@@ -92,16 +91,31 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! MomentTableViewCell
-        performSegueWithIdentifier("toMomentViewController", sender: cell)
+        if isUntagged {
+            performSegueWithIdentifier("Edit Moment", sender: cell)
+        } else {
+            performSegueWithIdentifier("toMomentViewController", sender: cell)
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == "toMomentViewController"){
+        if segue.identifier == "toMomentViewController" {
             if let destination = segue.destinationViewController as? SPMomentViewController,
                 let cell = sender as? MomentTableViewCell,
                 let moment = cell.moment {
                     destination.moment = moment
                     destination.student = student
+            }
+        } else if segue.identifier == "Edit Moment" {
+            if let destination = segue.destinationViewController as? SPMediaViewController,
+               let cell = sender as? MomentTableViewCell,
+               let moment = cell.moment {
+                
+                MomentSingleton.sharedInstance.populateWithMoment(moment,
+                        imageCB: { destination.updateWithImage() },
+                        videoCB: { destination.updateWithVideoData() },
+                        voiceCB: { destination.updateWithVoiceData() }
+                )
             }
         }
     }
@@ -155,6 +169,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
                             self.moments = moments
                             self.applyFilter("All")
                             self.momentTableView.reloadData()
+                            self.populateStudentInfo(student)
                         })
                     }
                 })
@@ -163,6 +178,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
                     self.moments = moments
                     self.applyFilter("All")
                     self.momentTableView.reloadData()
+                    self.populateStudentInfo(student)
                 })
             }
             
@@ -201,6 +217,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func prepareUntaggedTableView() {
+        isUntagged = true
         studentInfoViewHeight.constant = 0
         studentInfoView.hidden = true
         nameLabel.title = "Untagged"

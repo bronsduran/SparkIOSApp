@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="YKe-Cs-owk" customClass="AudioView" customModule="Spark1_0" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="383" height="88"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O8s-gU-3cp">
+                    <rect key="frame" x="0.0" y="0.0" width="383" height="88"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="C84-zV-A0Y">
+                        <rect key="frame" x="0.0" y="0.0" width="383" height="88"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A1m-rl-wSb">
+                                <rect key="frame" x="0.0" y="0.0" width="383" height="88"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="W1t-X7-4h6">
+                                    <rect key="frame" x="0.0" y="0.0" width="383" height="88"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <vibrancyEffect>
+                                    <blurEffect style="light"/>
+                                </vibrancyEffect>
+                            </visualEffectView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="A1m-rl-wSb" secondAttribute="trailing" id="7iQ-HU-uqx"/>
+                            <constraint firstItem="A1m-rl-wSb" firstAttribute="top" secondItem="C84-zV-A0Y" secondAttribute="top" id="MRw-UU-ciG"/>
+                            <constraint firstAttribute="bottom" secondItem="A1m-rl-wSb" secondAttribute="bottom" id="Oaj-BI-1FQ"/>
+                            <constraint firstItem="A1m-rl-wSb" firstAttribute="leading" secondItem="C84-zV-A0Y" secondAttribute="leading" id="qob-Ev-0W2"/>
+                        </constraints>
+                    </view>
+                    <blurEffect style="light"/>
+                </visualEffectView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lGd-Yw-aVl" customClass="EZAudioPlot">
+                    <rect key="frame" x="50" y="24" width="325" height="39"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="39" id="Juo-Ao-klh"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8u8-yM-hR9">
+                    <rect key="frame" x="8" y="27" width="34" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="8u8-yM-hR9" secondAttribute="height" multiplier="1:1" id="4fX-Il-jGo"/>
+                    </constraints>
+                    <state key="normal">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="actionButton:" destination="YKe-Cs-owk" eventType="touchUpInside" id="J46-nt-Cpa"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="lGd-Yw-aVl" firstAttribute="leading" secondItem="8u8-yM-hR9" secondAttribute="trailing" constant="8" id="0Ol-wW-8GW"/>
+                <constraint firstItem="lGd-Yw-aVl" firstAttribute="centerY" secondItem="YKe-Cs-owk" secondAttribute="centerY" id="6Jp-us-c1n"/>
+                <constraint firstItem="O8s-gU-3cp" firstAttribute="width" secondItem="YKe-Cs-owk" secondAttribute="width" id="9nf-Ym-gyV"/>
+                <constraint firstItem="8u8-yM-hR9" firstAttribute="leading" secondItem="YKe-Cs-owk" secondAttribute="leading" constant="8" id="DHp-LQ-D5j"/>
+                <constraint firstItem="8u8-yM-hR9" firstAttribute="centerY" secondItem="YKe-Cs-owk" secondAttribute="centerY" id="c18-wS-bR8"/>
+                <constraint firstItem="O8s-gU-3cp" firstAttribute="height" secondItem="YKe-Cs-owk" secondAttribute="height" id="ft5-U6-gbS"/>
+                <constraint firstAttribute="trailing" secondItem="lGd-Yw-aVl" secondAttribute="trailing" constant="8" id="jej-0w-Ozq"/>
+                <constraint firstItem="O8s-gU-3cp" firstAttribute="centerY" secondItem="YKe-Cs-owk" secondAttribute="centerY" id="rnJ-Kw-9t7"/>
+                <constraint firstItem="O8s-gU-3cp" firstAttribute="centerX" secondItem="YKe-Cs-owk" secondAttribute="centerX" id="wXD-H7-n5i"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="actionButton" destination="8u8-yM-hR9" id="0P2-hI-aH9"/>
+                <outlet property="audioPlot" destination="lGd-Yw-aVl" id="loK-ah-g2O"/>
+            </connections>
+            <point key="canvasLocation" x="-232.5" y="270"/>
+        </view>
+    </objects>
+</document>

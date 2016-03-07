@@ -87,4 +87,84 @@ extension PFObject {
         }
     }
     
+    func getUrlWithName(fileName: String, callback: (NSURL?) -> Void) {
+        if let file = self[fileName] as? PFFile {
+            if let url = file.url {
+                callback(NSURL(string: url))
+            } else {
+                callback(nil)
+            }
+        } else {
+            callback(nil)
+        }
+    }
+}
+
+extension UIViewController {
+    func addBackgroundView() -> UIImageView {
+        
+        let backgroundView = UIImageView(image: UIImage(named: "applicationBackground"))
+        backgroundView.frame.size.height = self.view.frame.size.height
+        backgroundView.frame.size.width = self.view.frame.size.height
+        self.view.addSubview(backgroundView)
+        view.sendSubviewToBack(backgroundView)
+        return backgroundView
+    }
+    
+    func addStatusBarStyle()
+    {
+        let view: UIView = UIView.init(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 20))
+        view.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0) //The colour you want to set
+        self.view.addSubview(view)
+        view.sendSubviewToBack(view)
+        
+    }
+    func presentAlertWithTitle(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+}
+
+extension UIView {
+    func rotate360Degrees(duration: CFTimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
+        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotateAnimation.fromValue = 0.0
+        rotateAnimation.toValue = CGFloat(M_PI * 1.5)
+        rotateAnimation.duration = duration
+        
+        if let delegate: AnyObject = completionDelegate {
+            rotateAnimation.delegate = delegate
+        }
+        self.layer.addAnimation(rotateAnimation, forKey: nil)
+    }
+    
+    func removeAllConstraints() {
+        var superview = self.superview
+        while superview != nil {
+            for constraint in (superview?.constraints)! {
+                if constraint.firstItem as? UILabel == self || constraint.secondItem as? UILabel == self {
+                    superview?.removeConstraint(constraint)
+                }
+            }
+            superview = superview?.superview
+        }
+        removeConstraints(constraints)
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+}
+
+extension Array where Element: Equatable {
+    mutating func removeObject(object: Element) {
+        if let index = self.indexOf(object) {
+            self.removeAtIndex(index)
+        }
+    }
+    
+    mutating func removeObjectsInArray(array: [Element]) {
+        for object in array {
+            self.removeObject(object)
+        }
+    }
 }

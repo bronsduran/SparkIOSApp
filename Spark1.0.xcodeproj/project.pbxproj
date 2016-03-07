@@ -40,6 +40,38 @@
 		8664E7AC1C6984BA003FF49A /* SPMomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664E7AB1C6984BA003FF49A /* SPMomentViewController.swift */; };
 		8664E7AE1C69876E003FF49A /* MomentDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8664E7AD1C69876E003FF49A /* MomentDetailTableViewCell.xib */; };
 		8664E7B01C698964003FF49A /* MomentDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664E7AF1C698964003FF49A /* MomentDetailTableViewCell.swift */; };
+		8692028A1C857D2300575BA7 /* EZAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202681C857D2300575BA7 /* EZAudio.m */; };
+		8692028B1C857D2300575BA7 /* EZAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 8692026A1C857D2300575BA7 /* EZAudioDevice.m */; };
+		8692028C1C857D2300575BA7 /* EZAudioDisplayLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 8692026C1C857D2300575BA7 /* EZAudioDisplayLink.m */; };
+		8692028D1C857D2300575BA7 /* EZAudioFFT.m in Sources */ = {isa = PBXBuildFile; fileRef = 8692026E1C857D2300575BA7 /* EZAudioFFT.m */; };
+		8692028E1C857D2300575BA7 /* EZAudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202701C857D2300575BA7 /* EZAudioFile.m */; };
+		8692028F1C857D2300575BA7 /* EZAudioFloatConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202721C857D2300575BA7 /* EZAudioFloatConverter.m */; };
+		869202901C857D2300575BA7 /* EZAudioFloatData.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202741C857D2300575BA7 /* EZAudioFloatData.m */; };
+		869202911C857D2300575BA7 /* EZAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202781C857D2300575BA7 /* EZAudioPlayer.m */; };
+		869202921C857D2300575BA7 /* EZAudioPlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 8692027A1C857D2300575BA7 /* EZAudioPlot.m */; };
+		869202931C857D2300575BA7 /* EZAudioPlotGL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8692027C1C857D2300575BA7 /* EZAudioPlotGL.m */; };
+		869202941C857D2300575BA7 /* EZAudioUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8692027E1C857D2300575BA7 /* EZAudioUtilities.m */; };
+		869202951C857D2300575BA7 /* EZMicrophone.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202801C857D2300575BA7 /* EZMicrophone.m */; };
+		869202961C857D2300575BA7 /* EZOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202821C857D2300575BA7 /* EZOutput.m */; };
+		869202971C857D2300575BA7 /* EZPlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202841C857D2300575BA7 /* EZPlot.m */; };
+		869202981C857D2300575BA7 /* EZRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202861C857D2300575BA7 /* EZRecorder.m */; };
+		869202991C857D2300575BA7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 869202871C857D2300575BA7 /* Info.plist */; };
+		8692029A1C857D2300575BA7 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 869202881C857D2300575BA7 /* TPCircularBuffer.c */; };
+		8692029D1C857F3300575BA7 /* AudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692029C1C857F3300575BA7 /* AudioView.swift */; };
+		8692029F1C857F4300575BA7 /* AudioView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8692029E1C857F4300575BA7 /* AudioView.xib */; };
+		869202BB1C862F4700575BA7 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 869202B11C862F4600575BA7 /* .gitignore */; };
+		869202BC1C862F4700575BA7 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 869202B21C862F4600575BA7 /* LICENSE */; };
+		869202BD1C862F4700575BA7 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 869202B31C862F4600575BA7 /* README.md */; };
+		869202BE1C862F4700575BA7 /* SCWaveformView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 869202B41C862F4600575BA7 /* SCWaveformView.podspec */; };
+		869202BF1C862F4700575BA7 /* Sources in Resources */ = {isa = PBXBuildFile; fileRef = 869202B81C862F4600575BA7 /* Sources */; };
+		869202C01C862F4700575BA7 /* test.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 869202B91C862F4600575BA7 /* test.m4a */; };
+		869202C11C862F4700575BA7 /* waveform.gif in Resources */ = {isa = PBXBuildFile; fileRef = 869202BA1C862F4600575BA7 /* waveform.gif */; };
+		869202D21C8632B000575BA7 /* SCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202C71C8632AF00575BA7 /* SCAppDelegate.m */; };
+		869202D31C8632B000575BA7 /* SCScrollableWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202C91C8632AF00575BA7 /* SCScrollableWaveformView.m */; };
+		869202D41C8632B000575BA7 /* SCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202CB1C8632B000575BA7 /* SCViewController.m */; };
+		869202D51C8632B000575BA7 /* SCWaveformCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202CD1C8632B000575BA7 /* SCWaveformCache.m */; };
+		869202D61C8632B000575BA7 /* SCWaveformView-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 869202CE1C8632B000575BA7 /* SCWaveformView-Info.plist */; };
+		869202D71C8632B000575BA7 /* SCWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202D11C8632B000575BA7 /* SCWaveformView.m */; };
 		C50BFB171C5EE6FB00AB490C /* ButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C50BFB161C5EE6FB00AB490C /* ButtonTableViewCell.xib */; };
 		C50BFB1A1C5EE7A600AB490C /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50BFB191C5EE7A600AB490C /* ButtonTableViewCell.swift */; };
 		C50BFB1C1C5F1D4B00AB490C /* SPManageStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50BFB1B1C5F1D4B00AB490C /* SPManageStudentsViewController.swift */; };
@@ -69,6 +101,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4B2285F71C4AE4E800CE4146;
 			remoteInfo = Spark1.0;
+		};
+		869202C31C862F4700575BA7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 869202B51C862F4600575BA7 /* SCWaveformView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DC2C7A2F1892A0770085043D;
+			remoteInfo = SCWaveformView;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -123,6 +162,63 @@
 		8664E7AB1C6984BA003FF49A /* SPMomentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPMomentViewController.swift; sourceTree = "<group>"; };
 		8664E7AD1C69876E003FF49A /* MomentDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MomentDetailTableViewCell.xib; sourceTree = "<group>"; };
 		8664E7AF1C698964003FF49A /* MomentDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentDetailTableViewCell.swift; sourceTree = "<group>"; };
+		869202671C857D2300575BA7 /* EZAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudio.h; path = EZAudio/EZAudio.h; sourceTree = "<group>"; };
+		869202681C857D2300575BA7 /* EZAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudio.m; path = EZAudio/EZAudio.m; sourceTree = "<group>"; };
+		869202691C857D2300575BA7 /* EZAudioDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioDevice.h; path = EZAudio/EZAudioDevice.h; sourceTree = "<group>"; };
+		8692026A1C857D2300575BA7 /* EZAudioDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioDevice.m; path = EZAudio/EZAudioDevice.m; sourceTree = "<group>"; };
+		8692026B1C857D2300575BA7 /* EZAudioDisplayLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioDisplayLink.h; path = EZAudio/EZAudioDisplayLink.h; sourceTree = "<group>"; };
+		8692026C1C857D2300575BA7 /* EZAudioDisplayLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioDisplayLink.m; path = EZAudio/EZAudioDisplayLink.m; sourceTree = "<group>"; };
+		8692026D1C857D2300575BA7 /* EZAudioFFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioFFT.h; path = EZAudio/EZAudioFFT.h; sourceTree = "<group>"; };
+		8692026E1C857D2300575BA7 /* EZAudioFFT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioFFT.m; path = EZAudio/EZAudioFFT.m; sourceTree = "<group>"; };
+		8692026F1C857D2300575BA7 /* EZAudioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioFile.h; path = EZAudio/EZAudioFile.h; sourceTree = "<group>"; };
+		869202701C857D2300575BA7 /* EZAudioFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioFile.m; path = EZAudio/EZAudioFile.m; sourceTree = "<group>"; };
+		869202711C857D2300575BA7 /* EZAudioFloatConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioFloatConverter.h; path = EZAudio/EZAudioFloatConverter.h; sourceTree = "<group>"; };
+		869202721C857D2300575BA7 /* EZAudioFloatConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioFloatConverter.m; path = EZAudio/EZAudioFloatConverter.m; sourceTree = "<group>"; };
+		869202731C857D2300575BA7 /* EZAudioFloatData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioFloatData.h; path = EZAudio/EZAudioFloatData.h; sourceTree = "<group>"; };
+		869202741C857D2300575BA7 /* EZAudioFloatData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioFloatData.m; path = EZAudio/EZAudioFloatData.m; sourceTree = "<group>"; };
+		869202751C857D2300575BA7 /* EZAudioiOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioiOS.h; path = EZAudio/EZAudioiOS.h; sourceTree = "<group>"; };
+		869202761C857D2300575BA7 /* EZAudioOSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioOSX.h; path = EZAudio/EZAudioOSX.h; sourceTree = "<group>"; };
+		869202771C857D2300575BA7 /* EZAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioPlayer.h; path = EZAudio/EZAudioPlayer.h; sourceTree = "<group>"; };
+		869202781C857D2300575BA7 /* EZAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioPlayer.m; path = EZAudio/EZAudioPlayer.m; sourceTree = "<group>"; };
+		869202791C857D2300575BA7 /* EZAudioPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioPlot.h; path = EZAudio/EZAudioPlot.h; sourceTree = "<group>"; };
+		8692027A1C857D2300575BA7 /* EZAudioPlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioPlot.m; path = EZAudio/EZAudioPlot.m; sourceTree = "<group>"; };
+		8692027B1C857D2300575BA7 /* EZAudioPlotGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioPlotGL.h; path = EZAudio/EZAudioPlotGL.h; sourceTree = "<group>"; };
+		8692027C1C857D2300575BA7 /* EZAudioPlotGL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioPlotGL.m; path = EZAudio/EZAudioPlotGL.m; sourceTree = "<group>"; };
+		8692027D1C857D2300575BA7 /* EZAudioUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioUtilities.h; path = EZAudio/EZAudioUtilities.h; sourceTree = "<group>"; };
+		8692027E1C857D2300575BA7 /* EZAudioUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioUtilities.m; path = EZAudio/EZAudioUtilities.m; sourceTree = "<group>"; };
+		8692027F1C857D2300575BA7 /* EZMicrophone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZMicrophone.h; path = EZAudio/EZMicrophone.h; sourceTree = "<group>"; };
+		869202801C857D2300575BA7 /* EZMicrophone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZMicrophone.m; path = EZAudio/EZMicrophone.m; sourceTree = "<group>"; };
+		869202811C857D2300575BA7 /* EZOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZOutput.h; path = EZAudio/EZOutput.h; sourceTree = "<group>"; };
+		869202821C857D2300575BA7 /* EZOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZOutput.m; path = EZAudio/EZOutput.m; sourceTree = "<group>"; };
+		869202831C857D2300575BA7 /* EZPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZPlot.h; path = EZAudio/EZPlot.h; sourceTree = "<group>"; };
+		869202841C857D2300575BA7 /* EZPlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZPlot.m; path = EZAudio/EZPlot.m; sourceTree = "<group>"; };
+		869202851C857D2300575BA7 /* EZRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZRecorder.h; path = EZAudio/EZRecorder.h; sourceTree = "<group>"; };
+		869202861C857D2300575BA7 /* EZRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZRecorder.m; path = EZAudio/EZRecorder.m; sourceTree = "<group>"; };
+		869202871C857D2300575BA7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = EZAudio/Info.plist; sourceTree = "<group>"; };
+		869202881C857D2300575BA7 /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TPCircularBuffer.c; path = EZAudio/TPCircularBuffer.c; sourceTree = "<group>"; };
+		869202891C857D2300575BA7 /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPCircularBuffer.h; path = EZAudio/TPCircularBuffer.h; sourceTree = "<group>"; };
+		8692029C1C857F3300575BA7 /* AudioView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioView.swift; sourceTree = "<group>"; };
+		8692029E1C857F4300575BA7 /* AudioView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioView.xib; sourceTree = "<group>"; };
+		869202B11C862F4600575BA7 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = "SCWaveformView-master/.gitignore"; sourceTree = "<group>"; };
+		869202B21C862F4600575BA7 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = "SCWaveformView-master/LICENSE"; sourceTree = "<group>"; };
+		869202B31C862F4600575BA7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "SCWaveformView-master/README.md"; sourceTree = "<group>"; };
+		869202B41C862F4600575BA7 /* SCWaveformView.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SCWaveformView.podspec; path = "SCWaveformView-master/SCWaveformView.podspec"; sourceTree = "<group>"; };
+		869202B51C862F4600575BA7 /* SCWaveformView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SCWaveformView.xcodeproj; path = "SCWaveformView-master/SCWaveformView.xcodeproj"; sourceTree = "<group>"; };
+		869202B81C862F4600575BA7 /* Sources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sources; path = "SCWaveformView-master/Sources"; sourceTree = "<group>"; };
+		869202B91C862F4600575BA7 /* test.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = test.m4a; path = "SCWaveformView-master/test.m4a"; sourceTree = "<group>"; };
+		869202BA1C862F4600575BA7 /* waveform.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = waveform.gif; path = "SCWaveformView-master/waveform.gif"; sourceTree = "<group>"; };
+		869202C61C8632AF00575BA7 /* SCAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCAppDelegate.h; path = "SCWaveformView-master/Sources/SCAppDelegate.h"; sourceTree = "<group>"; };
+		869202C71C8632AF00575BA7 /* SCAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCAppDelegate.m; path = "SCWaveformView-master/Sources/SCAppDelegate.m"; sourceTree = "<group>"; };
+		869202C81C8632AF00575BA7 /* SCScrollableWaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCScrollableWaveformView.h; path = "SCWaveformView-master/Sources/SCScrollableWaveformView.h"; sourceTree = "<group>"; };
+		869202C91C8632AF00575BA7 /* SCScrollableWaveformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCScrollableWaveformView.m; path = "SCWaveformView-master/Sources/SCScrollableWaveformView.m"; sourceTree = "<group>"; };
+		869202CA1C8632B000575BA7 /* SCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCViewController.h; path = "SCWaveformView-master/Sources/SCViewController.h"; sourceTree = "<group>"; };
+		869202CB1C8632B000575BA7 /* SCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCViewController.m; path = "SCWaveformView-master/Sources/SCViewController.m"; sourceTree = "<group>"; };
+		869202CC1C8632B000575BA7 /* SCWaveformCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCWaveformCache.h; path = "SCWaveformView-master/Sources/SCWaveformCache.h"; sourceTree = "<group>"; };
+		869202CD1C8632B000575BA7 /* SCWaveformCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCWaveformCache.m; path = "SCWaveformView-master/Sources/SCWaveformCache.m"; sourceTree = "<group>"; };
+		869202CE1C8632B000575BA7 /* SCWaveformView-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "SCWaveformView-Info.plist"; path = "SCWaveformView-master/Sources/SCWaveformView-Info.plist"; sourceTree = "<group>"; };
+		869202CF1C8632B000575BA7 /* SCWaveformView-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SCWaveformView-Prefix.pch"; path = "SCWaveformView-master/Sources/SCWaveformView-Prefix.pch"; sourceTree = "<group>"; };
+		869202D01C8632B000575BA7 /* SCWaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCWaveformView.h; path = "SCWaveformView-master/Sources/SCWaveformView.h"; sourceTree = "<group>"; };
+		869202D11C8632B000575BA7 /* SCWaveformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCWaveformView.m; path = "SCWaveformView-master/Sources/SCWaveformView.m"; sourceTree = "<group>"; };
 		C50BFB161C5EE6FB00AB490C /* ButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonTableViewCell.xib; sourceTree = "<group>"; };
 		C50BFB191C5EE7A600AB490C /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
 		C50BFB1B1C5F1D4B00AB490C /* SPManageStudentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPManageStudentsViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +279,8 @@
 			children = (
 				C54399191C5AF5900049D903 /* AVFoundation.framework */,
 				C5C1D77B1C50B45C00C20DF9 /* LLSimpleCamera */,
+				8692029B1C857D5000575BA7 /* EZAudio */,
+				869202C51C862F5300575BA7 /* SCWaveformView */,
 				0A2F59CD1C4F3C8C0053300C /* libsqlite3.tbd */,
 				0A2F59CB1C4F3C7F0053300C /* libz.tbd */,
 				0A2F59C91C4F3C720053300C /* SystemConfiguration.framework */,
@@ -292,9 +390,88 @@
 			path = Spark1.0Tests;
 			sourceTree = "<group>";
 		};
+		8692029B1C857D5000575BA7 /* EZAudio */ = {
+			isa = PBXGroup;
+			children = (
+				869202671C857D2300575BA7 /* EZAudio.h */,
+				869202681C857D2300575BA7 /* EZAudio.m */,
+				869202691C857D2300575BA7 /* EZAudioDevice.h */,
+				8692026A1C857D2300575BA7 /* EZAudioDevice.m */,
+				8692026B1C857D2300575BA7 /* EZAudioDisplayLink.h */,
+				8692026C1C857D2300575BA7 /* EZAudioDisplayLink.m */,
+				8692026D1C857D2300575BA7 /* EZAudioFFT.h */,
+				8692026E1C857D2300575BA7 /* EZAudioFFT.m */,
+				8692026F1C857D2300575BA7 /* EZAudioFile.h */,
+				869202701C857D2300575BA7 /* EZAudioFile.m */,
+				869202711C857D2300575BA7 /* EZAudioFloatConverter.h */,
+				869202721C857D2300575BA7 /* EZAudioFloatConverter.m */,
+				869202731C857D2300575BA7 /* EZAudioFloatData.h */,
+				869202741C857D2300575BA7 /* EZAudioFloatData.m */,
+				869202751C857D2300575BA7 /* EZAudioiOS.h */,
+				869202761C857D2300575BA7 /* EZAudioOSX.h */,
+				869202771C857D2300575BA7 /* EZAudioPlayer.h */,
+				869202781C857D2300575BA7 /* EZAudioPlayer.m */,
+				869202791C857D2300575BA7 /* EZAudioPlot.h */,
+				8692027A1C857D2300575BA7 /* EZAudioPlot.m */,
+				8692027B1C857D2300575BA7 /* EZAudioPlotGL.h */,
+				8692027C1C857D2300575BA7 /* EZAudioPlotGL.m */,
+				8692027D1C857D2300575BA7 /* EZAudioUtilities.h */,
+				8692027E1C857D2300575BA7 /* EZAudioUtilities.m */,
+				8692027F1C857D2300575BA7 /* EZMicrophone.h */,
+				869202801C857D2300575BA7 /* EZMicrophone.m */,
+				869202811C857D2300575BA7 /* EZOutput.h */,
+				869202821C857D2300575BA7 /* EZOutput.m */,
+				869202831C857D2300575BA7 /* EZPlot.h */,
+				869202841C857D2300575BA7 /* EZPlot.m */,
+				869202851C857D2300575BA7 /* EZRecorder.h */,
+				869202861C857D2300575BA7 /* EZRecorder.m */,
+				869202871C857D2300575BA7 /* Info.plist */,
+				869202881C857D2300575BA7 /* TPCircularBuffer.c */,
+				869202891C857D2300575BA7 /* TPCircularBuffer.h */,
+			);
+			name = EZAudio;
+			sourceTree = "<group>";
+		};
+		869202B61C862F4600575BA7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				869202C41C862F4700575BA7 /* SCWaveformView.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		869202C51C862F5300575BA7 /* SCWaveformView */ = {
+			isa = PBXGroup;
+			children = (
+				869202C61C8632AF00575BA7 /* SCAppDelegate.h */,
+				869202C71C8632AF00575BA7 /* SCAppDelegate.m */,
+				869202C81C8632AF00575BA7 /* SCScrollableWaveformView.h */,
+				869202C91C8632AF00575BA7 /* SCScrollableWaveformView.m */,
+				869202CA1C8632B000575BA7 /* SCViewController.h */,
+				869202CB1C8632B000575BA7 /* SCViewController.m */,
+				869202CC1C8632B000575BA7 /* SCWaveformCache.h */,
+				869202CD1C8632B000575BA7 /* SCWaveformCache.m */,
+				869202CE1C8632B000575BA7 /* SCWaveformView-Info.plist */,
+				869202CF1C8632B000575BA7 /* SCWaveformView-Prefix.pch */,
+				869202D01C8632B000575BA7 /* SCWaveformView.h */,
+				869202D11C8632B000575BA7 /* SCWaveformView.m */,
+				869202B11C862F4600575BA7 /* .gitignore */,
+				869202B21C862F4600575BA7 /* LICENSE */,
+				869202B31C862F4600575BA7 /* README.md */,
+				869202B41C862F4600575BA7 /* SCWaveformView.podspec */,
+				869202B51C862F4600575BA7 /* SCWaveformView.xcodeproj */,
+				869202B81C862F4600575BA7 /* Sources */,
+				869202B91C862F4600575BA7 /* test.m4a */,
+				869202BA1C862F4600575BA7 /* waveform.gif */,
+			);
+			name = SCWaveformView;
+			sourceTree = "<group>";
+		};
 		C54399161C5A0D0E0049D903 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				8692029C1C857F3300575BA7 /* AudioView.swift */,
+				8692029E1C857F4300575BA7 /* AudioView.xib */,
 				4B693A3C1C588FC6005478D9 /* CategoryCollectionViewCell.xib */,
 				4B8B72701C5895DF00E6E73B /* CategoryCollectionViewCell.swift */,
 				4B693A381C588693005478D9 /* StudentCollectionViewCell.xib */,
@@ -402,6 +579,12 @@
 			mainGroup = 4B2285EF1C4AE4E800CE4146;
 			productRefGroup = 4B2285F91C4AE4E800CE4146 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 869202B61C862F4600575BA7 /* Products */;
+					ProjectRef = 869202B51C862F4600575BA7 /* SCWaveformView.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				4B2285F71C4AE4E800CE4146 /* Spark1.0 */,
@@ -409,6 +592,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		869202C41C862F4700575BA7 /* SCWaveformView.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = SCWaveformView.app;
+			remoteRef = 869202C31C862F4700575BA7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4B2285F61C4AE4E800CE4146 /* Resources */ = {
@@ -420,9 +613,18 @@
 				4B2286091C4AE4E800CE4146 /* LaunchScreen.storyboard in Resources */,
 				4B2286061C4AE4E800CE4146 /* Assets.xcassets in Resources */,
 				4B2286011C4AE4E800CE4146 /* Main.storyboard in Resources */,
+				869202BF1C862F4700575BA7 /* Sources in Resources */,
 				4B2A21BD1C62D47E00F11D71 /* CategoriesTableViewCell.xib in Resources */,
 				C54399131C58840A0049D903 /* TextInputTableViewCell.xib in Resources */,
+				8692029F1C857F4300575BA7 /* AudioView.xib in Resources */,
+				869202BB1C862F4700575BA7 /* .gitignore in Resources */,
+				869202C01C862F4700575BA7 /* test.m4a in Resources */,
+				869202BC1C862F4700575BA7 /* LICENSE in Resources */,
+				869202BE1C862F4700575BA7 /* SCWaveformView.podspec in Resources */,
+				869202D61C8632B000575BA7 /* SCWaveformView-Info.plist in Resources */,
 				8664E7AE1C69876E003FF49A /* MomentDetailTableViewCell.xib in Resources */,
+				869202991C857D2300575BA7 /* Info.plist in Resources */,
+				869202C11C862F4700575BA7 /* waveform.gif in Resources */,
 				C50BFB171C5EE6FB00AB490C /* ButtonTableViewCell.xib in Resources */,
 				D4BD3BA51C589F7F003BBFC8 /* MomentTableViewCell.xib in Resources */,
 			);
@@ -442,36 +644,59 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				869202911C857D2300575BA7 /* EZAudioPlayer.m in Sources */,
+				869202971C857D2300575BA7 /* EZPlot.m in Sources */,
 				C5C1D77D1C52E06000C20DF9 /* SPMediaViewController.swift in Sources */,
 				4B2A21C01C62D4DE00F11D71 /* CategoriesTableViewCell.swift in Sources */,
+				8692028E1C857D2300575BA7 /* EZAudioFile.m in Sources */,
+				869202D51C8632B000575BA7 /* SCWaveformCache.m in Sources */,
 				D4BD3BA31C589E13003BBFC8 /* SPStudentViewController.swift in Sources */,
+				869202D31C8632B000575BA7 /* SCScrollableWaveformView.m in Sources */,
+				869202BD1C862F4700575BA7 /* README.md in Sources */,
+				869202931C857D2300575BA7 /* EZAudioPlotGL.m in Sources */,
 				8664E7B01C698964003FF49A /* MomentDetailTableViewCell.swift in Sources */,
+				869202D41C8632B000575BA7 /* SCViewController.m in Sources */,
+				8692028C1C857D2300575BA7 /* EZAudioDisplayLink.m in Sources */,
 				4B8B72711C5895DF00E6E73B /* CategoryCollectionViewCell.swift in Sources */,
 				C5C1D7791C50B44400C20DF9 /* LLSimpleCamera.m in Sources */,
+				869202961C857D2300575BA7 /* EZOutput.m in Sources */,
 				4B2C5F101C7A5DB400B097AE /* AKPickerView.swift in Sources */,
 				C5C1D7811C52EA9700C20DF9 /* SPTagCategoryViewController.swift in Sources */,
+				869202901C857D2300575BA7 /* EZAudioFloatData.m in Sources */,
 				C543990F1C5879C60049D903 /* SPStudentProfileViewController.swift in Sources */,
 				C50BFB1C1C5F1D4B00AB490C /* SPManageStudentsViewController.swift in Sources */,
 				C57DB7671C4F4A2800022D3A /* SPCaptureViewController.swift in Sources */,
+				869202921C857D2300575BA7 /* EZAudioPlot.m in Sources */,
+				869202D21C8632B000575BA7 /* SCAppDelegate.m in Sources */,
+				8692028F1C857D2300575BA7 /* EZAudioFloatConverter.m in Sources */,
+				8692028B1C857D2300575BA7 /* EZAudioDevice.m in Sources */,
 				4B693A3B1C58872B005478D9 /* StudentCollectionViewCell.swift in Sources */,
 				4B2285FE1C4AE4E800CE4146 /* SPLoginViewController.swift in Sources */,
 				C5C1D77F1C52E50900C20DF9 /* SPTagStudentViewController.swift in Sources */,
+				8692029A1C857D2300575BA7 /* TPCircularBuffer.c in Sources */,
 				C54399181C5A135B0049D903 /* SPSettingsViewController.swift in Sources */,
 				C54399151C5888A10049D903 /* TextInputTableViewCell.swift in Sources */,
 				C562F8981C76DB2C000964C8 /* Extensions.swift in Sources */,
 				C5C1D77A1C50B44400C20DF9 /* UIImage+FixOrientation.m in Sources */,
 				0A40F57B1C5D7984000485B5 /* Student.swift in Sources */,
 				C57DB7651C4F49C600022D3A /* SPCreateAccountViewController.swift in Sources */,
+				8692029D1C857F3300575BA7 /* AudioView.swift in Sources */,
 				D4BD3B991C5395DA003BBFC8 /* SPArchiveViewController.swift in Sources */,
 				0A32E3171C7ED8F700E333C5 /* SPForgotPasswordViewController.swift in Sources */,
 				0A40F57D1C5D799E000485B5 /* Moment.swift in Sources */,
 				0A40F5781C5D7964000485B5 /* Class.swift in Sources */,
+				869202951C857D2300575BA7 /* EZMicrophone.m in Sources */,
 				8664E7AC1C6984BA003FF49A /* SPMomentViewController.swift in Sources */,
+				869202981C857D2300575BA7 /* EZRecorder.m in Sources */,
 				4B2286041C4AE4E800CE4146 /* Spark1_0.xcdatamodeld in Sources */,
 				4B2285FC1C4AE4E800CE4146 /* AppDelegate.swift in Sources */,
 				C50BFB1A1C5EE7A600AB490C /* ButtonTableViewCell.swift in Sources */,
+				8692028D1C857D2300575BA7 /* EZAudioFFT.m in Sources */,
+				869202941C857D2300575BA7 /* EZAudioUtilities.m in Sources */,
+				869202D71C8632B000575BA7 /* SCWaveformView.m in Sources */,
 				D4BD3BA21C589E13003BBFC8 /* MomentTableViewCell.swift in Sources */,
 				0A40F5741C5D5EC6000485B5 /* User.swift in Sources */,
+				8692028A1C857D2300575BA7 /* EZAudio.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

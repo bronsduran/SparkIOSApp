@@ -93,9 +93,15 @@ class SPTagCategoryViewController: UIViewController, UICollectionViewDelegate, U
             MomentSingleton.sharedInstance.categories = self.selectedCategories
         }
         
-        Moment.createMoment(MomentSingleton.sharedInstance.mediaType == 0, students: MomentSingleton.sharedInstance.students,
-            categories: MomentSingleton.sharedInstance.categories, notes: MomentSingleton.sharedInstance.notes,
-            imageFile: MomentSingleton.sharedInstance.image, videoURL: MomentSingleton.sharedInstance.videoUrl, voiceFile: MomentSingleton.sharedInstance.voiceFile)
+        if let oldMoment = MomentSingleton.sharedInstance.moment {
+            oldMoment.updateMomentInfo(MomentSingleton.sharedInstance.mediaType == 0, students: MomentSingleton.sharedInstance.students,
+                categories: MomentSingleton.sharedInstance.categories, notes: MomentSingleton.sharedInstance.notes,
+                imageFile: MomentSingleton.sharedInstance.image, videoURL: MomentSingleton.sharedInstance.videoUrl, voiceFile: MomentSingleton.sharedInstance.voiceFile)
+        } else {
+            Moment.createMoment(MomentSingleton.sharedInstance.mediaType == 0, students: MomentSingleton.sharedInstance.students,
+                categories: MomentSingleton.sharedInstance.categories, notes: MomentSingleton.sharedInstance.notes,
+                imageFile: MomentSingleton.sharedInstance.image, videoURL: MomentSingleton.sharedInstance.videoUrl, voiceFile: MomentSingleton.sharedInstance.voiceFile)
+        }
         
         self.navigationController?.popToRootViewControllerAnimated(false)
         

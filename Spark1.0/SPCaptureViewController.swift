@@ -14,12 +14,14 @@ class SPCaptureViewController: UIViewController {
     
     var camera : LLSimpleCamera! = nil
     var image : UIImage! = nil
-    var videoURL : NSURL! = nil
+    var videoUrl : NSURL! = nil
     var isVideoRecording: Bool = false
+    var waitingForVideoFile = false
+    var mediaType = 0
     
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet weak var captureButton: UIBarButtonItem!
-
+    
     @IBOutlet weak var visualEffectView: UIVisualEffectView!
     @IBOutlet weak var textButton: UIButton!
     @IBOutlet weak var audioButton: UIButton!
@@ -28,7 +30,7 @@ class SPCaptureViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         let screenRect = UIScreen.mainScreen().bounds
         
         self.camera = LLSimpleCamera(quality: AVCaptureSessionPresetHigh, position: LLCameraPositionRear, videoEnabled: true)
@@ -40,22 +42,19 @@ class SPCaptureViewController: UIViewController {
         self.view.bringSubviewToFront(self.audioButton)
         
         self.toolbar.backgroundColor = UIColor.clearColor()
-        
-//        self.navigationController?.navigationBar.hidden = false
-        
     }
     
     override func viewWillAppear(animated: Bool) {
         self.camera.start()
         MomentSingleton.sharedInstance.image = nil
         self.image = nil
-        self.videoURL = nil
+        self.videoUrl = nil
         self.isVideoRecording = false
         setCaptureButtonImage("captureButton")
         self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
     }
-
+    
     @IBAction func cameraToggled(sender: AnyObject) {
         if cameraToggle.selectedSegmentIndex == 0 {
             setCaptureButtonImage("captureButton")
@@ -72,8 +71,8 @@ class SPCaptureViewController: UIViewController {
         button.addTarget(self, action: "captureButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
         captureButton.customView = button
     }
-
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -92,8 +91,7 @@ class SPCaptureViewController: UIViewController {
             if error == nil {
                 camera.stop()
                 self.image = image
-                MomentSingleton.sharedInstance.mediaType = 0
-                MomentSingleton.sharedInstance.image = image
+                self.mediaType = 0
                 self.performSegueWithIdentifier("toMediaViewController", sender: self)
             }
             
@@ -103,25 +101,27 @@ class SPCaptureViewController: UIViewController {
     
     func startVideoRecord() {
         isVideoRecording = true
-        var delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        var videoURL = delegate.applicationDocumentsDirectory.URLByAppendingPathComponent("recording").URLByAppendingPathExtension("mov")
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let videoURL = delegate.applicationDocumentsDirectory.URLByAppendingPathComponent("recording").URLByAppendingPathExtension("mov")
         camera.startRecordingWithOutputUrl(videoURL)
         setCaptureButtonImage("videoStopButton")
-
+        
     }
     
     func endVideoRecord() {
         camera.stop()
         setCaptureButtonImage("videoCaptureButton")
+        self.waitingForVideoFile = true
         
         self.camera.stopRecording {
             (camera: LLSimpleCamera!, outputFileUrl: NSURL!, error: NSError!) -> Void in
             
             if error == nil {
                 self.isVideoRecording = false
-                self.videoURL = outputFileUrl
-                MomentSingleton.sharedInstance.mediaType = 1
-                MomentSingleton.sharedInstance.videoUrl = outputFileUrl
+                self.mediaType = 1
+                self.videoUrl = outputFileUrl
+                self.waitingForVideoFile = false
+                
                 self.performSegueWithIdentifier("toMediaViewController", sender: self)
             }
         }
@@ -129,7 +129,7 @@ class SPCaptureViewController: UIViewController {
     
     @IBAction func captureButtonPressed(sender: AnyObject) {
         
-
+        
         if NSUserDefaults.standardUserDefaults().boolForKey("isSimulator") {
             self.image = UIImage(named: "applicationBackground")
             self.performSegueWithIdentifier("toMediaViewController", sender: self)
@@ -145,15 +145,13 @@ class SPCaptureViewController: UIViewController {
                 startVideoRecord()
             }
         }
-        
-
     }
     
     @IBAction func skipButtonPressed(sender: AnyObject) {
-        MomentSingleton.sharedInstance.mediaType = 0
+        self.mediaType = 0
         self.captureButton.enabled = false
         self.image = nil
-        self.videoURL = nil
+        self.videoUrl = nil
         self.performSegueWithIdentifier("toMediaViewController", sender: sender)
         self.captureButton.enabled = true
     }
@@ -162,13 +160,21 @@ class SPCaptureViewController: UIViewController {
         
         if segue.identifier == "toMediaViewController" {
             let mediaViewController = segue.destinationViewController as! SPMediaViewController
-
+            
             mediaViewController.initWithRecording = false
             mediaViewController.initWithText = false
             mediaViewController.image = self.image
-            mediaViewController.videoURL = self.videoURL
             
-            if self.image == nil &&  self.videoURL == nil {
+            MomentSingleton.sharedInstance.mediaType = mediaType
+            MomentSingleton.sharedInstance.image = image
+            MomentSingleton.sharedInstance.videoUrl = videoUrl
+
+            
+            while (waitingForVideoFile) {
+                NSThread.sleepForTimeInterval(0.01)
+            }
+            
+            if self.image == nil && self.videoUrl == nil {
                 let button = sender as! UIButton
                 if button.tag == 0 {
                     mediaViewController.initWithRecording = true
@@ -179,6 +185,6 @@ class SPCaptureViewController: UIViewController {
         }
         
     }
-
+    
 }
 

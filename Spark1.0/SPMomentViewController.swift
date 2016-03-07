@@ -21,14 +21,10 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var captionLabel: UILabel!
-    @IBOutlet weak var audioView: UIView!
+    @IBOutlet weak var audioView: AudioView!
     
-    @IBOutlet weak var audioBlur: UIVisualEffectView!
  
     @IBOutlet weak var textBlur: UIVisualEffectView!
-    @IBAction func playButton(sender: UIButton) {
-        self.player?.play()
-    }
     
     var videoPlayer: AVPlayer! = nil
     var videoPlayerLayer: AVPlayerLayer! = nil
@@ -66,7 +62,7 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
             })
         // video
         } else {
-            moment.video({ video in
+             moment.video({ video in
                 if let video = video, let videoUrl = video.url {
                     self.videoPlayer = AVPlayer(URL: NSURL(string: videoUrl)!)
                     self.videoPlayer.actionAtItemEnd = AVPlayerActionAtItemEnd.None
@@ -79,19 +75,34 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
             })
         }
         
+        let audioView = AudioView.instanceFromNib()
+        view.addSubview(audioView)
+        
+        audioView.withMoment(moment)
+        audioView.populateView()
+//        audioView.backgroundColor = UIColor.whiteColor()
+        
+        audioView.transform = CGAffineTransformMakeTranslation(0.0, 8 + navigationController!.navigationBar.frame.maxY)
+        
+        let spaceBetweenAudioAndNotes = textBlur.frame.minY - audioView.frame.maxY
+        let shift = 12 - spaceBetweenAudioAndNotes
+        textBlur.transform = CGAffineTransformMakeTranslation(0.0, shift)
+        captionLabel.transform = CGAffineTransformMakeTranslation(0.0, shift)
+        
+        
+        
         moment.getFileNamed("voiceData", callback: { (data: NSData?) -> Void in
-            if data != nil {
-                do {
-                    self.player = try AVAudioPlayer(data: data!)
-                    self.player?.delegate = self
-                    self.player?.prepareToPlay()
-                } catch let error as NSError {
-                    print("ERROR with setting up player", error.localizedDescription)
-                }
-            } else {
-                self.audioView.hidden = true
-                self.audioBlur.hidden = true
-            }
+//            if data != nil {
+//                do {
+//                    self.player = try AVAudioPlayer(data: data!)
+//                    self.player?.delegate = self
+//                    self.player?.prepareToPlay()
+//                } catch let error as NSError {
+//                    print("ERROR with setting up player", error.localizedDescription)
+//                }
+//            } else {
+//                self.audioView.hidden = true
+//            }
         })
 
         addStatusBarStyle()
@@ -122,6 +133,10 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
         if let videoPlayer = videoPlayer {
             videoPlayer.pause()
         }
+        if let audioView = audioView {
+//            audioView.state = .stopped
+//            audioView.audioPlot = nil
+        }
     }
  
     
@@ -131,9 +146,9 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
             
             videoPlayerLayer.frame = imageView.frame
             view.layer.addSublayer(videoPlayerLayer)
+            videoPlayerLayer.zPosition = -1
             
-//            videoPlayer.play()
-            print("first")
+            videoPlayer.play()
         }
     }
     
@@ -169,13 +184,11 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
                 } else {
                     self.showSendMailErrorAlert()
                 }
-                print("DONE")
             } else {
                 let noEmailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "No email assigned to current student's parents.", delegate: self, cancelButtonTitle: "OK")
                 noEmailErrorAlert.show()
             }
         }
-        // performSegueWithIdentifier("toMomentViewController", sender: cell)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

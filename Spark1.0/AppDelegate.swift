@@ -180,73 +180,66 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-extension UIViewController {
-    func addBackgroundView() -> UIImageView {
-        
-        let backgroundView = UIImageView(image: UIImage(named: "applicationBackground"))
-        backgroundView.frame.size.height = self.view.frame.size.height
-        backgroundView.frame.size.width = self.view.frame.size.height
-        self.view.addSubview(backgroundView)
-        view.sendSubviewToBack(backgroundView)
-        return backgroundView
-    }
-    
-    func addStatusBarStyle()
-    {
-        let view: UIView = UIView.init(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 20))
-        view.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0) //The colour you want to set
-        self.view.addSubview(view)
-        view.sendSubviewToBack(view)
-       
-    }
-    func presentAlertWithTitle(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-
-}
-
-extension UIView {
-    func rotate360Degrees(duration: CFTimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
-        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
-        rotateAnimation.fromValue = 0.0
-        rotateAnimation.toValue = CGFloat(M_PI * 1.5)
-        rotateAnimation.duration = duration
-        
-        if let delegate: AnyObject = completionDelegate {
-            rotateAnimation.delegate = delegate
-        }
-        self.layer.addAnimation(rotateAnimation, forKey: nil)
-    }
-}
-
-extension Array where Element: Equatable {
-    mutating func removeObject(object: Element) {
-        if let index = self.indexOf(object) {
-            self.removeAtIndex(index)
-        }
-    }
-    
-    mutating func removeObjectsInArray(array: [Element]) {
-        for object in array {
-            self.removeObject(object)
-        }
-    }
-}
-
 class MomentSingleton {
     static let sharedInstance = MomentSingleton()
     var image : UIImage?
     var videoUrl: NSURL?
     var notes : String?
     var voiceFile : NSURL?
+    var voiceData : NSData?
     var mediaType : Int?
     var students : [Student]?
     var categories : [String]?
     
+    var moment: Moment?
+    
     private init() {}
 
+    func clearData() {
+        notes = nil
+        mediaType = nil
+        students = nil
+        categories = nil
+        
+        image = nil
+        videoUrl = nil
+        voiceData = nil
+        
+        voiceFile = nil
+        moment = nil
+    }
+    
+    func populateWithMoment(moment: Moment, imageCB: () -> Void, videoCB: () -> Void, voiceCB: () -> Void) {
+        self.moment = moment
+        
+        mediaType = moment["mediaType"] as? Int
+        notes = moment["notes"] as? String
+        students = moment.studentsTagged()
+        categories = moment.categoriesTagged()
+        
+        // image
+        moment.image ({ image in
+            self.image = image
+            imageCB()
+        })
+        
+        // video
+        moment.video({ video in
+            if let video = video, let videoUrl = video.url {
+                self.videoUrl = NSURL(string: videoUrl)
+            }
+            
+            videoCB()
+        })
+        
+        // voice
+        moment.getFileNamed("voiceData", callback: { (data: NSData?) -> Void in
+            self.voiceData = data
+            let urlString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0].stringByAppendingString("/tempVoiceFile.caf")
+            NSFileManager.defaultManager().createFileAtPath(urlString, contents: data, attributes: nil)
+            voiceCB()
+        })
+    }
 }
 
 

@@ -1,0 +1,2401 @@
+diff --git a/CategoryCollectionViewCell.xib b/CategoryCollectionViewCell.xib
+index 85d8ee9..30275b1 100644
+--- a/CategoryCollectionViewCell.xib
++++ b/CategoryCollectionViewCell.xib
+@@ -1,8 +1,8 @@
+ <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15E39d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
++<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+     <dependencies>
+         <deployment identifier="iOS"/>
+-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
++        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+     </dependencies>
+     <objects>
+         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+@@ -15,10 +15,10 @@
+                 <autoresizingMask key="autoresizingMask"/>
+                 <subviews>
+                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MDC-Ne-oxu">
+-                        <rect key="frame" x="64" y="125.5" width="20" height="20"/>
++                        <rect key="frame" x="64" y="126" width="20" height="20"/>
+                         <subviews>
+-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MyS-wF-Coq">
+-                                <rect key="frame" x="6" y="3.5" width="7.5" height="14.5"/>
++                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MyS-wF-Coq">
++                                <rect key="frame" x="6" y="4" width="8" height="14"/>
+                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                 <nil key="highlightedColor"/>
+@@ -33,7 +33,7 @@
+                         </constraints>
+                     </view>
+                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAC-b5-BI7">
+-                        <rect key="frame" x="8" y="35.5" width="132" height="80"/>
++                        <rect key="frame" x="8" y="36" width="132" height="80"/>
+                         <constraints>
+                             <constraint firstAttribute="height" constant="80" id="gY7-Yr-t9t"/>
+                         </constraints>
+diff --git a/Spark1.0-Bridging-Header.h b/Spark1.0-Bridging-Header.h
+index deacfa9..7734932 100644
+--- a/Spark1.0-Bridging-Header.h
++++ b/Spark1.0-Bridging-Header.h
+@@ -7,3 +7,18 @@
+ 
+ #import "LLSimpleCamera.h"
+ 
++#import "EZAudio.h"
++#import "EZAudioDevice.h"
++#import "EZAudioPlot.h"
++#import "EZMicrophone.h"
++//#import "EZPlot.h"
++#import "EZRecorder.h"
++#import "EZAudioPlayer.h"
++//#import "EZAudioiOS.h"
++//#import "EZAudioPlotGL.h"
++
++//#import "SCAppDelegate.h"
++//#import "SCScrollableWaveformView.h"
++//#import "SCViewController.h"
++//#import "SCWaveformCache.h"
++#import "SCWaveformView.h"
+\ No newline at end of file
+diff --git a/Spark1.0.xcodeproj/project.pbxproj b/Spark1.0.xcodeproj/project.pbxproj
+index 56781e1..c46206b 100644
+--- a/Spark1.0.xcodeproj/project.pbxproj
++++ b/Spark1.0.xcodeproj/project.pbxproj
+@@ -40,6 +40,38 @@
+ 		8664E7AC1C6984BA003FF49A /* SPMomentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664E7AB1C6984BA003FF49A /* SPMomentViewController.swift */; };
+ 		8664E7AE1C69876E003FF49A /* MomentDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8664E7AD1C69876E003FF49A /* MomentDetailTableViewCell.xib */; };
+ 		8664E7B01C698964003FF49A /* MomentDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664E7AF1C698964003FF49A /* MomentDetailTableViewCell.swift */; };
++		8692028A1C857D2300575BA7 /* EZAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202681C857D2300575BA7 /* EZAudio.m */; };
++		8692028B1C857D2300575BA7 /* EZAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 8692026A1C857D2300575BA7 /* EZAudioDevice.m */; };
++		8692028C1C857D2300575BA7 /* EZAudioDisplayLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 8692026C1C857D2300575BA7 /* EZAudioDisplayLink.m */; };
++		8692028D1C857D2300575BA7 /* EZAudioFFT.m in Sources */ = {isa = PBXBuildFile; fileRef = 8692026E1C857D2300575BA7 /* EZAudioFFT.m */; };
++		8692028E1C857D2300575BA7 /* EZAudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202701C857D2300575BA7 /* EZAudioFile.m */; };
++		8692028F1C857D2300575BA7 /* EZAudioFloatConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202721C857D2300575BA7 /* EZAudioFloatConverter.m */; };
++		869202901C857D2300575BA7 /* EZAudioFloatData.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202741C857D2300575BA7 /* EZAudioFloatData.m */; };
++		869202911C857D2300575BA7 /* EZAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202781C857D2300575BA7 /* EZAudioPlayer.m */; };
++		869202921C857D2300575BA7 /* EZAudioPlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 8692027A1C857D2300575BA7 /* EZAudioPlot.m */; };
++		869202931C857D2300575BA7 /* EZAudioPlotGL.m in Sources */ = {isa = PBXBuildFile; fileRef = 8692027C1C857D2300575BA7 /* EZAudioPlotGL.m */; };
++		869202941C857D2300575BA7 /* EZAudioUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8692027E1C857D2300575BA7 /* EZAudioUtilities.m */; };
++		869202951C857D2300575BA7 /* EZMicrophone.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202801C857D2300575BA7 /* EZMicrophone.m */; };
++		869202961C857D2300575BA7 /* EZOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202821C857D2300575BA7 /* EZOutput.m */; };
++		869202971C857D2300575BA7 /* EZPlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202841C857D2300575BA7 /* EZPlot.m */; };
++		869202981C857D2300575BA7 /* EZRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202861C857D2300575BA7 /* EZRecorder.m */; };
++		869202991C857D2300575BA7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 869202871C857D2300575BA7 /* Info.plist */; };
++		8692029A1C857D2300575BA7 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 869202881C857D2300575BA7 /* TPCircularBuffer.c */; };
++		8692029D1C857F3300575BA7 /* AudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692029C1C857F3300575BA7 /* AudioView.swift */; };
++		8692029F1C857F4300575BA7 /* AudioView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8692029E1C857F4300575BA7 /* AudioView.xib */; };
++		869202BB1C862F4700575BA7 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 869202B11C862F4600575BA7 /* .gitignore */; };
++		869202BC1C862F4700575BA7 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 869202B21C862F4600575BA7 /* LICENSE */; };
++		869202BD1C862F4700575BA7 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 869202B31C862F4600575BA7 /* README.md */; };
++		869202BE1C862F4700575BA7 /* SCWaveformView.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 869202B41C862F4600575BA7 /* SCWaveformView.podspec */; };
++		869202BF1C862F4700575BA7 /* Sources in Resources */ = {isa = PBXBuildFile; fileRef = 869202B81C862F4600575BA7 /* Sources */; };
++		869202C01C862F4700575BA7 /* test.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 869202B91C862F4600575BA7 /* test.m4a */; };
++		869202C11C862F4700575BA7 /* waveform.gif in Resources */ = {isa = PBXBuildFile; fileRef = 869202BA1C862F4600575BA7 /* waveform.gif */; };
++		869202D21C8632B000575BA7 /* SCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202C71C8632AF00575BA7 /* SCAppDelegate.m */; };
++		869202D31C8632B000575BA7 /* SCScrollableWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202C91C8632AF00575BA7 /* SCScrollableWaveformView.m */; };
++		869202D41C8632B000575BA7 /* SCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202CB1C8632B000575BA7 /* SCViewController.m */; };
++		869202D51C8632B000575BA7 /* SCWaveformCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202CD1C8632B000575BA7 /* SCWaveformCache.m */; };
++		869202D61C8632B000575BA7 /* SCWaveformView-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 869202CE1C8632B000575BA7 /* SCWaveformView-Info.plist */; };
++		869202D71C8632B000575BA7 /* SCWaveformView.m in Sources */ = {isa = PBXBuildFile; fileRef = 869202D11C8632B000575BA7 /* SCWaveformView.m */; };
+ 		C50BFB171C5EE6FB00AB490C /* ButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C50BFB161C5EE6FB00AB490C /* ButtonTableViewCell.xib */; };
+ 		C50BFB1A1C5EE7A600AB490C /* ButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50BFB191C5EE7A600AB490C /* ButtonTableViewCell.swift */; };
+ 		C50BFB1C1C5F1D4B00AB490C /* SPManageStudentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50BFB1B1C5F1D4B00AB490C /* SPManageStudentsViewController.swift */; };
+@@ -70,6 +102,13 @@
+ 			remoteGlobalIDString = 4B2285F71C4AE4E800CE4146;
+ 			remoteInfo = Spark1.0;
+ 		};
++		869202C31C862F4700575BA7 /* PBXContainerItemProxy */ = {
++			isa = PBXContainerItemProxy;
++			containerPortal = 869202B51C862F4600575BA7 /* SCWaveformView.xcodeproj */;
++			proxyType = 2;
++			remoteGlobalIDString = DC2C7A2F1892A0770085043D;
++			remoteInfo = SCWaveformView;
++		};
+ /* End PBXContainerItemProxy section */
+ 
+ /* Begin PBXCopyFilesBuildPhase section */
+@@ -123,6 +162,63 @@
+ 		8664E7AB1C6984BA003FF49A /* SPMomentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPMomentViewController.swift; sourceTree = "<group>"; };
+ 		8664E7AD1C69876E003FF49A /* MomentDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MomentDetailTableViewCell.xib; sourceTree = "<group>"; };
+ 		8664E7AF1C698964003FF49A /* MomentDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentDetailTableViewCell.swift; sourceTree = "<group>"; };
++		869202671C857D2300575BA7 /* EZAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudio.h; path = EZAudio/EZAudio.h; sourceTree = "<group>"; };
++		869202681C857D2300575BA7 /* EZAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudio.m; path = EZAudio/EZAudio.m; sourceTree = "<group>"; };
++		869202691C857D2300575BA7 /* EZAudioDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioDevice.h; path = EZAudio/EZAudioDevice.h; sourceTree = "<group>"; };
++		8692026A1C857D2300575BA7 /* EZAudioDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioDevice.m; path = EZAudio/EZAudioDevice.m; sourceTree = "<group>"; };
++		8692026B1C857D2300575BA7 /* EZAudioDisplayLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioDisplayLink.h; path = EZAudio/EZAudioDisplayLink.h; sourceTree = "<group>"; };
++		8692026C1C857D2300575BA7 /* EZAudioDisplayLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioDisplayLink.m; path = EZAudio/EZAudioDisplayLink.m; sourceTree = "<group>"; };
++		8692026D1C857D2300575BA7 /* EZAudioFFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioFFT.h; path = EZAudio/EZAudioFFT.h; sourceTree = "<group>"; };
++		8692026E1C857D2300575BA7 /* EZAudioFFT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioFFT.m; path = EZAudio/EZAudioFFT.m; sourceTree = "<group>"; };
++		8692026F1C857D2300575BA7 /* EZAudioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioFile.h; path = EZAudio/EZAudioFile.h; sourceTree = "<group>"; };
++		869202701C857D2300575BA7 /* EZAudioFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioFile.m; path = EZAudio/EZAudioFile.m; sourceTree = "<group>"; };
++		869202711C857D2300575BA7 /* EZAudioFloatConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioFloatConverter.h; path = EZAudio/EZAudioFloatConverter.h; sourceTree = "<group>"; };
++		869202721C857D2300575BA7 /* EZAudioFloatConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioFloatConverter.m; path = EZAudio/EZAudioFloatConverter.m; sourceTree = "<group>"; };
++		869202731C857D2300575BA7 /* EZAudioFloatData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioFloatData.h; path = EZAudio/EZAudioFloatData.h; sourceTree = "<group>"; };
++		869202741C857D2300575BA7 /* EZAudioFloatData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioFloatData.m; path = EZAudio/EZAudioFloatData.m; sourceTree = "<group>"; };
++		869202751C857D2300575BA7 /* EZAudioiOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioiOS.h; path = EZAudio/EZAudioiOS.h; sourceTree = "<group>"; };
++		869202761C857D2300575BA7 /* EZAudioOSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioOSX.h; path = EZAudio/EZAudioOSX.h; sourceTree = "<group>"; };
++		869202771C857D2300575BA7 /* EZAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioPlayer.h; path = EZAudio/EZAudioPlayer.h; sourceTree = "<group>"; };
++		869202781C857D2300575BA7 /* EZAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioPlayer.m; path = EZAudio/EZAudioPlayer.m; sourceTree = "<group>"; };
++		869202791C857D2300575BA7 /* EZAudioPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioPlot.h; path = EZAudio/EZAudioPlot.h; sourceTree = "<group>"; };
++		8692027A1C857D2300575BA7 /* EZAudioPlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioPlot.m; path = EZAudio/EZAudioPlot.m; sourceTree = "<group>"; };
++		8692027B1C857D2300575BA7 /* EZAudioPlotGL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioPlotGL.h; path = EZAudio/EZAudioPlotGL.h; sourceTree = "<group>"; };
++		8692027C1C857D2300575BA7 /* EZAudioPlotGL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioPlotGL.m; path = EZAudio/EZAudioPlotGL.m; sourceTree = "<group>"; };
++		8692027D1C857D2300575BA7 /* EZAudioUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZAudioUtilities.h; path = EZAudio/EZAudioUtilities.h; sourceTree = "<group>"; };
++		8692027E1C857D2300575BA7 /* EZAudioUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZAudioUtilities.m; path = EZAudio/EZAudioUtilities.m; sourceTree = "<group>"; };
++		8692027F1C857D2300575BA7 /* EZMicrophone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZMicrophone.h; path = EZAudio/EZMicrophone.h; sourceTree = "<group>"; };
++		869202801C857D2300575BA7 /* EZMicrophone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZMicrophone.m; path = EZAudio/EZMicrophone.m; sourceTree = "<group>"; };
++		869202811C857D2300575BA7 /* EZOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZOutput.h; path = EZAudio/EZOutput.h; sourceTree = "<group>"; };
++		869202821C857D2300575BA7 /* EZOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZOutput.m; path = EZAudio/EZOutput.m; sourceTree = "<group>"; };
++		869202831C857D2300575BA7 /* EZPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZPlot.h; path = EZAudio/EZPlot.h; sourceTree = "<group>"; };
++		869202841C857D2300575BA7 /* EZPlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZPlot.m; path = EZAudio/EZPlot.m; sourceTree = "<group>"; };
++		869202851C857D2300575BA7 /* EZRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EZRecorder.h; path = EZAudio/EZRecorder.h; sourceTree = "<group>"; };
++		869202861C857D2300575BA7 /* EZRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EZRecorder.m; path = EZAudio/EZRecorder.m; sourceTree = "<group>"; };
++		869202871C857D2300575BA7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = EZAudio/Info.plist; sourceTree = "<group>"; };
++		869202881C857D2300575BA7 /* TPCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = TPCircularBuffer.c; path = EZAudio/TPCircularBuffer.c; sourceTree = "<group>"; };
++		869202891C857D2300575BA7 /* TPCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TPCircularBuffer.h; path = EZAudio/TPCircularBuffer.h; sourceTree = "<group>"; };
++		8692029C1C857F3300575BA7 /* AudioView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioView.swift; sourceTree = "<group>"; };
++		8692029E1C857F4300575BA7 /* AudioView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioView.xib; sourceTree = "<group>"; };
++		869202B11C862F4600575BA7 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = .gitignore; path = "SCWaveformView-master/.gitignore"; sourceTree = "<group>"; };
++		869202B21C862F4600575BA7 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = "SCWaveformView-master/LICENSE"; sourceTree = "<group>"; };
++		869202B31C862F4600575BA7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "SCWaveformView-master/README.md"; sourceTree = "<group>"; };
++		869202B41C862F4600575BA7 /* SCWaveformView.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SCWaveformView.podspec; path = "SCWaveformView-master/SCWaveformView.podspec"; sourceTree = "<group>"; };
++		869202B51C862F4600575BA7 /* SCWaveformView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SCWaveformView.xcodeproj; path = "SCWaveformView-master/SCWaveformView.xcodeproj"; sourceTree = "<group>"; };
++		869202B81C862F4600575BA7 /* Sources */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sources; path = "SCWaveformView-master/Sources"; sourceTree = "<group>"; };
++		869202B91C862F4600575BA7 /* test.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = test.m4a; path = "SCWaveformView-master/test.m4a"; sourceTree = "<group>"; };
++		869202BA1C862F4600575BA7 /* waveform.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = waveform.gif; path = "SCWaveformView-master/waveform.gif"; sourceTree = "<group>"; };
++		869202C61C8632AF00575BA7 /* SCAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCAppDelegate.h; path = "SCWaveformView-master/Sources/SCAppDelegate.h"; sourceTree = "<group>"; };
++		869202C71C8632AF00575BA7 /* SCAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCAppDelegate.m; path = "SCWaveformView-master/Sources/SCAppDelegate.m"; sourceTree = "<group>"; };
++		869202C81C8632AF00575BA7 /* SCScrollableWaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCScrollableWaveformView.h; path = "SCWaveformView-master/Sources/SCScrollableWaveformView.h"; sourceTree = "<group>"; };
++		869202C91C8632AF00575BA7 /* SCScrollableWaveformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCScrollableWaveformView.m; path = "SCWaveformView-master/Sources/SCScrollableWaveformView.m"; sourceTree = "<group>"; };
++		869202CA1C8632B000575BA7 /* SCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCViewController.h; path = "SCWaveformView-master/Sources/SCViewController.h"; sourceTree = "<group>"; };
++		869202CB1C8632B000575BA7 /* SCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCViewController.m; path = "SCWaveformView-master/Sources/SCViewController.m"; sourceTree = "<group>"; };
++		869202CC1C8632B000575BA7 /* SCWaveformCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCWaveformCache.h; path = "SCWaveformView-master/Sources/SCWaveformCache.h"; sourceTree = "<group>"; };
++		869202CD1C8632B000575BA7 /* SCWaveformCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCWaveformCache.m; path = "SCWaveformView-master/Sources/SCWaveformCache.m"; sourceTree = "<group>"; };
++		869202CE1C8632B000575BA7 /* SCWaveformView-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "SCWaveformView-Info.plist"; path = "SCWaveformView-master/Sources/SCWaveformView-Info.plist"; sourceTree = "<group>"; };
++		869202CF1C8632B000575BA7 /* SCWaveformView-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SCWaveformView-Prefix.pch"; path = "SCWaveformView-master/Sources/SCWaveformView-Prefix.pch"; sourceTree = "<group>"; };
++		869202D01C8632B000575BA7 /* SCWaveformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCWaveformView.h; path = "SCWaveformView-master/Sources/SCWaveformView.h"; sourceTree = "<group>"; };
++		869202D11C8632B000575BA7 /* SCWaveformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCWaveformView.m; path = "SCWaveformView-master/Sources/SCWaveformView.m"; sourceTree = "<group>"; };
+ 		C50BFB161C5EE6FB00AB490C /* ButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonTableViewCell.xib; sourceTree = "<group>"; };
+ 		C50BFB191C5EE7A600AB490C /* ButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonTableViewCell.swift; sourceTree = "<group>"; };
+ 		C50BFB1B1C5F1D4B00AB490C /* SPManageStudentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPManageStudentsViewController.swift; sourceTree = "<group>"; };
+@@ -183,6 +279,8 @@
+ 			children = (
+ 				C54399191C5AF5900049D903 /* AVFoundation.framework */,
+ 				C5C1D77B1C50B45C00C20DF9 /* LLSimpleCamera */,
++				8692029B1C857D5000575BA7 /* EZAudio */,
++				869202C51C862F5300575BA7 /* SCWaveformView */,
+ 				0A2F59CD1C4F3C8C0053300C /* libsqlite3.tbd */,
+ 				0A2F59CB1C4F3C7F0053300C /* libz.tbd */,
+ 				0A2F59C91C4F3C720053300C /* SystemConfiguration.framework */,
+@@ -292,9 +390,88 @@
+ 			path = Spark1.0Tests;
+ 			sourceTree = "<group>";
+ 		};
++		8692029B1C857D5000575BA7 /* EZAudio */ = {
++			isa = PBXGroup;
++			children = (
++				869202671C857D2300575BA7 /* EZAudio.h */,
++				869202681C857D2300575BA7 /* EZAudio.m */,
++				869202691C857D2300575BA7 /* EZAudioDevice.h */,
++				8692026A1C857D2300575BA7 /* EZAudioDevice.m */,
++				8692026B1C857D2300575BA7 /* EZAudioDisplayLink.h */,
++				8692026C1C857D2300575BA7 /* EZAudioDisplayLink.m */,
++				8692026D1C857D2300575BA7 /* EZAudioFFT.h */,
++				8692026E1C857D2300575BA7 /* EZAudioFFT.m */,
++				8692026F1C857D2300575BA7 /* EZAudioFile.h */,
++				869202701C857D2300575BA7 /* EZAudioFile.m */,
++				869202711C857D2300575BA7 /* EZAudioFloatConverter.h */,
++				869202721C857D2300575BA7 /* EZAudioFloatConverter.m */,
++				869202731C857D2300575BA7 /* EZAudioFloatData.h */,
++				869202741C857D2300575BA7 /* EZAudioFloatData.m */,
++				869202751C857D2300575BA7 /* EZAudioiOS.h */,
++				869202761C857D2300575BA7 /* EZAudioOSX.h */,
++				869202771C857D2300575BA7 /* EZAudioPlayer.h */,
++				869202781C857D2300575BA7 /* EZAudioPlayer.m */,
++				869202791C857D2300575BA7 /* EZAudioPlot.h */,
++				8692027A1C857D2300575BA7 /* EZAudioPlot.m */,
++				8692027B1C857D2300575BA7 /* EZAudioPlotGL.h */,
++				8692027C1C857D2300575BA7 /* EZAudioPlotGL.m */,
++				8692027D1C857D2300575BA7 /* EZAudioUtilities.h */,
++				8692027E1C857D2300575BA7 /* EZAudioUtilities.m */,
++				8692027F1C857D2300575BA7 /* EZMicrophone.h */,
++				869202801C857D2300575BA7 /* EZMicrophone.m */,
++				869202811C857D2300575BA7 /* EZOutput.h */,
++				869202821C857D2300575BA7 /* EZOutput.m */,
++				869202831C857D2300575BA7 /* EZPlot.h */,
++				869202841C857D2300575BA7 /* EZPlot.m */,
++				869202851C857D2300575BA7 /* EZRecorder.h */,
++				869202861C857D2300575BA7 /* EZRecorder.m */,
++				869202871C857D2300575BA7 /* Info.plist */,
++				869202881C857D2300575BA7 /* TPCircularBuffer.c */,
++				869202891C857D2300575BA7 /* TPCircularBuffer.h */,
++			);
++			name = EZAudio;
++			sourceTree = "<group>";
++		};
++		869202B61C862F4600575BA7 /* Products */ = {
++			isa = PBXGroup;
++			children = (
++				869202C41C862F4700575BA7 /* SCWaveformView.app */,
++			);
++			name = Products;
++			sourceTree = "<group>";
++		};
++		869202C51C862F5300575BA7 /* SCWaveformView */ = {
++			isa = PBXGroup;
++			children = (
++				869202C61C8632AF00575BA7 /* SCAppDelegate.h */,
++				869202C71C8632AF00575BA7 /* SCAppDelegate.m */,
++				869202C81C8632AF00575BA7 /* SCScrollableWaveformView.h */,
++				869202C91C8632AF00575BA7 /* SCScrollableWaveformView.m */,
++				869202CA1C8632B000575BA7 /* SCViewController.h */,
++				869202CB1C8632B000575BA7 /* SCViewController.m */,
++				869202CC1C8632B000575BA7 /* SCWaveformCache.h */,
++				869202CD1C8632B000575BA7 /* SCWaveformCache.m */,
++				869202CE1C8632B000575BA7 /* SCWaveformView-Info.plist */,
++				869202CF1C8632B000575BA7 /* SCWaveformView-Prefix.pch */,
++				869202D01C8632B000575BA7 /* SCWaveformView.h */,
++				869202D11C8632B000575BA7 /* SCWaveformView.m */,
++				869202B11C862F4600575BA7 /* .gitignore */,
++				869202B21C862F4600575BA7 /* LICENSE */,
++				869202B31C862F4600575BA7 /* README.md */,
++				869202B41C862F4600575BA7 /* SCWaveformView.podspec */,
++				869202B51C862F4600575BA7 /* SCWaveformView.xcodeproj */,
++				869202B81C862F4600575BA7 /* Sources */,
++				869202B91C862F4600575BA7 /* test.m4a */,
++				869202BA1C862F4600575BA7 /* waveform.gif */,
++			);
++			name = SCWaveformView;
++			sourceTree = "<group>";
++		};
+ 		C54399161C5A0D0E0049D903 /* Cells */ = {
+ 			isa = PBXGroup;
+ 			children = (
++				8692029C1C857F3300575BA7 /* AudioView.swift */,
++				8692029E1C857F4300575BA7 /* AudioView.xib */,
+ 				4B693A3C1C588FC6005478D9 /* CategoryCollectionViewCell.xib */,
+ 				4B8B72701C5895DF00E6E73B /* CategoryCollectionViewCell.swift */,
+ 				4B693A381C588693005478D9 /* StudentCollectionViewCell.xib */,
+@@ -402,6 +579,12 @@
+ 			mainGroup = 4B2285EF1C4AE4E800CE4146;
+ 			productRefGroup = 4B2285F91C4AE4E800CE4146 /* Products */;
+ 			projectDirPath = "";
++			projectReferences = (
++				{
++					ProductGroup = 869202B61C862F4600575BA7 /* Products */;
++					ProjectRef = 869202B51C862F4600575BA7 /* SCWaveformView.xcodeproj */;
++				},
++			);
+ 			projectRoot = "";
+ 			targets = (
+ 				4B2285F71C4AE4E800CE4146 /* Spark1.0 */,
+@@ -410,6 +593,16 @@
+ 		};
+ /* End PBXProject section */
+ 
++/* Begin PBXReferenceProxy section */
++		869202C41C862F4700575BA7 /* SCWaveformView.app */ = {
++			isa = PBXReferenceProxy;
++			fileType = wrapper.application;
++			path = SCWaveformView.app;
++			remoteRef = 869202C31C862F4700575BA7 /* PBXContainerItemProxy */;
++			sourceTree = BUILT_PRODUCTS_DIR;
++		};
++/* End PBXReferenceProxy section */
++
+ /* Begin PBXResourcesBuildPhase section */
+ 		4B2285F61C4AE4E800CE4146 /* Resources */ = {
+ 			isa = PBXResourcesBuildPhase;
+@@ -420,9 +613,18 @@
+ 				4B2286091C4AE4E800CE4146 /* LaunchScreen.storyboard in Resources */,
+ 				4B2286061C4AE4E800CE4146 /* Assets.xcassets in Resources */,
+ 				4B2286011C4AE4E800CE4146 /* Main.storyboard in Resources */,
++				869202BF1C862F4700575BA7 /* Sources in Resources */,
+ 				4B2A21BD1C62D47E00F11D71 /* CategoriesTableViewCell.xib in Resources */,
+ 				C54399131C58840A0049D903 /* TextInputTableViewCell.xib in Resources */,
++				8692029F1C857F4300575BA7 /* AudioView.xib in Resources */,
++				869202BB1C862F4700575BA7 /* .gitignore in Resources */,
++				869202C01C862F4700575BA7 /* test.m4a in Resources */,
++				869202BC1C862F4700575BA7 /* LICENSE in Resources */,
++				869202BE1C862F4700575BA7 /* SCWaveformView.podspec in Resources */,
++				869202D61C8632B000575BA7 /* SCWaveformView-Info.plist in Resources */,
+ 				8664E7AE1C69876E003FF49A /* MomentDetailTableViewCell.xib in Resources */,
++				869202991C857D2300575BA7 /* Info.plist in Resources */,
++				869202C11C862F4700575BA7 /* waveform.gif in Resources */,
+ 				C50BFB171C5EE6FB00AB490C /* ButtonTableViewCell.xib in Resources */,
+ 				D4BD3BA51C589F7F003BBFC8 /* MomentTableViewCell.xib in Resources */,
+ 			);
+@@ -442,36 +644,59 @@
+ 			isa = PBXSourcesBuildPhase;
+ 			buildActionMask = 2147483647;
+ 			files = (
++				869202911C857D2300575BA7 /* EZAudioPlayer.m in Sources */,
++				869202971C857D2300575BA7 /* EZPlot.m in Sources */,
+ 				C5C1D77D1C52E06000C20DF9 /* SPMediaViewController.swift in Sources */,
+ 				4B2A21C01C62D4DE00F11D71 /* CategoriesTableViewCell.swift in Sources */,
++				8692028E1C857D2300575BA7 /* EZAudioFile.m in Sources */,
++				869202D51C8632B000575BA7 /* SCWaveformCache.m in Sources */,
+ 				D4BD3BA31C589E13003BBFC8 /* SPStudentViewController.swift in Sources */,
++				869202D31C8632B000575BA7 /* SCScrollableWaveformView.m in Sources */,
++				869202BD1C862F4700575BA7 /* README.md in Sources */,
++				869202931C857D2300575BA7 /* EZAudioPlotGL.m in Sources */,
+ 				8664E7B01C698964003FF49A /* MomentDetailTableViewCell.swift in Sources */,
++				869202D41C8632B000575BA7 /* SCViewController.m in Sources */,
++				8692028C1C857D2300575BA7 /* EZAudioDisplayLink.m in Sources */,
+ 				4B8B72711C5895DF00E6E73B /* CategoryCollectionViewCell.swift in Sources */,
+ 				C5C1D7791C50B44400C20DF9 /* LLSimpleCamera.m in Sources */,
++				869202961C857D2300575BA7 /* EZOutput.m in Sources */,
+ 				4B2C5F101C7A5DB400B097AE /* AKPickerView.swift in Sources */,
+ 				C5C1D7811C52EA9700C20DF9 /* SPTagCategoryViewController.swift in Sources */,
++				869202901C857D2300575BA7 /* EZAudioFloatData.m in Sources */,
+ 				C543990F1C5879C60049D903 /* SPStudentProfileViewController.swift in Sources */,
+ 				C50BFB1C1C5F1D4B00AB490C /* SPManageStudentsViewController.swift in Sources */,
+ 				C57DB7671C4F4A2800022D3A /* SPCaptureViewController.swift in Sources */,
++				869202921C857D2300575BA7 /* EZAudioPlot.m in Sources */,
++				869202D21C8632B000575BA7 /* SCAppDelegate.m in Sources */,
++				8692028F1C857D2300575BA7 /* EZAudioFloatConverter.m in Sources */,
++				8692028B1C857D2300575BA7 /* EZAudioDevice.m in Sources */,
+ 				4B693A3B1C58872B005478D9 /* StudentCollectionViewCell.swift in Sources */,
+ 				4B2285FE1C4AE4E800CE4146 /* SPLoginViewController.swift in Sources */,
+ 				C5C1D77F1C52E50900C20DF9 /* SPTagStudentViewController.swift in Sources */,
++				8692029A1C857D2300575BA7 /* TPCircularBuffer.c in Sources */,
+ 				C54399181C5A135B0049D903 /* SPSettingsViewController.swift in Sources */,
+ 				C54399151C5888A10049D903 /* TextInputTableViewCell.swift in Sources */,
+ 				C562F8981C76DB2C000964C8 /* Extensions.swift in Sources */,
+ 				C5C1D77A1C50B44400C20DF9 /* UIImage+FixOrientation.m in Sources */,
+ 				0A40F57B1C5D7984000485B5 /* Student.swift in Sources */,
+ 				C57DB7651C4F49C600022D3A /* SPCreateAccountViewController.swift in Sources */,
++				8692029D1C857F3300575BA7 /* AudioView.swift in Sources */,
+ 				D4BD3B991C5395DA003BBFC8 /* SPArchiveViewController.swift in Sources */,
+ 				0A32E3171C7ED8F700E333C5 /* SPForgotPasswordViewController.swift in Sources */,
+ 				0A40F57D1C5D799E000485B5 /* Moment.swift in Sources */,
+ 				0A40F5781C5D7964000485B5 /* Class.swift in Sources */,
++				869202951C857D2300575BA7 /* EZMicrophone.m in Sources */,
+ 				8664E7AC1C6984BA003FF49A /* SPMomentViewController.swift in Sources */,
++				869202981C857D2300575BA7 /* EZRecorder.m in Sources */,
+ 				4B2286041C4AE4E800CE4146 /* Spark1_0.xcdatamodeld in Sources */,
+ 				4B2285FC1C4AE4E800CE4146 /* AppDelegate.swift in Sources */,
+ 				C50BFB1A1C5EE7A600AB490C /* ButtonTableViewCell.swift in Sources */,
++				8692028D1C857D2300575BA7 /* EZAudioFFT.m in Sources */,
++				869202941C857D2300575BA7 /* EZAudioUtilities.m in Sources */,
++				869202D71C8632B000575BA7 /* SCWaveformView.m in Sources */,
+ 				D4BD3BA21C589E13003BBFC8 /* MomentTableViewCell.swift in Sources */,
+ 				0A40F5741C5D5EC6000485B5 /* User.swift in Sources */,
++				8692028A1C857D2300575BA7 /* EZAudio.m in Sources */,
+ 			);
+ 			runOnlyForDeploymentPostprocessing = 0;
+ 		};
+diff --git a/Spark1.0/AppDelegate.swift b/Spark1.0/AppDelegate.swift
+index cb808ea..a8108b7 100644
+--- a/Spark1.0/AppDelegate.swift
++++ b/Spark1.0/AppDelegate.swift
+@@ -180,73 +180,64 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
+ 
+ }
+ 
+-extension UIViewController {
+-    func addBackgroundView() -> UIImageView {
+-        
+-        let backgroundView = UIImageView(image: UIImage(named: "applicationBackground"))
+-        backgroundView.frame.size.height = self.view.frame.size.height
+-        backgroundView.frame.size.width = self.view.frame.size.height
+-        self.view.addSubview(backgroundView)
+-        view.sendSubviewToBack(backgroundView)
+-        return backgroundView
+-    }
+-    
+-    func addStatusBarStyle()
+-    {
+-        let view: UIView = UIView.init(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 20))
+-        view.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0) //The colour you want to set
+-        self.view.addSubview(view)
+-        view.sendSubviewToBack(view)
+-       
+-    }
+-    func presentAlertWithTitle(title: String, message: String) {
+-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil))
+-        self.presentViewController(alert, animated: true, completion: nil)
+-    }
+-
+-}
+-
+-extension UIView {
+-    func rotate360Degrees(duration: CFTimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
+-        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
+-        rotateAnimation.fromValue = 0.0
+-        rotateAnimation.toValue = CGFloat(M_PI * 1.5)
+-        rotateAnimation.duration = duration
+-        
+-        if let delegate: AnyObject = completionDelegate {
+-            rotateAnimation.delegate = delegate
+-        }
+-        self.layer.addAnimation(rotateAnimation, forKey: nil)
+-    }
+-}
+-
+-extension Array where Element: Equatable {
+-    mutating func removeObject(object: Element) {
+-        if let index = self.indexOf(object) {
+-            self.removeAtIndex(index)
+-        }
+-    }
+-    
+-    mutating func removeObjectsInArray(array: [Element]) {
+-        for object in array {
+-            self.removeObject(object)
+-        }
+-    }
+-}
+-
+ class MomentSingleton {
+     static let sharedInstance = MomentSingleton()
+     var image : UIImage?
+     var videoUrl: NSURL?
+     var notes : String?
+     var voiceFile : NSURL?
++    var voiceData : NSData?
+     var mediaType : Int?
+     var students : [Student]?
+     var categories : [String]?
+     
++    var moment: Moment?
++    
+     private init() {}
+ 
++    func clearData() {
++        notes = nil
++        mediaType = nil
++        students = nil
++        categories = nil
++        
++        image = nil
++        videoUrl = nil
++        voiceData = nil
++        
++        voiceFile = nil
++        moment = nil
++    }
++    
++    func populateWithMoment(moment: Moment, imageCB: () -> Void, videoCB: () -> Void, voiceCB: () -> Void) {
++        self.moment = moment
++        
++        mediaType = moment["mediaType"] as? Int
++        notes = moment["notes"] as? String
++        students = moment.studentsTagged()
++        categories = moment.categoriesTagged()
++        
++        // image
++        moment.image ({ image in
++            self.image = image
++            imageCB()
++        })
++        
++        // video
++        moment.video({ video in
++            if let video = video, let videoUrl = video.url {
++                self.videoUrl = NSURL(string: videoUrl)
++            }
++            
++            videoCB()
++        })
++        
++        // voice
++        moment.getFileNamed("voiceData", callback: { (data: NSData?) -> Void in
++            self.voiceData = data
++            voiceCB()
++        })
++    }
+ }
+ 
+ 
+diff --git a/Spark1.0/AudioView.swift b/Spark1.0/AudioView.swift
+index 85f288d..f9d040a 100644
+--- a/Spark1.0/AudioView.swift
++++ b/Spark1.0/AudioView.swift
+@@ -1,21 +1,225 @@
++////
++////  AudioView.swift
++////  Spark1.0
++////
++////  Created by Lucas Throckmorton on 2/29/16.
++////  Copyright © 2016 Bronson Duran. All rights reserved.
++////
+ //
+-//  AudioView.swift
+-//  Spark1.0
++//import UIKit
++//import AVKit
+ //
+-//  Created by Lucas Throckmorton on 2/29/16.
+-//  Copyright © 2016 Bronson Duran. All rights reserved.
++//class AudioView: UIView, EZAudioPlayerDelegate /*, EZMicrophoneDelegate, EZRecorderDelegate*/ {
++//    
++//    let urlString = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0].stringByAppendingString("/tempVoiceFile.caf")
++//    
++//    var soundFilePath: NSURL!
++//    var player: EZAudioPlayer!
++////    var recorder: EZRecorder!
++////    var microphone: EZMicrophone!
++//    
++//    var state: State! {
++//        didSet {
++////            if player.audioFile == nil {
++////                return
++////            }
++//            switch state! {
++//            case .playing:
++////                recorder?.delegate = nil
++////                audioPlot.hidden = false
++////                recordPlot.hidden = true
++//                actionButton.setImage(UIImage(named: "videoStopButton"), forState: .Normal)
++////                audioPlot.clear()
++//                player.play()
++//                
++//            case .stopped:
++////                recorder?.delegate = nil
++////                audioPlot.hidden = false
++////                recordPlot.hidden = true
++//                actionButton.setImage(UIImage(named: "playButton"), forState: .Normal)
++//                
++////                player.pause()
++//                loadFile()
++//                
++//            case .recording:
++////                audioPlot.hidden = true
++////                recordPlot.hidden = false
++//                actionButton.setImage(UIImage(named: "recordStopButton"), forState: .Normal)
++////                recordPlot.clear()
++//                
++//                // set up recorder
++////                microphone.startFetchingAudio()
++////                recorder = EZRecorder(URL: soundFilePath, clientFormat: microphone.audioStreamBasicDescription(), fileType: EZRecorderFileType.M4A, delegate: self)
++//                
++//            case .stoppedRecording:
++////                microphone.stopFetchingAudio()
++////                recorder?.closeAudioFile()
++//                
++//                player.audioFile = EZAudioFile(URL:soundFilePath)
++//                state = .stopped
++////                recorder?.delegate = nil
++//            }
++//        }
++//    }
++//    
++//    func loadFile() {
++//        self.player.audioFile = EZAudioFile(URL: soundFilePath)
++//        self.player.audioFile.getWaveformDataWithCompletionBlock({
++//            waveformData, length in
++//        
++//            if waveformData == nil {
++//                return
++//            }
++//        
++//            self.audioPlot.updateBuffer((waveformData as UnsafeMutablePointer<UnsafeMutablePointer<Float>>).memory, withBufferSize: UInt32(length))
++//        })
++//    }
++//    
++//    deinit {
++//        NSNotificationCenter.defaultCenter().removeObserver(self)
++//    }
++//    
++//    
++//    
++//    @IBOutlet weak var audioPlot: EZAudioPlot!
++////    @IBOutlet weak var recordPlot: EZAudioPlotGL!
++//    @IBOutlet weak var actionButton: UIButton!
++//    
++//    @IBAction func actionButton(sender: UIButton) {
++//        switch state! {
++//        case .playing: state = .stopped
++//        case .stopped: state = .playing
++//        case .recording: state = .stoppedRecording
++//        default: break
++//        }
++//    }
++//    
++//    let height: CGFloat = 50
++//    
++//    class func instanceFromNib() -> AudioView {
++//        let view = UINib(nibName: "AudioView", bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! AudioView
++//        
++//        view.backgroundColor = UIColor.clearColor()
++//        view.setupPlayer()
++//        view.layer.masksToBounds = true
++//        
++//        view.state = .stopped
++//        
++//        view.soundFilePath = NSURL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0].stringByAppendingString("/tempVoiceFile.caf"))
++//        
++//        return view
++//    }
++//    
++//    
++//    
++//    // must get called after self has been added to superview
++//    func populateView() {
++//        if let superview = superview {
++//            self.frame = CGRectMake(0, 0, superview.frame.width, height)
++//        }
++//    }
++//    
++//    // Set up Audio Player
++//    func setupPlayer() {
++//        let session = AVAudioSession.sharedInstance()
++//        do {
++//            try session.setCategory(AVAudioSessionCategoryPlayAndRecord)
++//            try session.setActive(true)
++//            
++////            recordPlot.backgroundColor = UIColor.clearColor()
++////            recordPlot.color = UIColor.whiteColor()
++////            recordPlot.plotType = EZPlotType.Rolling
++////            recordPlot.shouldFill = true
++////            recordPlot.shouldMirror = true
++//            
++////            microphone = EZMicrophone(delegate: self)
++//            
++////            actionButton.hidden = true
++////            audioPlot.backgroundColor = UIColor.clearColor()
++////            audioPlot.color = UIColor.whiteColor()
++////            audioPlot.plotType = EZPlotType.Rolling
++////            audioPlot.shouldFill = true
++////            audioPlot.shouldMirror = true
++////            audioPlot.gain = 2.5
++////            audioPlot.pointCount = 30
++//            
++//            player = EZAudioPlayer(delegate: self)
++//            
++//            try session.overrideOutputAudioPort(AVAudioSessionPortOverride.Speaker)
++//        } catch {}
++//        
++//    }
++//    
++//    // Set up Audio Recording
++//    
++//    func withMoment(moment: Moment) -> Bool {
++//        
++//        moment.getFileNamed("voiceData") { (data: NSData?) -> Void in
++//            
++//            NSFileManager.defaultManager().createFileAtPath(
++//                self.urlString, contents: data, attributes: nil)
++//            
++//            self.loadFile()
++//            
++//            self.actionButton.hidden = false
++//            self.state = .stopped
++//        }
++//        
++//        return false
++//    }
++//    
++//    func setupAsRecorder() {
++//        state = .recording
++//    }
++//    
++//    func setupNotifications() {
++//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerDidReachEndOfFile:", name: EZAudioPlayerDidReachEndOfFileNotification, object: player)
++//    }
+ //
+-
+-import UIKit
+-
+-class AudioView: UIView {
+-
+-    /*
+-    // Only override drawRect: if you perform custom drawing.
+-    // An empty implementation adversely affects performance during animation.
+-    override func drawRect(rect: CGRect) {
+-        // Drawing code
+-    }
+-    */
+-
+-}
++//    // MARK: - delegates
++//    
++//    // EZAudioPlayer
++//    func audioPlayer(audioPlayer: EZAudioPlayer!, playedAudio buffer: UnsafeMutablePointer<UnsafeMutablePointer<Float>>, withBufferSize bufferSize: UInt32, withNumberOfChannels numberOfChannels: UInt32, inAudioFile audioFile: EZAudioFile!) {
++//        dispatch_async(dispatch_get_main_queue(), {
++//            self.audioPlot.updateBuffer(buffer[0], withBufferSize: bufferSize)
++//        })
++//    }
++//    
++////    // EZMicrophone
++////    func microphone(microphone: EZMicrophone!, hasAudioReceived buffer: UnsafeMutablePointer<UnsafeMutablePointer<Float>>, withBufferSize bufferSize: UInt32, withNumberOfChannels numberOfChannels: UInt32) {
++////        dispatch_async(dispatch_get_main_queue(), {
++////            self.recordPlot.updateBuffer(buffer[0], withBufferSize: bufferSize)
++////        })
++////    }
++////    
++////    func microphone(microphone: EZMicrophone!, hasBufferList bufferList: UnsafeMutablePointer<AudioBufferList>, withBufferSize bufferSize: UInt32, withNumberOfChannels numberOfChannels: UInt32) {
++////        self.recorder.appendDataFromBufferList(bufferList, withBufferSize: bufferSize)
++////    }
++////    
++////    // EZRecorder
++////    func recorderDidClose(recorder: EZRecorder!) {
++////        recorder.delegate = nil
++////    }
++////    
++////    func recorderUpdatedCurrentTime(recorder: EZRecorder!) {
++////        return
++////    }
++//    
++//    
++//    // MARK: - State Changes
++//    
++//    enum State {
++//        case playing
++//        case stopped
++//        case recording
++//        case stoppedRecording
++//    }
++//    
++//    func playerDidReachEndOfFile(notification: NSNotification) {
++//        state = .stopped
++//    }
++//    
++//
++//    
++//}
++//
+\ No newline at end of file
+diff --git a/Spark1.0/AudioView.xib b/Spark1.0/AudioView.xib
+index 94c1f20..c5a111c 100644
+--- a/Spark1.0/AudioView.xib
++++ b/Spark1.0/AudioView.xib
+@@ -1,15 +1,81 @@
+ <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
++<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+     <dependencies>
+-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
++        <deployment identifier="iOS"/>
++        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
++        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+     </dependencies>
+     <objects>
+         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
++        <view contentMode="scaleToFill" id="YKe-Cs-owk" customClass="AudioView" customModule="Spark1_0" customModuleProvider="target">
++            <rect key="frame" x="0.0" y="0.0" width="383" height="88"/>
++            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
++            <subviews>
++                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O8s-gU-3cp">
++                    <rect key="frame" x="0.0" y="0.0" width="383" height="88"/>
++                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="C84-zV-A0Y">
++                        <rect key="frame" x="0.0" y="0.0" width="383" height="88"/>
++                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
++                        <subviews>
++                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A1m-rl-wSb">
++                                <rect key="frame" x="0.0" y="0.0" width="383" height="88"/>
++                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="W1t-X7-4h6">
++                                    <rect key="frame" x="0.0" y="0.0" width="383" height="88"/>
++                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
++                                </view>
++                                <vibrancyEffect>
++                                    <blurEffect style="light"/>
++                                </vibrancyEffect>
++                            </visualEffectView>
++                        </subviews>
++                        <constraints>
++                            <constraint firstAttribute="trailing" secondItem="A1m-rl-wSb" secondAttribute="trailing" id="7iQ-HU-uqx"/>
++                            <constraint firstItem="A1m-rl-wSb" firstAttribute="top" secondItem="C84-zV-A0Y" secondAttribute="top" id="MRw-UU-ciG"/>
++                            <constraint firstAttribute="bottom" secondItem="A1m-rl-wSb" secondAttribute="bottom" id="Oaj-BI-1FQ"/>
++                            <constraint firstItem="A1m-rl-wSb" firstAttribute="leading" secondItem="C84-zV-A0Y" secondAttribute="leading" id="qob-Ev-0W2"/>
++                        </constraints>
++                    </view>
++                    <blurEffect style="light"/>
++                </visualEffectView>
++                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lGd-Yw-aVl" customClass="EZAudioPlot">
++                    <rect key="frame" x="50" y="24" width="325" height="39"/>
++                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
++                    <constraints>
++                        <constraint firstAttribute="height" constant="39" id="Juo-Ao-klh"/>
++                    </constraints>
++                </view>
++                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8u8-yM-hR9">
++                    <rect key="frame" x="8" y="27" width="34" height="34"/>
++                    <constraints>
++                        <constraint firstAttribute="width" secondItem="8u8-yM-hR9" secondAttribute="height" multiplier="1:1" id="4fX-Il-jGo"/>
++                    </constraints>
++                    <state key="normal">
++                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
++                    </state>
++                    <connections>
++                        <action selector="actionButton:" destination="YKe-Cs-owk" eventType="touchUpInside" id="J46-nt-Cpa"/>
++                    </connections>
++                </button>
++            </subviews>
++            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
++            <constraints>
++                <constraint firstItem="lGd-Yw-aVl" firstAttribute="leading" secondItem="8u8-yM-hR9" secondAttribute="trailing" constant="8" id="0Ol-wW-8GW"/>
++                <constraint firstItem="lGd-Yw-aVl" firstAttribute="centerY" secondItem="YKe-Cs-owk" secondAttribute="centerY" id="6Jp-us-c1n"/>
++                <constraint firstItem="O8s-gU-3cp" firstAttribute="width" secondItem="YKe-Cs-owk" secondAttribute="width" id="9nf-Ym-gyV"/>
++                <constraint firstItem="8u8-yM-hR9" firstAttribute="leading" secondItem="YKe-Cs-owk" secondAttribute="leading" constant="8" id="DHp-LQ-D5j"/>
++                <constraint firstItem="8u8-yM-hR9" firstAttribute="centerY" secondItem="YKe-Cs-owk" secondAttribute="centerY" id="c18-wS-bR8"/>
++                <constraint firstItem="O8s-gU-3cp" firstAttribute="height" secondItem="YKe-Cs-owk" secondAttribute="height" id="ft5-U6-gbS"/>
++                <constraint firstAttribute="trailing" secondItem="lGd-Yw-aVl" secondAttribute="trailing" constant="8" id="jej-0w-Ozq"/>
++                <constraint firstItem="O8s-gU-3cp" firstAttribute="centerY" secondItem="YKe-Cs-owk" secondAttribute="centerY" id="rnJ-Kw-9t7"/>
++                <constraint firstItem="O8s-gU-3cp" firstAttribute="centerX" secondItem="YKe-Cs-owk" secondAttribute="centerX" id="wXD-H7-n5i"/>
++            </constraints>
++            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
++            <connections>
++                <outlet property="actionButton" destination="8u8-yM-hR9" id="0P2-hI-aH9"/>
++                <outlet property="audioPlot" destination="lGd-Yw-aVl" id="loK-ah-g2O"/>
++            </connections>
++            <point key="canvasLocation" x="-232.5" y="270"/>
+         </view>
+     </objects>
+ </document>
+diff --git a/Spark1.0/Base.lproj/Main.storyboard b/Spark1.0/Base.lproj/Main.storyboard
+index 3136319..3f1d8e1 100644
+--- a/Spark1.0/Base.lproj/Main.storyboard
++++ b/Spark1.0/Base.lproj/Main.storyboard
+@@ -1,8 +1,8 @@
+ <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E49a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pR4-Z0-oNV">
++<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pR4-Z0-oNV">
+     <dependencies>
+         <deployment identifier="iOS"/>
+-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
++        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+@@ -40,7 +40,7 @@
+                                     <constraint firstAttribute="height" constant="32" id="xf9-MW-T8v"/>
+                                 </constraints>
+                             </imageView>
+-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="passwordIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bCe-DH-kQd">
++                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="passwordIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bCe-DH-kQd">
+                                 <rect key="frame" x="22" y="331" width="32" height="32"/>
+                                 <constraints>
+                                     <constraint firstAttribute="height" constant="32" id="9JT-80-kRw"/>
+@@ -361,6 +361,7 @@
+                         <outlet property="studentInfoView" destination="LDd-46-6BB" id="ayI-9n-Fro"/>
+                         <outlet property="studentInfoViewHeight" destination="0cv-n0-vdx" id="rpZ-XP-z0Y"/>
+                         <segue destination="lkN-nd-Ys1" kind="push" identifier="toMomentViewController" id="HFf-dp-KSk"/>
++                        <segue destination="ZaX-yA-hlv" kind="push" identifier="Edit Moment" id="XUa-Im-Qvv"/>
+                     </connections>
+                 </viewController>
+                 <placeholder placeholderIdentifier="IBFirstResponder" id="6re-gZ-PKP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+@@ -383,43 +384,8 @@
+                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                             </imageView>
+-                            <visualEffectView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yVe-jr-DQe">
+-                                <rect key="frame" x="0.0" y="68" width="320" height="50"/>
+-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="wR4-QD-zcP">
+-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+-                                </view>
+-                                <blurEffect style="light"/>
+-                            </visualEffectView>
+-                            <view contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AJt-Ot-ZAi">
+-                                <rect key="frame" x="0.0" y="68" width="320" height="50"/>
+-                                <subviews>
+-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Eb-G0-uuz">
+-                                        <rect key="frame" x="8" y="14" width="23" height="23"/>
+-                                        <constraints>
+-                                            <constraint firstAttribute="width" secondItem="7Eb-G0-uuz" secondAttribute="height" multiplier="1:1" id="BQD-hx-phP"/>
+-                                        </constraints>
+-                                        <state key="normal" image="playButton"/>
+-                                        <connections>
+-                                            <action selector="playButton:" destination="lkN-nd-Ys1" eventType="touchUpInside" id="DC6-e9-Dbe"/>
+-                                        </connections>
+-                                    </button>
+-                                    <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="waveForm" translatesAutoresizingMaskIntoConstraints="NO" id="GdN-t3-H76">
+-                                        <rect key="frame" x="43" y="8" width="249" height="34"/>
+-                                    </imageView>
+-                                </subviews>
+-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+-                                <constraints>
+-                                    <constraint firstAttribute="bottom" secondItem="GdN-t3-H76" secondAttribute="bottom" constant="4" id="5Z7-7l-04A"/>
+-                                    <constraint firstItem="GdN-t3-H76" firstAttribute="top" secondItem="AJt-Ot-ZAi" secondAttribute="top" constant="4" id="9Ii-dv-do3"/>
+-                                    <constraint firstAttribute="trailing" secondItem="GdN-t3-H76" secondAttribute="trailing" constant="28" id="DwO-PX-dNw"/>
+-                                    <constraint firstItem="7Eb-G0-uuz" firstAttribute="centerY" secondItem="AJt-Ot-ZAi" secondAttribute="centerY" id="E9H-cn-prS"/>
+-                                    <constraint firstItem="7Eb-G0-uuz" firstAttribute="leading" secondItem="AJt-Ot-ZAi" secondAttribute="leading" constant="8" id="Hwk-BG-rsY"/>
+-                                    <constraint firstItem="GdN-t3-H76" firstAttribute="leading" secondItem="7Eb-G0-uuz" secondAttribute="trailing" constant="12" id="PMU-zG-xIn"/>
+-                                </constraints>
+-                            </view>
+-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ABn-1C-PsL">
+-                                <rect key="frame" x="0.0" y="436" width="320" height="132"/>
++                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ABn-1C-PsL">
++                                <rect key="frame" x="-4" y="436" width="328" height="132"/>
+                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                 <constraints>
+@@ -430,16 +396,19 @@
+                                     <outlet property="delegate" destination="lkN-nd-Ys1" id="reR-j8-kgi"/>
+                                 </connections>
+                             </tableView>
+-                            <visualEffectView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dHz-YR-zlu">
+-                                <rect key="frame" x="0.0" y="122" width="320" height="87"/>
+-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="jyo-pD-Apw">
++                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dHz-YR-zlu">
++                                <rect key="frame" x="0.0" y="109" width="320" height="87"/>
++                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="jyo-pD-Apw">
+                                     <rect key="frame" x="0.0" y="0.0" width="320" height="87"/>
+                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                 </view>
++                                <constraints>
++                                    <constraint firstAttribute="height" constant="87" id="LAY-FV-Rg4"/>
++                                </constraints>
+                                 <blurEffect style="light"/>
+                             </visualEffectView>
+-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pp0-ig-VCV">
+-                                <rect key="frame" x="0.0" y="126" width="320" height="87"/>
++                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pp0-ig-VCV">
++                                <rect key="frame" x="0.0" y="143" width="320" height="20"/>
+                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+@@ -450,29 +419,24 @@
+                         <constraints>
+                             <constraint firstItem="7lO-1U-86a" firstAttribute="top" secondItem="7zb-4X-mbw" secondAttribute="bottom" id="1qd-Yy-qUs"/>
+                             <constraint firstItem="7zb-4X-mbw" firstAttribute="top" secondItem="hf4-JK-b3V" secondAttribute="top" id="3Q7-rX-Iuk"/>
+-                            <constraint firstAttribute="trailing" secondItem="AJt-Ot-ZAi" secondAttribute="trailing" id="4L4-Xw-hYz"/>
+-                            <constraint firstItem="pp0-ig-VCV" firstAttribute="top" secondItem="AJt-Ot-ZAi" secondAttribute="bottom" constant="4" id="4x3-Zc-ccC"/>
+                             <constraint firstItem="ABn-1C-PsL" firstAttribute="leading" secondItem="hf4-JK-b3V" secondAttribute="leadingMargin" constant="-20" id="5rR-LU-n5m"/>
+                             <constraint firstItem="7zb-4X-mbw" firstAttribute="leading" secondItem="hf4-JK-b3V" secondAttribute="leading" id="C4a-Yq-IEX"/>
+-                            <constraint firstAttribute="trailing" secondItem="yVe-jr-DQe" secondAttribute="trailing" id="Crl-Wp-MiP"/>
+-                            <constraint firstItem="yVe-jr-DQe" firstAttribute="centerY" secondItem="AJt-Ot-ZAi" secondAttribute="centerY" id="QpS-tI-FBa"/>
++                            <constraint firstItem="pp0-ig-VCV" firstAttribute="width" secondItem="dHz-YR-zlu" secondAttribute="width" id="G36-Ml-tuQ"/>
+                             <constraint firstAttribute="trailingMargin" secondItem="ABn-1C-PsL" secondAttribute="trailing" constant="-20" id="RXw-Lb-BDd"/>
+                             <constraint firstAttribute="trailing" secondItem="7zb-4X-mbw" secondAttribute="trailing" id="Tn6-ET-pbo"/>
+-                            <constraint firstItem="yVe-jr-DQe" firstAttribute="leading" secondItem="hf4-JK-b3V" secondAttribute="leading" id="V9n-Ut-i7F"/>
+-                            <constraint firstItem="yVe-jr-DQe" firstAttribute="top" secondItem="Yd2-Np-KlK" secondAttribute="bottom" constant="4" id="bFw-1M-dqv"/>
++                            <constraint firstItem="pp0-ig-VCV" firstAttribute="height" relation="lessThanOrEqual" secondItem="dHz-YR-zlu" secondAttribute="height" id="XnO-af-5pC"/>
+                             <constraint firstAttribute="trailing" secondItem="pp0-ig-VCV" secondAttribute="trailing" id="exa-tT-b4A"/>
+-                            <constraint firstItem="dHz-YR-zlu" firstAttribute="top" secondItem="yVe-jr-DQe" secondAttribute="bottom" constant="4" id="laK-bD-TOP"/>
++                            <constraint firstItem="dHz-YR-zlu" firstAttribute="top" secondItem="Yd2-Np-KlK" secondAttribute="bottom" constant="45" id="keM-Ny-cjb"/>
+                             <constraint firstAttribute="trailing" secondItem="dHz-YR-zlu" secondAttribute="trailing" id="m2S-GG-6jg"/>
+                             <constraint firstItem="pp0-ig-VCV" firstAttribute="leading" secondItem="hf4-JK-b3V" secondAttribute="leading" id="mMN-Uj-78V"/>
+                             <constraint firstItem="dHz-YR-zlu" firstAttribute="leading" secondItem="hf4-JK-b3V" secondAttribute="leading" id="rBn-EL-Zmt"/>
+                             <constraint firstItem="7lO-1U-86a" firstAttribute="top" secondItem="ABn-1C-PsL" secondAttribute="bottom" id="rGL-8n-zJk"/>
+-                            <constraint firstItem="AJt-Ot-ZAi" firstAttribute="leading" secondItem="hf4-JK-b3V" secondAttribute="leading" id="vLV-U6-xiK"/>
++                            <constraint firstItem="dHz-YR-zlu" firstAttribute="centerX" secondItem="pp0-ig-VCV" secondAttribute="centerX" id="tWm-Jn-haH"/>
++                            <constraint firstItem="pp0-ig-VCV" firstAttribute="centerY" secondItem="dHz-YR-zlu" secondAttribute="centerY" id="xqY-q7-zTQ"/>
+                         </constraints>
+                     </view>
+                     <navigationItem key="navigationItem" id="rV2-Wj-8gK"/>
+                     <connections>
+-                        <outlet property="audioBlur" destination="yVe-jr-DQe" id="P2u-DJ-WiG"/>
+-                        <outlet property="audioView" destination="AJt-Ot-ZAi" id="pe3-pz-8nf"/>
+                         <outlet property="captionLabel" destination="pp0-ig-VCV" id="aMr-bD-If0"/>
+                         <outlet property="imageView" destination="7zb-4X-mbw" id="M6z-du-gG8"/>
+                         <outlet property="tableView" destination="ABn-1C-PsL" id="hFv-db-Tpf"/>
+@@ -481,7 +445,7 @@
+                 </viewController>
+                 <placeholder placeholderIdentifier="IBFirstResponder" id="fvI-0H-vIr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+             </objects>
+-            <point key="canvasLocation" x="2486" y="1102"/>
++            <point key="canvasLocation" x="2496" y="1116"/>
+         </scene>
+         <!--Navigation Controller-->
+         <scene sceneID="CAT-pm-jj7">
+@@ -916,10 +880,10 @@
+                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                         <subviews>
+-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3hD-OP-CHs">
+-                                <rect key="frame" x="-0.5" y="498" width="320" height="70"/>
++                            <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3hD-OP-CHs">
++                                <rect key="frame" x="-1" y="498" width="321" height="70"/>
+                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="vym-xq-4nH">
+-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
++                                    <rect key="frame" x="0.0" y="0.0" width="321" height="70"/>
+                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                     <subviews>
+                                         <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fqc-xh-4AR">
+@@ -971,54 +935,14 @@
+                                         </view>
+                                         <blurEffect style="light"/>
+                                     </visualEffectView>
+-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksf-0P-ZVb">
+-                                        <rect key="frame" x="287" y="14" width="20" height="22"/>
+-                                        <state key="normal" image="deleteIcon">
+-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+-                                        </state>
+-                                        <connections>
+-                                            <action selector="audioCloseButtonPressed:" destination="ZaX-yA-hlv" eventType="touchUpInside" id="WEh-19-EVw"/>
+-                                        </connections>
+-                                    </button>
+-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="90x-Rq-ocX">
+-                                        <rect key="frame" x="8" y="-5" width="59" height="60"/>
+-                                        <state key="normal" backgroundImage="playButton">
+-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+-                                        </state>
+-                                        <connections>
+-                                            <action selector="audioPlayButtonPressed:" destination="ZaX-yA-hlv" eventType="touchUpInside" id="W0o-bR-Lsn"/>
+-                                        </connections>
+-                                    </button>
+-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" misplaced="YES" image="waveForm" translatesAutoresizingMaskIntoConstraints="NO" id="459-Jg-Yvl">
+-                                        <rect key="frame" x="75" y="8" width="199" height="34"/>
+-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+-                                        <constraints>
+-                                            <constraint firstAttribute="height" constant="34" id="ez7-CA-XWe"/>
+-                                        </constraints>
+-                                    </imageView>
+-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVh-co-Dvy">
+-                                        <rect key="frame" x="8" y="16" width="83" height="18"/>
+-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+-                                        <nil key="highlightedColor"/>
+-                                    </label>
+                                 </subviews>
+                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                 <constraints>
+                                     <constraint firstAttribute="height" constant="50" id="6P5-rD-15U"/>
+-                                    <constraint firstItem="459-Jg-Yvl" firstAttribute="leading" secondItem="90x-Rq-ocX" secondAttribute="trailing" constant="8" id="Bq3-Ll-TZm"/>
+-                                    <constraint firstItem="lVh-co-Dvy" firstAttribute="centerY" secondItem="90x-Rq-ocX" secondAttribute="centerY" id="HqY-Mb-Plo"/>
+-                                    <constraint firstItem="ksf-0P-ZVb" firstAttribute="centerY" secondItem="90x-Rq-ocX" secondAttribute="centerY" id="IKd-5L-che"/>
+-                                    <constraint firstItem="ksf-0P-ZVb" firstAttribute="leading" secondItem="459-Jg-Yvl" secondAttribute="trailing" constant="8" id="LNy-fX-8rI"/>
+-                                    <constraint firstItem="459-Jg-Yvl" firstAttribute="centerY" secondItem="90x-Rq-ocX" secondAttribute="centerY" id="PBU-XQ-vQf"/>
+                                     <constraint firstItem="ofL-A3-PZk" firstAttribute="top" secondItem="tJ2-NX-ACT" secondAttribute="top" id="ThF-FA-yMM"/>
+                                     <constraint firstAttribute="bottom" secondItem="ofL-A3-PZk" secondAttribute="bottom" id="Ytg-eg-jnG"/>
+-                                    <constraint firstAttribute="trailing" secondItem="ksf-0P-ZVb" secondAttribute="trailing" constant="8" id="fhw-Ff-CX9"/>
+-                                    <constraint firstItem="ksf-0P-ZVb" firstAttribute="centerY" secondItem="tJ2-NX-ACT" secondAttribute="centerY" id="frV-x0-T7h"/>
+                                     <constraint firstAttribute="trailing" secondItem="ofL-A3-PZk" secondAttribute="trailing" id="l3c-DI-YRj"/>
+                                     <constraint firstItem="ofL-A3-PZk" firstAttribute="leading" secondItem="tJ2-NX-ACT" secondAttribute="leading" id="qcd-XQ-4hu"/>
+-                                    <constraint firstItem="90x-Rq-ocX" firstAttribute="leading" secondItem="tJ2-NX-ACT" secondAttribute="leading" constant="8" id="wNO-QX-njc"/>
+-                                    <constraint firstItem="lVh-co-Dvy" firstAttribute="leading" secondItem="90x-Rq-ocX" secondAttribute="leading" id="xEd-Sa-ea1"/>
+                                 </constraints>
+                             </view>
+                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LcR-wm-frR" userLabel="Text View Container">
+@@ -1163,10 +1087,6 @@
+                     </navigationItem>
+                     <connections>
+                         <outlet property="audioButton" destination="8SS-tK-Anj" id="OTF-zD-uaI"/>
+-                        <outlet property="audioCloseButton" destination="ksf-0P-ZVb" id="hfb-nG-J29"/>
+-                        <outlet property="audioImageView" destination="459-Jg-Yvl" id="seL-yp-b6r"/>
+-                        <outlet property="audioPlayButton" destination="90x-Rq-ocX" id="23U-82-7NF"/>
+-                        <outlet property="audioRecordingLabel" destination="lVh-co-Dvy" id="6by-Dq-bf2"/>
+                         <outlet property="audioViewContainer" destination="tJ2-NX-ACT" id="QKj-mZ-Hjs"/>
+                         <outlet property="saveButton" destination="n5O-Ep-DGd" id="97K-kI-oQZ"/>
+                         <outlet property="tagButton" destination="Q9k-Fl-9LT" id="oWK-Vt-dsb"/>
+@@ -1642,12 +1562,13 @@
+         <image name="microphoneButton" width="55" height="55"/>
+         <image name="nameIcon" width="40" height="40"/>
+         <image name="passwordIcon" width="36" height="42"/>
+-        <image name="playButton" width="59" height="59"/>
+         <image name="saveIcon" width="30" height="55"/>
+         <image name="settingsIcon" width="44" height="36"/>
+         <image name="tagCategoryIcon" width="70" height="59"/>
+         <image name="tagStudentIcon" width="64" height="59"/>
+         <image name="textButton" width="56" height="55"/>
+-        <image name="waveForm" width="530" height="53"/>
+     </resources>
++    <inferredMetricsTieBreakers>
++        <segue reference="XUa-Im-Qvv"/>
++    </inferredMetricsTieBreakers>
+ </document>
+diff --git a/Spark1.0/Extensions.swift b/Spark1.0/Extensions.swift
+index 35868d7..2fe2fe2 100644
+--- a/Spark1.0/Extensions.swift
++++ b/Spark1.0/Extensions.swift
+@@ -87,4 +87,84 @@ extension PFObject {
+         }
+     }
+     
++    func getUrlWithName(fileName: String, callback: (NSURL?) -> Void) {
++        if let file = self[fileName] as? PFFile {
++            if let url = file.url {
++                callback(NSURL(string: url))
++            } else {
++                callback(nil)
++            }
++        } else {
++            callback(nil)
++        }
++    }
++}
++
++extension UIViewController {
++    func addBackgroundView() -> UIImageView {
++        
++        let backgroundView = UIImageView(image: UIImage(named: "applicationBackground"))
++        backgroundView.frame.size.height = self.view.frame.size.height
++        backgroundView.frame.size.width = self.view.frame.size.height
++        self.view.addSubview(backgroundView)
++        view.sendSubviewToBack(backgroundView)
++        return backgroundView
++    }
++    
++    func addStatusBarStyle()
++    {
++        let view: UIView = UIView.init(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 20))
++        view.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0) //The colour you want to set
++        self.view.addSubview(view)
++        view.sendSubviewToBack(view)
++        
++    }
++    func presentAlertWithTitle(title: String, message: String) {
++        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
++        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertActionStyle.Cancel, handler: nil))
++        self.presentViewController(alert, animated: true, completion: nil)
++    }
++    
++}
++
++extension UIView {
++    func rotate360Degrees(duration: CFTimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
++        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
++        rotateAnimation.fromValue = 0.0
++        rotateAnimation.toValue = CGFloat(M_PI * 1.5)
++        rotateAnimation.duration = duration
++        
++        if let delegate: AnyObject = completionDelegate {
++            rotateAnimation.delegate = delegate
++        }
++        self.layer.addAnimation(rotateAnimation, forKey: nil)
++    }
++    
++    func removeAllConstraints() {
++        var superview = self.superview
++        while superview != nil {
++            for constraint in (superview?.constraints)! {
++                if constraint.firstItem as? UILabel == self || constraint.secondItem as? UILabel == self {
++                    superview?.removeConstraint(constraint)
++                }
++            }
++            superview = superview?.superview
++        }
++        removeConstraints(constraints)
++        translatesAutoresizingMaskIntoConstraints = false
++    }
++}
++
++extension Array where Element: Equatable {
++    mutating func removeObject(object: Element) {
++        if let index = self.indexOf(object) {
++            self.removeAtIndex(index)
++        }
++    }
++    
++    mutating func removeObjectsInArray(array: [Element]) {
++        for object in array {
++            self.removeObject(object)
++        }
++    }
+ }
+\ No newline at end of file
+diff --git a/Spark1.0/Moment.swift b/Spark1.0/Moment.swift
+index 74ef9b8..71e50d1 100644
+--- a/Spark1.0/Moment.swift
++++ b/Spark1.0/Moment.swift
+@@ -13,7 +13,6 @@ import Parse
+ class Moment: PFObject, PFSubclassing {
+     
+     private var image : UIImage? = nil
+-//    private var videoUrl : NSURL? = nil
+     private var videoFile : PFFile? = nil
+     
+     static let momentCategories = ["Self Regulation", "Social & Emotional", "Language & Literacy", "Math & Science", "Motor Skills", "Social Science", "Arts"]
+@@ -39,6 +38,15 @@ class Moment: PFObject, PFSubclassing {
+         }
+     }
+     
++    func studentsTagged() -> [Student] {
++        if let studentsTagged = self["studentsTagged"] as? [Student] {
++            return studentsTagged
++        } else {
++            return []
++        }
++
++    }
++    
+     func image(callback: (UIImage?) -> Void) {
+         
+         if self.image != nil {
+@@ -103,16 +111,52 @@ class Moment: PFObject, PFSubclassing {
+     }
+     
+     // typeOfMoment: True if IMAGE, false if VIDEO. For now always put True
+-    class func createMoment(typeOfMoment: Bool, students: [Student]?, categories: [String]?, notes: String?, imageFile: UIImage?, videoURL: NSURL?, voiceFile: NSURL?) {
++    class func createMoment(typeOfMoment: Bool, students: [Student]?, categories: [String]?,
++        notes: String?, imageFile: UIImage?, videoURL: NSURL?, voiceFile: NSURL?) {
+         
+         let moment = Moment()
+         
++        moment.updateMomentInfo(typeOfMoment,
++            students: students,
++            categories: categories,
++            notes: notes,
++            imageFile: imageFile,
++            videoURL: videoURL,
++            voiceFile: voiceFile)
++    }
++    
++    class func saveMomentAndUpdateStudents(moment: PFObject, students: [Student]?) {
++        do {
++            try moment.save()
++        } catch _ {
++            print("ERROR SAVING")
++        }
++        
++        if (students != nil) {
++            for student in students! {
++                student.addMoment(moment)
++            }
++        } else {
++            User.currentUser()!.addUntaggedMoment(moment)
++        }
++    }
++    
++    class func saveMoment(moment: PFObject) {
++        do {
++            try moment.save()
++        } catch _ {
++            print("ERROR SAVING")
++        }
++    }
++    
++    func updateMomentInfo(typeOfMoment: Bool, students: [Student]?, categories: [String]?, notes: String?, imageFile: UIImage?, videoURL: NSURL?, voiceFile: NSURL?) {
++        
+         // Media Type
+-        moment["mediaType"] = typeOfMoment ? 0 : 1
++        self["mediaType"] = typeOfMoment ? 0 : 1
+         
+         // Notes
+         if let momentNotes = notes {
+-            moment["notes"] = momentNotes
++            self["notes"] = momentNotes
+         }
+         
+         // Students Tagged
+@@ -122,128 +166,70 @@ class Moment: PFObject, PFSubclassing {
+             for student in taggedStudents {
+                 studentsTagged.append(student.objectId! as String)
+             }
+-            moment["studentsTagged"] = studentsTagged
++            self["studentsTagged"] = studentsTagged
+         }
+         
+         // Categories Tagged
+         if let categories = categories {
+-            moment["categoriesTagged"] = categories
++            self["categoriesTagged"] = categories
+         }
+         
+         // Voice Data
+         if let file = voiceFile {
+             let voice = NSData(contentsOfURL: file)
+-            let parseVoiceFile = PFFile(data: voice!)
+-            moment.setObject(parseVoiceFile!, forKey: "voiceData")
++            let parseVoiceFile = PFFile(name: "voice.caf", data: voice!)
++            self.setObject(parseVoiceFile!, forKey: "voiceData")
+         }
+         
+         // Teacher
+-        moment["teacher"] = User.currentUser()
++        self["teacher"] = User.currentUser()
+         
++        // if the object already exists, remove from untagged moments before retagging models.
++        if let objectId = self.objectId {
++            User.currentUser()!.removeUntaggedMoment(objectId)
++        }
+         
+         // Image Data
+         if let file = imageFile {
+             let imageData = UIImageJPEGRepresentation(file, 0.1)
+             let parseImageFile = PFFile(data: imageData!)
+-            moment.setObject(parseImageFile!, forKey: "momentData")
++            self.setObject(parseImageFile!, forKey: "momentData")
+         } else if let url = videoURL {
+-            let tempUrl = (UIApplication.sharedApplication().delegate as! AppDelegate).applicationDocumentsDirectory.URLByAppendingPathComponent("tempVideo").URLByAppendingPathExtension("mov")
+-            do {
+-                try NSFileManager.defaultManager().removeItemAtURL(tempUrl)
+-            } catch {}
+-            
+-            let asset = AVURLAsset(URL: url)
+-            if let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetLowQuality) {
+-                exportSession.outputURL = tempUrl
+-                exportSession.outputFileType = AVFileTypeQuickTimeMovie
+-                exportSession.exportAsynchronouslyWithCompletionHandler { () -> Void in
+-                    if exportSession.status == AVAssetExportSessionStatus.Completed {
+-                        let videoData = NSFileManager.defaultManager().contentsAtPath(tempUrl.path!)
+-                        let parseVideoFile = PFFile(name: "blah.mov", data: videoData!)
+-                        moment.setObject(parseVideoFile!, forKey: "momentData")
+-                        saveMoment(moment, students: students)
+-                    }
++            compressVideo(url, completion: { (videoData, success) -> Void in
++                if let videoData = videoData {
++                    let parseVideoFile = PFFile(name: "video.mov", data: videoData)
++                    print("video bytes:", videoData.length)
++                    self.setObject(parseVideoFile!, forKey: "momentData")
++                    Moment.saveMoment(self)
+                 }
+-            }
+-            return
++            })
+         }
+         
+-        saveMoment(moment, students: students)
++        Moment.saveMomentAndUpdateStudents(self, students: students)
+     }
+     
+-    class func saveMoment(moment: PFObject, students: [Student]?) {
++    func compressVideo(url: NSURL, completion: (videoData: NSData?, success: Bool) -> Void)  {
++        let tempUrl = (UIApplication.sharedApplication().delegate as! AppDelegate).applicationDocumentsDirectory.URLByAppendingPathComponent("tempVideo").URLByAppendingPathExtension("mov")
+         do {
+-            try moment.save()
+-        } catch _ {
+-            print("ERROR SAVING")
++            try NSFileManager.defaultManager().removeItemAtURL(tempUrl)
++        } catch {
++            return completion(videoData: nil, success: false)
+         }
+         
+-        if (students != nil) {
+-            for student in students! {
+-                student.addMoment(moment)
++        let asset = AVURLAsset(URL: url)
++        if let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetMediumQuality) {
++            exportSession.outputURL = tempUrl
++            exportSession.outputFileType = AVFileTypeQuickTimeMovie
++            exportSession.exportAsynchronouslyWithCompletionHandler { () -> Void in
++                if exportSession.status == AVAssetExportSessionStatus.Completed {
++                    if let videoData = NSFileManager.defaultManager().contentsAtPath(tempUrl.path!) {
++                        return completion(videoData: videoData, success: true)
++                    }
++                    
++                }
+             }
+-        } else {
+-            User.currentUser()!.addUntaggedMoment(moment)
+-        }
+-    }
+-    
+-    func addTagging(students: [Student], categories: [String]) {
+-        self["untagged"] = false
+-        // Students Tagged
+-        var studentsTagged = [String]()
+-        for student in students as [Student] {
+-            studentsTagged.append(student.objectId! as String)
+-        }
+-        self["studentsTagged"] = studentsTagged
+-        self["categoriesTagged"] = categories
+-        self["untagged"] = false
+-        
+-        do {
+-            try self.save()
+-        } catch _ {
+-            print("ERROR SAVING")
+-        }
+-        
+-        User.currentUser()!.removeUntaggedMoment(self.objectId!)
+-    }
+-    
+-    func updateMomentInfo(firstName: String?, lastName: String?, phoneNumber: String?, parentEmail: String?, photo: UIImage?) {
+-        
+-        // TODO: implement this method...
+-//        
+-//        if (firstName != nil) {
+-//            self.parse["firstName"] = firstName
+-//            self.firstName = firstName
+-//        }
+-//        
+-//        if (lastName != nil) {
+-//            self.parse["lastName"] = lastName
+-//            self.lastName = lastName
+-//        }
+-//        
+-//        if (phoneNumber != nil) {
+-//            self.parse["parentPhone"] = phoneNumber
+-//            self.parentPhone = phoneNumber
+-//        }
+-//        
+-//        if (parentEmail != nil) {
+-//            self.parse["parentEmail"] = parentEmail
+-//            self.parentEmail = parentEmail
+-//        }
+-//        
+-//        if (photo != nil) {
+-//            if let photo = photo {let imageData = UIImageJPEGRepresentation(photo, 0.1)
+-//                let parseImageFile = PFFile(data: imageData!)
+-//                self.parse.setObject(parseImageFile!, forKey: "studentImage")
+-//            }
+-//            self.studentImage = photo
+-//        }
+-//        
+-        do {
+-            try self.save()
+-        } catch _ {
+-            print("ERROR SAVING")
+         }
++        completion(videoData: nil, success: false)
+     }
+     
+     func getDate() -> NSDate? {
+diff --git a/Spark1.0/MomentDetailTableViewCell.xib b/Spark1.0/MomentDetailTableViewCell.xib
+index f79c9a3..353681e 100644
+--- a/Spark1.0/MomentDetailTableViewCell.xib
++++ b/Spark1.0/MomentDetailTableViewCell.xib
+@@ -1,8 +1,8 @@
+ <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15E49a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
++<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+     <dependencies>
+         <deployment identifier="iOS"/>
+-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
++        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+     </dependencies>
+     <objects>
+@@ -12,10 +12,10 @@
+             <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
+             <autoresizingMask key="autoresizingMask"/>
+             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fFg-x2-ACv" id="Qaq-In-9Mp">
+-                <rect key="frame" x="0.0" y="0.0" width="320" height="54.5"/>
++                <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
+                 <autoresizingMask key="autoresizingMask"/>
+                 <subviews>
+-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMM-Nn-aLv">
++                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMM-Nn-aLv">
+                         <rect key="frame" x="8" y="8" width="304" height="39"/>
+                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                         <nil key="highlightedColor"/>
+diff --git a/Spark1.0/SPCaptureViewController.swift b/Spark1.0/SPCaptureViewController.swift
+index d2c378f..5597ca5 100644
+--- a/Spark1.0/SPCaptureViewController.swift
++++ b/Spark1.0/SPCaptureViewController.swift
+@@ -14,12 +14,14 @@ class SPCaptureViewController: UIViewController {
+     
+     var camera : LLSimpleCamera! = nil
+     var image : UIImage! = nil
+-    var videoURL : NSURL! = nil
++    var videoUrl : NSURL! = nil
+     var isVideoRecording: Bool = false
++    var waitingForVideoFile = false
++    var mediaType = 0
+     
+     @IBOutlet weak var toolbar: UIToolbar!
+     @IBOutlet weak var captureButton: UIBarButtonItem!
+-
++    
+     @IBOutlet weak var visualEffectView: UIVisualEffectView!
+     @IBOutlet weak var textButton: UIButton!
+     @IBOutlet weak var audioButton: UIButton!
+@@ -28,7 +30,7 @@ class SPCaptureViewController: UIViewController {
+     
+     override func viewDidLoad() {
+         super.viewDidLoad()
+-                
++        
+         let screenRect = UIScreen.mainScreen().bounds
+         
+         self.camera = LLSimpleCamera(quality: AVCaptureSessionPresetHigh, position: LLCameraPositionRear, videoEnabled: true)
+@@ -40,22 +42,19 @@ class SPCaptureViewController: UIViewController {
+         self.view.bringSubviewToFront(self.audioButton)
+         
+         self.toolbar.backgroundColor = UIColor.clearColor()
+-        
+-//        self.navigationController?.navigationBar.hidden = false
+-        
+     }
+     
+     override func viewWillAppear(animated: Bool) {
+         self.camera.start()
+         MomentSingleton.sharedInstance.image = nil
+         self.image = nil
+-        self.videoURL = nil
++        self.videoUrl = nil
+         self.isVideoRecording = false
+         setCaptureButtonImage("captureButton")
+         self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
+         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
+     }
+-
++    
+     @IBAction func cameraToggled(sender: AnyObject) {
+         if cameraToggle.selectedSegmentIndex == 0 {
+             setCaptureButtonImage("captureButton")
+@@ -72,8 +71,8 @@ class SPCaptureViewController: UIViewController {
+         button.addTarget(self, action: "captureButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+         captureButton.customView = button
+     }
+-
+-
++    
++    
+     override func didReceiveMemoryWarning() {
+         super.didReceiveMemoryWarning()
+         // Dispose of any resources that can be recreated.
+@@ -92,8 +91,7 @@ class SPCaptureViewController: UIViewController {
+             if error == nil {
+                 camera.stop()
+                 self.image = image
+-                MomentSingleton.sharedInstance.mediaType = 0
+-                MomentSingleton.sharedInstance.image = image
++                self.mediaType = 0
+                 self.performSegueWithIdentifier("toMediaViewController", sender: self)
+             }
+             
+@@ -103,25 +101,27 @@ class SPCaptureViewController: UIViewController {
+     
+     func startVideoRecord() {
+         isVideoRecording = true
+-        var delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+-        var videoURL = delegate.applicationDocumentsDirectory.URLByAppendingPathComponent("recording").URLByAppendingPathExtension("mov")
++        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
++        let videoURL = delegate.applicationDocumentsDirectory.URLByAppendingPathComponent("recording").URLByAppendingPathExtension("mov")
+         camera.startRecordingWithOutputUrl(videoURL)
+         setCaptureButtonImage("videoStopButton")
+-
++        
+     }
+     
+     func endVideoRecord() {
+         camera.stop()
+         setCaptureButtonImage("videoCaptureButton")
++        self.waitingForVideoFile = true
+         
+         self.camera.stopRecording {
+             (camera: LLSimpleCamera!, outputFileUrl: NSURL!, error: NSError!) -> Void in
+             
+             if error == nil {
+                 self.isVideoRecording = false
+-                self.videoURL = outputFileUrl
+-                MomentSingleton.sharedInstance.mediaType = 1
+-                MomentSingleton.sharedInstance.videoUrl = outputFileUrl
++                self.mediaType = 1
++                self.videoUrl = outputFileUrl
++                self.waitingForVideoFile = false
++                
+                 self.performSegueWithIdentifier("toMediaViewController", sender: self)
+             }
+         }
+@@ -129,7 +129,7 @@ class SPCaptureViewController: UIViewController {
+     
+     @IBAction func captureButtonPressed(sender: AnyObject) {
+         
+-
++        
+         if NSUserDefaults.standardUserDefaults().boolForKey("isSimulator") {
+             self.image = UIImage(named: "applicationBackground")
+             self.performSegueWithIdentifier("toMediaViewController", sender: self)
+@@ -145,15 +145,13 @@ class SPCaptureViewController: UIViewController {
+                 startVideoRecord()
+             }
+         }
+-        
+-
+     }
+     
+     @IBAction func skipButtonPressed(sender: AnyObject) {
+-        MomentSingleton.sharedInstance.mediaType = 0
++        self.mediaType = 0
+         self.captureButton.enabled = false
+         self.image = nil
+-        self.videoURL = nil
++        self.videoUrl = nil
+         self.performSegueWithIdentifier("toMediaViewController", sender: sender)
+         self.captureButton.enabled = true
+     }
+@@ -162,13 +160,21 @@ class SPCaptureViewController: UIViewController {
+         
+         if segue.identifier == "toMediaViewController" {
+             let mediaViewController = segue.destinationViewController as! SPMediaViewController
+-
++            
+             mediaViewController.initWithRecording = false
+             mediaViewController.initWithText = false
+             mediaViewController.image = self.image
+-            mediaViewController.videoURL = self.videoURL
+             
+-            if self.image == nil &&  self.videoURL == nil {
++            MomentSingleton.sharedInstance.mediaType = mediaType
++            MomentSingleton.sharedInstance.image = image
++            MomentSingleton.sharedInstance.videoUrl = videoUrl
++
++            
++            while (waitingForVideoFile) {
++                NSThread.sleepForTimeInterval(0.01)
++            }
++            
++            if self.image == nil && self.videoUrl == nil {
+                 let button = sender as! UIButton
+                 if button.tag == 0 {
+                     mediaViewController.initWithRecording = true
+@@ -179,6 +185,6 @@ class SPCaptureViewController: UIViewController {
+         }
+         
+     }
+-
++    
+ }
+ 
+diff --git a/Spark1.0/SPLoginViewController.swift b/Spark1.0/SPLoginViewController.swift
+index be2e727..10266f5 100644
+--- a/Spark1.0/SPLoginViewController.swift
++++ b/Spark1.0/SPLoginViewController.swift
+@@ -67,7 +67,7 @@ class SPLoginViewController: UIViewController, UITextFieldDelegate {
+         // For testing only
+         if (emailField.text == nil || passwordField.text == nil ||
+             emailField.text == "" || passwordField.text == "") {
+-            emailField.text = "sparkdev@stanford.edu"
++            emailField.text = "lucast@stanford.edu"
+             passwordField.text = "dev"
+         }
+     
+diff --git a/Spark1.0/SPMediaViewController.swift b/Spark1.0/SPMediaViewController.swift
+index a48dc15..439c16e 100644
+--- a/Spark1.0/SPMediaViewController.swift
++++ b/Spark1.0/SPMediaViewController.swift
+@@ -32,15 +32,25 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
+     var image: UIImage! = nil
+     var imageView: UIImageView? = nil
+     var videoView: UIView? = nil
+-    var videoURL: NSURL! = nil
++    
++    var videoUrl: NSURL! = nil
++    var videoData: NSData! = nil
++    
+     var videoPlayer: AVPlayer! = nil
+     var videoPlayerLayer: AVPlayerLayer! = nil
+-    var recorder: AVAudioRecorder?
+-    var player: AVAudioPlayer?
+-    var isRecording: Bool! = false
++//    var recorder: AVAudioRecorder?
++//    var player: AVAudioPlayer?
++//    var isRecording: Bool! = false
+     var initWithRecording = false
+     var initWithText = false
+     
++    
++    @IBOutlet weak var audioView: UIView!
++    
++    
++    
++    var screenRect: CGRect = UIScreen.mainScreen().bounds
++    
+     @IBOutlet weak var audioViewContainer: UIView!
+     @IBOutlet weak var audioCloseButton: UIButton!
+     @IBOutlet weak var audioImageView: UIImageView!
+@@ -60,6 +70,12 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
+     @IBOutlet weak var visualEffectView: UIVisualEffectView!
+     @IBOutlet weak var textViewDistanceToBottomOfAudioView: NSLayoutConstraint!
+     
++    required init?(coder aDecoder: NSCoder) {
++        super.init(coder: aDecoder)
++        
++        MomentSingleton.sharedInstance.clearData()
++    }
++    
+     override func viewDidLoad() {
+         super.viewDidLoad()
+         self.textView.delegate = self
+@@ -69,56 +85,25 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
+         textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
+         self.navigationItem.setHidesBackButton(true, animated: false)
+         self.title = "Moment"
+-        setupAudioSession()
++        
++//        if player == nil {
++//            setupAudioSession()
++//        }
++        
+         enableDisableSaveTagButtons()
+         addStatusBarStyle()
+     }
+     
+     override func viewWillAppear(animated: Bool) {
+-        
+-        let screenRect = UIScreen.mainScreen().bounds;
+ 
+         self.navigationController?.navigationBar.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
+         self.navigationController?.navigationBar.translucent = true
+-
+-        MomentSingleton.sharedInstance.notes = nil
+-        MomentSingleton.sharedInstance.voiceFile = nil
+         
+-        if self.videoURL == nil {
+-            
+-            if self.imageView == nil {
+-                addBackgroundImageView()
+-            }
+-            
+-            if let view = self.videoView {
+-                self.view.sendSubviewToBack(view)
+-            }
+-            
+-            if let backgroundImage = self.image {
+-                self.imageView!.image = backgroundImage
+-            } else {
+-                self.imageView!.image = UIImage(named: "applicationBackground")
+-            }
+-            
++        if let mediaType = MomentSingleton.sharedInstance.mediaType where mediaType == 0 {
++            updateWithImage()
+         } else {
+-            
+-            videoPlayer = AVPlayer(URL: videoURL)
+-            videoPlayer.actionAtItemEnd = AVPlayerActionAtItemEnd.None
+-            
+-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: videoPlayer.currentItem)
+-            
+-            videoPlayerLayer = AVPlayerLayer(player: videoPlayer)
+-            videoPlayerLayer.frame = screenRect
+-            
+-            if self.videoView == nil {
+-                addBackgroundVideoView()
+-            }
+-            if let view = self.imageView {
+-                self.view.sendSubviewToBack(view)
+-            }
+-            videoPlayer.play()
++            updateWithVideoData()
+         }
+-
+     }
+     
+     @IBAction func deleteButtonPressed(sender: AnyObject) {
+@@ -126,6 +111,10 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
+     }
+     
+     func addBackgroundImageView() {
++        if let imageView = self.imageView {
++            imageView.removeFromSuperview()
++        }
++        
+         self.imageView = UIImageView(image: self.image)
+         self.imageView!.frame = self.view.frame
+         self.view.addSubview(self.imageView!)
+@@ -134,6 +123,10 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
+     }
+ 
+     func addBackgroundVideoView() {
++        if let videoView = self.videoView {
++            videoView.removeFromSuperview()
++        }
++        
+         self.videoView = UIView(frame: self.view.frame)
+         self.videoView!.layer.addSublayer(videoPlayerLayer)
+         self.view.addSubview(self.videoView!)
+@@ -151,12 +144,91 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
+     
+     override func viewDidAppear(animated: Bool) {
+         if initWithRecording {
+-            recordButtonPressed(self)
+-        } else if initWithText {
++//            recordButtonPressed(self)
++        } else if initWithText || MomentSingleton.sharedInstance.notes != nil {
+             textButtonPressed(self)
++            if let notes = MomentSingleton.sharedInstance.notes {
++                textView.text = notes
++            }
++        }
++    }
++    
++    // MARK: - callback methods for loading in a pre-existing moment
++    
++    func updateWithVideoData() {
++        if let mediaType = MomentSingleton.sharedInstance.mediaType, let videoUrl = MomentSingleton.sharedInstance.videoUrl where mediaType == 1 {
++            imageView?.hidden = true
++            videoPlayerLayer?.hidden = false
++            
++            self.videoUrl = videoUrl
++            
++            videoPlayer = AVPlayer(URL: videoUrl)
++            
++            videoPlayer.actionAtItemEnd = AVPlayerActionAtItemEnd.None
++            
++            NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: videoPlayer.currentItem)
++            
++            videoPlayerLayer = AVPlayerLayer(player: videoPlayer)
++            videoPlayerLayer.frame = screenRect
++            
++            if self.videoView == nil {
++                addBackgroundVideoView()
++            }
++            if let view = self.imageView {
++                self.view.sendSubviewToBack(view)
++            }
++            videoPlayer.play()
+         }
++        enableDisableSaveTagButtons()
+     }
+     
++    func updateWithVoiceData() {
++//        if let data = MomentSingleton.sharedInstance.voiceData {
++//            do {
++//                player = try AVAudioPlayer(data: data)
++//                player?.delegate = self
++//                player?.prepareToPlay()
++//                
++//                
++//                showAudioContainer()
++//                audioRecordingLabel.hidden = true
++//                self.audioButton.setImage(UIImage(named: "microphoneButton"), forState: UIControlState.Normal)
++//                
++//            } catch let error as NSError {
++//                print("ERROR with setting up player", error.localizedDescription)
++//            }
++//        }
++//        enableDisableSaveTagButtons()
++    }
++    
++    func updateWithImage() {
++        if let mediaType = MomentSingleton.sharedInstance.mediaType where mediaType == 0 {
++            addBackgroundImageView()
++            if  let image = MomentSingleton.sharedInstance.image {
++                
++                videoPlayerLayer?.hidden = true
++                imageView?.hidden = false
++                
++                self.image = image
++                
++                if let view = self.videoView {
++                    self.view.sendSubviewToBack(view)
++                }
++                
++                if let backgroundImage = self.image, let imageView = self.imageView {
++                    imageView.image = backgroundImage
++                }
++            } else {
++                self.imageView!.image = UIImage(named: "applicationBackground")
++            }
++        }
++        enableDisableSaveTagButtons()
++    }
++    
++    
++    
++    // MARK: - Other
++    
+     override func canBecomeFirstResponder() -> Bool {
+         return true
+     }
+@@ -168,64 +240,88 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
+     }
+     
+     func enableDisableSaveTagButtons() {
+-        let hasRecording = !audioViewContainer.hidden && !isRecording
+-        let hasNotes = textView.text != nil && textView.text != ""
+-        let enableButtons = hasNotes || hasRecording || image != nil || videoURL != nil
+-        
+-        saveButton.enabled = enableButtons
+-        tagButton.enabled = enableButtons
+-    }
+-    
+-    func getSoundFile() -> NSURL {
+-        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+-        let docsDir = dirPaths[0]
++        //  TODO: replace this functionality!
++        var hasRecording = false
++//        if let audioContainer = audioViewContainer where !audioContainer.hidden && !isRecording {
++//            hasRecording = true
++//        } else if MomentSingleton.sharedInstance.voiceData != nil {
++//            hasRecording = true
++//        }
+         
+-        let soundFilePath = docsDir.stringByAppendingString("/sound.caf")
++        var hasNotes = false
++        if let textView = textView where textView.text != nil && textView.text != "" {
++            hasNotes = true
++        } else if MomentSingleton.sharedInstance.notes != nil {
++            hasNotes = true
++        }
+         
+-        return NSURL(fileURLWithPath: soundFilePath)
+-    }
+-    
+-    func setupAudioSession() {
++        let hasImage = (image != nil && MomentSingleton.sharedInstance.image != nil)
++        let hasVideo = (videoUrl != nil && MomentSingleton.sharedInstance.videoUrl != nil)
+         
+-        let soundFileURL = getSoundFile()
+-
+-        let session : AVAudioSession = AVAudioSession.sharedInstance()
++        let enableButtons = hasNotes || hasRecording || hasImage || hasVideo
+         
+-        do {
+-            try session.setCategory(AVAudioSessionCategoryPlayAndRecord)
+-            let recordSettings : [String : AnyObject] =
+-            [AVEncoderAudioQualityKey: AVAudioQuality.Min.rawValue,
+-                AVEncoderBitRateKey: 16,
+-                AVNumberOfChannelsKey: 2,
+-                AVSampleRateKey: 44100.0]
+-            
+-            
+-            self.recorder = try AVAudioRecorder(URL:soundFileURL, settings: recordSettings)
+-            self.recorder?.delegate = self
+-            self.recorder?.prepareToRecord()
+-            
+-            
+-        } catch let error as NSError {
+-            print("ERROR with setting up audio", error.localizedDescription)
+-            
++        if let saveButton = saveButton, let tagButton = tagButton {
++            saveButton.enabled = enableButtons
++            tagButton.enabled = enableButtons
+         }
+     }
+     
+-    func setupAudioPlayer() {
+-        let soundFileURL = getSoundFile()
+-
+-        do {
+-            self.player = try AVAudioPlayer(contentsOfURL: soundFileURL)
+-            self.player?.delegate = self
+-            self.player?.prepareToPlay()
+-        } catch let error as NSError {
+-            print("ERROR with setting up player", error.localizedDescription)
+-            
+-        }
++//    func getSoundFile() -> NSURL {
++//        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
++//        let docsDir = dirPaths[0]
++//        
++//        let soundFilePath = docsDir.stringByAppendingString("/sound.caf")
++//        
++//        return NSURL(fileURLWithPath: soundFilePath)
++//    }
++    
++//    func setupAudioSession() {
++//        
++//        let soundFileURL = getSoundFile()
++//
++//        let session : AVAudioSession = AVAudioSession.sharedInstance()
++//        
++//        do {
++//            try session.setCategory(AVAudioSessionCategoryPlayAndRecord)
++//            let recordSettings : [String : AnyObject] =
++//            [AVEncoderAudioQualityKey: AVAudioQuality.Min.rawValue,
++//                AVEncoderBitRateKey: 16,
++//                AVNumberOfChannelsKey: 2,
++//                AVSampleRateKey: 44100.0]
++//            
++//            
++//            self.recorder = try AVAudioRecorder(URL:soundFileURL, settings: recordSettings)
++//            self.recorder?.delegate = self
++//            self.recorder?.prepareToRecord()
++//            
++//            
++//        } catch let error as NSError {
++//            print("ERROR with setting up audio", error.localizedDescription)
++//            
++//        }
++//    }
++    
++//    func setupAudioPlayer() {
++//        let soundFileURL = getSoundFile()
++//
++//        do {
++//            self.player = try AVAudioPlayer(contentsOfURL: soundFileURL)
++//            self.player?.delegate = self
++//            self.player?.prepareToPlay()
++//        } catch let error as NSError {
++//            print("ERROR with setting up player", error.localizedDescription)
++//            
++//        }
++//    }
++    
++    // MARK: - Show / Hide Views
++    
++    func showAudioContainerInRecordState() {
++        self.audioButton.setImage(UIImage(named: "recordStopButton"), forState: UIControlState.Normal)
++        showAudioContainer()
+     }
+     
+     func showAudioContainer() {
+-        self.audioButton.setImage(UIImage(named: "recordStopButton"), forState: UIControlState.Normal)
+         textViewDistanceToBottomOfAudioView.constant = 4
+         self.audioViewContainer.hidden = false
+         UIView.animateWithDuration(0.3) {
+@@ -265,11 +361,10 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
+     
+     func textFieldShouldReturn(textField: UITextField) -> Bool {
+         textField.resignFirstResponder()
+-        print("FIRST")
+         return true
+     }
+     
+-
++    // MARK: - Button interactions
+     
+     @IBAction func textButtonPressed(sender: AnyObject) {
+         showTextContainer()
+@@ -284,38 +379,47 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
+         self.textView.endEditing(true)
+     }
+     
+-    @IBAction func recordButtonPressed(sender: AnyObject) {
+-        
+-        if isRecording == false {
+-            showAudioContainer()
+-            audioPlayButton.hidden = true
+-            audioRecordingLabel.hidden = false
+-            audioImageView.hidden = true
+-            recorder?.record()
+-            
+-        } else {
+-            audioButton.setImage(UIImage(named: "microphoneButtonSelected"), forState: UIControlState.Normal)
+-            audioPlayButton.hidden = false
+-            audioRecordingLabel.hidden = true
+-            audioImageView.hidden = false
+-            recorder?.stop()
+-        }
+-        
+-        isRecording = !isRecording
+-        enableDisableSaveTagButtons()
+-    }
+-    
+-    @IBAction func audioCloseButtonPressed(sender: AnyObject) {
+-        hideAudioContainer()
+-        enableDisableSaveTagButtons()
+-    }
++//    @IBAction func recordButtonPressed(sender: AnyObject) {
++//        
++//        if isRecording == false {
++//            showAudioContainerInRecordState()
++//            audioPlayButton.hidden = true
++//            audioRecordingLabel.hidden = false
++//            audioImageView.hidden = true
++//            recorder?.record()
++//            
++//        } else {
++//            audioButton.setImage(UIImage(named: "microphoneButtonSelected"), forState: UIControlState.Normal)
++//            audioPlayButton.hidden = false
++//            audioRecordingLabel.hidden = true
++//            audioImageView.hidden = false
++//            recorder?.stop()
++//        }
++//        
++//        isRecording = !isRecording
++//        enableDisableSaveTagButtons()
++//    }
++    
++//    @IBAction func audioCloseButtonPressed(sender: AnyObject) {
++//        hideAudioContainer()
++//        enableDisableSaveTagButtons()
++//    }
+     
+     @IBAction func saveButtonPressed(sender: AnyObject) {
+         
+         updateMomentSingleton()
+         
+-        Moment.createMoment(MomentSingleton.sharedInstance.mediaType == 0, students: nil, categories: nil, notes: MomentSingleton.sharedInstance.notes,
+-            imageFile: MomentSingleton.sharedInstance.image, videoURL: MomentSingleton.sharedInstance.videoUrl, voiceFile: MomentSingleton.sharedInstance.voiceFile)
++        if let oldMoment = MomentSingleton.sharedInstance.moment {
++            oldMoment.updateMomentInfo(MomentSingleton.sharedInstance.mediaType == 0, students: nil,
++                categories: nil, notes: MomentSingleton.sharedInstance.notes,
++                imageFile: MomentSingleton.sharedInstance.image, videoURL: MomentSingleton.sharedInstance.videoUrl,
++                voiceFile: MomentSingleton.sharedInstance.voiceFile)
++        } else {
++            Moment.createMoment(MomentSingleton.sharedInstance.mediaType == 0, students: nil,
++                categories: nil, notes: MomentSingleton.sharedInstance.notes,
++                imageFile: MomentSingleton.sharedInstance.image, videoURL: MomentSingleton.sharedInstance.videoUrl,
++                voiceFile: MomentSingleton.sharedInstance.voiceFile)
++        }
+         
+         User.currentUser()?.refreshUntaggedMoments(nil)
+         
+@@ -335,13 +439,13 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
+         
+     }
+     
+-    @IBAction func audioPlayButtonPressed(sender: AnyObject) {
+-        if self.player == nil {
+-            setupAudioPlayer()
+-        }
+-        
+-        self.player?.play()
+-    }
++//    @IBAction func audioPlayButtonPressed(sender: AnyObject) {
++//        if self.player == nil {
++//            setupAudioPlayer()
++//        }
++//        
++//        self.player?.play()
++//    }
+     
+     func textViewDidEndEditing(textView: UITextView) {
+         if textView.text.isEmpty {
+@@ -354,9 +458,9 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
+     }
+     
+     func updateMomentSingleton() {
+-        if !self.audioViewContainer.hidden {
+-            MomentSingleton.sharedInstance.voiceFile = getSoundFile()
+-        }
++//        if !self.audioViewContainer.hidden {
++//            MomentSingleton.sharedInstance.voiceFile = getSoundFile()
++//        }
+         if !self.textViewContainer.hidden && !self.textView.text.isEmpty {
+             MomentSingleton.sharedInstance.notes = self.textView.text
+         }
+diff --git a/Spark1.0/SPMomentViewController.swift b/Spark1.0/SPMomentViewController.swift
+index 07d5d5a..b2e0bfa 100644
+--- a/Spark1.0/SPMomentViewController.swift
++++ b/Spark1.0/SPMomentViewController.swift
+@@ -21,14 +21,10 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
+     @IBOutlet weak var tableView: UITableView!
+     @IBOutlet weak var imageView: UIImageView!
+     @IBOutlet weak var captionLabel: UILabel!
+-    @IBOutlet weak var audioView: UIView!
++    @IBOutlet weak var audioView: AudioView!
+     
+-    @IBOutlet weak var audioBlur: UIVisualEffectView!
+  
+     @IBOutlet weak var textBlur: UIVisualEffectView!
+-    @IBAction func playButton(sender: UIButton) {
+-        self.player?.play()
+-    }
+     
+     var videoPlayer: AVPlayer! = nil
+     var videoPlayerLayer: AVPlayerLayer! = nil
+@@ -66,7 +62,7 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
+             })
+         // video
+         } else {
+-            moment.video({ video in
++             moment.video({ video in
+                 if let video = video, let videoUrl = video.url {
+                     self.videoPlayer = AVPlayer(URL: NSURL(string: videoUrl)!)
+                     self.videoPlayer.actionAtItemEnd = AVPlayerActionAtItemEnd.None
+@@ -79,19 +75,34 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
+             })
+         }
+         
++        let audioView = AudioView.instanceFromNib()
++        view.addSubview(audioView)
++        
++        audioView.withMoment(moment)
++        audioView.populateView()
++//        audioView.backgroundColor = UIColor.whiteColor()
++        
++        audioView.transform = CGAffineTransformMakeTranslation(0.0, 8 + navigationController!.navigationBar.frame.maxY)
++        
++        let spaceBetweenAudioAndNotes = textBlur.frame.minY - audioView.frame.maxY
++        let shift = 12 - spaceBetweenAudioAndNotes
++        textBlur.transform = CGAffineTransformMakeTranslation(0.0, shift)
++        captionLabel.transform = CGAffineTransformMakeTranslation(0.0, shift)
++        
++        
++        
+         moment.getFileNamed("voiceData", callback: { (data: NSData?) -> Void in
+-            if data != nil {
+-                do {
+-                    self.player = try AVAudioPlayer(data: data!)
+-                    self.player?.delegate = self
+-                    self.player?.prepareToPlay()
+-                } catch let error as NSError {
+-                    print("ERROR with setting up player", error.localizedDescription)
+-                }
+-            } else {
+-                self.audioView.hidden = true
+-                self.audioBlur.hidden = true
+-            }
++//            if data != nil {
++//                do {
++//                    self.player = try AVAudioPlayer(data: data!)
++//                    self.player?.delegate = self
++//                    self.player?.prepareToPlay()
++//                } catch let error as NSError {
++//                    print("ERROR with setting up player", error.localizedDescription)
++//                }
++//            } else {
++//                self.audioView.hidden = true
++//            }
+         })
+ 
+         addStatusBarStyle()
+@@ -122,6 +133,10 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
+         if let videoPlayer = videoPlayer {
+             videoPlayer.pause()
+         }
++        if let audioView = audioView {
++//            audioView.state = .stopped
++//            audioView.audioPlot = nil
++        }
+     }
+  
+     
+@@ -131,9 +146,9 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
+             
+             videoPlayerLayer.frame = imageView.frame
+             view.layer.addSublayer(videoPlayerLayer)
++            videoPlayerLayer.zPosition = -1
+             
+-//            videoPlayer.play()
+-            print("first")
++            videoPlayer.play()
+         }
+     }
+     
+@@ -169,13 +184,11 @@ class SPMomentViewController: UIViewController, UITableViewDataSource, UITableVi
+                 } else {
+                     self.showSendMailErrorAlert()
+                 }
+-                print("DONE")
+             } else {
+                 let noEmailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "No email assigned to current student's parents.", delegate: self, cancelButtonTitle: "OK")
+                 noEmailErrorAlert.show()
+             }
+         }
+-        // performSegueWithIdentifier("toMomentViewController", sender: cell)
+     }
+     
+     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+diff --git a/Spark1.0/SPStudentViewController.swift b/Spark1.0/SPStudentViewController.swift
+index 7f08c04..e38a39e 100644
+--- a/Spark1.0/SPStudentViewController.swift
++++ b/Spark1.0/SPStudentViewController.swift
+@@ -23,6 +23,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
+ 
+     var imagePicker : UIImagePickerController!
+     var image : UIImage?
++    var isUntagged = false
+     
+     var student: Student?
+     var moments: [Moment] = []
+@@ -43,8 +44,6 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
+             imagePicker.sourceType = .Camera
+             presentViewController(imagePicker, animated: true, completion: nil)
+         }
+-        
+-        
+     }
+     
+     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+@@ -92,17 +91,32 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
+     
+     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+         let cell = tableView.cellForRowAtIndexPath(indexPath) as! MomentTableViewCell
+-        performSegueWithIdentifier("toMomentViewController", sender: cell)
++        if isUntagged {
++            performSegueWithIdentifier("Edit Moment", sender: cell)
++        } else {
++            performSegueWithIdentifier("toMomentViewController", sender: cell)
++        }
+     }
+     
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+-        if(segue.identifier == "toMomentViewController"){
++        if segue.identifier == "toMomentViewController" {
+             if let destination = segue.destinationViewController as? SPMomentViewController,
+                 let cell = sender as? MomentTableViewCell,
+                 let moment = cell.moment {
+                     destination.moment = moment
+                     destination.student = student
+             }
++        } else if segue.identifier == "Edit Moment" {
++            if let destination = segue.destinationViewController as? SPMediaViewController,
++               let cell = sender as? MomentTableViewCell,
++               let moment = cell.moment {
++                
++                MomentSingleton.sharedInstance.populateWithMoment(moment,
++                        imageCB: { destination.updateWithImage() },
++                        videoCB: { destination.updateWithVideoData() },
++                        voiceCB: { destination.updateWithVoiceData() }
++                )
++            }
+         }
+     }
+     
+@@ -155,6 +169,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
+                             self.moments = moments
+                             self.applyFilter("All")
+                             self.momentTableView.reloadData()
++                            self.populateStudentInfo(student)
+                         })
+                     }
+                 })
+@@ -163,6 +178,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
+                     self.moments = moments
+                     self.applyFilter("All")
+                     self.momentTableView.reloadData()
++                    self.populateStudentInfo(student)
+                 })
+             }
+             
+@@ -201,6 +217,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
+     }
+     
+     func prepareUntaggedTableView() {
++        isUntagged = true
+         studentInfoViewHeight.constant = 0
+         studentInfoView.hidden = true
+         nameLabel.title = "Untagged"
+diff --git a/Spark1.0/SPTagCategoryViewController.swift b/Spark1.0/SPTagCategoryViewController.swift
+index 29de1f3..66c089e 100644
+--- a/Spark1.0/SPTagCategoryViewController.swift
++++ b/Spark1.0/SPTagCategoryViewController.swift
+@@ -93,9 +93,15 @@ class SPTagCategoryViewController: UIViewController, UICollectionViewDelegate, U
+             MomentSingleton.sharedInstance.categories = self.selectedCategories
+         }
+         
+-        Moment.createMoment(MomentSingleton.sharedInstance.mediaType == 0, students: MomentSingleton.sharedInstance.students,
+-            categories: MomentSingleton.sharedInstance.categories, notes: MomentSingleton.sharedInstance.notes,
+-            imageFile: MomentSingleton.sharedInstance.image, videoURL: MomentSingleton.sharedInstance.videoUrl, voiceFile: MomentSingleton.sharedInstance.voiceFile)
++        if let oldMoment = MomentSingleton.sharedInstance.moment {
++            oldMoment.updateMomentInfo(MomentSingleton.sharedInstance.mediaType == 0, students: MomentSingleton.sharedInstance.students,
++                categories: MomentSingleton.sharedInstance.categories, notes: MomentSingleton.sharedInstance.notes,
++                imageFile: MomentSingleton.sharedInstance.image, videoURL: MomentSingleton.sharedInstance.videoUrl, voiceFile: MomentSingleton.sharedInstance.voiceFile)
++        } else {
++            Moment.createMoment(MomentSingleton.sharedInstance.mediaType == 0, students: MomentSingleton.sharedInstance.students,
++                categories: MomentSingleton.sharedInstance.categories, notes: MomentSingleton.sharedInstance.notes,
++                imageFile: MomentSingleton.sharedInstance.image, videoURL: MomentSingleton.sharedInstance.videoUrl, voiceFile: MomentSingleton.sharedInstance.voiceFile)
++        }
+         
+         self.navigationController?.popToRootViewControllerAnimated(false)
+         
+diff --git a/StudentCollectionViewCell.xib b/StudentCollectionViewCell.xib
+index c405573..74b8a00 100644
+--- a/StudentCollectionViewCell.xib
++++ b/StudentCollectionViewCell.xib
+@@ -1,8 +1,8 @@
+ <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15E49a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
++<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+     <dependencies>
+         <deployment identifier="iOS"/>
+-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
++        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+     </dependencies>
+     <objects>
+@@ -16,7 +16,7 @@
+                 <autoresizingMask key="autoresizingMask"/>
+                 <subviews>
+                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCx-VS-EZo" userLabel="Initials">
+-                        <rect key="frame" x="20" y="17.5" width="90" height="90"/>
++                        <rect key="frame" x="20" y="18" width="90" height="90"/>
+                         <constraints>
+                             <constraint firstAttribute="height" constant="90" id="VFZ-xl-NiY"/>
+                             <constraint firstAttribute="width" constant="90" id="c1V-UT-l84"/>
+@@ -26,7 +26,7 @@
+                         <nil key="highlightedColor"/>
+                     </label>
+                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u3U-oV-R1L">
+-                        <rect key="frame" x="12.5" y="12" width="90" height="90"/>
++                        <rect key="frame" x="13" y="12" width="90" height="90"/>
+                         <constraints>
+                             <constraint firstAttribute="height" constant="90" id="NJD-Pf-Dta"/>
+                             <constraint firstAttribute="width" constant="90" id="sSS-EG-aKK"/>
+@@ -36,7 +36,7 @@
+                         <rect key="frame" x="77" y="8" width="30" height="30"/>
+                         <subviews>
+                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z63-tg-2dE">
+-                                <rect key="frame" x="9" y="5" width="7.5" height="14.5"/>
++                                <rect key="frame" x="9" y="5" width="8" height="15"/>
+                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                 <nil key="highlightedColor"/>
+@@ -55,7 +55,7 @@
+                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                     </view>
+                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rg8-5Z-f5s">
+-                        <rect key="frame" x="35" y="107.5" width="45" height="20.5"/>
++                        <rect key="frame" x="35" y="108" width="45" height="20"/>
+                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                         <nil key="highlightedColor"/>
