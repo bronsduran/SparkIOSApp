@@ -48,6 +48,8 @@
 		C54399151C5888A10049D903 /* TextInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54399141C5888A10049D903 /* TextInputTableViewCell.swift */; };
 		C54399181C5A135B0049D903 /* SPSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54399171C5A135B0049D903 /* SPSettingsViewController.swift */; };
 		C543991A1C5AF5900049D903 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C54399191C5AF5900049D903 /* AVFoundation.framework */; };
+		C552A4BD1C8E4F0200749763 /* StudentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C552A4BC1C8E4F0200749763 /* StudentHeaderView.swift */; };
+		C552A4BF1C8E4F2D00749763 /* StudentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C552A4BE1C8E4F2D00749763 /* StudentHeaderView.xib */; };
 		C562F8981C76DB2C000964C8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C562F8971C76DB2C000964C8 /* Extensions.swift */; };
 		C57DB7651C4F49C600022D3A /* SPCreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57DB7641C4F49C600022D3A /* SPCreateAccountViewController.swift */; };
 		C57DB7671C4F4A2800022D3A /* SPCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57DB7661C4F4A2800022D3A /* SPCaptureViewController.swift */; };
@@ -131,6 +133,8 @@
 		C54399141C5888A10049D903 /* TextInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputTableViewCell.swift; sourceTree = "<group>"; };
 		C54399171C5A135B0049D903 /* SPSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPSettingsViewController.swift; sourceTree = "<group>"; };
 		C54399191C5AF5900049D903 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C552A4BC1C8E4F0200749763 /* StudentHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentHeaderView.swift; sourceTree = "<group>"; };
+		C552A4BE1C8E4F2D00749763 /* StudentHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StudentHeaderView.xib; sourceTree = "<group>"; };
 		C562F8971C76DB2C000964C8 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C57DB7641C4F49C600022D3A /* SPCreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPCreateAccountViewController.swift; sourceTree = "<group>"; };
 		C57DB7661C4F4A2800022D3A /* SPCaptureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SPCaptureViewController.swift; sourceTree = "<group>"; };
@@ -235,6 +239,8 @@
 			children = (
 				4B2285FB1C4AE4E800CE4146 /* AppDelegate.swift */,
 				4B2285FF1C4AE4E800CE4146 /* Main.storyboard */,
+				C552A4BC1C8E4F0200749763 /* StudentHeaderView.swift */,
+				C552A4BE1C8E4F2D00749763 /* StudentHeaderView.xib */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -416,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B693A3D1C588FC7005478D9 /* CategoryCollectionViewCell.xib in Resources */,
+				C552A4BF1C8E4F2D00749763 /* StudentHeaderView.xib in Resources */,
 				4B693A391C588693005478D9 /* StudentCollectionViewCell.xib in Resources */,
 				4B2286091C4AE4E800CE4146 /* LaunchScreen.storyboard in Resources */,
 				4B2286061C4AE4E800CE4146 /* Assets.xcassets in Resources */,
@@ -470,6 +477,7 @@
 				4B2286041C4AE4E800CE4146 /* Spark1_0.xcdatamodeld in Sources */,
 				4B2285FC1C4AE4E800CE4146 /* AppDelegate.swift in Sources */,
 				C50BFB1A1C5EE7A600AB490C /* ButtonTableViewCell.swift in Sources */,
+				C552A4BD1C8E4F0200749763 /* StudentHeaderView.swift in Sources */,
 				D4BD3BA21C589E13003BBFC8 /* MomentTableViewCell.swift in Sources */,
 				0A40F5741C5D5EC6000485B5 /* User.swift in Sources */,
 			);

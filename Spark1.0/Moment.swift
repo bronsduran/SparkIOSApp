@@ -199,7 +199,7 @@ class Moment: PFObject, PFSubclassing {
         
         // Image Data
         if let file = imageFile {
-            let imageData = UIImageJPEGRepresentation(file, 0.1)
+            let imageData = UIImageJPEGRepresentation(file, 0.9)
             let parseImageFile = PFFile(data: imageData!)
             self.setObject(parseImageFile!, forKey: "momentData")
         } else if let url = videoURL {

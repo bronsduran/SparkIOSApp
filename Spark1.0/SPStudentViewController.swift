@@ -8,18 +8,11 @@
 
 class SPStudentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AKPickerViewDataSource, AKPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet weak var pickerHeight: NSLayoutConstraint!
-    @IBOutlet weak var studentInfoView: UIView!
     @IBOutlet weak var momentTableView: UITableView!
-    @IBOutlet weak var pictureImageView: UIImageView!
-    @IBOutlet weak var countView: UIView!
-    @IBOutlet weak var countLabel: UILabel!
-    @IBOutlet weak var backGround: UIImageView!
+
     @IBOutlet weak var nameLabel: UINavigationItem!
-    @IBOutlet weak var studentInfoViewHeight: NSLayoutConstraint!
     
-    @IBOutlet weak var backgroundImage: UIImageView!
-    @IBOutlet weak var pickerView: AKPickerView!
+//    @IBOutlet weak var pickerView: AKPickerView!
 
     var imagePicker : UIImagePickerController!
     var image : UIImage?
@@ -28,43 +21,114 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     var moments: [Moment] = []
     var momentsToShow: [Moment] = []
     var categoriesToShow = Moment.momentCategories
-    var isUntagged = false
 
+    var header: StudentHeaderView? = nil
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+//        self.pickerView.delegate = self
+//        self.pickerView.dataSource = self
+//        
+//        self.pickerView.font = UIFont(name: "HelveticaNeue-Light", size: 20)!
+//        self.pickerView.highlightedFont = UIFont(name: "HelveticaNeue-Bold", size: 20)!
+//        self.pickerView.pickerViewStyle = .Wheel
+//        self.pickerView.maskDisabled = false
+//        self.pickerView.layer.shadowColor = UIColor.lightGrayColor().CGColor
+//        self.pickerView.reloadData()
+        addStatusBarStyle()
         
-    @IBAction func cameraButtonPressed(sender: UIButton) {
-        if pictureImageView.image == UIImage(named: "addStudentCameraIcon") {
-            
-            if NSUserDefaults.standardUserDefaults().boolForKey("isSimulator") {
-                return
-            }
-            image = nil
-            imagePicker = UIImagePickerController()
-            
-            imagePicker.delegate = self
-            imagePicker.sourceType = .Camera
-            presentViewController(imagePicker, animated: true, completion: nil)
+        let cellNib: UINib = UINib(nibName: "MomentTableViewCell", bundle: nil)
+        momentTableView.registerNib(cellNib, forCellReuseIdentifier: "MomentTableViewCell")
+        
+        let headerNib: UINib = UINib(nibName: "StudentHeaderView", bundle: nil)
+        momentTableView.registerNib(headerNib, forHeaderFooterViewReuseIdentifier: "StudentHeaderView")
+        
+        configureTableView()
+    
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //        self.pickerView.reloadData()
+        //        self.applyFilter(self.pickerView.selectedItem.description)
+        
+        if categoriesToShow.count == 7 {
+            categoriesToShow.insert("All", atIndex: 3)
         }
         
+        // student table
+
+        if let student = student {
+            nameLabel.title = student["firstName"] as? String
+
+            student.moments({ (moments: [Moment]) -> Void in
+                self.moments = moments
+                self.applyFilter("All")
+                self.momentTableView.reloadData()
+                self.updateStudentHeader()
+            })
+        // untagged moments table
+        } else {
+            nameLabel.title = "Untagged"
+
+            User.currentUser()!.untaggedMoments() { (foundMoments) -> Void in
+                self.moments = foundMoments
+                self.applyFilter("All")
+                self.momentTableView.reloadData()
+                self.updateStudentHeader()
+            }
+        }
+    }
+    
+
+    
+    @IBAction func cameraButtonPressed(sender: UIButton) {
         
+        
+        if NSUserDefaults.standardUserDefaults().boolForKey("isSimulator") {
+            return
+        }
+        
+        image = nil
+        imagePicker = UIImagePickerController()
+        
+        imagePicker.delegate = self
+        imagePicker.sourceType = .Camera
+        presentViewController(imagePicker, animated: true, completion: nil)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         self.image = image
         if let student = student {
-            student.updateStudentInfo(student["firstName"] as? String, lastName: student["lastName"] as? String, phoneNumber: student["parentPhone"] as? String, parentEmail: student["parentEmail"] as? String, photo: image)
+            student.updateStudentInfo(nil, lastName: nil, phoneNumber: nil, parentEmail: nil, photo: image, callback: nil)
         }
         
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
+
     
     }
     
-    func updateStudentImageView() {
-        if self.image != nil {
-            self.pictureImageView.image = self.image
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        if student == nil {
+            return nil
         } else {
-            self.pictureImageView.image = UIImage(named: "addStudentCameraIcon")
+            let cell = self.momentTableView.dequeueReusableHeaderFooterViewWithIdentifier("StudentHeaderView")
+            header = cell as! StudentHeaderView
+            header?.photoButton.addTarget(self, action: "cameraButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+            self.updateStudentHeader()
+            return header
         }
-        self.pictureImageView.setNeedsDisplay() 
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if student == nil {
+            return 0.0
+        } else {
+            return 150.0
+        }
     }
     
     
@@ -93,7 +157,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! MomentTableViewCell
-        if isUntagged {
+        if student == nil {
             performSegueWithIdentifier("Edit Moment", sender: cell)
         } else {
             performSegueWithIdentifier("toMomentViewController", sender: cell)
@@ -146,114 +210,14 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
 
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.pickerView.reloadData()
-        self.applyFilter(self.pickerView.selectedItem.description)
-        
-        
-        if categoriesToShow.count == 7 {
-            categoriesToShow.insert("All", atIndex: 3)
-        }
-        updateStudentImageView()
-
-        // if this is a student table
-        if let student = student {
-            populateStudentInfo(student)
-            
-            if !student.hasFetchedMoments {
-                student.refreshMoments({ (success) -> Void in
-                    if success {
-                        student.hasFetchedMoments = true
-                        student.moments({ (moments: [Moment]) -> Void in
-                            self.moments = moments
-                            self.applyFilter("All")
-                            self.momentTableView.reloadData()
-                            self.populateStudentInfo(student)
-                        })
-                    }
-                })
-            } else {
-                student.moments({ (moments: [Moment]) -> Void in
-                    self.moments = moments
-                    self.applyFilter("All")
-                    self.momentTableView.reloadData()
-                    self.populateStudentInfo(student)
-                })
-            }
-            
-        // if this is an untagged moments table
-        } else {
-            prepareUntaggedTableView()
-            User.currentUser()!.untaggedMoments() { (foundMoments) -> Void in
-                self.moments = foundMoments
-                self.applyFilter("All")
-                self.momentTableView.reloadData()
-            }
-        }
-        self.backgroundImage.image = self.pictureImageView.image
-        
-    }
     
-    func populateStudentInfo(student: Student) {
-        let numberOfMoments = moments.count
-        countLabel.text = String(numberOfMoments)
+    func updateStudentHeader() {
         
-        nameLabel.title = student["firstName"] as? String
-        
-        student.image { (image: UIImage?) -> Void in
-            if image != nil {
-                self.pictureImageView.image = image
-                self.pictureImageView.contentMode = UIViewContentMode.ScaleAspectFill
-                self.pictureImageView.layer.cornerRadius = self.pictureImageView.frame.height / 2
-                self.pictureImageView.layer.masksToBounds = true
-                self.pictureImageView.layer.opaque = false
-            } else {
-                // no picture taken image
-                self.pictureImageView.image = UIImage(named: "addStudentCameraIcon")
-            }
+        if let student = student, header = header {
+            header.initWithStudent(student, withMoments: true)
         }
         
     }
-    
-    func prepareUntaggedTableView() {
-        isUntagged = true
-        studentInfoViewHeight.constant = 0
-        studentInfoView.hidden = true
-        nameLabel.title = "Untagged"
-        pickerHeight.constant = 0
-        pickerView.hidden = true
-        
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.pickerView.delegate = self
-        self.pickerView.dataSource = self
-        
-        self.pickerView.font = UIFont(name: "HelveticaNeue-Light", size: 20)!
-        self.pickerView.highlightedFont = UIFont(name: "HelveticaNeue-Bold", size: 20)!
-        self.pickerView.pickerViewStyle = .Wheel
-        self.pickerView.maskDisabled = false
-        self.pickerView.layer.shadowColor = UIColor.lightGrayColor().CGColor
-        self.pickerView.reloadData()
-        addStatusBarStyle()
-     
-        let cellNib: UINib = UINib(nibName: "MomentTableViewCell", bundle: nil)
-        momentTableView.registerNib(cellNib, forCellReuseIdentifier: "MomentTableViewCell")
-              
-        
-        // Header
-        countView.layer.cornerRadius = countView.frame.height / 2
-        countView.backgroundColor = UIColor(white: 0.0, alpha: 0.1)
-        
-        configureTableView()
-        //addBackgroundView()
-      
-    }
-    
     
     // MARK: - AKPickerViewDataSource
     

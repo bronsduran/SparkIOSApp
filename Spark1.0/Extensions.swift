@@ -30,7 +30,7 @@ extension PFObject {
             })
             
         } else {
-            callback(foundObjects: nil)
+            callback(foundObjects: [])
         }
     }
     
@@ -64,7 +64,7 @@ extension PFObject {
             })
             
         } else {
-            callback(foundObjects: nil)
+            callback(foundObjects: [])
         }
     }
     
