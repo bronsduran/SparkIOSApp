@@ -68,7 +68,7 @@ class StudentCollectionViewCell: UICollectionViewCell {
         nameLabel.text = student.displayName()
         initialsLabel.text = student.initials()
         countLabel.text = String(student.numberOfMoments())
-        countView.backgroundColor = UIColor(red:100/255.0, green:168/255.0, blue:205/255.0,  alpha:0.7);
+        countView.backgroundColor = UIColor(red:155/255.0, green:167/255.0, blue:173/255.0,  alpha:1.0);
 
         student.image { (image: UIImage?) -> Void in
             if image != nil {
@@ -96,7 +96,7 @@ class StudentCollectionViewCell: UICollectionViewCell {
         pictureImageView.hidden = false
         initialsLabel.hidden = true
         student = nil
-        countView.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:0.7)
+        countView.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
         countLabel.text = String(User.currentUser()!.getNumberUntaggedMoments())
         nameLabel.text = "Untagged"
         pictureImageView.image = UIImage(named: "untaggedIcon")

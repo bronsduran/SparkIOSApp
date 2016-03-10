@@ -177,7 +177,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     func configureTableView() {
         momentTableView.backgroundColor = UIColor.clearColor()
         momentTableView.separatorStyle = UITableViewCellSeparatorStyle.SingleLine
-        momentTableView.separatorColor = UIColor(red: 106/255.0, green: 117/255.0, blue: 128/255.0, alpha: 1.0)
+        momentTableView.separatorColor = UIColor(red: 106/255.0, green: 117/255.0, blue: 128/255.0, alpha: 0.5)
 
     }
     

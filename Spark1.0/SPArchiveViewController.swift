@@ -36,6 +36,8 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         self.archiveCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "StudentCollectionViewCell")
         
         archiveCollectionView.backgroundColor = UIColor.clearColor()
+        
+    
     
    }
     

@@ -22,7 +22,7 @@ class StudentHeaderView: UITableViewHeaderFooterView {
         photoButton.imageView?.opaque = true
 
         countView.layer.cornerRadius = countView.frame.height / 2
-        countView.backgroundColor = UIColor(red:100/255.0, green:168/255.0, blue:205/255.0,  alpha:0.7);
+        countView.backgroundColor = UIColor(red:155/255.0, green:167/255.0, blue:173/255.0,  alpha:1.0);
 
     }
     
