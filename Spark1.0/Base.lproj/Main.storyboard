@@ -40,7 +40,7 @@
                                     <constraint firstAttribute="height" constant="32" id="xf9-MW-T8v"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="passwordIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bCe-DH-kQd">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="passwordIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bCe-DH-kQd">
                                 <rect key="frame" x="22" y="331" width="32" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="9JT-80-kRw"/>
@@ -1477,7 +1477,7 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MfO-or-gZe">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MfO-or-gZe">
                                 <rect key="frame" x="0.0" y="66" width="320" height="430"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="2" minimumInteritemSpacing="2" id="yih-V0-1TU">
                                     <size key="itemSize" width="115" height="148"/>
@@ -1531,7 +1531,7 @@
         <!--Tag Category-->
         <scene sceneID="EKA-Vh-nc9">
             <objects>
-                <viewController title="Tag Category" id="J7N-vn-7W1" customClass="SPTagCategoryViewController" customModule="Spark1_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Tag Category" automaticallyAdjustsScrollViewInsets="NO" id="J7N-vn-7W1" customClass="SPTagCategoryViewController" customModule="Spark1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="e82-2J-64h"/>
                         <viewControllerLayoutGuide type="bottom" id="HsJ-Xt-Qsf"/>
@@ -1543,8 +1543,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MQd-B3-6ky">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TFl-Px-ayg">
-                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TFl-Px-ayg">
+                                <rect key="frame" x="0.0" y="498" width="320" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="HO5-Kn-Kiz"/>
                                 </constraints>
@@ -1558,49 +1558,33 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="V14-Ae-4YG"/>
                                 </items>
                             </toolbar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="IkU-w3-265">
-                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="15" minimumInteritemSpacing="10" id="DwD-tB-BpI">
-                                    <size key="itemSize" width="50" height="50"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="tPY-Fy-y32">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
-                                    </collectionViewCell>
-                                </cells>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qfD-C9-qJW">
+                                <rect key="frame" x="-4" y="64" width="328" height="460"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="J7N-vn-7W1" id="XeL-2Y-czr"/>
-                                    <outlet property="delegate" destination="J7N-vn-7W1" id="gMV-PN-TfT"/>
+                                    <outlet property="dataSource" destination="J7N-vn-7W1" id="UkY-1B-mFj"/>
+                                    <outlet property="delegate" destination="J7N-vn-7W1" id="33z-Fw-Ip9"/>
                                 </connections>
-                            </collectionView>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="TFl-Px-ayg" firstAttribute="leading" secondItem="QMu-NP-XRz" secondAttribute="leading" id="3pi-M8-bfC"/>
                             <constraint firstAttribute="trailing" secondItem="MQd-B3-6ky" secondAttribute="trailing" id="8tN-0V-NOc"/>
+                            <constraint firstItem="qfD-C9-qJW" firstAttribute="leading" secondItem="QMu-NP-XRz" secondAttribute="leadingMargin" constant="-20" id="AHF-6B-2Gr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qfD-C9-qJW" secondAttribute="trailing" constant="-20" id="Ies-ok-N7A"/>
+                            <constraint firstItem="HsJ-Xt-Qsf" firstAttribute="top" secondItem="qfD-C9-qJW" secondAttribute="bottom" constant="44" id="JHy-5j-yDG"/>
                             <constraint firstAttribute="bottom" secondItem="TFl-Px-ayg" secondAttribute="bottom" id="KQB-qh-3Uj"/>
-                            <constraint firstItem="TFl-Px-ayg" firstAttribute="top" secondItem="IkU-w3-265" secondAttribute="bottom" id="LjK-6D-jqZ"/>
                             <constraint firstAttribute="trailing" secondItem="TFl-Px-ayg" secondAttribute="trailing" id="UbX-df-xRZ"/>
-                            <constraint firstAttribute="trailing" secondItem="IkU-w3-265" secondAttribute="trailing" id="ZhZ-d0-v1c"/>
                             <constraint firstItem="HsJ-Xt-Qsf" firstAttribute="top" secondItem="MQd-B3-6ky" secondAttribute="bottom" id="aFp-pL-70L"/>
-                            <constraint firstItem="IkU-w3-265" firstAttribute="top" secondItem="e82-2J-64h" secondAttribute="bottom" id="iOp-fN-9ug"/>
                             <constraint firstItem="MQd-B3-6ky" firstAttribute="leading" secondItem="QMu-NP-XRz" secondAttribute="leading" id="lRd-2C-Dku"/>
-                            <constraint firstItem="IkU-w3-265" firstAttribute="leading" secondItem="QMu-NP-XRz" secondAttribute="leading" id="qzF-Hf-s29"/>
+                            <constraint firstItem="qfD-C9-qJW" firstAttribute="top" secondItem="e82-2J-64h" secondAttribute="bottom" id="riG-23-Z1K"/>
                             <constraint firstItem="MQd-B3-6ky" firstAttribute="top" secondItem="QMu-NP-XRz" secondAttribute="top" id="trk-Sy-Xu7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="qux-91-e8F"/>
                     <connections>
-                        <outlet property="collectionView" destination="IkU-w3-265" id="b8p-Yc-fqQ"/>
+                        <outlet property="tableView" destination="qfD-C9-qJW" id="kI1-UV-F3N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G21-uM-vSO" userLabel="First Responder" sceneMemberID="firstResponder"/>

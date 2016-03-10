@@ -11,16 +11,14 @@ class CategoriesTableViewCell : UITableViewCell {
     
   
     @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var checkBox: UIImageView!
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        // background
-        backgroundColor = UIColor(white: 1.0, alpha: 0.1)
-        
         // Category label
-       categoryLabel.textColor = UIColor.whiteColor()
-       categoryLabel.textColor = UIColor.whiteColor()
+        categoryLabel.textColor = UIColor.darkGrayColor()
+        self.selectionStyle = UITableViewCellSelectionStyle.None
     
     }
 }

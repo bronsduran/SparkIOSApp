@@ -82,6 +82,7 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
         let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as! StudentCollectionViewCell
         if let student = cell.student {
             self.selectedStudents.append(student)
+            cell.checkImageView.hidden = false
         }
     }
     
@@ -89,8 +90,22 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
         let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as! StudentCollectionViewCell
         if let student = cell.student {
             self.selectedStudents.removeObject(student)
+            cell.checkImageView.hidden = true
         }
     }
+    
+//    func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
+//        let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as! StudentCollectionViewCell
+//        
+//        
+//        return
+//    }
+    
+//    func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
+//        let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as! StudentCollectionViewCell
+//        cell.checkImageView.hidden = true
+//        return
+//    }
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

@@ -16,6 +16,7 @@ class StudentCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var countView : UIView!
     @IBOutlet weak var nameBackground: UIView!
     @IBOutlet weak var initialsLabel: UILabel!
+    @IBOutlet weak var checkImageView: UIImageView!
     
     var student : Student?
     
@@ -35,10 +36,7 @@ class StudentCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         
         // background
-        backgroundColor = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 0.77)
-        let selectedColor = UIImage(color: UIColor.blackColor().colorWithAlphaComponent(0.3))
-        self.selectedBackgroundView = UIImageView(image: selectedColor)
-        self.layer.cornerRadius = 4
+        setBackground()
         
         //nameBackground
         nameBackground.backgroundColor = UIColor(red: 255.0/255, green: 255.0/255, blue: 255.0/255, alpha: 0.55)
@@ -52,6 +50,16 @@ class StudentCollectionViewCell: UICollectionViewCell {
         // count view
         countLabel.textColor = UIColor.whiteColor()
         countView.layer.cornerRadius = countView.frame.height / 2.0
+        
+        // check view
+        checkImageView.hidden = true
+    }
+    
+    func setBackground() {
+        backgroundColor = UIColor(red: 250/255, green: 250/255, blue: 250/255, alpha: 0.77)
+//        let selectedColor = UIImage(color: UIColor.blackColor().colorWithAlphaComponent(0.3))
+//        self.selectedBackgroundView = UIImageView(image: selectedColor)
+        self.layer.cornerRadius = 4
     }
     
     func withStudentData(student: Student!) {
