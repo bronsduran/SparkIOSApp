@@ -18,30 +18,38 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
     
     var imagePicker : UIImagePickerController!
     
-    @IBOutlet weak var photoButton: UIButton!
     @IBOutlet weak var addAnotherDeleteButton: UIBarButtonItem!
     @IBOutlet weak var doneSaveButton: UIBarButtonItem!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var titleItem: UINavigationItem!
     
     var image : UIImage?
     var input = [String?](count: 4, repeatedValue: nil)
     var didDissmiss : ((String?) -> Void)? = nil
     var editMode = false // defaults to addMode
     var student: Student? = nil
+    var showCloseButton = true;
+    var header: StudentHeaderView? = nil
     
+    
+    @IBOutlet weak var localNavigationItem: UINavigationItem!
     
     override func viewDidLoad() {
         let cellNib: UINib = UINib(nibName: "TextInputTableViewCell", bundle: nil)
         tableView.registerNib(cellNib, forCellReuseIdentifier: "TextInputTableViewCell")
-                
+        
+    
+        let headerNib: UINib = UINib(nibName: "StudentHeaderView", bundle: nil)
+        tableView.registerNib(headerNib, forHeaderFooterViewReuseIdentifier: "StudentHeaderView")
+
+        
         tableView.backgroundColor = UIColor.clearColor()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeShown:", name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
 
-        photoButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
-        photoButton.imageView?.layer.cornerRadius = self.photoButton.frame.width / 2.0
-        photoButton.imageView?.clipsToBounds = true
         UIToolbar.appearance().tintColor = UIColor.blackColor()
         
         
@@ -62,7 +70,27 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
         
         activityIndicator.hidesWhenStopped = true
         view.bringSubviewToFront(activityIndicator)
+        
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        if showCloseButton {
+            let closeButton = UIBarButtonItem(
+                image: UIImage(named: "deleteIcon"),
+                style: UIBarButtonItemStyle.Plain,
+                target: self,
+                action: "closeButtonPressed:"
+            )
+            self.navBar.topItem?.rightBarButtonItem = closeButton
+        } else {
+            self.navBar.topItem?.rightBarButtonItem = nil
+        }
+        
+        self.titleItem.title = student?.displayName()
+        self.navigationController
+    }
+    
+
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell : TextInputTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("TextInputTableViewCell") as! TextInputTableViewCell
@@ -101,6 +129,36 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
         return cell
     }
     
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 150.0
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let cell = self.tableView.dequeueReusableHeaderFooterViewWithIdentifier("StudentHeaderView")
+        header = cell as! StudentHeaderView
+        
+        updateStudentHeader(student)
+        
+        return header
+    }
+    
+    func updateStudentHeader(student: Student?) {
+        
+        if let student = student, header = header {
+            header.initWithStudent(student, withMoments: false)
+        } else if let header = header {
+            header.initWithoutStudent()
+        }
+        
+        header?.photoButton.addTarget(self, action: "photoButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        if editMode {
+            header?.photoButton.enabled = true
+        }
+        
+    }
+    
     func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if let cell = cell as? TextInputTableViewCell {
             if (indexPath.row < input.count) {
@@ -127,7 +185,7 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
                     activityIndicator.startAnimating()
                     try student.delete()
                     activityIndicator.stopAnimating()
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    self.navigationController?.popViewControllerAnimated(true)
                 } catch {
                     activityIndicator.stopAnimating()
                     self.presentAlertWithTitle("Delete failed.", message: "There was an error connecting to the server, and and the student could not be deleted. To delete student, try again.")
@@ -156,21 +214,18 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
             activityIndicator.startAnimating()
             updateInputCache()
             if let student = student {
-                student["firstName"] = input[0]!
-                student["lastName"] = input[1]!
-                student["parentPhone"] = input[2]!
-                student["parentEmail"] = input[3]!
                 
-                student.saveInBackgroundWithBlock( { success in
-                    if success.0 {
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                student.updateStudentInfo(input[0]!, lastName: input[1]!, phoneNumber: input[2]!, parentEmail: input[3]!, photo: image, callback: { (success) -> Void in
+                    if success {
+                        self.navigationController?.popViewControllerAnimated(true)
                     } else {
                         self.presentAlertWithTitle("Save failed.", message: "There was an error connecting to the server, and changes couldn't be saved. To save changes, try again.")
                     }
                 })
+                
             }
         } else {
-            var created : Bool = createStudent()
+            let created : Bool = createStudent()
             
             if created {
                 User.currentUser()?.refreshStudents({ (success) -> Void in
@@ -225,10 +280,11 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func updatePhotoButtonImage() {
+
         if image != nil {
-            photoButton.setImage(image, forState: UIControlState.Normal)
+            header?.photoButton.setImage(image, forState: UIControlState.Normal)
         } else {
-            photoButton.imageView?.image = UIImage(named: "addStudentCameraIcon")
+            header?.photoButton.imageView?.image = UIImage(named: "addStudentCameraIcon")
         }
     }
     
@@ -253,9 +309,9 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
         self.image = image
         updatePhotoButtonImage()
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        considerEnablingButtons()
     }
-    
-    
+ 
     @IBAction func viewWasTapped(sender: AnyObject) {
         for cell in self.tableView.visibleCells {
             let cell = cell as! TextInputTableViewCell
@@ -289,7 +345,10 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
     
     func textFieldDidEndEditing(textField: UITextField) {
         updateInputCache()
-        
+        considerEnablingButtons()
+    }
+    
+    func considerEnablingButtons() {
         var enableButtons = true
         for str in input {
             if str == nil || str! == ""{

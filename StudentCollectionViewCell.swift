@@ -93,11 +93,12 @@ class StudentCollectionViewCell: UICollectionViewCell {
     }
     
     func withUntaggedData() {
-        numUntaggedMoments = User.currentUser()!.getNumberUntaggedMoments()
+        pictureImageView.hidden = false
+        initialsLabel.hidden = true
         student = nil
         countView.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:0.7)
+        countLabel.text = String(User.currentUser()!.getNumberUntaggedMoments())
         nameLabel.text = "Untagged"
-        countLabel.text = String(numUntaggedMoments)
         pictureImageView.image = UIImage(named: "untaggedIcon")
     }
     

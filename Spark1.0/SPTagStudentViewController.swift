@@ -116,6 +116,10 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
                 MomentSingleton.sharedInstance.students = self.selectedStudents
             }
         }
+//        else if segue.destinationViewController.isKindOfClass(SPStudentProfileViewController) {
+//            var vc = segue.destinationViewController as! SPStudentProfileViewController
+//            vc.showCloseButton = true
+//        }
     }
 
 

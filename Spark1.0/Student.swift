@@ -54,7 +54,7 @@ class Student: PFObject, PFSubclassing {
         User.currentUser()!.addStudent(student)
     }
     
-    func updateStudentInfo(firstName: String?, lastName: String?, phoneNumber: String?, parentEmail: String?, photo: UIImage?) {
+    func updateStudentInfo(firstName: String?, lastName: String?, phoneNumber: String?, parentEmail: String?, photo: UIImage?, callback: ((Bool) -> Void)?) {
         
         if (firstName != nil) {
             self["firstName"] = firstName
@@ -73,16 +73,22 @@ class Student: PFObject, PFSubclassing {
         }
         
         if let photo = photo {
+            self.image = nil // deletes the cached image
             let imageData = UIImageJPEGRepresentation(photo, 0.1)
             let parseImageFile = PFFile(data: imageData!)
             self["studentImage"] = parseImageFile
         }
         
-        do {
-            try self.save()
-        } catch _ {
-            print("ERROR SAVING")
+        self.saveInBackgroundWithBlock { (success, error) -> Void in
+            if error != nil {
+                print("ERROR in updateStudentInfo: ", error?.localizedDescription)
+                
+                callback?(false)
+            } else {
+                callback?(true)
+            }
         }
+
     }
     
     func displayName() -> String {
@@ -155,9 +161,21 @@ class Student: PFObject, PFSubclassing {
     }
     
     func moments(callback: [Moment] -> Void) {
-        self.loadObjectIds("moments", classname: "Moment") { (foundObjects) -> Void in
-            callback(foundObjects as! [Moment])
+        
+        if !self.hasFetchedMoments {
+            self.refreshMoments({ (success) -> Void in
+                if success {
+                    self.loadObjectIds("moments", classname: "Moment") { (foundObjects) -> Void in
+                        callback(foundObjects as! [Moment])
+                    }
+                }
+            })
+        } else {
+            self.loadObjectIds("moments", classname: "Moment") { (foundObjects) -> Void in
+                callback(foundObjects as! [Moment])
+            }
         }
+        
     }
     
  

@@ -114,6 +114,7 @@ class Moment: PFObject, PFSubclassing {
         }
     }
     
+    
     // typeOfMoment: True if IMAGE, false if VIDEO. For now always put True
     class func createMoment(typeOfMoment: Bool, students: [Student]?, categories: [String]?,
         notes: String?, imageFile: UIImage?, videoURL: NSURL?, voiceFile: NSURL?) {
@@ -198,7 +199,7 @@ class Moment: PFObject, PFSubclassing {
         
         // Image Data
         if let file = imageFile {
-            let imageData = UIImageJPEGRepresentation(file, 0.1)
+            let imageData = UIImageJPEGRepresentation(file, 0.9)
             let parseImageFile = PFFile(data: imageData!)
             self.setObject(parseImageFile!, forKey: "momentData")
         } else if let url = videoURL {

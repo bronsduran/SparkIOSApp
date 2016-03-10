@@ -13,20 +13,9 @@ import Parse
 
 
 class User: PFUser {
-    
-//    static var current: User!
-    
-//    var userName: String!
-//    var email: String!
-//    var emailVerified: Bool = false
-//    var firstName: String!
-//    var lastName: String!
-//    var parse: PFUser!
-//    var students: [String]!
-//    var untaggedMoments: [String]!
-//    var numberUntaggedMoments: Int!
-//    var classes: [String]!
-//
+
+    var hasFetchedStudents : Bool = false
+    var hasFetchedUntaggedMoments : Bool = false
 
     class func register(email: String, password: String, firstName: String, lastName: String, callback: (success: Bool) -> Void) {
         
@@ -147,26 +136,47 @@ class User: PFUser {
     }
     
     func students(callback: [Student] -> Void) {
-        self.loadObjectIds("students", classname: "Student") { (foundObjects) -> Void in
-            callback(foundObjects as! [Student])
+        if !self.hasFetchedStudents {
+            self.refreshStudents({ (success) -> Void in
+                if success {
+                    self.loadObjectIds("students", classname: "Student") { (foundObjects) -> Void in
+                        callback(foundObjects as! [Student])
+                    }
+                }
+            })
+        } else {
+            self.loadObjectIds("students", classname: "Student") { (foundObjects) -> Void in
+                callback(foundObjects as! [Student])
+            }
         }
     }
 
     func untaggedMoments(callback: [Moment] -> Void) {
-        self.loadObjectIds("untaggedMoments", classname: "Moment") { (foundObjects) -> Void in
-            callback(foundObjects as! [Moment])
+        if !self.hasFetchedUntaggedMoments {
+            self.refreshUntaggedMoments({ (success) -> Void in
+                if success {
+                    self.loadObjectIds("untaggedMoments", classname: "Moment") { (foundObjects) -> Void in
+                        callback(foundObjects as! [Moment])
+                    }
+                }
+            })
+        } else {
+            self.loadObjectIds("untaggedMoments", classname: "Moment") { (foundObjects) -> Void in
+                callback(foundObjects as! [Moment])
+            }
         }
     }
     
     func refreshUntaggedMoments(callback: ((Bool) -> Void)?) {
         self.fetchObjectIds("untaggedMoments", classname: "Moment") { (foundObjects) -> Void in
+            self.hasFetchedUntaggedMoments = true
             callback?(foundObjects != nil)
         }
     }
     
     func refreshStudents(callback: ((Bool) -> Void)?) {
         self.fetchObjectIds("students", classname: "Student") { (foundObjects) -> Void in
-            NSNotificationCenter.defaultCenter().postNotificationName("studentRefresh", object: nil)
+            self.hasFetchedUntaggedMoments = true
             callback?(foundObjects != nil)
         }
     }
