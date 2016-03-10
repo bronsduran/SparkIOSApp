@@ -10,19 +10,21 @@ import Foundation
 import UIKit
 import Parse
 
-class SPTagCategoryViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class SPTagCategoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+//    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var tableView: UITableView!
+    
         
     var selectedCategories: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let cellNib: UINib = UINib(nibName: "CategoryCollectionViewCell", bundle: nil)
+        let cellNib: UINib = UINib(nibName: "CategoriesTableViewCell", bundle: nil)
         
-        self.collectionView.registerNib(cellNib, forCellWithReuseIdentifier: "CategoryCollectionViewCell")
-        self.collectionView.allowsMultipleSelection = true
+        self.tableView.registerNib(cellNib, forCellReuseIdentifier: "CategoriesTableViewCell")
+        self.tableView.allowsMultipleSelection = true
         self.navigationController?.navigationBar.hidden = false
         self.title = "Tag Category"
         //self.navigationController?.navigationBar.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
@@ -37,32 +39,36 @@ class SPTagCategoryViewController: UIViewController, UICollectionViewDelegate, U
     }
 
     override func viewWillLayoutSubviews() {
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
-        layout.itemSize = CGSize(width: (collectionView.frame.width - 4.0)/3.0, height: (collectionView.frame.height - 4.0) / 4.0)
-        layout.minimumInteritemSpacing = 2
-        layout.minimumLineSpacing = 2
-        collectionView.collectionViewLayout = layout
+//        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+//        layout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
+//        layout.itemSize = CGSize(width: (collectionView.frame.width - 4.0)/3.0, height: (collectionView.frame.height - 4.0) / 4.0)
+//        layout.minimumInteritemSpacing = 2
+//        layout.minimumLineSpacing = 2
+//        collectionView.collectionViewLayout = layout
     }
     
-    // override methods
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 7
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CategoryCollectionViewCell", forIndexPath: indexPath) as! CategoryCollectionViewCell
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+                let cell = tableView.dequeueReusableCellWithIdentifier("CategoriesTableViewCell", forIndexPath: indexPath) as! CategoriesTableViewCell
         
-        // Contents (Picture / name / count)
+                // Contents (Picture / name / count)
         
         cell.categoryLabel.text = categoryForIndexPath(indexPath)
-        cell.countView.hidden = true
+        cell.checkBox.hidden = true
+//                cell.countView.hidden = true
         
-        return cell
+                return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 60
     }
     
     func categoryForIndexPath(indexPath: NSIndexPath) -> String {
@@ -111,13 +117,15 @@ class SPTagCategoryViewController: UIViewController, UICollectionViewDelegate, U
 
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCollectionViewCell
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! CategoriesTableViewCell
+        cell.checkBox.hidden = false
         self.selectedCategories.append(cell.categoryLabel.text!)
     }
     
-    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as! CategoryCollectionViewCell
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! CategoriesTableViewCell
+        cell.checkBox.hidden = true
         self.selectedCategories.removeObject(cell.categoryLabel.text!)
     }
     

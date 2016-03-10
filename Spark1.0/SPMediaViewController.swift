@@ -337,6 +337,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     }
     
     func hideAudioContainer() {
+        self.audioButton.setImage(UIImage(named: "microphoneButton"), forState: UIControlState.Normal)
         self.audioButton.hidden = false
         self.audioViewContainer.hidden = true
         textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
@@ -381,11 +382,13 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     
     @IBAction func textCloseButtonPressed(sender: AnyObject) {
         hideTextContainer()
-
     }
     
     @IBAction func viewWasTapped(sender: AnyObject) {
         self.textView.endEditing(true)
+        if self.textView.text == nil || self.textView.text == "" {
+            hideTextContainer()
+        }
     }
     
     @IBAction func recordButtonPressed(sender: AnyObject) {
