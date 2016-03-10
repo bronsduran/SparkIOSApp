@@ -14,6 +14,7 @@ class SPTagStudentViewController: UIViewController, UICollectionViewDelegate, UI
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var tagCategoryButton: UIButton!
     var students : [Student]! = []
     var selectedStudents : [Student]! = []
     
