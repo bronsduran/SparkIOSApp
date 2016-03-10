@@ -12,7 +12,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
 
     @IBOutlet weak var nameLabel: UINavigationItem!
     
-//    @IBOutlet weak var pickerView: AKPickerView!
+    var pickerView: AKPickerView!
 
     var imagePicker : UIImagePickerController!
     var image : UIImage?
@@ -51,8 +51,11 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        //        self.pickerView.reloadData()
-        //        self.applyFilter(self.pickerView.selectedItem.description)
+        if let pickerView = self.pickerView {
+            pickerView.reloadData()
+            applyFilter(self.pickerView.selectedItem.description)
+        }
+        
         
         if categoriesToShow.count == 7 {
             categoriesToShow.insert("All", atIndex: 3)
@@ -112,32 +115,55 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        if student == nil {
-            return nil
-        } else {
+        if student != nil && section == 0 {
             let cell = self.momentTableView.dequeueReusableHeaderFooterViewWithIdentifier("StudentHeaderView")
-            header = cell as! StudentHeaderView
+            header = cell as? StudentHeaderView
             header?.photoButton.addTarget(self, action: "cameraButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
             self.updateStudentHeader()
             return header
+        } else {
+            if self.pickerView == nil {
+                self.pickerView = AKPickerView(frame: CGRectMake(0, 0, tableView.frame.width, 50))
+                
+                self.pickerView.delegate = self
+                self.pickerView.dataSource = self
+                
+                self.pickerView.font = UIFont(name: "HelveticaNeue-Light", size: 20)!
+                self.pickerView.backgroundColor = UIColor.whiteColor()
+                self.pickerView.highlightedFont = UIFont(name: "HelveticaNeue-Bold", size: 20)!
+                self.pickerView.pickerViewStyle = .Wheel
+                self.pickerView.maskDisabled = false
+                self.pickerView.layer.shadowColor = UIColor.lightGrayColor().CGColor
+                self.pickerView.reloadData()
+            }
+            
+            return self.pickerView
         }
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if student == nil {
-            return 0.0
-        } else {
+        if student != nil && section == 0 {
             return 150.0
+        } else {
+            return 50.0
         }
     }
     
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        if student == nil {
+            return 1
+        } else {
+            return 2
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return momentsToShow.count
+        if student != nil && section == 0 {
+            return 0
+        } else {
+            return momentsToShow.count
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -244,8 +270,19 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     // MARK: - AKPickerViewDelegate
     
     func pickerView(pickerView: AKPickerView, didSelectItem item: Int) {
-        applyFilter(categoriesToShow[item])
-        self.momentTableView.reloadData()
+        var row = 0
+        if student != nil || momentsToShow.isEmpty {
+            row = NSNotFound
+        }
+        let indexPath = NSIndexPath(forRow: row, inSection: 0)
+        
+        UIView.animateWithDuration(0.4, animations: {
+            self.momentTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Top, animated: false)
+            }, completion: {
+                (value: Bool) in
+                self.applyFilter(self.categoriesToShow[item])
+                self.momentTableView.reloadData()
+        })
     }
 
 }
