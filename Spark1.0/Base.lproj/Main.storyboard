@@ -40,7 +40,7 @@
                                     <constraint firstAttribute="height" constant="32" id="xf9-MW-T8v"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="passwordIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bCe-DH-kQd">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="passwordIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bCe-DH-kQd">
                                 <rect key="frame" x="22" y="331" width="32" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="9JT-80-kRw"/>
@@ -205,7 +205,7 @@
                             </connections>
                         </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="hHE-AN-t8c">
-                            <rect key="frame" x="88" y="7" width="145" height="30"/>
+                            <rect key="frame" x="87.5" y="7" width="145" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="39" id="Hv1-DK-fry"/>
@@ -812,6 +812,8 @@
                         <outlet property="cameraToggle" destination="0Cn-g8-OuU" id="Qpd-bS-Jyr"/>
                         <outlet property="captureBlur" destination="Tub-ZY-n6q" id="yaQ-zj-xpM"/>
                         <outlet property="captureButton" destination="rXV-9g-QeX" id="iKb-gI-PUa"/>
+                        <outlet property="toggleHeightConstraint" destination="WzC-qc-RrA" id="NAw-Xt-mzN"/>
+                        <outlet property="toggleWidthConstraint" destination="5Mq-g5-AFJ" id="JeV-fc-31p"/>
                         <outlet property="visualArchiveBlur" destination="Qhg-1o-JS5" id="knk-6U-8H0"/>
                         <outlet property="visualTextBlur" destination="Blx-Mk-GZr" id="IhO-TF-GEu"/>
                         <outlet property="visualVoiceBlur" destination="Qjr-ph-21T" id="5dA-El-svA"/>
@@ -1661,6 +1663,6 @@
         <image name="waveForm" width="549" height="58"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Cc3-fR-Vzl"/>
+        <segue reference="iTq-8L-MSd"/>
     </inferredMetricsTieBreakers>
 </document>
