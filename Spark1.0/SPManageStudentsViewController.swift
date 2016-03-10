@@ -20,6 +20,8 @@ class SPManageStudentsViewController : UICollectionViewController {
         layout.itemSize = CGSize(width: (self.collectionView!.frame.width - 4.0)/3.0, height: 148.0)
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 2
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red:232/255.0, green:232/255.0, blue:232/255.0,  alpha:1.0)
+
         self.view.backgroundColor = UIColor(red:232/255.0, green:232/255.0, blue:232/255.0,  alpha:1.0)
         self.collectionView?.collectionViewLayout = layout
         

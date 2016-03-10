@@ -31,8 +31,9 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     // view did load
     override func viewDidLoad() {
         super.viewDidLoad()
+        sortByControl.backgroundColor = UIColor.clearColor()
         addStatusBarStyle()
-        self.view.backgroundColor = UIColor(red:232/255.0, green:232/255.0, blue:232/255.0,  alpha:1.0)
+        self.view.backgroundColor = UIColor(red:232/255.0, green:232/255.0, blue:232/255.0,  alpha:0.9)
         let cellNib: UINib = UINib(nibName: "StudentCollectionViewCell", bundle: nil)
         
         self.archiveCollectionView.registerNib(cellNib, forCellWithReuseIdentifier: "StudentCollectionViewCell")

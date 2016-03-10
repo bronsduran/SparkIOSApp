@@ -37,6 +37,7 @@ class SPStudentProfileViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var localNavigationItem: UINavigationItem!
     
     override func viewDidLoad() {
+        self.title = "Add Student"
         let cellNib: UINib = UINib(nibName: "TextInputTableViewCell", bundle: nil)
         tableView.registerNib(cellNib, forCellReuseIdentifier: "TextInputTableViewCell")
         
