@@ -106,6 +106,8 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
             header?.photoButton.addTarget(self, action: "cameraButtonPressed:", forControlEvents: UIControlEvents.TouchUpInside)
             self.updateStudentHeader()
             return header
+        } else if student == nil {
+            return nil
         } else {
             if self.pickerView == nil {
                 self.pickerView = AKPickerView(frame: CGRectMake(0, 0, tableView.frame.width, 50))
@@ -129,6 +131,8 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if student != nil && section == 0 {
             return 150.0
+        } else if student == nil {
+            return 0.0
         } else {
             return 50.0
         }
