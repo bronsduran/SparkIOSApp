@@ -26,15 +26,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.pickerView.delegate = self
-//        self.pickerView.dataSource = self
-//        
-//        self.pickerView.font = UIFont(name: "HelveticaNeue-Light", size: 20)!
-//        self.pickerView.highlightedFont = UIFont(name: "HelveticaNeue-Bold", size: 20)!
-//        self.pickerView.pickerViewStyle = .Wheel
-//        self.pickerView.maskDisabled = false
-//        self.pickerView.layer.shadowColor = UIColor.lightGrayColor().CGColor
-//        self.pickerView.reloadData()
+        
         addStatusBarStyle()
         
         let cellNib: UINib = UINib(nibName: "MomentTableViewCell", bundle: nil)
@@ -44,12 +36,7 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         momentTableView.registerNib(headerNib, forHeaderFooterViewReuseIdentifier: "StudentHeaderView")
         
         configureTableView()
-    
-    }
-    
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+        
         
         if let pickerView = self.pickerView {
             pickerView.reloadData()
@@ -62,20 +49,19 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
         }
         
         // student table
-
         if let student = student {
             nameLabel.title = student["firstName"] as? String
-
+            
             student.moments({ (moments: [Moment]) -> Void in
                 self.moments = moments
                 self.applyFilter("All")
                 self.momentTableView.reloadData()
                 self.updateStudentHeader()
             })
-        // untagged moments table
+            // untagged moments table
         } else {
             nameLabel.title = "Untagged"
-
+            
             User.currentUser()!.untaggedMoments() { (foundMoments) -> Void in
                 self.moments = foundMoments
                 self.applyFilter("All")
@@ -83,9 +69,8 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
                 self.updateStudentHeader()
             }
         }
-    }
     
-
+    }
     
     @IBAction func cameraButtonPressed(sender: UIButton) {
         
