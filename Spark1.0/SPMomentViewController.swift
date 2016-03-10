@@ -28,6 +28,7 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
     var audioExists: Bool = false
     var textExists: Bool = false
     var videoFrameView: UIView!
+    var muted: Bool = false
 
     @IBAction func sendMomentPressed(sender: AnyObject) {
         if (student != nil && student["parentEmail"] != nil) {
@@ -48,6 +49,13 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
     @IBAction func muteButtonPressed(sender: UIButton) {
         if let videoPlayer = self.videoPlayer {
             videoPlayer.muted = !videoPlayer.muted
+            if muted {
+              self.muteButton.setImage(UIImage(named: "mute"), forState: .Normal)
+               muted = false
+            } else {
+            self.muteButton.setImage(UIImage(named: "muted"), forState: .Normal)
+            muted = true
+            }
         }
     }
     
