@@ -12,9 +12,9 @@ class SPManageStudentsViewController : UICollectionViewController {
     
     var students: [Student]! = []
     
+    @IBOutlet weak var backbutton: UINavigationItem!
     override func viewDidLoad() {
         super.viewDidLoad()
-                
         // collection view
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: (self.collectionView!.frame.width - 4.0)/3.0, height: 148.0)

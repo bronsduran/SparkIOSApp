@@ -116,9 +116,12 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StudentCollectionViewCell", forIndexPath: indexPath) as! StudentCollectionViewCell
         
         let offset = User.currentUser()!.getNumberUntaggedMoments() == 0 ? 0 : 1
+        
         if offset == 1 && indexPath.row == 0 {
+            print("Untagged")
             cell.withUntaggedData()
         } else {
+            print("Offset: " + String(offset) + ", Row: " + String(indexPath.row))
             cell.withStudentData(students![indexPath.row - offset])
         }
         
