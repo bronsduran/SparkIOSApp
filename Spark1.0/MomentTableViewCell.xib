@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15E49a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15E56a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -36,22 +36,93 @@
                             <constraint firstAttribute="width" constant="105" id="u3Q-1D-f4m"/>
                         </constraints>
                     </imageView>
+                    <visualEffectView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xiT-nA-pf3">
+                        <rect key="frame" x="77" y="84" width="30" height="30"/>
+                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="kuD-Op-1aQ">
+                            <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="microphoneButton" translatesAutoresizingMaskIntoConstraints="NO" id="8R5-Tw-qTw">
+                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="kUx-6Q-9mJ"/>
+                                        <constraint firstAttribute="height" constant="20" id="tnb-nE-ocp"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="8R5-Tw-qTw" secondAttribute="bottom" id="I0Z-PQ-sdZ"/>
+                                <constraint firstItem="8R5-Tw-qTw" firstAttribute="top" secondItem="kuD-Op-1aQ" secondAttribute="top" id="SA2-aD-SHj"/>
+                                <constraint firstItem="8R5-Tw-qTw" firstAttribute="leading" secondItem="kuD-Op-1aQ" secondAttribute="leading" id="fwc-jE-tgS"/>
+                                <constraint firstAttribute="trailing" secondItem="8R5-Tw-qTw" secondAttribute="trailing" id="jpb-FE-08L"/>
+                            </constraints>
+                        </view>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="RUr-S3-5tO"/>
+                            <constraint firstAttribute="width" constant="20" id="mPG-Jg-4C4"/>
+                        </constraints>
+                        <blurEffect style="light"/>
+                    </visualEffectView>
+                    <visualEffectView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zt0-5u-RwH">
+                        <rect key="frame" x="39" y="84" width="30" height="29"/>
+                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="mzS-UC-usx">
+                            <rect key="frame" x="0.0" y="0.0" width="30" height="29"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="videoIcon" translatesAutoresizingMaskIntoConstraints="NO" id="9Is-Jk-qaW">
+                                    <rect key="frame" x="0.0" y="0.0" width="30" height="29"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="17" id="9tx-If-l6p"/>
+                                        <constraint firstAttribute="width" constant="17" id="gVX-2d-Mow"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="9Is-Jk-qaW" firstAttribute="top" secondItem="mzS-UC-usx" secondAttribute="top" id="2JB-YX-SEJ"/>
+                                <constraint firstAttribute="bottom" secondItem="9Is-Jk-qaW" secondAttribute="bottom" id="YfG-Wo-pp1"/>
+                                <constraint firstAttribute="trailing" secondItem="9Is-Jk-qaW" secondAttribute="trailing" id="wHA-tt-Pba"/>
+                                <constraint firstItem="9Is-Jk-qaW" firstAttribute="leading" secondItem="mzS-UC-usx" secondAttribute="leading" id="xS5-3a-XSY"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="2JB-YX-SEJ"/>
+                                    <exclude reference="YfG-Wo-pp1"/>
+                                    <exclude reference="wHA-tt-Pba"/>
+                                    <exclude reference="xS5-3a-XSY"/>
+                                </mask>
+                            </variation>
+                        </view>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="38i-sv-z4A"/>
+                            <constraint firstItem="9Is-Jk-qaW" firstAttribute="centerY" secondItem="zt0-5u-RwH" secondAttribute="centerY" id="c1a-Xb-nD3"/>
+                            <constraint firstItem="9Is-Jk-qaW" firstAttribute="centerX" secondItem="zt0-5u-RwH" secondAttribute="centerX" id="kge-FE-sZ2"/>
+                            <constraint firstAttribute="height" constant="20" id="qvu-OE-NZV"/>
+                        </constraints>
+                        <blurEffect style="light"/>
+                    </visualEffectView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
+                    <constraint firstItem="jLM-hE-Wwb" firstAttribute="leading" secondItem="zt0-5u-RwH" secondAttribute="trailing" constant="34" id="2Vl-9e-N45"/>
                     <constraint firstItem="y7p-g9-Yht" firstAttribute="top" secondItem="jLM-hE-Wwb" secondAttribute="top" constant="1" id="A6d-jD-tMV"/>
                     <constraint firstItem="jLM-hE-Wwb" firstAttribute="top" secondItem="u8Z-ts-Al8" secondAttribute="bottom" constant="2" id="JSd-Vf-iG5"/>
                     <constraint firstAttribute="bottomMargin" secondItem="y7p-g9-Yht" secondAttribute="bottom" constant="2" id="Ooy-wH-vnI"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="zt0-5u-RwH" secondAttribute="bottom" constant="4" id="Qlq-lM-Q3r"/>
+                    <constraint firstItem="jLM-hE-Wwb" firstAttribute="leading" secondItem="xiT-nA-pf3" secondAttribute="trailing" constant="10" id="R3p-qE-Rp0"/>
                     <constraint firstItem="jLM-hE-Wwb" firstAttribute="leading" secondItem="y7p-g9-Yht" secondAttribute="trailing" constant="8" id="UHg-9o-nyI"/>
                     <constraint firstItem="u8Z-ts-Al8" firstAttribute="top" secondItem="gPp-0l-OBI" secondAttribute="topMargin" constant="-6" id="V73-lx-11s"/>
                     <constraint firstItem="y7p-g9-Yht" firstAttribute="centerY" secondItem="gPp-0l-OBI" secondAttribute="centerY" id="b6b-mV-fqC"/>
                     <constraint firstItem="y7p-g9-Yht" firstAttribute="leading" secondItem="gPp-0l-OBI" secondAttribute="leadingMargin" id="bBk-nQ-rtd"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="xiT-nA-pf3" secondAttribute="bottom" constant="4" id="c9L-Nk-iQx"/>
                     <constraint firstAttribute="trailingMargin" secondItem="jLM-hE-Wwb" secondAttribute="trailing" id="clv-EG-VPc"/>
+                    <constraint firstItem="xiT-nA-pf3" firstAttribute="leading" secondItem="zt0-5u-RwH" secondAttribute="trailing" constant="4" id="kae-yH-xPB"/>
                     <constraint firstAttribute="trailingMargin" secondItem="u8Z-ts-Al8" secondAttribute="trailing" constant="6" id="zBv-kk-3xg"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="A6d-jD-tMV"/>
+                        <exclude reference="kae-yH-xPB"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
@@ -60,8 +131,15 @@
                 <outlet property="dateLabel" destination="u8Z-ts-Al8" id="1Zh-v0-KcG"/>
                 <outlet property="imageToCaptionConstraint" destination="UHg-9o-nyI" id="Lyh-ta-rlq"/>
                 <outlet property="momentImageView" destination="y7p-g9-Yht" id="phJ-p6-MmR"/>
+                <outlet property="photoOrVideoIndicator" destination="zt0-5u-RwH" id="tdk-KZ-fin"/>
+                <outlet property="videoIndicatorToCaptionConstraint" destination="2Vl-9e-N45" id="2Go-za-PbL"/>
+                <outlet property="voiceIndicator" destination="xiT-nA-pf3" id="QK6-e8-WzV"/>
             </connections>
             <point key="canvasLocation" x="366" y="23"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="microphoneButton" width="55" height="55"/>
+        <image name="videoIcon" width="40" height="23"/>
+    </resources>
 </document>

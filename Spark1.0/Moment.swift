@@ -107,7 +107,11 @@ class Moment: PFObject, PFSubclassing {
     }
     
     func isVideo() -> Bool {
-        return (self["mediaType"] as! Int) == 1
+        if self["momentData"] != nil {
+            return (self["mediaType"] as! Int) == 1
+        } else {
+            return false
+        }
     }
     
     // typeOfMoment: True if IMAGE, false if VIDEO. For now always put True

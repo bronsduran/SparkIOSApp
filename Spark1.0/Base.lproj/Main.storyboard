@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E56a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pR4-Z0-oNV">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -40,7 +40,7 @@
                                     <constraint firstAttribute="height" constant="32" id="xf9-MW-T8v"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="passwordIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bCe-DH-kQd">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="passwordIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bCe-DH-kQd">
                                 <rect key="frame" x="22" y="331" width="32" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="9JT-80-kRw"/>
@@ -205,7 +205,7 @@
                             </connections>
                         </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="hHE-AN-t8c">
-                            <rect key="frame" x="88" y="7" width="145" height="30"/>
+                            <rect key="frame" x="87.5" y="7" width="145" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="39" id="Hv1-DK-fry"/>
@@ -887,6 +887,8 @@
                         <outlet property="captureBlur" destination="Tub-ZY-n6q" id="yaQ-zj-xpM"/>
                         <outlet property="captureButton" destination="rXV-9g-QeX" id="iKb-gI-PUa"/>
                         <outlet property="testView" destination="SbT-Y1-rFL" id="Gac-qs-mjd"/>
+                        <outlet property="toggleHeightConstraint" destination="WzC-qc-RrA" id="PO9-Ch-w9k"/>
+                        <outlet property="toggleWidthConstraint" destination="5Mq-g5-AFJ" id="KhW-pE-9Ei"/>
                         <outlet property="visualArchiveBlur" destination="Qhg-1o-JS5" id="knk-6U-8H0"/>
                         <outlet property="visualTextBlur" destination="Blx-Mk-GZr" id="IhO-TF-GEu"/>
                         <outlet property="visualVoiceBlur" destination="Qjr-ph-21T" id="5dA-El-svA"/>
@@ -1762,6 +1764,6 @@
         <image name="waveForm" width="549" height="58"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Cc3-fR-Vzl"/>
+        <segue reference="iTq-8L-MSd"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -20,6 +20,11 @@ class SPCaptureViewController: UIViewController {
     var waitingForVideoFile = false
     var mediaType = 0
     
+
+    @IBOutlet weak var toggleWidthConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var toggleHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var captureButton: UIButton!
     @IBOutlet weak var visualVoiceBlur: UIVisualEffectView!
     @IBOutlet weak var captureBlur: UIVisualEffectView!
@@ -75,11 +80,15 @@ class SPCaptureViewController: UIViewController {
     func setCaptureButton() {
         
         if !isCamera {
+            self.toggleWidthConstraint.constant = 40
+            self.toggleHeightConstraint.constant = 23
             self.captureButton.setBackgroundImage(UIImage(named: "captureButton.png"), forState: UIControlState.Normal)
             self.cameraToggle.setBackgroundImage(UIImage(named: "videoIcon.png"), forState: UIControlState.Normal)
             isCamera = true
             
         } else {
+            self.toggleWidthConstraint.constant = 30
+            self.toggleHeightConstraint.constant = 30
             self.captureButton.setBackgroundImage(UIImage(named: "videoCaptureButton.png"), forState: UIControlState.Normal)
             self.cameraToggle.setBackgroundImage(UIImage(named: "cameraButton.png"), forState: UIControlState.Normal)
             isCamera = false

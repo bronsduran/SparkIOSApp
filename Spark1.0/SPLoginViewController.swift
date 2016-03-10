@@ -67,7 +67,7 @@ class SPLoginViewController: UIViewController, UITextFieldDelegate {
         // For testing only
         if (emailField.text == nil || passwordField.text == nil ||
             emailField.text == "" || passwordField.text == "") {
-            emailField.text = "lucast@stanford.edu"
+            emailField.text = "sparkdev@stanford.edu"
             passwordField.text = "dev"
         }
     
