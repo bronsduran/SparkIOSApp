@@ -42,6 +42,17 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
             noEmailErrorAlert.show()
         }
     }
+    
+    
+    @IBOutlet weak var muteButton: UIButton!
+    @IBAction func muteButtonPressed(sender: UIButton) {
+        if let videoPlayer = self.videoPlayer {
+            videoPlayer.muted = !videoPlayer.muted
+        }
+    }
+    
+    
+    
     @IBOutlet weak var audioBlur: UIVisualEffectView!
     @IBOutlet weak var textBlur: UIVisualEffectView!
     
@@ -59,6 +70,8 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        muteButton.hidden = (videoPlayer == nil)
         
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("screenTapped:"))
         imageView.addGestureRecognizer(tapGestureRecognizer)
@@ -92,6 +105,10 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
                 if let video = video, let videoUrl = video.url {
                     self.videoPlayer = AVPlayer(URL: NSURL(string: videoUrl)!)
                     self.videoPlayer!.actionAtItemEnd = AVPlayerActionAtItemEnd.None
+                    
+                    if let muteButton = self.muteButton {
+                        muteButton.hidden = false
+                    }
                     
                     NSNotificationCenter.defaultCenter().addObserver(self,
                         selector: "playerItemDidReachEnd:",
@@ -127,6 +144,9 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
         
       
     }
+    
+    
+    
     func screenTapped(sender: AnyObject)
     {
         if viewsAreHidden {
@@ -183,6 +203,15 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
 
             videoPlayer.pause()
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+//        if let videoPlayer = self.videoPlayer {
+//            videoPlayer.addObserver(self, forKeyPath: "status", options: NSKeyValueObservingOptions(), context: nil)
+//            videoPlayer.play()
+//        }
     }
  
     
