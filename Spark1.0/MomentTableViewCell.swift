@@ -127,6 +127,13 @@ class MomentTableViewCell: UITableViewCell {
                 if moment.isVideo() {
                     self.photoOrVideoIndicator.hidden = false
                 }
+            } else {
+                self.momentImageView.image = UIImage(named: "placeHolder")
+                self.momentImageView.contentMode = UIViewContentMode.ScaleAspectFit
+                self.momentImageView.layer.cornerRadius = 3.0
+                self.momentImageView.layer.masksToBounds = true
+                self.momentImageView.layer.opaque = false
+                self.imageToCaptionConstraint.constant = 8
             }
         })
         
