@@ -276,7 +276,7 @@ class SPMomentViewController: UIViewController, AVAudioPlayerDelegate, MFMailCom
         bounds.offsetInPlace(dx: 0.0, dy: 0.0)
         bounds.size.height = bounds.height + 20.0
         
-        navBlur = UIVisualEffectView(effect: UIBlurEffect(style: .ExtraLight))
+        navBlur = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
         navBlur.frame = bounds
         navBlur.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         

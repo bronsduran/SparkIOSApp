@@ -89,7 +89,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         }
         addStatusBarStyle()
         setUpButtons()
-        addBlurEffect()
+     //   addBlurEffect()
         
     }
     
