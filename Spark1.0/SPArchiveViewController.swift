@@ -18,6 +18,8 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     
     @IBOutlet weak var sortByControl: UISegmentedControl!
     
+    var navBlur: UIVisualEffectView!
+    
     @IBAction func sortByControl(sender: UISegmentedControl) {
         refresh()
     }
@@ -156,6 +158,26 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         
         self.presentViewController(vc, animated: true, completion: nil)
     }
+    func addBlurEffect() {
+        if let navBar = navigationController?.navigationBar {
+            // Add blur view
+            var bounds = self.navigationController?.navigationBar.bounds as CGRect!
+            bounds.offsetInPlace(dx: 0.0, dy: 0.0)
+            bounds.size.height = bounds.height + 20.0
+            
+            navBlur = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+            navBlur.frame = bounds
+            navBlur.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+            
+            self.view.addSubview(navBlur)
+        }
+        
+        
+        // Here you can add visual effects to any UIView control.
+        // Replace custom view with navigation bar in above code to add effects to custom view.
+    }
+    
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "toStudentViewController"){
