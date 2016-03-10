@@ -11,12 +11,16 @@ import Foundation
 class SPSettingsViewController : UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var titleBar: UINavigationItem!
     
     @IBOutlet weak var closeButton: UIBarButtonItem!
     
     let NUM_INPUT_CELLS = 3
     
     override func viewDidLoad() {
+        self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
+        closeButton.tintColor = UIColor.blackColor()
         var cellNib: UINib = UINib(nibName: "TextInputTableViewCell", bundle: nil)
         self.tableView.registerNib(cellNib, forCellReuseIdentifier: "TextInputTableViewCell")
         

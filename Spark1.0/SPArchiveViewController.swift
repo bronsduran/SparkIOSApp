@@ -94,7 +94,20 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
     
     // delegates / datasource
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
+        if (!students.isEmpty) {
+            print("HI")
+            collectionView.backgroundView = nil
+            return 1
+        } else {
+            print("BYE")
+            let label = UILabel(frame: CGRectMake(0, 0, collectionView.frame.width - 6.0, collectionView.frame.height - 6.0))
+            label.textAlignment = NSTextAlignment.Center
+            label.text = "No Students Available!"
+            label.sizeToFit()
+            collectionView.backgroundView = label
+            // archiveCollectionView.
+            return 0
+        }
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -116,9 +129,12 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("StudentCollectionViewCell", forIndexPath: indexPath) as! StudentCollectionViewCell
         
         let offset = User.currentUser()!.getNumberUntaggedMoments() == 0 ? 0 : 1
+        
         if offset == 1 && indexPath.row == 0 {
+            print("Untagged")
             cell.withUntaggedData()
         } else {
+            print("Offset: " + String(offset) + ", Row: " + String(indexPath.row))
             cell.withStudentData(students![indexPath.row - offset])
         }
         
