@@ -29,10 +29,14 @@ public extension UIImage {
 
 class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
 
+    
+    let screenRect = UIScreen.mainScreen().bounds;
+    
     var image: UIImage! = nil
     var imageView: UIImageView? = nil
     var videoView: UIView? = nil
-    var videoURL: NSURL! = nil
+    var videoUrl: NSURL! = nil
+    var videoData: NSData! = nil
     var videoPlayer: AVPlayer! = nil
     var videoPlayerLayer: AVPlayerLayer! = nil
     var recorder: AVAudioRecorder?
@@ -59,11 +63,17 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     
     @IBOutlet weak var audioButton: UIButton!
     @IBOutlet weak var textButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     
     @IBOutlet weak var tagButton: UIButton!
     
     @IBOutlet weak var textViewDistanceToBottomOfAudioView: NSLayoutConstraint!
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        MomentSingleton.sharedInstance.clearData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +84,9 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         textViewDistanceToBottomOfAudioView.constant = -self.audioViewContainer.frame.height
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.title = ""
-        setupAudioSession()
+        if player == nil {
+            setupAudioSession()
+        }
         addStatusBarStyle()
         setUpButtons()
         addBlurEffect()
@@ -82,48 +94,14 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     }
     
     override func viewWillAppear(animated: Bool) {
-        
-        let screenRect = UIScreen.mainScreen().bounds;
 
-        //self.navigationController?.navigationBar.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
-        //self.navigationController?.navigationBar.translucent = true
-
-        MomentSingleton.sharedInstance.notes = nil
-        MomentSingleton.sharedInstance.voiceFile = nil
+        // . self.navigationController?.navigationBar.backgroundColor = UIColor(red:255/255.0, green:37/255.0, blue:80/255.0,  alpha:1.0)
+        // . self.navigationController?.navigationBar.translucent = true
         
-        if self.videoURL == nil {
-            
-            if self.imageView == nil {
-                addBackgroundImageView()
-            }
-            
-            if let view = self.videoView {
-                self.view.sendSubviewToBack(view)
-            }
-            
-            if let backgroundImage = self.image {
-                self.imageView!.image = backgroundImage
-            } else {
-                self.imageView!.image = UIImage(named: "noMediaBackground")
-            }
-            
+        if let mediaType = MomentSingleton.sharedInstance.mediaType where mediaType == 0 {
+            updateWithImage()
         } else {
-            
-            videoPlayer = AVPlayer(URL: videoURL)
-            videoPlayer.actionAtItemEnd = AVPlayerActionAtItemEnd.None
-            
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: videoPlayer.currentItem)
-            
-            videoPlayerLayer = AVPlayerLayer(player: videoPlayer)
-            videoPlayerLayer.frame = screenRect
-            
-            if self.videoView == nil {
-                addBackgroundVideoView()
-            }
-            if let view = self.imageView {
-                self.view.sendSubviewToBack(view)
-            }
-            videoPlayer.play()
+            updateWithVideoData()
         }
 
     }
@@ -133,16 +111,22 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     }
     
     func addBackgroundImageView() {
+        if let imageView = self.imageView {
+            imageView.removeFromSuperview()
+        }
         
         self.imageView = UIImageView(image: self.image)
         self.imageView!.frame = self.view.frame
         self.view.addSubview(self.imageView!)
         self.view.sendSubviewToBack(self.imageView!)
         self.navigationController?.navigationBar.backgroundColor = UIColor.clearColor()
-        
     }
 
     func addBackgroundVideoView() {
+        if let videoView = self.videoView {
+            videoView.removeFromSuperview()
+        }
+        
         self.videoView = UIView(frame: self.view.frame)
         self.videoView!.layer.addSublayer(videoPlayerLayer)
         self.view.addSubview(self.videoView!)
@@ -174,10 +158,111 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     override func viewDidAppear(animated: Bool) {
         if initWithRecording {
             recordButtonPressed(self)
-        } else if initWithText {
+        } else if initWithText || MomentSingleton.sharedInstance.notes != nil {
             textButtonPressed(self)
+            if let notes = MomentSingleton.sharedInstance.notes {
+                textView.text = notes
+            }
         }
     }
+    
+    // MARK: - callback methods for loading in a pre-existing moment
+    func updateWithVideoData() {
+        if let mediaType = MomentSingleton.sharedInstance.mediaType, let videoUrl = MomentSingleton.sharedInstance.videoUrl where mediaType == 1 {
+            imageView?.hidden = true
+            videoPlayerLayer?.hidden = false
+            
+            self.videoUrl = videoUrl
+            
+            videoPlayer = AVPlayer(URL: videoUrl)
+            
+            videoPlayer.actionAtItemEnd = AVPlayerActionAtItemEnd.None
+            
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "playerItemDidReachEnd:", name: AVPlayerItemDidPlayToEndTimeNotification, object: videoPlayer.currentItem)
+            
+            videoPlayerLayer = AVPlayerLayer(player: videoPlayer)
+            videoPlayerLayer.frame = screenRect
+            
+            if self.videoView == nil {
+                addBackgroundVideoView()
+            }
+            if let view = self.imageView {
+                self.view.sendSubviewToBack(view)
+            }
+            videoPlayer.play()
+        }
+        enableDisableSaveTagButtons()
+    }
+    
+    func updateWithVoiceData() {
+        if let data = MomentSingleton.sharedInstance.voiceData {
+            do {
+                player = try AVAudioPlayer(data: data)
+                player?.delegate = self
+                player?.prepareToPlay()
+                
+                
+                showAudioContainer()
+                audioRecordingLabel.hidden = true
+                self.audioButton.setImage(UIImage(named: "microphoneButtonSelected"), forState: UIControlState.Normal)
+                
+            } catch let error as NSError {
+                print("ERROR with setting up player", error.localizedDescription)
+            }
+        }
+        enableDisableSaveTagButtons()
+    }
+    
+    func updateWithImage() {
+        if let mediaType = MomentSingleton.sharedInstance.mediaType where mediaType == 0 {
+            addBackgroundImageView()
+            if  let image = MomentSingleton.sharedInstance.image {
+                
+                videoPlayerLayer?.hidden = true
+                imageView?.hidden = false
+                
+                self.image = image
+                
+                if let view = self.videoView {
+                    self.view.sendSubviewToBack(view)
+                }
+                
+                if let backgroundImage = self.image, let imageView = self.imageView {
+                    imageView.image = backgroundImage
+                }
+            } else {
+                self.imageView!.image = UIImage(named: "applicationBackground")
+            }
+        }
+        enableDisableSaveTagButtons()
+    }
+    
+    func enableDisableSaveTagButtons() {
+        var hasRecording = false
+        if let audioContainer = audioViewContainer where !audioContainer.hidden && !isRecording {
+            hasRecording = true
+        } else if MomentSingleton.sharedInstance.voiceData != nil {
+            hasRecording = true
+        }
+        
+        var hasNotes = false
+        if let textView = textView where textView.text != nil && textView.text != "" {
+            hasNotes = true
+        } else if MomentSingleton.sharedInstance.notes != nil {
+            hasNotes = true
+        }
+        
+        let hasImage = (image != nil && MomentSingleton.sharedInstance.image != nil)
+        let hasVideo = (videoUrl != nil && MomentSingleton.sharedInstance.videoUrl != nil)
+        
+        let enableButtons = hasNotes || hasRecording || hasImage || hasVideo
+        
+        if let saveButton = saveButton, let tagButton = tagButton {
+            saveButton.enabled = enableButtons
+            tagButton.enabled = enableButtons
+        }
+    }
+    
     
     override func canBecomeFirstResponder() -> Bool {
         return true
@@ -238,8 +323,12 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         }
     }
     
-    func showAudioContainer() {
+    func showAudioContainerInRecordState() {
         self.audioButton.setImage(UIImage(named: "recordStopButton"), forState: UIControlState.Normal)
+        showAudioContainer()
+    }
+    
+    func showAudioContainer() {
         textViewDistanceToBottomOfAudioView.constant = 4
         self.audioViewContainer.hidden = false
         UIView.animateWithDuration(0.3) {
@@ -279,11 +368,12 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        print("FIRST")
         return true
     }
     
-
+    
+    // MARK: - Button interactions
+    
     
     @IBAction func textButtonPressed(sender: AnyObject) {
         showTextContainer()
@@ -301,7 +391,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     @IBAction func recordButtonPressed(sender: AnyObject) {
         
         if isRecording == false {
-            showAudioContainer()
+            showAudioContainerInRecordState()
             audioPlayButton.hidden = true
             audioRecordingLabel.hidden = false
             audioImageView.hidden = true
@@ -316,20 +406,31 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         }
         
         isRecording = !isRecording
+        enableDisableSaveTagButtons()
     }
     
     @IBAction func audioCloseButtonPressed(sender: AnyObject) {
         hideAudioContainer()
+        enableDisableSaveTagButtons()
     }
     
     @IBAction func saveButtonPressed(sender: AnyObject) {
         
         updateMomentSingleton()
         
-        Moment.createMoment(MomentSingleton.sharedInstance.mediaType == 0, students: nil, categories: nil, notes: MomentSingleton.sharedInstance.notes,
-            imageFile: MomentSingleton.sharedInstance.image, videoURL: MomentSingleton.sharedInstance.videoUrl, voiceFile: MomentSingleton.sharedInstance.voiceFile)
+        if let oldMoment = MomentSingleton.sharedInstance.moment {
+            oldMoment.updateMomentInfo(MomentSingleton.sharedInstance.mediaType == 0, students: nil,
+                categories: nil, notes: MomentSingleton.sharedInstance.notes,
+                imageFile: MomentSingleton.sharedInstance.image, videoURL: MomentSingleton.sharedInstance.videoUrl,
+                voiceFile: MomentSingleton.sharedInstance.voiceFile)
+        } else {
+            Moment.createMoment(MomentSingleton.sharedInstance.mediaType == 0, students: nil,
+                categories: nil, notes: MomentSingleton.sharedInstance.notes,
+                imageFile: MomentSingleton.sharedInstance.image, videoURL: MomentSingleton.sharedInstance.videoUrl,
+                voiceFile: MomentSingleton.sharedInstance.voiceFile)
+        }
         
-        User.currentUser()?.refreshUntaggedMoments(nil)
+        User.currentUser()!.refreshUntaggedMoments(nil)
         
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             if let view = self.imageView {
@@ -371,6 +472,8 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         }
         if !self.textViewContainer.hidden && !self.textView.text.isEmpty {
             MomentSingleton.sharedInstance.notes = self.textView.text
+        } else {
+            MomentSingleton.sharedInstance.notes = nil
         }
     }
     
@@ -389,17 +492,20 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         }
         return true
     }
+    
     func addBlurEffect() {
-        // Add blur view
-        var bounds = self.navigationController?.navigationBar.bounds as CGRect!
-        bounds.offsetInPlace(dx: 0.0, dy: 0.0)
-        bounds.size.height = bounds.height + 20.0
-        
-        navBlur = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
-        navBlur.frame = bounds
-        navBlur.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        
-        self.view.addSubview(navBlur)
+        if let navBar = navigationController?.navigationBar {
+            // Add blur view
+            var bounds = self.navigationController?.navigationBar.bounds as CGRect!
+            bounds.offsetInPlace(dx: 0.0, dy: 0.0)
+            bounds.size.height = bounds.height + 20.0
+            
+            navBlur = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+            navBlur.frame = bounds
+            navBlur.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+            
+            self.view.addSubview(navBlur)
+        }
         
         
         // Here you can add visual effects to any UIView control.

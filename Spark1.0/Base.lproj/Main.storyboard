@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E56a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pR4-Z0-oNV">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -40,7 +40,7 @@
                                     <constraint firstAttribute="height" constant="32" id="xf9-MW-T8v"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="passwordIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bCe-DH-kQd">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="passwordIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bCe-DH-kQd">
                                 <rect key="frame" x="22" y="331" width="32" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="9JT-80-kRw"/>
@@ -205,7 +205,7 @@
                             </connections>
                         </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="hHE-AN-t8c">
-                            <rect key="frame" x="87.5" y="7" width="145" height="30"/>
+                            <rect key="frame" x="88" y="7" width="145" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="39" id="Hv1-DK-fry"/>
@@ -362,6 +362,7 @@
                         <outlet property="studentInfoView" destination="LDd-46-6BB" id="ayI-9n-Fro"/>
                         <outlet property="studentInfoViewHeight" destination="0cv-n0-vdx" id="rpZ-XP-z0Y"/>
                         <segue destination="lkN-nd-Ys1" kind="push" identifier="toMomentViewController" id="HFf-dp-KSk"/>
+                        <segue destination="ZaX-yA-hlv" kind="push" identifier="Edit Moment" id="Cc3-fR-Vzl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6re-gZ-PKP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -794,8 +795,8 @@
                                 </constraints>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tub-ZY-n6q">
-                                <rect key="frame" x="130.5" y="500" width="60" height="60"/>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tub-ZY-n6q">
+                                <rect key="frame" x="131" y="500" width="60" height="60"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="UFb-Zh-net">
                                     <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1273,6 +1274,7 @@
                         <outlet property="audioPlayButton" destination="90x-Rq-ocX" id="23U-82-7NF"/>
                         <outlet property="audioRecordingLabel" destination="lVh-co-Dvy" id="6by-Dq-bf2"/>
                         <outlet property="audioViewContainer" destination="tJ2-NX-ACT" id="QKj-mZ-Hjs"/>
+                        <outlet property="saveButton" destination="VnU-0e-gnt" id="YvJ-CN-2dm"/>
                         <outlet property="saveButtonContainer" destination="bK8-89-m1S" id="BCJ-tc-56N"/>
                         <outlet property="tagButton" destination="SIm-Lo-1y9" id="f4p-tH-wKg"/>
                         <outlet property="tagButtonContainer" destination="i7y-as-Heg" id="eZi-5l-136"/>
@@ -1759,4 +1761,7 @@
         <image name="videoIcon" width="40" height="23"/>
         <image name="waveForm" width="549" height="58"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Cc3-fR-Vzl"/>
+    </inferredMetricsTieBreakers>
 </document>

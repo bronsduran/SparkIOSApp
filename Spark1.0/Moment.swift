@@ -39,6 +39,14 @@ class Moment: PFObject, PFSubclassing {
         }
     }
     
+    func studentsTagged() -> [Student] {
+        if let studentsTagged = self["studentsTagged"] as? [Student] {
+            return studentsTagged
+        } else {
+            return []
+        }
+    }
+    
     func image(callback: (UIImage?) -> Void) {
         
         if self.image != nil {
@@ -103,75 +111,21 @@ class Moment: PFObject, PFSubclassing {
     }
     
     // typeOfMoment: True if IMAGE, false if VIDEO. For now always put True
-    class func createMoment(typeOfMoment: Bool, students: [Student]?, categories: [String]?, notes: String?, imageFile: UIImage?, videoURL: NSURL?, voiceFile: NSURL?) {
-        
-        let moment = Moment()
-        
-        // Media Type
-        moment["mediaType"] = typeOfMoment ? 0 : 1
-        
-        // Notes
-        if let momentNotes = notes {
-            moment["notes"] = momentNotes
-        }
-        
-        // Students Tagged
-        if let taggedStudents = students {
+    class func createMoment(typeOfMoment: Bool, students: [Student]?, categories: [String]?,
+        notes: String?, imageFile: UIImage?, videoURL: NSURL?, voiceFile: NSURL?) {
+            let moment = Moment()
             
-            var studentsTagged = [String]()
-            for student in taggedStudents {
-                studentsTagged.append(student.objectId! as String)
-            }
-            moment["studentsTagged"] = studentsTagged
-        }
-        
-        // Categories Tagged
-        if let categories = categories {
-            moment["categoriesTagged"] = categories
-        }
-        
-        // Voice Data
-        if let file = voiceFile {
-            let voice = NSData(contentsOfURL: file)
-            let parseVoiceFile = PFFile(data: voice!)
-            moment.setObject(parseVoiceFile!, forKey: "voiceData")
-        }
-        
-        // Teacher
-        moment["teacher"] = User.currentUser()
-        
-        
-        // Image Data
-        if let file = imageFile {
-            let imageData = UIImageJPEGRepresentation(file, 0.1)
-            let parseImageFile = PFFile(data: imageData!)
-            moment.setObject(parseImageFile!, forKey: "momentData")
-        } else if let url = videoURL {
-            let tempUrl = (UIApplication.sharedApplication().delegate as! AppDelegate).applicationDocumentsDirectory.URLByAppendingPathComponent("tempVideo").URLByAppendingPathExtension("mov")
-            do {
-                try NSFileManager.defaultManager().removeItemAtURL(tempUrl)
-            } catch {}
-            
-            let asset = AVURLAsset(URL: url)
-            if let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetLowQuality) {
-                exportSession.outputURL = tempUrl
-                exportSession.outputFileType = AVFileTypeQuickTimeMovie
-                exportSession.exportAsynchronouslyWithCompletionHandler { () -> Void in
-                    if exportSession.status == AVAssetExportSessionStatus.Completed {
-                        let videoData = NSFileManager.defaultManager().contentsAtPath(tempUrl.path!)
-                        let parseVideoFile = PFFile(name: "blah.mov", data: videoData!)
-                        moment.setObject(parseVideoFile!, forKey: "momentData")
-                        saveMoment(moment, students: students)
-                    }
-                }
-            }
-            return
-        }
-        
-        saveMoment(moment, students: students)
+            moment.updateMomentInfo(typeOfMoment,
+                students: students,
+                categories: categories,
+                notes: notes,
+                imageFile: imageFile,
+                videoURL: videoURL,
+                voiceFile: voiceFile)
     }
+
     
-    class func saveMoment(moment: PFObject, students: [Student]?) {
+    class func saveMomentAndUpdateStudents(moment: PFObject, students: [Student]?) {
         do {
             try moment.save()
         } catch _ {
@@ -186,6 +140,101 @@ class Moment: PFObject, PFSubclassing {
             User.currentUser()!.addUntaggedMoment(moment)
         }
     }
+    
+    class func saveMoment(moment: PFObject) {
+        do {
+            try moment.save()
+        } catch _ {
+            print("ERROR SAVING")
+        }
+    }
+    
+    
+    func updateMomentInfo(typeOfMoment: Bool, students: [Student]?, categories: [String]?, notes: String?, imageFile: UIImage?, videoURL: NSURL?, voiceFile: NSURL?) {
+        
+        // Media Type
+        self["mediaType"] = typeOfMoment ? 0 : 1
+        
+        // Notes
+        if let momentNotes = notes {
+            self["notes"] = momentNotes
+        } else {
+            self["notes"] = ""
+        }
+        
+        // Students Tagged
+        if let taggedStudents = students {
+            
+            var studentsTagged = [String]()
+            for student in taggedStudents {
+                studentsTagged.append(student.objectId! as String)
+            }
+            self["studentsTagged"] = studentsTagged
+        }
+        
+        // Categories Tagged
+        if let categories = categories {
+            self["categoriesTagged"] = categories
+        }
+        
+        // Voice Data
+        if let file = voiceFile {
+            let voice = NSData(contentsOfURL: file)
+            let parseVoiceFile = PFFile(name: "voice.caf", data: voice!)
+            self.setObject(parseVoiceFile!, forKey: "voiceData")
+        }
+        
+        // Teacher
+        self["teacher"] = User.currentUser()
+        
+        // if the object already exists, remove from untagged moments before retagging models.
+        if let objectId = self.objectId {
+            User.currentUser()!.removeUntaggedMoment(objectId)
+        }
+        
+        // Image Data
+        if let file = imageFile {
+            let imageData = UIImageJPEGRepresentation(file, 0.1)
+            let parseImageFile = PFFile(data: imageData!)
+            self.setObject(parseImageFile!, forKey: "momentData")
+        } else if let url = videoURL {
+            compressVideo(url, completion: { (videoData, success) -> Void in
+                if let videoData = videoData {
+                    let parseVideoFile = PFFile(name: "video.mov", data: videoData)
+                    print("video bytes:", videoData.length)
+                    self.setObject(parseVideoFile!, forKey: "momentData")
+                    Moment.saveMoment(self)
+                }
+            })
+        }
+        
+        Moment.saveMomentAndUpdateStudents(self, students: students)
+    }
+    
+    func compressVideo(url: NSURL, completion: (videoData: NSData?, success: Bool) -> Void)  {
+        let tempUrl = (UIApplication.sharedApplication().delegate as! AppDelegate).applicationDocumentsDirectory.URLByAppendingPathComponent("tempVideo").URLByAppendingPathExtension("mov")
+        do {
+            try NSFileManager.defaultManager().removeItemAtURL(tempUrl)
+        } catch {
+            return completion(videoData: nil, success: false)
+        }
+        
+        let asset = AVURLAsset(URL: url)
+        if let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetMediumQuality) {
+            exportSession.outputURL = tempUrl
+            exportSession.outputFileType = AVFileTypeQuickTimeMovie
+            exportSession.exportAsynchronouslyWithCompletionHandler { () -> Void in
+                if exportSession.status == AVAssetExportSessionStatus.Completed {
+                    if let videoData = NSFileManager.defaultManager().contentsAtPath(tempUrl.path!) {
+                        return completion(videoData: videoData, success: true)
+                    }
+                    
+                }
+            }
+        }
+        completion(videoData: nil, success: false)
+    }
+
     
     func addTagging(students: [Student], categories: [String]) {
         self["untagged"] = false
@@ -205,45 +254,6 @@ class Moment: PFObject, PFSubclassing {
         }
         
         User.currentUser()!.removeUntaggedMoment(self.objectId!)
-    }
-    
-    func updateMomentInfo(firstName: String?, lastName: String?, phoneNumber: String?, parentEmail: String?, photo: UIImage?) {
-        
-        // TODO: implement this method...
-//        
-//        if (firstName != nil) {
-//            self.parse["firstName"] = firstName
-//            self.firstName = firstName
-//        }
-//        
-//        if (lastName != nil) {
-//            self.parse["lastName"] = lastName
-//            self.lastName = lastName
-//        }
-//        
-//        if (phoneNumber != nil) {
-//            self.parse["parentPhone"] = phoneNumber
-//            self.parentPhone = phoneNumber
-//        }
-//        
-//        if (parentEmail != nil) {
-//            self.parse["parentEmail"] = parentEmail
-//            self.parentEmail = parentEmail
-//        }
-//        
-//        if (photo != nil) {
-//            if let photo = photo {let imageData = UIImageJPEGRepresentation(photo, 0.1)
-//                let parseImageFile = PFFile(data: imageData!)
-//                self.parse.setObject(parseImageFile!, forKey: "studentImage")
-//            }
-//            self.studentImage = photo
-//        }
-//        
-        do {
-            try self.save()
-        } catch _ {
-            print("ERROR SAVING")
-        }
     }
     
     func getDate() -> NSDate? {
