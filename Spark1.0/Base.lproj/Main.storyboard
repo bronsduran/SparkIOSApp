@@ -841,11 +841,11 @@
                                 </constraints>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Cn-g8-OuU">
-                                <rect key="frame" x="260" y="518" width="40" height="23"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Cn-g8-OuU">
+                                <rect key="frame" x="260" y="510" width="40" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="5Mq-g5-AFJ"/>
-                                    <constraint firstAttribute="height" constant="23" id="WzC-qc-RrA"/>
+                                    <constraint firstAttribute="height" constant="30" id="WzC-qc-RrA"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="videoIcon"/>
                                 <connections>
@@ -1367,7 +1367,7 @@
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KGf-Gh-lca">
                                 <rect key="frame" x="0.0" y="64" width="320" height="168"/>
-                                <color key="backgroundColor" white="0.57657822986577179" alpha="0.30199353448275862" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.98431372549019602" green="0.058823529411764705" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="168" id="Kdj-fB-Jkc"/>
                                 </constraints>
@@ -1384,7 +1384,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uxz-Z9-ob5">
-                                <rect key="frame" x="0.0" y="232" width="320" height="259"/>
+                                <rect key="frame" x="0.0" y="232" width="320" height="291"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="u6T-Nu-23k" id="FXY-5g-Pnq"/>
@@ -1392,9 +1392,9 @@
                                 </connections>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I1t-ya-3YL">
-                                <rect key="frame" x="0.0" y="491" width="320" height="77"/>
+                                <rect key="frame" x="0.0" y="523" width="320" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="77" id="KIt-q8-hWq"/>
+                                    <constraint firstAttribute="height" constant="45" id="KIt-q8-hWq"/>
                                 </constraints>
                                 <items>
                                     <barButtonItem title="Add Another" id="8jk-mv-OO9">
@@ -1437,6 +1437,7 @@
                             <outletCollection property="gestureRecognizers" destination="nwz-Q2-Uc3" appends="YES" id="zp7-dM-dU7"/>
                         </connections>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" id="Fi1-lQ-Qmq"/>
                     <connections>
                         <outlet property="activityIndicator" destination="Tqy-80-Gxl" id="HcZ-cu-bdO"/>
@@ -1767,6 +1768,6 @@
         <image name="waveForm" width="549" height="58"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Cc3-fR-Vzl"/>
+        <segue reference="iTq-8L-MSd"/>
     </inferredMetricsTieBreakers>
 </document>
