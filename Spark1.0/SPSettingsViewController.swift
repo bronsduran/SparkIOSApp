@@ -20,6 +20,7 @@ class SPSettingsViewController : UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         self.navigationController?.navigationBar.backgroundColor = UIColor.whiteColor()
         self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
+        
         closeButton.tintColor = UIColor.blackColor()
         var cellNib: UINib = UINib(nibName: "TextInputTableViewCell", bundle: nil)
         self.tableView.registerNib(cellNib, forCellReuseIdentifier: "TextInputTableViewCell")

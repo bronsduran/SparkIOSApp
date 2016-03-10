@@ -15,7 +15,7 @@ class ButtonTableViewCell : UITableViewCell {
         
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+        labelView.textColor = UIColor.darkGrayColor()
         // background
         backgroundColor = UIColor(white: 1.0, alpha: 0.1)
         
