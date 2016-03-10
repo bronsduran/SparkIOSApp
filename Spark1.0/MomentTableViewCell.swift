@@ -24,10 +24,7 @@ class MomentTableViewCell: UITableViewCell {
 
         colorLabels()
         backgroundColor = UIColor(white: 1.0, alpha: 0.1)
-        
-        photoOrVideoIndicator.hidden = true
-        voiceIndicator.hidden = true
-        
+     
         photoOrVideoIndicator.layer.cornerRadius = 3.0 //photoOrVideoIndicator.frame.height / 2.0
         photoOrVideoIndicator.layer.masksToBounds = true
         
@@ -59,6 +56,9 @@ class MomentTableViewCell: UITableViewCell {
     }
     
     func withMoment(moment: Moment) {
+        
+        photoOrVideoIndicator.hidden = true
+        voiceIndicator.hidden = true
         
         captionLabel.text = nil
         momentImageView.image = nil
@@ -104,6 +104,14 @@ class MomentTableViewCell: UITableViewCell {
          //  voice indicator
         moment.getFileNamed("voiceData") { (data: NSData?) -> Void in
             self.voiceIndicator.hidden = data == nil
+            
+            // layoutThumbnailIcons
+            if self.voiceIndicator.hidden {
+                self.videoIndicatorToCaptionConstraint.constant = 10
+                
+            } else {
+                self.videoIndicatorToCaptionConstraint.constant = 34
+            }
         }
         
         
@@ -122,13 +130,7 @@ class MomentTableViewCell: UITableViewCell {
             }
         })
         
-        // layoutThumbnailIcons
-        if self.voiceIndicator.hidden {
-           self.videoIndicatorToCaptionConstraint.constant = 10
-            
-        } else {
-           self.videoIndicatorToCaptionConstraint.constant = 34
-        }
+        
         
         
     }
