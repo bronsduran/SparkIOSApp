@@ -775,7 +775,7 @@
                                 <blurEffect style="light"/>
                             </visualEffectView>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Cn-g8-OuU">
-                                <rect key="frame" x="264" y="518.5" width="40" height="23"/>
+                                <rect key="frame" x="264" y="519" width="40" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="5Mq-g5-AFJ"/>
                                     <constraint firstAttribute="height" constant="23" id="WzC-qc-RrA"/>

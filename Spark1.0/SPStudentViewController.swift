@@ -270,19 +270,32 @@ class SPStudentViewController: UIViewController, UITableViewDataSource, UITableV
     // MARK: - AKPickerViewDelegate
     
     func pickerView(pickerView: AKPickerView, didSelectItem item: Int) {
+        // animations, in case we want them
+        /*
         var row = 0
         if student != nil || momentsToShow.isEmpty {
             row = NSNotFound
         }
-        let indexPath = NSIndexPath(forRow: row, inSection: 0)
+        let indexPath = NSIndexPath(forRow: row, inSection: student == nil ? 0 : 1)
         
-        UIView.animateWithDuration(0.4, animations: {
+        self.momentTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Top, animated: false)
+        
+        let duration = Double(momentsToShow.count) * 0.04
+        */
+        
+        /*
+        UIView.animateWithDuration(0.6, animations: {
             self.momentTableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Top, animated: false)
             }, completion: {
                 (value: Bool) in
                 self.applyFilter(self.categoriesToShow[item])
                 self.momentTableView.reloadData()
         })
+        */
+        
+        
+        self.applyFilter(self.categoriesToShow[item])
+        self.momentTableView.reloadData()
     }
 
 }
