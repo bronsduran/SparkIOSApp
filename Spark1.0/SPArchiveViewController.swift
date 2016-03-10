@@ -100,6 +100,7 @@ class SPArchiveViewController: UIViewController, UICollectionViewDelegate, UICol
             return 0
         }
     }
+    
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         var numItems = 0
