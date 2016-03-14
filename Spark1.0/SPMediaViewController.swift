@@ -89,7 +89,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         }
         addStatusBarStyle()
         setUpButtons()
-     //   addBlurEffect()
+        addBlurEffect()
         
     }
     
@@ -134,17 +134,16 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     }
     
     func setUpButtons() {
-        //probably a more concise way to do this 
-        self.saveButtonContainer.layer.cornerRadius = self.saveButtonContainer.frame.height / 8
-        self.saveButtonContainer.layer.masksToBounds = true
-        self.audioButtonContainer.layer.cornerRadius = self.audioButtonContainer.frame.height / 2
-        self.audioButtonContainer.layer.masksToBounds = true
-        self.tagButtonContainer.layer.cornerRadius = self.tagButtonContainer.frame.height / 8
-        self.tagButtonContainer.layer.masksToBounds = true
-        self.textButtonContainer.layer.cornerRadius = self.textButtonContainer.frame.height / 2
-        self.textButtonContainer.layer.masksToBounds = true
+        maskAndSetCornerRadius(self.saveButtonContainer, radius: 8)
+        maskAndSetCornerRadius(self.audioButtonContainer, radius: 2)
+        maskAndSetCornerRadius(self.tagButtonContainer, radius: 8)
+        maskAndSetCornerRadius(self.textButtonContainer, radius: 2)
 
-        
+    }
+    
+    func maskAndSetCornerRadius (view: UIView, radius: CGFloat) {
+        view.layer.cornerRadius = view.frame.height / radius
+        view.layer.masksToBounds = true
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -345,6 +344,7 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         UIView.animateWithDuration(0.3) {
             self.view.layoutIfNeeded()
         }
+        self.audioButton.hidden = false
         returnToCaptureIfNeeded()
     }
     
@@ -359,6 +359,8 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
         self.textView.text = ""
         self.textView.endEditing(true)
         self.textViewContainer.hidden = true
+        self.textButton.hidden = false
+        self.textButtonContainer.hidden = false
         returnToCaptureIfNeeded()
     }
     
@@ -379,10 +381,13 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     
     @IBAction func textButtonPressed(sender: AnyObject) {
         showTextContainer()
+        textButton.hidden = true
+        textButtonContainer.hidden = true
     }
     
     @IBAction func textCloseButtonPressed(sender: AnyObject) {
         hideTextContainer()
+        textButton.hidden = false
     }
     
     @IBAction func viewWasTapped(sender: AnyObject) {
@@ -407,6 +412,8 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
             audioRecordingLabel.hidden = true
             audioImageView.hidden = false
             recorder?.stop()
+            audioButton.hidden = true
+            audioButtonContainer.hidden = true
         }
         
         isRecording = !isRecording
@@ -416,6 +423,8 @@ class SPMediaViewController: UIViewController, UITextViewDelegate, AVAudioRecord
     @IBAction func audioCloseButtonPressed(sender: AnyObject) {
         hideAudioContainer()
         enableDisableSaveTagButtons()
+        audioButtonContainer.hidden = false
+        audioButton.hidden = false
     }
     
     @IBAction func saveButtonPressed(sender: AnyObject) {
